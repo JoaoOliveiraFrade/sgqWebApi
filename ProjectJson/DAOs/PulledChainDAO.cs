@@ -34,7 +34,19 @@ namespace ProjectWebApi.DAOs
         public bool update(PulledChain item)
         {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\PulledChain\update.sql"));
+            //sql = sql.Replace("@statusStrategyTestingAndContracting", "statusStrategyTestingAndContracting");
+            //sql = sql.Replace("@dtUpdateStrategyTestingAndContracting", "dtUpdateStrategyTestingAndContracting");
+            //sql = sql.Replace("@statusTimeline", "statusTimeline");
+            //sql = sql.Replace("@dtUpdateTimeLine", "dtUpdateTimeLine");
+            //sql = sql.Replace("@statusTestPlan", "statusTestPlan");
+            //sql = sql.Replace("@dtUpdateTestPlan", "dtUpdateTestPlan");
+            //sql = sql.Replace("@dtDeliveryTestPlan", "dtDeliveryTestPlan");
+            //sql = sql.Replace("@readyTestPlan", "readyTestPlan");
+            //sql = sql.Replace("@dtStartTestPlan", "dtStartTestPlan");
 
+            //var connection = new Connection(Bancos.Sgq);
+
+            //connection.Executar(sql)
             try
             {
                 var connection = new Connection(Bancos.Sgq);
@@ -50,11 +62,16 @@ namespace ProjectWebApi.DAOs
                     command.Parameters.AddWithValue("id", item.id);
                     command.Parameters.AddWithValue("statusStrategyTestingAndContracting", item.statusStrategyTestingAndContracting);
                     command.Parameters.AddWithValue("dtUpdateStrategyTestingAndContracting", item.dtUpdateStrategyTestingAndContracting);
+
                     command.Parameters.AddWithValue("statusTimeline", item.statusTimeline);
                     command.Parameters.AddWithValue("dtUpdateTimeLine", item.dtUpdateTimeLine);
+
                     command.Parameters.AddWithValue("statusTestPlan", item.statusTestPlan);
                     command.Parameters.AddWithValue("dtUpdateTestPlan", item.dtUpdateTestPlan);
+
                     command.Parameters.AddWithValue("dtDeliveryTestPlan", item.dtDeliveryTestPlan);
+                    command.Parameters.AddWithValue("readyTestPlan", item.readyTestPlan);
+                    command.Parameters.AddWithValue("dtStartTestPlan", item.dtStartTestPlan);
 
                     int i = command.ExecuteNonQuery();
                     result = i > 0;

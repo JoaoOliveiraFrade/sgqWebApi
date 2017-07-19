@@ -9,6 +9,8 @@ set
     statusTestPlan = @statusTestPlan,
     dtUpdateTestPlan = @dtUpdateTestPlan,
 
-    dtDeliveryTestPlan = @dtDeliveryTestPlan
+    dtDeliveryTestPlan = @dtDeliveryTestPlan,
+    readyTestPlan = @readyTestPlan,
+    dtStartTestPlan = @dtStartTestPlan
 where
     id = @id
