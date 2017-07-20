@@ -37,7 +37,7 @@ namespace ProjectWebApi.DAOs
             //sql = sql.Replace("@statusStrategyTestingAndContracting", "statusStrategyTestingAndContracting");
             //sql = sql.Replace("@dtUpdateStrategyTestingAndContracting", "dtUpdateStrategyTestingAndContracting");
             //sql = sql.Replace("@statusTimeline", "statusTimeline");
-            //sql = sql.Replace("@dtUpdateTimeLine", "dtUpdateTimeLine");
+            //sql = sql.Replace("@dtUpdateTimeline", "dtUpdateTimeline");
             //sql = sql.Replace("@statusTestPlan", "statusTestPlan");
             //sql = sql.Replace("@dtUpdateTestPlan", "dtUpdateTestPlan");
             //sql = sql.Replace("@dtDeliveryTestPlan", "dtDeliveryTestPlan");
@@ -62,12 +62,15 @@ namespace ProjectWebApi.DAOs
                     command.Parameters.AddWithValue("id", item.id);
                     command.Parameters.AddWithValue("statusStrategyTestingAndContracting", item.statusStrategyTestingAndContracting);
                     command.Parameters.AddWithValue("dtUpdateStrategyTestingAndContracting", item.dtUpdateStrategyTestingAndContracting);
+                    command.Parameters.AddWithValue("dtEndStrategyTestingAndContracting", item.dtEndStrategyTestingAndContracting);
 
                     command.Parameters.AddWithValue("statusTimeline", item.statusTimeline);
-                    command.Parameters.AddWithValue("dtUpdateTimeLine", item.dtUpdateTimeLine);
+                    command.Parameters.AddWithValue("dtUpdateTimeline", item.dtUpdateTimeline);
+                    command.Parameters.AddWithValue("dtEndTimeline", item.dtEndTimeline);
 
                     command.Parameters.AddWithValue("statusTestPlan", item.statusTestPlan);
                     command.Parameters.AddWithValue("dtUpdateTestPlan", item.dtUpdateTestPlan);
+                    command.Parameters.AddWithValue("dtEndTestPlan", item.dtEndTestPlan);
 
                     command.Parameters.AddWithValue("dtDeliveryTestPlan", item.dtDeliveryTestPlan);
                     command.Parameters.AddWithValue("readyTestPlan", item.readyTestPlan);

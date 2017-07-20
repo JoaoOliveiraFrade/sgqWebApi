@@ -34,9 +34,9 @@ namespace ProjectWebApi.Models.Project
         
         public string readyTimeline { get; set; }
         public string statusTimeline { get; set; }
-        public string dtUpdateTimeLine { get; set; }
-        public string dtStartTimeLine { get; set; }
-        public string dtEndTimeLine { get; set; }
+        public string dtUpdateTimeline { get; set; }
+        public string dtStartTimeline { get; set; }
+        public string dtEndTimeline { get; set; }
         public int agingTimeline { get; set; }
         public string agingTimelineFormated { get; set; }
 

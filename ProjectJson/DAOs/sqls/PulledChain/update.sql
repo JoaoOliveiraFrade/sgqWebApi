@@ -2,12 +2,15 @@
 set
     statusStrategyTestingAndContracting = @statusStrategyTestingAndContracting,
     dtUpdateStrategyTestingAndContracting = @dtUpdateStrategyTestingAndContracting,
+	dtEndStrategyTestingAndContracting = @dtEndStrategyTestingAndContracting,
 
     statusTimeline = @statusTimeline,
-    dtUpdateTimeLine = @dtUpdateTimeLine,
+    dtUpdateTimeline = @dtUpdateTimeline,
+	dtEndTimeline = @dtEndTimeline,
 
     statusTestPlan = @statusTestPlan,
     dtUpdateTestPlan = @dtUpdateTestPlan,
+	dtEndTestPlan = @dtEndTestPlan,
 
     dtDeliveryTestPlan = @dtDeliveryTestPlan,
     readyTestPlan = @readyTestPlan,
