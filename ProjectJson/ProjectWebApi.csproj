@@ -214,7 +214,7 @@
     <Compile Include="Models\IndicatorOfTest\ProdutivityInd.cs" />
     <Compile Include="Models\PulledChain\PulledChain.cs" />
     <Compile Include="Models\system\SystemByTestManuf.cs" />
-    <Compile Include="Models\system\System_.cs" />
+    <Compile Include="Models\system\SystemId.cs" />
     <Compile Include="Models\testMauf\TestManuf.cs" />
     <Compile Include="Models\ProjectXGrouper\ProjectXGrouper.cs" />
     <Compile Include="Models\Grouper\Grouper.cs" />

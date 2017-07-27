@@ -1,5 +1,5 @@
 ﻿using ProjectWebApi.DAOs;
-using ProjectWebApi.Models.System_;
+using ProjectWebApi.Models.SystemId;
 using ProjectWebApi.Models.SystemByTestManuf;
 using ProjectWebApi.Models.TestManuf;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace ProjectWebApi.Controllers
     {
         [HttpGet]
         [Route("System/All")]
-        [ResponseType(typeof(IList<System_>))]
+        [ResponseType(typeof(IList<SystemId>))]
         public HttpResponseMessage getAll(HttpRequestMessage request)
         {
             var dao = new SystemDAO();
@@ -23,24 +23,13 @@ namespace ProjectWebApi.Controllers
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
-        //[HttpGet]
-        //[Route("System/SystemsByTestManuf")]
-        //[ResponseType(typeof(IList<SystemByTestManuf>))]
-        //public HttpResponseMessage getSystemsByTestManuf(HttpRequestMessage request)
-        //{
-        //    var dao = new SystemDAO();
-        //    var list = dao.getSystemsByTestManuf();
-        //    dao.Dispose();
-        //    return request.CreateResponse(HttpStatusCode.OK, list);
-        //}
-
         [HttpPost]
         [Route("System/SystemsByTestManufs")]
-        [ResponseType(typeof(IList<System_>))]
+        [ResponseType(typeof(IList<SystemId>))]
         public HttpResponseMessage getSystemsByTestManufs(HttpRequestMessage request, List<string> listTestManufs)
         {
             var dao = new SystemDAO();
-            var list = dao.getSystemsByTestManufs(listTestManufs);
+            var list = dao.getSystemsByTestManuf(listTestManufs);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
