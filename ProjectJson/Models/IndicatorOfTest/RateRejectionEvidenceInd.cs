@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-    public class RateRejectionEvidenceInd
+    public class RateEvidRejected
 	{
 		public string monthYear { get; set; }
 		public string yearMonth { get; set; }

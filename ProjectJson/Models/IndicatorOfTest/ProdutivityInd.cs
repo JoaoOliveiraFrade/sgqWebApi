@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-    public class ProdutivityInd
+    public class Produtivity
     {
 		public string monthYear { get; set; }
 		public string yearMonth { get; set; }

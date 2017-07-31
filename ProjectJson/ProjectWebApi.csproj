@@ -182,7 +182,7 @@
     <Compile Include="Classes\LibsAplicativo.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\eMailController.cs" />
-    <Compile Include="Controllers\IndicatorOfTestController.cs" />
+    <Compile Include="Controllers\IndicatorTestController.cs" />
     <Compile Include="Controllers\PulledChainController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Controllers\TestManuf.cs" />
@@ -192,7 +192,7 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\SGQController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="DAOs\IndicatorsOfTestDAO.cs" />
+    <Compile Include="DAOs\IndicatorsTestDAO.cs" />
     <Compile Include="DAOs\PulledChainDAO.cs" />
     <Compile Include="DAOs\SystemDAO.cs" />
     <Compile Include="DAOs\TestManufDAO.cs" />
@@ -262,8 +262,8 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DAOs\sqls\ProdutivityIndByListTestManufSystemProject.sql" />
-    <Content Include="DAOs\sqls\ProdutivityIndBySubDel.sql" />
+    <Content Include="DAOs\sqls\ProdutivityByListTestManufSystemProject.sql" />
+    <Content Include="DAOs\sqls\ProdutivityBySubDel.sql" />
     <Content Include="DAOs\sqls\PulledChain\update.sql" />
     <Content Include="DAOs\sqls\PulledChain\select.sql" />
     <Content Include="DAOs\sqls\SystemsByTestManufs.sql" />
@@ -341,7 +341,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAOs\sqls\RateRejectionEvidenceIndByListTestManufSystemProject.sql" />
+    <Content Include="DAOs\sqls\RateEvidRejectedByListTestManufSystemProject.sql" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -368,7 +368,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55286</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
