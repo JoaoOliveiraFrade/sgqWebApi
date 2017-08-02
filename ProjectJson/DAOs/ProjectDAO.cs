@@ -1001,7 +1001,7 @@ namespace ProjectWebApi.DAOs
             from
 	            (
 	            select 
-		            'Aberto-Fáb.Desen' as name,
+		            'Aberto-Fáb.Teste' as name,
 		            (select count(*) from ALM_Defeitos d WITH (NOLOCK)
 			            where d.subprojeto = '@subproject' and 
 				            d.Entrega = '@delivery' and 
@@ -1012,7 +1012,7 @@ namespace ProjectWebApi.DAOs
 	            union all
 
 	            select 
-		            'Aberto-Fáb.Teste' as name,
+		            'Aberto-Fáb.Desen' as name,
 		            (select count(*) from ALM_Defeitos d WITH (NOLOCK)
 		             where d.subprojeto = '@subproject' and 
 				            d.Entrega = '@delivery' and 
