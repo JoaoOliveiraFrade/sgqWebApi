@@ -250,6 +250,7 @@
     <Compile Include="Models\agingDefects.cs" />
     <Compile Include="Models\detectableInDev.cs" />
     <Compile Include="Models\noPredictionDefects.cs" />
+    <Compile Include="Models\user\Profile.cs" />
     <Compile Include="Models\user\User.cs" />
     <Compile Include="Models\wrongClassif.cs" />
     <Compile Include="Models\densityDefects.cs" />
@@ -270,6 +271,10 @@
     <Content Include="DAOs\sqls\Systems.sql" />
     <Content Include="DAOs\sqls\Projects.sql" />
     <Content Include="DAOs\sqls\ProjectsByTestManufsAndSystems.sql" />
+    <Content Include="DAOs\sqls\User\ProfilesByUser.sql" />
+    <Content Include="DAOs\sqls\User\UserByPassword.sql" />
+    <Content Include="DAOs\sqls\User\UserByCpf.sql" />
+    <Content Include="DAOs\sqls\User\Users.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

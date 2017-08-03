@@ -1,4 +1,5 @@
 ﻿using ProjectWebApi.DAOs;
+using ProjectWebApi.Models.Profile;
 using ProjectWebApi.Models.User;
 using System.Collections.Generic;
 using System.Net;
@@ -12,7 +13,7 @@ namespace WebApplication1.Controllers
     {
         [HttpGet]
         [Route("auth/users")]
-        public IList<User> GetUsers()
+        public IList<User> getUsers()
         {
             var userDAO = new UserDAO();
             var user = userDAO.getUsers();
@@ -23,9 +24,20 @@ namespace WebApplication1.Controllers
         [HttpPost]
         [Route("auth/userByCpf")]
         [ResponseType(typeof(IList<User>))]
-        public HttpResponseMessage GetUserByCpf(HttpRequestMessage request, User user) {
+        public HttpResponseMessage getUserByCpf(HttpRequestMessage request, User user) {
             var userDAO = new UserDAO();
             var result = userDAO.getUserByCpf(user.login, user.cpf);
+            userDAO.Dispose();
+            return request.CreateResponse(result != null ? HttpStatusCode.OK : HttpStatusCode.NotFound, result);
+        }
+
+        [HttpGet]
+        [Route("auth/profilesByUser/{userId}")]
+        [ResponseType(typeof(IList<Profile>))]
+        public HttpResponseMessage getProfilesByUser(HttpRequestMessage request, int userId)
+        {
+            var userDAO = new UserDAO();
+            var result = userDAO.getProfilesByUser(userId);
             userDAO.Dispose();
             return request.CreateResponse(result != null ? HttpStatusCode.OK : HttpStatusCode.NotFound, result);
         }

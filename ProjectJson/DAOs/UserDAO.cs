@@ -1,8 +1,10 @@
 ﻿using Classes;
+using ProjectWebApi.Models.Profile;
 using ProjectWebApi.Models.Project;
 using ProjectWebApi.Models.User;
 using System.Collections.Generic;
-
+using System.IO;
+using System.Web;
 
 namespace ProjectWebApi.DAOs
 {
@@ -22,45 +24,18 @@ namespace ProjectWebApi.DAOs
 
         public IList<User> getUsers()
         {
-            string sql = @"
-                select 
-	                login,
-	                name,
-	                email,
-	                cpf,
-	                '' as password
-                from 
-	                SGQ_Users
-                ";
-
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\User\Users.sql"));
             var list = _connection.Executar<User>(sql);
-
             return list;
         }
 
         public User getUserByCpf(string login, string cpf)
         {
-            string sql = @"
-                select 
-	                login,
-	                name,
-	                email,
-	                cpf,
-	                '' as password
-                from 
-	                SGQ_Users
-                where 
-	                login = '@login' and 
-	                cpf = '@cpf'
-	                --login = 'TR412061' and 
-	                --cpf = '85812838534'
-                ";
-
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\User\UserByCpf.sql"));
             sql = sql.Replace("@login", login);
             sql = sql.Replace("@cpf", cpf);
 
             var list = _connection.Executar<User>(sql);
-
 
             if (list.Count > 0)
                 return list[0];
@@ -68,30 +43,28 @@ namespace ProjectWebApi.DAOs
                 return null;
         }
 
+        public IList<Profile> getProfilesByUser(int UserId)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\User\ProfilesByUser.sql"));
+            sql = sql.Replace("@user", UserId.ToString());
+
+            var list = _connection.Executar<Profile>(sql);
+
+            return list;
+        }
+
         public User getUserByPassword(string login, string password)
         {
-            string sql = @"
-                select 
-	                login,
-	                name,
-	                email,
-	                cpf,
-	                '' as password
-                from 
-	                SGQ_Users
-                where 
-	                login = '@login' and 
-	                password = '@password'
-	                --login = 'TR412061' and 
-	                --password = ''
-                ";
-
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\User\UserByPassword.sql"));
             sql = sql.Replace("@login", login);
             sql = sql.Replace("@password", password);
 
             var list = _connection.Executar<User>(sql);
 
-            return list[0];
+            if (list.Count > 0)
+                return list[0];
+            else
+                return null;
         }
 
     }
