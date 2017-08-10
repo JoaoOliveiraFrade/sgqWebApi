@@ -135,7 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DAOs\sqls\Project\" />
     <Folder Include="Views\Auth\" />
     <Folder Include="Views\eMail\" />
     <Folder Include="Views\Project\" />
@@ -265,6 +264,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="DAOs\sqls\ProdutivityByListTestManufSystemProject.sql" />
     <Content Include="DAOs\sqls\ProdutivityBySubDel.sql" />
+    <Content Include="DAOs\sqls\Project\StatusGroupDayByProject.sql" />
     <Content Include="DAOs\sqls\PulledChain\update.sql" />
     <Content Include="DAOs\sqls\PulledChain\select.sql" />
     <Content Include="DAOs\sqls\SystemsByTestManufs.sql" />
