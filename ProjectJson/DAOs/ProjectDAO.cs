@@ -32,7 +32,7 @@ namespace ProjectWebApi.DAOs
 
 		public IList<Project> getByTestManufsAndSystems(List<string> testManufs, List<string> systems)
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\ProjectsByTestManufsAndSystems.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Project\ProjectsByTestManufsAndSystems.sql"));
 			sql = sql.Replace("@testManufs", "'" + string.Join("','", testManufs) + "'");
 			sql = sql.Replace("@systems", "'" + string.Join("','", systems) + "'");
 			var list = _connection.Executar<Project>(sql);

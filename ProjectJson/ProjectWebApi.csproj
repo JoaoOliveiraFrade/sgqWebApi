@@ -262,15 +262,18 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DAOs\sqls\ProdutivityByListTestManufSystemProject.sql" />
-    <Content Include="DAOs\sqls\ProdutivityBySubDel.sql" />
+    <Content Include="DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProjectTodas.sql" />
+    <Content Include="DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProjectCliente.sql" />
+    <Content Include="DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProjectTécnica.sql" />
+    <Content Include="DAOs\sqls\Indicator\ProdutivityByListTestManufSystemProject.sql" />
+    <Content Include="DAOs\sqls\Indicator\ProdutivityBySubDel______.sql" />
     <Content Include="DAOs\sqls\Project\StatusGroupDayByProject.sql" />
     <Content Include="DAOs\sqls\PulledChain\update.sql" />
     <Content Include="DAOs\sqls\PulledChain\select.sql" />
-    <Content Include="DAOs\sqls\SystemsByTestManufs.sql" />
-    <Content Include="DAOs\sqls\Systems.sql" />
-    <Content Include="DAOs\sqls\Projects.sql" />
-    <Content Include="DAOs\sqls\ProjectsByTestManufsAndSystems.sql" />
+    <Content Include="DAOs\sqls\System\SystemsByTestManufs.sql" />
+    <Content Include="DAOs\sqls\System\Systems.sql" />
+    <Content Include="DAOs\sqls\Project\Projects___.sql" />
+    <Content Include="DAOs\sqls\Project\ProjectsByTestManufsAndSystems.sql" />
     <Content Include="DAOs\sqls\User\ProfilesByUser.sql" />
     <Content Include="DAOs\sqls\User\UserByPassword.sql" />
     <Content Include="DAOs\sqls\User\UserByCpf.sql" />
@@ -346,7 +349,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAOs\sqls\RateEvidRejectedByListTestManufSystemProject.sql" />
+    <Content Include="DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProject.sql" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
