@@ -208,9 +208,11 @@
     <Compile Include="Models\bptReleases.cs" />
     <Compile Include="Models\bptValidPlanoEvid.cs" />
     <Compile Include="Models\eMail\Email.cs" />
-    <Compile Include="Models\IndicatorOfTest\ProdutivityIndFilterParameters.cs" />
-    <Compile Include="Models\IndicatorOfTest\RateRejectionEvidenceInd.cs" />
-    <Compile Include="Models\IndicatorOfTest\ProdutivityInd.cs" />
+    <Compile Include="Models\IndicatorTest\RateEvidRejectedParameters.cs" />
+    <Compile Include="Models\IndicatorTest\ProdutivityIndFilterParameters.cs" />
+    <Compile Include="Models\IndicatorTest\RateEvidRejectedGroupTimeline.cs" />
+    <Compile Include="Models\IndicatorTest\RateEvidRejected.cs" />
+    <Compile Include="Models\IndicatorTest\ProdutivityInd.cs" />
     <Compile Include="Models\PulledChain\PulledChain.cs" />
     <Compile Include="Models\system\SystemByTestManuf.cs" />
     <Compile Include="Models\system\SystemId.cs" />
@@ -262,17 +264,15 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProjectTodas.sql" />
-    <Content Include="DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProjectCliente.sql" />
-    <Content Include="DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProjectTécnica.sql" />
+    <Content Include="DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProject.sql" />
+    <Content Include="DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql" />
     <Content Include="DAOs\sqls\Indicator\ProdutivityByListTestManufSystemProject.sql" />
-    <Content Include="DAOs\sqls\Indicator\ProdutivityBySubDel______.sql" />
     <Content Include="DAOs\sqls\Project\StatusGroupDayByProject.sql" />
     <Content Include="DAOs\sqls\PulledChain\update.sql" />
     <Content Include="DAOs\sqls\PulledChain\select.sql" />
     <Content Include="DAOs\sqls\System\SystemsByTestManufs.sql" />
     <Content Include="DAOs\sqls\System\Systems.sql" />
-    <Content Include="DAOs\sqls\Project\Projects___.sql" />
+    <Content Include="DAOs\sqls\Project\Projects.sql" />
     <Content Include="DAOs\sqls\Project\ProjectsByTestManufsAndSystems.sql" />
     <Content Include="DAOs\sqls\User\ProfilesByUser.sql" />
     <Content Include="DAOs\sqls\User\UserByPassword.sql" />
@@ -347,9 +347,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProject.sql" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

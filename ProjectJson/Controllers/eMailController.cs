@@ -37,8 +37,7 @@ namespace ProjectWebApi.Controllers
 
         string[] url = new string[] { email.url };
 
-        string[] options = new string[] { " --crop-y 53 --quiet --javascript-delay 10000 --encoding utf-8 " };
-        // string[] options = new string[] { " --crop-y 53 ", " --javascript-delay 10000 ", " --encoding utf-8 " };
+        string[] options = new string[] { " --crop-y 53 --quiet --javascript-delay 14000 --encoding utf-8 " };
 
         string imageFile = Classes.HtmlToImage.convert(outfolder, outfile, url, options);
 

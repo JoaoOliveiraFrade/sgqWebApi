@@ -25,7 +25,7 @@ namespace ProjectWebApi.DAOs
 
         public IList<Project> getAll()
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Projects.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Project\Projects.sql"));
 			var listProjects = _connection.Executar<Project>(sql);
             return listProjects;
         }
@@ -1821,7 +1821,7 @@ namespace ProjectWebApi.DAOs
                 status5LastDays = status30LastDays;
             }
 
-            status30LastDays.Sort((x, y) => x.dateOrder.CompareTo(y.dateOrder));
+            status30LastDays.Sort((x, y) => y.dateOrder.CompareTo(x.dateOrder));
 
             var statusLastDays = new StatusLastDays()
             {

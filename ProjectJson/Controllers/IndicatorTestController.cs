@@ -24,31 +24,42 @@ namespace ProjectWebApi.Controllers
 		public HttpResponseMessage getProductivityBySubEnt(HttpRequestMessage request, string subproject, string delivery)
         {
             var IndicatorTestDAO = new IndicatorTestDAO();
-            var productivitys = IndicatorTestDAO.getProductivityByProject(subproject, delivery);
+            var list = IndicatorTestDAO.getProductivityByProject(subproject, delivery);
 			IndicatorTestDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, productivitys);
+            return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
-		[HttpPut]
+		[HttpPost]
 		[Route("indicatorTest/produtivity/byListTestManufSystemProject")]
 		[ResponseType(typeof(IList<Produtivity>))]
 		public HttpResponseMessage getProdutivityByListTestManufSystemProject(HttpRequestMessage request, ProdutivityFilterParameters ProdutivityFilterParameters)
 		{
 			var IndicatorTestDAO = new IndicatorTestDAO();
-			var productivitys = IndicatorTestDAO.getProdutivityByListTestManufSystemProject(ProdutivityFilterParameters);
+			var list = IndicatorTestDAO.getProdutivityByListTestManufSystemProject(ProdutivityFilterParameters);
 			IndicatorTestDAO.Dispose();
-			return request.CreateResponse(HttpStatusCode.OK, productivitys);
+			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
 
-		[HttpPut]
+		[HttpPost]
 		[Route("indicatorTest/rateEvidRejected/byListTestManufSystemProject")]
 		[ResponseType(typeof(IList<RateEvidRejected>))]
-		public HttpResponseMessage getRateEvidRejectedByListTestManufSystemProject(HttpRequestMessage request, ProdutivityFilterParameters ProdutivityFilterParameters)
+		public HttpResponseMessage getRateEvidRejectedByListTestManufSystemProject(HttpRequestMessage request, RateEvidRejectedParameters parameters)
 		{
 			var IndicatorTestDAO = new IndicatorTestDAO();
-			var productivitys = IndicatorTestDAO.getRateEvidRejectedByListTestManufSystemProject(ProdutivityFilterParameters);
+			var list = IndicatorTestDAO.getRateEvidRejectedByListTestManufSystemProject(parameters);
 			IndicatorTestDAO.Dispose();
-			return request.CreateResponse(HttpStatusCode.OK, productivitys);
+			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
-	}
+
+        [HttpPost]
+        [Route("indicatorTest/rateEvidRejected/byListTestManufSystemProject/groupTimeline")]
+        [ResponseType(typeof(IList<RateEvidRejectedGroupTimeline>))]
+        public HttpResponseMessage getRateEvidRejectedByListTestManufSystemProjectGroupTimeline(HttpRequestMessage request, RateEvidRejectedParameters parameters)
+        {
+            var IndicatorTestDAO = new IndicatorTestDAO();
+            var list = IndicatorTestDAO.getRateEvidRejectedByListTestManufSystemProjectGroupTimeline(parameters);
+            IndicatorTestDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, list);
+        }
+    }
 }

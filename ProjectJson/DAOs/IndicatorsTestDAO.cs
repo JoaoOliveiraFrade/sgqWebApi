@@ -44,14 +44,26 @@ namespace ProjectWebApi.DAOs
 			return list;
 		}
 
-		public IList<RateEvidRejected> getRateEvidRejectedByListTestManufSystemProject(ProdutivityFilterParameters ProdutivityFilterParameters)
+		public IList<RateEvidRejected> getRateEvidRejectedByListTestManufSystemProject(RateEvidRejectedParameters parameters)
 		{
 			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProject.sql"));
-			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", ProdutivityFilterParameters.selectedTestManufs) + "'");
-			sql = sql.Replace("@selectedSystems", "'" + string.Join("','", ProdutivityFilterParameters.selectedSystems) + "'");
-			sql = sql.Replace("@selectedProjects", "'" + string.Join("','", ProdutivityFilterParameters.selectedProjects) + "'");
+			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+			sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+			sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
 			var list = _connection.Executar<RateEvidRejected>(sql);
-			return list;
+            return list;
 		}
-	}
+
+        public IList<RateEvidRejectedGroupTimeline> getRateEvidRejectedByListTestManufSystemProjectGroupTimeline(RateEvidRejectedParameters parameters)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql"));
+            sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+            var list = _connection.Executar<RateEvidRejectedGroupTimeline>(sql);
+
+            return list;
+        }
+
+    }
 }

@@ -39,7 +39,7 @@ from
 		left(dt_criacao,8) as date, 
 		1 as active,
 		case when Evidencia_Validacao_Tecnica <> 'N/A' then 1 else 0 end as activeTechnique,
-		case when uat = 'SIM' and Evidencia_Validacao_Cliente <> 'N/A' then 1 else 0 end as activeClient,
+		case when Evidencia_Validacao_Cliente <> 'N/A' and uat = 'SIM' then 1 else 0 end as activeClient,
 		0 as planned,
 		0 as realized,
 		0 as productivity,
