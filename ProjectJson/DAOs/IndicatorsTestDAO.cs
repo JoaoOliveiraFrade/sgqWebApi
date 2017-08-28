@@ -23,30 +23,30 @@ namespace ProjectWebApi.DAOs
 			_connection.Dispose();
 		}
 
-		public IList<Produtivity> getProductivityByProject(string subproject, string delivery)
-		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\ProdutivityByProject.sql"));
-			sql = sql.Replace("@subproject", subproject);
-			sql = sql.Replace("@delivery", delivery);
-			var list = _connection.Executar<Produtivity>(sql);
-			return list;
-		}
+		//public IList<Produtivity> getProductivityByProject(string subproject, string delivery)
+		//{
+		//	string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\ProdutivityByProject.sql"));
+		//	sql = sql.Replace("@subproject", subproject);
+		//	sql = sql.Replace("@delivery", delivery);
+		//	var list = _connection.Executar<Produtivity>(sql);
+		//	return list;
+		//}
 
-		public IList<Produtivity> getProdutivityByListTestManufSystemProject(ProdutivityFilterParameters ProdutivityFilterParameters)
+		public IList<Produtivity> getProdutivityByListTestManufSystemProject(Parameters parameters)
 		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Indicator\ProdutivityByListTestManufSystemProject.sql"));
-			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", ProdutivityFilterParameters.selectedTestManufs) + "'");
-			sql = sql.Replace("@selectedSystems", "'" + string.Join("','", ProdutivityFilterParameters.selectedSystems) + "'");
-			sql = sql.Replace("@selectedProjects", "'" + string.Join("','", ProdutivityFilterParameters.selectedProjects) + "'");
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\ProdutivityByListTestManufSystemProject.sql"));
+			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+			sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+			sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
 			var list = _connection.Executar<Produtivity>(sql);
 			var x = 1 * 2;
 			Console.WriteLine(x);
 			return list;
 		}
 
-		public IList<RateEvidRejected> getRateEvidRejectedByListTestManufSystemProject(RateEvidRejectedParameters parameters)
+		public IList<RateEvidRejected> getRateEvidRejectedByListTestManufSystemProject(Parameters parameters)
 		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProject.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\RateEvidRejectedByListTestManufSystemProject.sql"));
 			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
 			sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
 			sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -54,9 +54,9 @@ namespace ProjectWebApi.DAOs
             return list;
 		}
 
-        public IList<RateEvidRejectedGroupTimeline> getRateEvidRejectedByListTestManufSystemProjectGroupTimeline(RateEvidRejectedParameters parameters)
+        public IList<RateEvidRejectedGroupTimeline> getRateEvidRejectedByListTestManufSystemProjectGroupTimeline(Parameters parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Indicator\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql"));
             sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
             sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
             sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -64,6 +64,19 @@ namespace ProjectWebApi.DAOs
 
             return list;
         }
+
+        public IList<RateDefectUnfounded> getRateDefectUnfoundedByListTestManufSystemProject(Parameters parameters)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\RateDefectUnfoundedByListTestManufSystemProject.sql"));
+            sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+            var list = _connection.Executar<RateDefectUnfounded>(sql);
+
+            return list;
+        }
+
+        
 
     }
 }

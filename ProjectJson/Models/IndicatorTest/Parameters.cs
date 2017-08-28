@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-	public class RateEvidRejectedParameters
+	public class Parameters
     {
 		public List<string> selectedTestManufs { get; set; }
 		public List<string> selectedSystems { get; set; }
