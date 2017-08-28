@@ -83,5 +83,16 @@ namespace ProjectWebApi.Controllers
             IndicatorTestDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
+
+        [HttpPost]
+        [Route("indicatorTest/averangeRetestHours/byListTestManufSystemProject")]
+        [ResponseType(typeof(IList<averangeRetestHours>))]
+        public HttpResponseMessage getAverangeRetestHoursByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
+        {
+            var IndicatorTestDAO = new IndicatorTestDAO();
+            var list = IndicatorTestDAO.getRateDefectUatByListTestManufSystemProject(parameters);
+            IndicatorTestDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }

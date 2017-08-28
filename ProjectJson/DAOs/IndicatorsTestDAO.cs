@@ -75,8 +75,26 @@ namespace ProjectWebApi.DAOs
 
             return list;
         }
+        public IList<RateDefectUat> getRateDefectUatByListTestManufSystemProject(Parameters parameters)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\RateDefectUatByListTestManufSystemProject.sql"));
+            sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+            var list = _connection.Executar<RateDefectUat>(sql);
 
-        
+            return list;
+        }
+        public IList<averangeRetestHours> getAverangeRetestHoursListTestManufSystemProject(Parameters parameters)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\AverangeRetestHoursByListTestManufSystemProject.sql"));
+            sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+            var list = _connection.Executar<averangeRetestHours>(sql);
+
+            return list;
+        }
 
     }
 }

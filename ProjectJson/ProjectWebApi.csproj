@@ -209,6 +209,8 @@
     <Compile Include="Models\bptValidPlanoEvid.cs" />
     <Compile Include="Models\eMail\Email.cs" />
     <Compile Include="Models\IndicatorTest\Parameters.cs" />
+    <Compile Include="Models\IndicatorTest\averangeRetestHours.cs" />
+    <Compile Include="Models\IndicatorTest\RateDefectUat.cs" />
     <Compile Include="Models\IndicatorTest\RateDefectUnfounded .cs" />
     <Compile Include="Models\IndicatorTest\RateEvidRejectedGroupTimeline.cs" />
     <Compile Include="Models\IndicatorTest\RateEvidRejected.cs" />
@@ -264,6 +266,8 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DAOs\sqls\IndicatorTest\AverangeRetestHoursByListTestManufSystemProject.sql" />
+    <Content Include="DAOs\sqls\IndicatorTest\RateDefectUatByListTestManufSystemProject.sql" />
     <Content Include="DAOs\sqls\IndicatorTest\RateDefectUnfoundedByListTestManufSystemProject.sql" />
     <Content Include="DAOs\sqls\IndicatorTest\RateEvidRejectedByListTestManufSystemProject.sql" />
     <Content Include="DAOs\sqls\IndicatorTest\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql" />
@@ -275,6 +279,7 @@
     <Content Include="DAOs\sqls\System\Systems.sql" />
     <Content Include="DAOs\sqls\Project\Projects.sql" />
     <Content Include="DAOs\sqls\Project\ProjectsByTestManufsAndSystems.sql" />
+    <Content Include="DAOs\sqls\TestManuf\TestManufs.sql" />
     <Content Include="DAOs\sqls\User\ProfilesByUser.sql" />
     <Content Include="DAOs\sqls\User\UserByPassword.sql" />
     <Content Include="DAOs\sqls\User\UserByCpf.sql" />

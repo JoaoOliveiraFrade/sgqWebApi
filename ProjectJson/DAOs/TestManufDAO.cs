@@ -1,7 +1,8 @@
 using Classes;
 using ProjectWebApi.Models.TestManuf;
 using System.Collections.Generic;
-
+using System.IO;
+using System.Web;
 
 namespace ProjectWebApi.DAOs
 {
@@ -21,8 +22,9 @@ namespace ProjectWebApi.DAOs
 
         public IList<TestManuf> getAll()
         {
-            var list = _connection.Executar<TestManuf>("sp_test_manufacturers");
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\TestManuf\TestManufs.sql"));
+            var list = _connection.Executar<TestManuf>(sql);
             return list;
-       }
+        }
     }
 }
