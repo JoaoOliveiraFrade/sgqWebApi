@@ -33,7 +33,9 @@ namespace ProjectWebApi.Controllers
 		public HttpResponseMessage Update(int id, PulledChain item)
 		{
             var pulledChainDAO = new PulledChainDAO();
-            if (pulledChainDAO.update(item)) {
+            int result = pulledChainDAO.update(item);
+
+            if (result == 0) {
                 pulledChainDAO.Dispose();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }

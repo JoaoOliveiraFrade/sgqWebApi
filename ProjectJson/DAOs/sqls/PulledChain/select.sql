@@ -29,6 +29,10 @@
 		then convert(varchar, agingStrategyTestingAndContracting / 540) + 'd ' + convert(varchar, (agingStrategyTestingAndContracting % 540) / 60) + 'h' 
 		else ''
 	end as agingStrategyTestingAndContractingFormated,
+	case when agingLTStrategyTestingAndContracting > 0
+		then convert(varchar, agingLTStrategyTestingAndContracting / 540) + 'd ' + convert(varchar, (agingLTStrategyTestingAndContracting % 540) / 60) + 'h' 
+		else ''
+	end as agingLTStrategyTestingAndContractingFormated,
 
 	readyTimeline,
 	statusTimeline,
@@ -40,6 +44,10 @@
 		then convert(varchar, agingTimeline / 540) + 'd ' + convert(varchar, (agingTimeline % 540) / 60) + 'h' 
 		else ''
 	end as agingTimelineFormated,
+	case when agingLTTimeline > 0
+		then convert(varchar, agingLTTimeline / 540) + 'd ' + convert(varchar, (agingLTTimeline % 540) / 60) + 'h' 
+		else ''
+	end as agingLTTimelineFormated,
 
 	readyTestPlan,
 	statusTestPlan,
@@ -51,6 +59,10 @@
 		then convert(varchar, agingTestPlan / 540) + 'd ' + convert(varchar, (agingTestPlan % 540) / 60) + 'h' 
 		else ''
 	end as agingTestPlanFormated,
+	case when agingLTTestPlan > 0
+		then convert(varchar, agingLTTestPlan / 540) + 'd ' + convert(varchar, (agingLTTestPlan % 540) / 60) + 'h' 
+		else ''
+	end as agingLTTestPlanFormated,
 
 	dtDeliveryTestPlan
 from
@@ -95,6 +107,12 @@ from
 					then dbo.WorkTime(convert(datetime, dtStartStrategyTestingAndContracting, 5), getDate())
 				else 0
 			end agingStrategyTestingAndContracting,
+			case when isnull(dtEndStrategyTestingAndContracting,'') <> '' and isnull(dtUpdateStrategyTestingAndContracting,'') <> '' and statusStrategyTestingAndContracting = 'REALIZADO'
+					then dbo.WorkTime(convert(datetime, dtEndStrategyTestingAndContracting, 5), convert(datetime, dtUpdateStrategyTestingAndContracting, 5))
+				when isnull(dtEndStrategyTestingAndContracting,'') <> '' and (isnull(dtUpdateStrategyTestingAndContracting,'') = '' or statusStrategyTestingAndContracting <> 'REALIZADO')
+					then dbo.WorkTime(convert(datetime, dtEndStrategyTestingAndContracting, 5), getDate())
+				else 0
+			end agingLTStrategyTestingAndContracting,
 
 			readyTimeline,
 			statusTimeline,
@@ -107,6 +125,12 @@ from
 					then dbo.WorkTime(convert(datetime, dtStartTimeLine, 5), getDate())
 				else ''
 			end agingTimeline,
+			case when isnull(dtEndTimeline,'') <> '' and isnull(dtUpdateTimeline,'') <> '' and statusTimeline = 'REALIZADO'
+					then dbo.WorkTime(convert(datetime, dtEndTimeline, 5), convert(datetime, dtUpdateTimeline, 5))
+				when isnull(dtEndTimeline,'') <> '' and (isnull(dtUpdateTimeline,'') = '' or statusTimeline <> 'REALIZADO')
+					then dbo.WorkTime(convert(datetime, dtEndTimeline, 5), getDate())
+				else 0
+			end agingLTTimeline,
 
 			readyTestPlan,
 			statusTestPlan,
@@ -119,6 +143,12 @@ from
 					then dbo.WorkTime(convert(datetime, dtStartTestPlan, 5),  getDate())
 				else 0
 			end agingTestPlan,
+			case when isnull(dtEndTestPlan,'') <> '' and isnull(dtUpdateTestPlan,'') <> '' and statusTestPlan = 'REALIZADO'
+					then dbo.WorkTime(convert(datetime, dtEndTestPlan, 5), convert(datetime, dtUpdateTestPlan, 5))
+				when isnull(dtEndTestPlan,'') <> '' and (isnull(dtUpdateTestPlan,'') = '' or statusTestPlan <> 'REALIZADO')
+					then dbo.WorkTime(convert(datetime, dtEndTestPlan, 5), getDate())
+				else 0
+			end agingLTTestPlan,
 
 			sgq_p.dtDeliveryTestPlan
 		from 
@@ -126,6 +156,7 @@ from
 			left join BITI_Subprojetos sub
 			  on sub.id = sgq_p.subproject
 		where
+			--sgq_p.subproject = 'PRJ00015285' and delivery = 'ENTREGA00005264' and
 			sgq_p.RT in ('CARLOS HENRIQUE', 'SORAIA CASAGRANDE', 'CLAUDIA CARVALHO', '')
 	) as aux
 order by

@@ -31,7 +31,8 @@ namespace ProjectWebApi.Models.Project
         public string dtEndStrategyTestingAndContracting { get; set; }
         public int agingStrategyTestingAndContracting { get; set; }
         public string agingStrategyTestingAndContractingFormated { get; set; }
-        
+        public string agingLTStrategyTestingAndContractingFormated { get; set; }
+
         public string readyTimeline { get; set; }
         public string statusTimeline { get; set; }
         public string dtUpdateTimeline { get; set; }
@@ -39,6 +40,7 @@ namespace ProjectWebApi.Models.Project
         public string dtEndTimeline { get; set; }
         public int agingTimeline { get; set; }
         public string agingTimelineFormated { get; set; }
+        public string agingLTTimelineFormated { get; set; }
 
         public string readyTestPlan { get; set; }
         public string statusTestPlan { get; set; }
@@ -47,6 +49,7 @@ namespace ProjectWebApi.Models.Project
         public string dtEndTestPlan { get; set; }
         public int agingTestPlan { get; set; }
         public string agingTestPlanFormated { get; set; }
+        public string agingLTTestPlanFormated { get; set; }
 
         public string dtDeliveryTestPlan { get; set; }
     }
