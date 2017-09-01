@@ -107,6 +107,7 @@ from
 					then dbo.WorkTime(convert(datetime, dtStartStrategyTestingAndContracting, 5), getDate())
 				else 0
 			end agingStrategyTestingAndContracting,
+
 			case when isnull(dtEndStrategyTestingAndContracting,'') <> '' and isnull(dtUpdateStrategyTestingAndContracting,'') <> '' and statusStrategyTestingAndContracting = 'REALIZADO'
 					then dbo.WorkTime(convert(datetime, dtEndStrategyTestingAndContracting, 5), convert(datetime, dtUpdateStrategyTestingAndContracting, 5))
 				when isnull(dtEndStrategyTestingAndContracting,'') <> '' and (isnull(dtUpdateStrategyTestingAndContracting,'') = '' or statusStrategyTestingAndContracting <> 'REALIZADO')
@@ -157,7 +158,16 @@ from
 			  on sub.id = sgq_p.subproject
 		where
 			--sgq_p.subproject = 'PRJ00015285' and delivery = 'ENTREGA00005264' and
-			sgq_p.RT in ('CARLOS HENRIQUE', 'SORAIA CASAGRANDE', 'CLAUDIA CARVALHO', '')
+			sgq_p.RT in ('CARLOS HENRIQUE', 'SORAIA CASAGRANDE', 'CLAUDIA CARVALHO', '') and
+			sgq_p.subproject in (
+									select distinct ft.subprojeto
+									from BITI_Frentes_Trabalho ft
+									where ft.subprojeto = sgq_p.subproject and
+											ft.area in ('TESTES E RELEASE', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS') and
+											ft.estado not in ('CANCELADA', 'CANCELADA SEM DESENHO', 'PARTICIPAÇÃO RECUSADA') and
+											ft.sistema_nome = 'NÃO INFORMADO'
+								)
+
 	) as aux
 order by
 	priorityGlobal, 
