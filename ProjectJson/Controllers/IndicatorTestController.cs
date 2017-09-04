@@ -86,7 +86,7 @@ namespace ProjectWebApi.Controllers
 
         [HttpPost]
         [Route("indicatorTest/averangeRetestHours/byListTestManufSystemProject")]
-        [ResponseType(typeof(IList<averangeRetestHours>))]
+        [ResponseType(typeof(IList<AverangeRetestHours>))]
         public HttpResponseMessage getAverangeRetestHoursByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
         {
             var IndicatorTestDAO = new IndicatorTestDAO();

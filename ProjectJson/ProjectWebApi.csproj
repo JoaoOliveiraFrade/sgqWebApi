@@ -209,7 +209,7 @@
     <Compile Include="Models\bptValidPlanoEvid.cs" />
     <Compile Include="Models\eMail\Email.cs" />
     <Compile Include="Models\IndicatorTest\Parameters.cs" />
-    <Compile Include="Models\IndicatorTest\averangeRetestHours.cs" />
+    <Compile Include="Models\IndicatorTest\AverangeRetestHours.cs" />
     <Compile Include="Models\IndicatorTest\RateDefectUat.cs" />
     <Compile Include="Models\IndicatorTest\RateDefectUnfounded .cs" />
     <Compile Include="Models\IndicatorTest\RateEvidRejectedGroupTimeline.cs" />

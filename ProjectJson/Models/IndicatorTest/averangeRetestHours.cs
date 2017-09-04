@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-    public class averangeRetestHours
+    public class AverangeRetestHours
     {
         public string month { get; set; }
         public string year { get; set; }
@@ -14,6 +14,6 @@ namespace ProjectWebApi.Models
         public string subprojectDelivery { get; set; }
 
         public int qtyDefect { get; set; }
-        public int qtyRetestHours { get; set; }
-	}
+        public double qtyRetestHours { get; set; }
+    }
 }

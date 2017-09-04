@@ -43,7 +43,7 @@ select
 	sistema_ct as system,
 	convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int)) as subprojectDelivery,
 	count(*) as qtyDefect,
-	sum(IsNull(qtyRetestHours,0) ) as qtyRetestHours
+	convert(float, round(sum(IsNull(qtyRetestHours,0)),2)) as qtyRetestHours
 from 
 	alm_defeitos df WITH (NOLOCK)
 	left join #i i on
@@ -64,3 +64,5 @@ group by
 	convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int))
 order by
 	2, 1, 3, 4
+
+drop table #i
