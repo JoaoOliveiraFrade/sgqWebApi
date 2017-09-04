@@ -90,7 +90,7 @@ namespace ProjectWebApi.Controllers
         public HttpResponseMessage getAverangeRetestHoursByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
         {
             var IndicatorTestDAO = new IndicatorTestDAO();
-            var list = IndicatorTestDAO.getRateDefectUatByListTestManufSystemProject(parameters);
+            var list = IndicatorTestDAO.getAverangeRetestHoursListTestManufSystemProject(parameters);
             IndicatorTestDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }

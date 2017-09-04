@@ -1,5 +1,4 @@
-﻿
---if OBJECT_ID('tempdb..#i') is not null 
+﻿--if OBJECT_ID('tempdb..#i') is not null 
 --  drop table #i
 --go
 create table #i (
@@ -52,7 +51,8 @@ from
 		i.delivery collate Latin1_General_CI_AS = df.entrega and
 		i.defect = df.defeito
 where
-	df.Ciclo like '%TI%' and
+	df.ciclo like '%TI%' and
+	df.status_atual <> 'CANCELLED' and
 	fabrica_teste in (@selectedTestManufs) and
 	sistema_ct in (@selectedSystems) and
 	subprojeto + entrega collate Latin1_General_CI_AS in (@selectedProjects)
