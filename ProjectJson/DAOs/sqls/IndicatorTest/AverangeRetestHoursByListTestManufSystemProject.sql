@@ -7,7 +7,7 @@ create table #i (
 	defect int,
 	year varchar(2),
 	month varchar(2),
-	qtyRetestHours decimal(10,2)
+	qtyRetestHours numeric(10,2)
 )
 insert into #i
 select
@@ -43,7 +43,7 @@ select
 	sistema_ct as system,
 	convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int)) as subprojectDelivery,
 	count(*) as qtyDefect,
-	sum(IsNull(qtyRetestHours, 0)) as qtyRetestHours
+	sum(IsNull(qtyRetestHours, 0.0)) as qtyRetestHours
 from 
 	alm_defeitos df WITH (NOLOCK)
 	left join #i i on
