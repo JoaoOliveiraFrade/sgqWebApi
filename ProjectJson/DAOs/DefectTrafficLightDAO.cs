@@ -9,11 +9,11 @@ using System.Web;
 
 namespace ProjectWebApi.DAOs
 {
-	public class DefectSlaDAO
+	public class DefectTrafficLightDAO
     {
 		private Connection _connection;
 
-		public DefectSlaDAO()
+		public DefectTrafficLightDAO()
 		{
 			_connection = new Connection(Bancos.Sgq);
 		}
@@ -25,7 +25,7 @@ namespace ProjectWebApi.DAOs
 
 		public IList<IdName> All()
 		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DefectSla\All.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DefectTrafficLight\All.sql"));
 			var list = _connection.Executar<IdName>(sql);
 			return list;
 		}

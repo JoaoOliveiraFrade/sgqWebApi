@@ -15,16 +15,16 @@ using System.Web.Http.Description;
 
 namespace ProjectWebApi.Controllers
 {
-    public class DefectSlaController : ApiController
+    public class DefectTrafficLightController : ApiController
     {
 		[HttpGet]
-		[Route("defectSla/all")]
+		[Route("DefectTrafficLight/all")]
 		[ResponseType(typeof(IList<IdName>))]
-		public HttpResponseMessage DefectSla(HttpRequestMessage request)
+		public HttpResponseMessage DefectTrafficLight(HttpRequestMessage request)
 		{
-			var defectSlaDAO = new DefectSlaDAO();
-			var list = defectSlaDAO.All();
-            defectSlaDAO.Dispose();
+			var DefectTrafficLightDAO = new DefectTrafficLightDAO();
+			var list = DefectTrafficLightDAO.All();
+            DefectTrafficLightDAO.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
    }
