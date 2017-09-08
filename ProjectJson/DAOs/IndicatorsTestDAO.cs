@@ -25,7 +25,7 @@ namespace ProjectWebApi.DAOs
 
 		//public IList<Produtivity> getProductivityByProject(string subproject, string delivery)
 		//{
-		//	string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\ProdutivityByProject.sql"));
+		//	string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\ProdutivityByProject.sql"));
 		//	sql = sql.Replace("@subproject", subproject);
 		//	sql = sql.Replace("@delivery", delivery);
 		//	var list = _connection.Executar<Produtivity>(sql);
@@ -34,7 +34,7 @@ namespace ProjectWebApi.DAOs
 
 		public IList<Produtivity> getProdutivityByListTestManufSystemProject(Parameters parameters)
 		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\ProdutivityByListTestManufSystemProject.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\IndicatorTest\ProdutivityByListTestManufSystemProject.sql"));
 			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
 			sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
 			sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -46,7 +46,7 @@ namespace ProjectWebApi.DAOs
 
 		public IList<RateEvidRejected> getRateEvidRejectedByListTestManufSystemProject(Parameters parameters)
 		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\RateEvidRejectedByListTestManufSystemProject.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\IndicatorTest\RateEvidRejectedByListTestManufSystemProject.sql"));
 			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
 			sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
 			sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -56,7 +56,7 @@ namespace ProjectWebApi.DAOs
 
         public IList<RateEvidRejectedGroupTimeline> getRateEvidRejectedByListTestManufSystemProjectGroupTimeline(Parameters parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\IndicatorTest\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql"));
             sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
             sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
             sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -67,7 +67,7 @@ namespace ProjectWebApi.DAOs
 
         public IList<RateDefectUnfounded> getRateDefectUnfoundedByListTestManufSystemProject(Parameters parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\RateDefectUnfoundedByListTestManufSystemProject.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\IndicatorTest\RateDefectUnfoundedByListTestManufSystemProject.sql"));
             sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
             sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
             sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -77,7 +77,7 @@ namespace ProjectWebApi.DAOs
         }
         public IList<RateDefectUat> getRateDefectUatByListTestManufSystemProject(Parameters parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\RateDefectUatByListTestManufSystemProject.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\IndicatorTest\RateDefectUatByListTestManufSystemProject.sql"));
             sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
             sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
             sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -87,7 +87,7 @@ namespace ProjectWebApi.DAOs
         }
         public IList<AverangeRetestHours> getAverangeRetestHoursListTestManufSystemProject(Parameters parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\IndicatorTest\AverangeRetestHoursByListTestManufSystemProject.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\IndicatorTest\AverangeRetestHoursByListTestManufSystemProject.sql"));
             sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
             sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
             sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");

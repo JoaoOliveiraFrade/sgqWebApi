@@ -26,14 +26,14 @@ namespace ProjectWebApi.DAOs
 
         public IList<PulledChain> getAll()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\PulledChain\select.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\select.sql"));
 			var list = _connection.Executar<PulledChain>(sql);
             return list;
         }
 
         public int update(PulledChain item)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\PulledChain\update.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\update.sql"));
             sql = sql.Replace("@statusStrategyTestingAndContracting", item.statusStrategyTestingAndContracting);
             sql = sql.Replace("@dtUpdateStrategyTestingAndContracting", item.dtUpdateStrategyTestingAndContracting);
             sql = sql.Replace("@dtEndStrategyTestingAndContracting", item.dtEndStrategyTestingAndContracting);

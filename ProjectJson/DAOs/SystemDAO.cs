@@ -24,7 +24,7 @@ namespace ProjectWebApi.DAOs
 
         public IList<SystemId> getAll()
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\System\Systems.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\Systems.sql"));
 			var list = _connection.Executar<SystemId>(sql);
             return list;
         }
@@ -34,7 +34,7 @@ namespace ProjectWebApi.DAOs
             if (listTestManufs == null)
                 return null;
 
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\System\SystemsByTestManufs.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\SystemsByTestManufs.sql"));
 			sql = sql.Replace("@listTestManufs", "'" + string.Join("','", listTestManufs) + "'");
 			var list = _connection.Executar<SystemId>(sql);
             return list;
