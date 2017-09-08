@@ -25,14 +25,14 @@ namespace ProjectWebApi.DAOs
 
         public IList<Project> getAll()
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Project\Projects.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\Projects.sql"));
 			var listProjects = _connection.Executar<Project>(sql);
             return listProjects;
         }
 
 		public IList<Project> getByTestManufsAndSystems(List<string> testManufs, List<string> systems)
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Project\ProjectsByTestManufsAndSystems.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\ProjectsByTestManufsAndSystems.sql"));
 			sql = sql.Replace("@testManufs", "'" + string.Join("','", testManufs) + "'");
 			sql = sql.Replace("@systems", "'" + string.Join("','", systems) + "'");
 			var list = _connection.Executar<Project>(sql);
@@ -439,7 +439,7 @@ namespace ProjectWebApi.DAOs
 
         public List<Status> getStatusGroupDayByProject(string subproject, string delivery)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\Project\StatusGroupDayByProject.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\StatusGroupDayByProject.sql"));
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
 

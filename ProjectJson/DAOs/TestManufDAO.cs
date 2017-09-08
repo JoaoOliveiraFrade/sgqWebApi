@@ -22,7 +22,7 @@ namespace ProjectWebApi.DAOs
 
         public IList<TestManuf> getAll()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\DAOs\sqls\TestManuf\TestManufs.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\TestManuf\TestManufs.sql"));
             var list = _connection.Executar<TestManuf>(sql);
             return list;
         }
