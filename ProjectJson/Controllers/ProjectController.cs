@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-
 using ProjectWebApi.DAOs;
 using ProjectWebApi.Models.Project;
 using System.Collections;
@@ -16,23 +15,28 @@ using System.Web.Http.Description;
 
 namespace ProjectWebApi.Controllers
 {
-
-	public class testManufsAndSystems
-    {
-        public List<string> selectedTestManuf { get; set; }
-        public List<string> selectedSystem { get; set; }
-    }
-    
     // [EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = false)]
     public class ProjectController : ApiController
     {
         [HttpGet]
         [Route("project/all")]
         [ResponseType(typeof(IList<Project>))]
-        public HttpResponseMessage getAll(HttpRequestMessage request)
+        public HttpResponseMessage all(HttpRequestMessage request)
         {
             var projectDAO = new ProjectDAO();
-            var projects = projectDAO.getAll();
+            var projects = projectDAO.all();
+            projectDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, projects);
+        }
+
+        [HttpPost]
+        [Route("project/ofTestManufsAndSystems")]
+        [ResponseType(typeof(IList<Project>))]
+        public HttpResponseMessage ofTestManufsAndSystems(HttpRequestMessage request, testManufsAndSystems parameters)
+        {
+            var projectDAO = new ProjectDAO();
+
+            var projects = projectDAO.ofTestManufsAndSystems(parameters);
             projectDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
@@ -250,18 +254,6 @@ namespace ProjectWebApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
-        }
-
-        [HttpPost]
-        [Route("project/ByTestManufsAndSystems")]
-        [ResponseType(typeof(IList<Project>))]
-        public HttpResponseMessage getByTestManufsAndSystems(HttpRequestMessage request, testManufsAndSystems parameters)
-        {
-            var projectDAO = new ProjectDAO();
-
-            var projects = projectDAO.getByTestManufsAndSystems(parameters.selectedTestManuf, parameters.selectedSystem);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
         [HttpGet]

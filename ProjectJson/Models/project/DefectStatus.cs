@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ProjectWebApi.Models.Project
+namespace ProjectWebApi.Models
 {
     public class DefectStatus
     {

@@ -23,18 +23,18 @@ namespace ProjectWebApi.DAOs
             _connection.Dispose();
         }
 
-        public IList<Project> getAll()
+        public IList<Project> all()
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\Projects.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\All.sql"));
 			var listProjects = _connection.Executar<Project>(sql);
             return listProjects;
         }
 
-		public IList<Project> getByTestManufsAndSystems(List<string> testManufs, List<string> systems)
+		public IList<Project> ofTestManufsAndSystems(testManufsAndSystems parameters)
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\ProjectsByTestManufsAndSystems.sql"));
-			sql = sql.Replace("@testManufs", "'" + string.Join("','", testManufs) + "'");
-			sql = sql.Replace("@systems", "'" + string.Join("','", systems) + "'");
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\OfTestManufsAndSystems.sql"));
+			sql = sql.Replace("@testManufs", "'" + string.Join("','", parameters.testManufs) + "'");
+			sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
 			var list = _connection.Executar<Project>(sql);
             return list;
         }

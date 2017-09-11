@@ -1,7 +1,5 @@
 using Classes;
-using ProjectWebApi.Models.SystemId;
-using ProjectWebApi.Models.SystemByTestManuf;
-using ProjectWebApi.Models.TestManuf;
+using ProjectWebApi.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Web;
@@ -22,21 +20,21 @@ namespace ProjectWebApi.DAOs
             _connection.Dispose();
         }
 
-        public IList<SystemId> getAll()
+        public IList<IdName> all()
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\Systems.sql"));
-			var list = _connection.Executar<SystemId>(sql);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\All.sql"));
+			var list = _connection.Executar<IdName>(sql);
             return list;
         }
 
-        public IList<SystemId> getSystemsByTestManuf(List<string> listTestManufs)
+        public IList<IdName> ofTestManufs(List<string> listTestManufs)
         {
             if (listTestManufs == null)
                 return null;
 
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\SystemsByTestManufs.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\OfTestManufs.sql"));
 			sql = sql.Replace("@listTestManufs", "'" + string.Join("','", listTestManufs) + "'");
-			var list = _connection.Executar<SystemId>(sql);
+			var list = _connection.Executar<IdName>(sql);
             return list;
         }
     }

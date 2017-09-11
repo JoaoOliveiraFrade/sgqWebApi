@@ -1,5 +1,5 @@
 ﻿using ProjectWebApi.DAOs;
-using ProjectWebApi.Models.TestManuf;
+using ProjectWebApi.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -11,12 +11,12 @@ namespace ProjectWebApi.Controllers
     public class TestManufController : ApiController
     {
         [HttpGet]
-        [Route("TestManuf/All")]
-        [ResponseType(typeof(IList<TestManuf>))]
-        public HttpResponseMessage getAll(HttpRequestMessage request)
+        [Route("testManuf/all")]
+        [ResponseType(typeof(IList<IdName>))]
+        public HttpResponseMessage all(HttpRequestMessage request)
         {
             var dao = new TestManufDAO();
-            var list = dao.getAll();
+            var list = dao.all();
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }

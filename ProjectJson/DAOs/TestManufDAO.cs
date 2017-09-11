@@ -1,5 +1,5 @@
 using Classes;
-using ProjectWebApi.Models.TestManuf;
+using ProjectWebApi.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Web;
@@ -20,10 +20,10 @@ namespace ProjectWebApi.DAOs
             _connection.Dispose();
         }
 
-        public IList<TestManuf> getAll()
+        public IList<IdName> all()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\TestManuf\TestManufs.sql"));
-            var list = _connection.Executar<TestManuf>(sql);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\TestManuf\All.sql"));
+            var list = _connection.Executar<IdName>(sql);
             return list;
         }
     }

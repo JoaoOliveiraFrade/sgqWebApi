@@ -1,7 +1,5 @@
 ﻿using ProjectWebApi.DAOs;
-using ProjectWebApi.Models.SystemId;
-using ProjectWebApi.Models.SystemByTestManuf;
-using ProjectWebApi.Models.TestManuf;
+using ProjectWebApi.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -13,23 +11,23 @@ namespace ProjectWebApi.Controllers
     public class SystemController : ApiController
     {
         [HttpGet]
-        [Route("System/All")]
-        [ResponseType(typeof(IList<SystemId>))]
-        public HttpResponseMessage getAll(HttpRequestMessage request)
+        [Route("system/all")]
+        [ResponseType(typeof(IList<IdName>))]
+        public HttpResponseMessage All(HttpRequestMessage request)
         {
             var dao = new SystemDAO();
-            var list = dao.getAll();
+            var list = dao.all();
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpPost]
-        [Route("System/SystemsByTestManufs")]
-        [ResponseType(typeof(IList<SystemId>))]
-        public HttpResponseMessage getSystemsByTestManufs(HttpRequestMessage request, List<string> listTestManufs)
+        [Route("system/ofTestManufs")]
+        [ResponseType(typeof(IList<IdName>))]
+        public HttpResponseMessage byTestManufs(HttpRequestMessage request, List<string> listTestManufs)
         {
             var dao = new SystemDAO();
-            var list = dao.getSystemsByTestManuf(listTestManufs);
+            var list = dao.ofTestManufs(listTestManufs);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
