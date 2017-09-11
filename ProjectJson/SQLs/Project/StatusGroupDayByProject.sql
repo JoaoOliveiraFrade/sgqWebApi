@@ -1,4 +1,4 @@
-declare @t table (
+ï»¿declare @t table (
 	date varchar(8), 
 	dateOrder varchar(8), 
 	active int, 
@@ -35,7 +35,7 @@ select
 	sum(approvedUAT) as approvedUAT
 from
 	(
-	select 
+	select
 		left(dt_criacao,8) as date, 
 		1 as active,
 		case when Evidencia_Validacao_Tecnica <> 'N/A' then 1 else 0 end as activeTechnique,
@@ -139,8 +139,8 @@ from
 			h.entrega = cts.entrega and
 			h.tabela = 'TESTCYCL' and 
 			h.tabela_id =  cts.ct and 
-			h.campo = '(EVIDÊNCIA) VALIDAÇÃO TÉCNICA' and
-			h.novo_valor = 'VALIDADO'
+			h.campo = '(EVIDÃŠNCIA) VALIDAÃ‡ÃƒO TÃ‰CNICA' and
+			h.novo_valor = 'VALIDADO' 
 		order by 
 			substring(dt_alteracao,7,2)+substring(dt_alteracao,4,2)+substring(dt_alteracao,1,2) desc
 		),8) as date,
@@ -172,7 +172,7 @@ from
 			h.entrega = cts.entrega and
 			h.tabela = 'TESTCYCL' and 
 			h.tabela_id =  cts.ct and 
-			h.campo = '(EVIDÊNCIA) VALIDAÇÃO CLIENTE' and
+			h.campo = '(EVIDÃŠNCIA) VALIDAÃ‡ÃƒO CLIENTE' and
 			h.novo_valor = 'VALIDADO'
 		order by 
 			substring(dt_alteracao,7,2)+substring(dt_alteracao,4,2)+substring(dt_alteracao,1,2) desc
