@@ -222,7 +222,7 @@
     <Compile Include="Models\IndicatorTest\RateDefectUnfounded .cs" />
     <Compile Include="Models\IndicatorTest\RateEvidRejectedGroupTimeline.cs" />
     <Compile Include="Models\IndicatorTest\RateEvidRejected.cs" />
-    <Compile Include="Models\IndicatorTest\ProdutivityInd.cs" />
+    <Compile Include="Models\IndicatorTest\Productivity.cs" />
     <Compile Include="Models\project\testManufsAndSystems.cs" />
     <Compile Include="Models\PulledChain\PulledChain.cs" />
     <Compile Include="Models\ProjectXGrouper\ProjectXGrouper.cs" />
@@ -280,7 +280,7 @@
     <Content Include="SQLs\IndicatorTest\RateDefectUnfoundedByListTestManufSystemProject.sql" />
     <Content Include="SQLs\IndicatorTest\RateEvidRejectedByListTestManufSystemProject.sql" />
     <Content Include="SQLs\IndicatorTest\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql" />
-    <Content Include="SQLs\IndicatorTest\ProdutivityByListTestManufSystemProject.sql" />
+    <Content Include="SQLs\IndicatorTest\ProductivityByListTestManufSystemProject.sql" />
     <Content Include="SQLs\Project\StatusGroupDayByProject.sql" />
     <Content Include="SQLs\PulledChain\update.sql" />
     <Content Include="SQLs\PulledChain\select.sql" />

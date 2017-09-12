@@ -19,8 +19,8 @@ namespace ProjectWebApi.Controllers
     public class IndicatorTestController : ApiController
     {
         //[HttpGet]
-        //[Route("indicatorTest/produtivity/byProject/{subproject}/{delivery}")]
-        //[ResponseType(typeof(IList<Produtivity>))]
+        //[Route("indicatorTest/productivity/byProject/{subproject}/{delivery}")]
+        //[ResponseType(typeof(IList<productivity>))]
         //public HttpResponseMessage getProductivityBySubEnt(HttpRequestMessage request, string subproject, string delivery)
         //{
         //    var IndicatorTestDAO = new IndicatorTestDAO();
@@ -30,12 +30,12 @@ namespace ProjectWebApi.Controllers
         //}
 
 		[HttpPost]
-		[Route("indicatorTest/produtivity/byListTestManufSystemProject")]
-		[ResponseType(typeof(IList<Produtivity>))]
-		public HttpResponseMessage getProdutivityByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
+		[Route("indicatorTest/productivity/byListTestManufSystemProject")]
+		[ResponseType(typeof(IList<Productivity>))]
+		public HttpResponseMessage productivityByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
 		{
 			var IndicatorTestDAO = new IndicatorTestDAO();
-			var list = IndicatorTestDAO.getProdutivityByListTestManufSystemProject(parameters);
+			var list = IndicatorTestDAO.productivityByListTestManufSystemProject(parameters);
 			IndicatorTestDAO.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
@@ -43,10 +43,10 @@ namespace ProjectWebApi.Controllers
 		[HttpPost]
 		[Route("indicatorTest/rateEvidRejected/byListTestManufSystemProject")]
 		[ResponseType(typeof(IList<RateEvidRejected>))]
-		public HttpResponseMessage getRateEvidRejectedByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
+		public HttpResponseMessage rateEvidRejectedByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
 		{
 			var IndicatorTestDAO = new IndicatorTestDAO();
-			var list = IndicatorTestDAO.getRateEvidRejectedByListTestManufSystemProject(parameters);
+			var list = IndicatorTestDAO.rateEvidRejectedByListTestManufSystemProject(parameters);
 			IndicatorTestDAO.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
@@ -54,10 +54,10 @@ namespace ProjectWebApi.Controllers
         [HttpPost]
         [Route("indicatorTest/rateEvidRejected/byListTestManufSystemProject/groupTimeline")]
         [ResponseType(typeof(IList<RateEvidRejectedGroupTimeline>))]
-        public HttpResponseMessage getRateEvidRejectedByListTestManufSystemProjectGroupTimeline(HttpRequestMessage request, Parameters parameters)
+        public HttpResponseMessage rateEvidRejectedByListTestManufSystemProjectGroupTimeline(HttpRequestMessage request, Parameters parameters)
         {
             var IndicatorTestDAO = new IndicatorTestDAO();
-            var list = IndicatorTestDAO.getRateEvidRejectedByListTestManufSystemProjectGroupTimeline(parameters);
+            var list = IndicatorTestDAO.rateEvidRejectedByListTestManufSystemProjectGroupTimeline(parameters);
             IndicatorTestDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -65,10 +65,10 @@ namespace ProjectWebApi.Controllers
         [HttpPost]
         [Route("indicatorTest/rateDefectUnfounded/byListTestManufSystemProject")]
         [ResponseType(typeof(IList<RateDefectUnfounded>))]
-        public HttpResponseMessage getRateDefectUnfoundedByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
+        public HttpResponseMessage rateDefectUnfoundedByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
         {
             var IndicatorTestDAO = new IndicatorTestDAO();
-            var list = IndicatorTestDAO.getRateDefectUnfoundedByListTestManufSystemProject(parameters);
+            var list = IndicatorTestDAO.rateDefectUnfoundedByListTestManufSystemProject(parameters);
             IndicatorTestDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -76,10 +76,10 @@ namespace ProjectWebApi.Controllers
         [HttpPost]
         [Route("indicatorTest/rateDefectUat/byListTestManufSystemProject")]
         [ResponseType(typeof(IList<RateDefectUat>))]
-        public HttpResponseMessage getRateDefectUatByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
+        public HttpResponseMessage rateDefectUatByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
         {
             var IndicatorTestDAO = new IndicatorTestDAO();
-            var list = IndicatorTestDAO.getRateDefectUatByListTestManufSystemProject(parameters);
+            var list = IndicatorTestDAO.rateDefectUatByListTestManufSystemProject(parameters);
             IndicatorTestDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -87,10 +87,10 @@ namespace ProjectWebApi.Controllers
         [HttpPost]
         [Route("indicatorTest/averangeRetestHours/byListTestManufSystemProject")]
         [ResponseType(typeof(IList<AverangeRetestHours>))]
-        public HttpResponseMessage getAverangeRetestHoursByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
+        public HttpResponseMessage averangeRetestHoursByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
         {
             var IndicatorTestDAO = new IndicatorTestDAO();
-            var list = IndicatorTestDAO.getAverangeRetestHoursListTestManufSystemProject(parameters);
+            var list = IndicatorTestDAO.averangeRetestHoursByListTestManufSystemProject(parameters);
             IndicatorTestDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
