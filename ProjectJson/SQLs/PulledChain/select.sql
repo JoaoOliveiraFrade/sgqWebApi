@@ -158,6 +158,7 @@ from
 			  on sub.id = sgq_p.subproject
 		where
 			--sgq_p.subproject = 'PRJ00015285' and delivery = 'ENTREGA00005264' and
+			sub.estado <> 'CANCELADO' and
 			sgq_p.RT in ('CARLOS HENRIQUE', 'SORAIA CASAGRANDE', 'CLAUDIA CARVALHO', '') and
 			sgq_p.subproject in (
 									select distinct ft.subprojeto

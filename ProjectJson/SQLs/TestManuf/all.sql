@@ -6,9 +6,10 @@ from
 		select distinct
 			(case 
 				when testManuf in('ACC', 'ACCENTURE') then 'ACCENTURE'
-				when testManuf in('LINK', 'LINK CONSULTING', 'LINK  CONSULTING') then 'LINK CONSULTING'
+				when testManuf in('LINK', 'LINK CONSULTING', 'LINK  CONSULTING') then 'LINK'
 				when testManuf in('SONDA', 'SONDA IT') then 'SONDA'
 				when testManuf in('TRIAD SYSTEM', 'TRIAD SYSTEMS') then 'TRIAD SYSTEMS'
+				when testManuf = 'SOFTWARE EXPRESS' then 'SOFT.EXPRESS'
 				else testManuf
 			end) as testManuf
 		from
