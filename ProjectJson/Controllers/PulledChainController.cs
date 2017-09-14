@@ -18,9 +18,9 @@ namespace ProjectWebApi.Controllers
     public class PulledChainController : ApiController
     {
 		[HttpGet]
-		[Route("PulledChain/All")]
+		[Route("pulledChain/all")]
 		[ResponseType(typeof(IList<PulledChain>))]
-		public HttpResponseMessage getAll(HttpRequestMessage request)
+		public HttpResponseMessage all(HttpRequestMessage request)
 		{
 			var pulledChainDAO = new PulledChainDAO();
             IList<PulledChain> projects = pulledChainDAO.getAll();
@@ -28,9 +28,20 @@ namespace ProjectWebApi.Controllers
 			return request.CreateResponse(HttpStatusCode.OK, projects);
 		}
 
-		[HttpPut]
-		[Route("PulledChain/Update/{id:int}")]
-		public HttpResponseMessage Update(int id, PulledChain item)
+        [HttpGet]
+        [Route("pulledChain/chartCFD")]
+        [ResponseType(typeof(IList<chartCFD>))]
+        public HttpResponseMessage chartCFD(HttpRequestMessage request)
+        {
+            var pulledChainDAO = new PulledChainDAO();
+            IList<chartCFD> projects = pulledChainDAO.chartCFD();
+            pulledChainDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, projects);
+        }
+
+        [HttpPut]
+		[Route("pulledChain/update/{id:int}")]
+		public HttpResponseMessage update(int id, PulledChain item)
 		{
             var pulledChainDAO = new PulledChainDAO();
             int result = pulledChainDAO.update(item);

@@ -224,6 +224,7 @@
     <Compile Include="Models\IndicatorTest\RateEvidRejected.cs" />
     <Compile Include="Models\IndicatorTest\Productivity.cs" />
     <Compile Include="Models\project\testManufsAndSystems.cs" />
+    <Compile Include="Models\PulledChain\chatCFD.cs" />
     <Compile Include="Models\PulledChain\PulledChain.cs" />
     <Compile Include="Models\ProjectXGrouper\ProjectXGrouper.cs" />
     <Compile Include="Models\Grouper\Grouper.cs" />
@@ -282,6 +283,7 @@
     <Content Include="SQLs\IndicatorTest\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql" />
     <Content Include="SQLs\IndicatorTest\ProductivityByListTestManufSystemProject.sql" />
     <Content Include="SQLs\Project\StatusGroupDayByProject.sql" />
+    <Content Include="SQLs\PulledChain\chartCFD.sql" />
     <Content Include="SQLs\PulledChain\update.sql" />
     <Content Include="SQLs\PulledChain\select.sql" />
     <Content Include="SQLs\System\OfTestManufs.sql" />
