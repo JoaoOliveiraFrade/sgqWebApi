@@ -283,6 +283,7 @@
     <Content Include="SQLs\IndicatorTest\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql" />
     <Content Include="SQLs\IndicatorTest\ProductivityByListTestManufSystemProject.sql" />
     <Content Include="SQLs\Project\StatusGroupDayByProject.sql" />
+    <Content Include="SQLs\PulledChain\chartCFDUpdateHistotic.sql" />
     <Content Include="SQLs\PulledChain\chartCFD.sql" />
     <Content Include="SQLs\PulledChain\update.sql" />
     <Content Include="SQLs\PulledChain\select.sql" />

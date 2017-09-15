@@ -33,7 +33,10 @@ namespace ProjectWebApi.DAOs
 
         public IList<chartCFD> chartCFD()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\chartCFD.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\chartCFDUpdateHistotic.sql"));
+            _connection.Executar(sql);
+
+            sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\chartCFD.sql"));
             var list = _connection.Executar<chartCFD>(sql);
             return list;
         }
