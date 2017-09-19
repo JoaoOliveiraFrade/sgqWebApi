@@ -40,8 +40,8 @@ namespace ProjectWebApi.Controllers
         }
 
         [HttpPut]
-		[Route("pulledChain/update/{id:int}")]
-		public HttpResponseMessage update(int id, PulledChain item)
+		[Route("pulledChain/update")]
+		public HttpResponseMessage update(PulledChain item)
 		{
             var pulledChainDAO = new PulledChainDAO();
             int result = pulledChainDAO.update(item);

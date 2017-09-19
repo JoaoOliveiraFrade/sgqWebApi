@@ -26,18 +26,19 @@ namespace ProjectWebApi.DAOs
 
         public IList<PulledChain> getAll()
         {
+
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\select.sql"));
-			var list = _connection.Executar<PulledChain>(sql);
+            var list = _connection.Executar<PulledChain>(sql);
             return list;
         }
 
         public IList<chartCFD> chartCFD()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\chartCFDUpdateHistotic.sql"));
-            _connection.Executar(sql);
+            string sql1 = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\ChatCfdUpdate.sql"));
+            _connection.Executar(sql1);
 
-            sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\chartCFD.sql"));
-            var list = _connection.Executar<chartCFD>(sql);
+            string sql2 = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\ChartCfdSelect.sql"));
+            var list = _connection.Executar<chartCFD>(sql2);
             return list;
         }
 

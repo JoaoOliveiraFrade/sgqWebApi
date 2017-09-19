@@ -185,6 +185,7 @@
     <Compile Include="Controllers\DefectQueueController .cs" />
     <Compile Include="Controllers\eMailController.cs" />
     <Compile Include="Controllers\DefectMonitorController.cs" />
+    <Compile Include="Controllers\IndicatorAccomplishment.cs" />
     <Compile Include="Controllers\IndicatorTestController.cs" />
     <Compile Include="Controllers\PulledChainController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="DAOs\DefectStatusDAO.cs" />
     <Compile Include="DAOs\DefectQueueDAO.cs" />
     <Compile Include="DAOs\DefectMonitorDAO.cs" />
+    <Compile Include="DAOs\IndicatorAccomplishmentDAO.cs" />
     <Compile Include="DAOs\IndicatorsTestDAO.cs" />
     <Compile Include="DAOs\PulledChainDAO.cs" />
     <Compile Include="DAOs\SystemDAO.cs" />
@@ -216,6 +218,7 @@
     <Compile Include="Models\bptValidPlanoEvid.cs" />
     <Compile Include="Models\IdName.cs" />
     <Compile Include="Models\eMail\Email.cs" />
+    <Compile Include="Models\IndicatorAccomplishment\SlaOnTime.cs" />
     <Compile Include="Models\IndicatorTest\Parameters.cs" />
     <Compile Include="Models\IndicatorTest\AverangeRetestHours.cs" />
     <Compile Include="Models\IndicatorTest\RateDefectUat.cs" />
@@ -276,6 +279,7 @@
     <Content Include="SQLs\DefectQueue\All.sql" />
     <Content Include="SQLs\DefectTrafficLight\All.sql" />
     <Content Include="SQLs\DefectStatus\All.sql" />
+    <Content Include="SQLs\IndicatorAccomplishment\SlaOnTime.sql" />
     <Content Include="SQLs\IndicatorTest\AverangeRetestHoursByListTestManufSystemProject.sql" />
     <Content Include="SQLs\IndicatorTest\RateDefectUatByListTestManufSystemProject.sql" />
     <Content Include="SQLs\IndicatorTest\RateDefectUnfoundedByListTestManufSystemProject.sql" />
@@ -283,10 +287,17 @@
     <Content Include="SQLs\IndicatorTest\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql" />
     <Content Include="SQLs\IndicatorTest\ProductivityByListTestManufSystemProject.sql" />
     <Content Include="SQLs\Project\StatusGroupDayByProject.sql" />
+<<<<<<< HEAD
     <Content Include="SQLs\PulledChain\chartCFDUpdateHistotic.sql" />
     <Content Include="SQLs\PulledChain\chartCFD.sql" />
     <Content Include="SQLs\PulledChain\update.sql" />
     <Content Include="SQLs\PulledChain\select.sql" />
+=======
+    <Content Include="SQLs\PulledChain\ChartCfdSelect.sql" />
+    <Content Include="SQLs\PulledChain\ChatCfdUpdate.sql" />
+    <Content Include="SQLs\PulledChain\Update.sql" />
+    <Content Include="SQLs\PulledChain\Select.sql" />
+>>>>>>> 420d1a7cbffb1f8c456b1736ff320170e6f99f69
     <Content Include="SQLs\System\OfTestManufs.sql" />
     <Content Include="SQLs\System\All.sql" />
     <Content Include="SQLs\Project\All.sql" />

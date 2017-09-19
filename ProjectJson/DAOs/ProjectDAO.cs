@@ -1795,11 +1795,11 @@ namespace ProjectWebApi.DAOs
             order by 
 	            t.dateOrder desc
             ";
-            sql = sql.Replace("@subproject", subproject);
-            sql = sql.Replace("@delivery", delivery);
-            sql = sql.Replace("@iterations", "'" + string.Join("','", iterations.ToArray()) + "'");
+            string sql1 = sql.Replace("@subproject", subproject);
+            string sql2 = sql1.Replace("@delivery", delivery);
+            string sql3 = sql2.Replace("@iterations", "'" + string.Join("','", iterations.ToArray()) + "'");
 
-            List<Status> List = _connection.Executar<Status>(sql);
+            List<Status> List = _connection.Executar<Status>(sql3);
 
             return List;
         }
