@@ -26,9 +26,9 @@ namespace ProjectWebApi.DAOs
 
         public IList<PulledChain> getAll()
         {
-           
+
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\select.sql"));
-			var list = _connection.Executar<PulledChain>(sql);
+            var list = _connection.Executar<PulledChain>(sql);
             return list;
         }
 
