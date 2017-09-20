@@ -18,6 +18,9 @@ from
 	sgq_projects sgq_p
 	left join BITI_Subprojetos sub
 		on sub.id = sgq_p.subproject
+	left join BITI_entregas ent
+		on ent.id = sgq_p.delivery
+
 where
 	(
 		sgq_p.RT in ('CARLOS HENRIQUE', 'SORAIA CASAGRANDE', 'CLAUDIA CARVALHO', '') or
@@ -26,6 +29,7 @@ where
 		isnull(sgq_p.dtUpdateTestPlan,'') <> ''
 	) and
 	sub.estado <> 'CANCELADO' and
+	ent.estado <> 'ENTREGA CANCELADA' and
 	sgq_p.subproject in 
 		(
 			select distinct ft.subprojeto

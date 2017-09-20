@@ -22,7 +22,7 @@ namespace ProjectWebApi.DAOs
 
         public IList<IdName> all()
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\All.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\all.sql"));
 			var list = _connection.Executar<IdName>(sql);
             return list;
         }
@@ -32,9 +32,15 @@ namespace ProjectWebApi.DAOs
             if (listTestManufs == null)
                 return null;
 
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\OfTestManufs.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\ofTestManufs.sql"));
 			sql = sql.Replace("@listTestManufs", "'" + string.Join("','", listTestManufs) + "'");
 			var list = _connection.Executar<IdName>(sql);
+            return list;
+        }
+        public IList<SystemGroupDevManuf> ofQueueGroupDevManufs()
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\System\ofQueueGroupDevManufs.sql"));
+            var list = _connection.Executar<SystemGroupDevManuf>(sql);
             return list;
         }
     }

@@ -31,5 +31,16 @@ namespace ProjectWebApi.Controllers
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
+
+        [HttpGet]
+        [Route("system/ofQueueGroupDevManufs")]
+        [ResponseType(typeof(IList<SystemGroupDevManuf>))]
+        public HttpResponseMessage ofQueueGroupDevManufs(HttpRequestMessage request)
+        {
+            var dao = new SystemDAO();
+            var list = dao.ofQueueGroupDevManufs();
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, list);
+        }
     }
 }

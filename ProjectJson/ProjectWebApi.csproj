@@ -183,6 +183,7 @@
     <Compile Include="Controllers\DefectTrafficLightController.cs" />
     <Compile Include="Controllers\DefectStatusController.cs" />
     <Compile Include="Controllers\DefectQueueController .cs" />
+    <Compile Include="Controllers\DevManuf.cs" />
     <Compile Include="Controllers\eMailController.cs" />
     <Compile Include="Controllers\DefectMonitorController.cs" />
     <Compile Include="Controllers\IndicatorAccomplishment.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="DAOs\DefectStatusDAO.cs" />
     <Compile Include="DAOs\DefectQueueDAO.cs" />
     <Compile Include="DAOs\DefectMonitorDAO.cs" />
+    <Compile Include="DAOs\DevManufDAO.cs" />
     <Compile Include="DAOs\IndicatorAccomplishmentDAO.cs" />
     <Compile Include="DAOs\IndicatorsTestDAO.cs" />
     <Compile Include="DAOs\PulledChainDAO.cs" />
@@ -263,6 +265,7 @@
     <Compile Include="Models\agingDefects.cs" />
     <Compile Include="Models\detectableInDev.cs" />
     <Compile Include="Models\noPredictionDefects.cs" />
+    <Compile Include="Models\system\SystemGroupDevManuf.cs" />
     <Compile Include="Models\user\Profile.cs" />
     <Compile Include="Models\user\User.cs" />
     <Compile Include="Models\wrongClassif.cs" />
@@ -279,6 +282,8 @@
     <Content Include="SQLs\DefectQueue\All.sql" />
     <Content Include="SQLs\DefectTrafficLight\All.sql" />
     <Content Include="SQLs\DefectStatus\All.sql" />
+    <Content Include="SQLs\DevManuf\AllOfQueue.sql" />
+    <Content Include="SQLs\DevManuf\All.sql" />
     <Content Include="SQLs\IndicatorAccomplishment\SlaOnTime.sql" />
     <Content Include="SQLs\IndicatorTest\AverangeRetestHoursByListTestManufSystemProject.sql" />
     <Content Include="SQLs\IndicatorTest\RateDefectUatByListTestManufSystemProject.sql" />
@@ -291,8 +296,9 @@
     <Content Include="SQLs\PulledChain\ChatCfdUpdate.sql" />
     <Content Include="SQLs\PulledChain\Update.sql" />
     <Content Include="SQLs\PulledChain\Select.sql" />
-    <Content Include="SQLs\System\OfTestManufs.sql" />
-    <Content Include="SQLs\System\All.sql" />
+    <Content Include="SQLs\System\ofQueueGroupDevManufs.sql" />
+    <Content Include="SQLs\System\ofTestManufs.sql" />
+    <Content Include="SQLs\System\all.sql" />
     <Content Include="SQLs\Project\All.sql" />
     <Content Include="SQLs\Project\OfTestManufsAndSystems.sql" />
     <Content Include="SQLs\TestManuf\all.sql" />
