@@ -17,7 +17,18 @@ namespace ProjectWebApi.Controllers
 {
     public class IndicatorAccomplishment : ApiController
     {
-		[HttpPost]
+        [HttpGet]
+        [Route("project/all")]
+        [ResponseType(typeof(IList<Project>))]
+        public HttpResponseMessage all(HttpRequestMessage request)
+        {
+            var projectDAO = new ProjectDAO();
+            var projects = projectDAO.all();
+            projectDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, projects);
+        }
+
+        [HttpPost]
 		[Route("indicatorAccomplishment/slaOnTime/byListDevManufSystemProject")]
 		[ResponseType(typeof(IList<SlaOnTime>))]
 		public HttpResponseMessage slaOnTimeByListDevManufSystemProject(HttpRequestMessage request, Parameters parameters)

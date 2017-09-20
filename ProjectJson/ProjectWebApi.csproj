@@ -189,6 +189,7 @@
     <Compile Include="Controllers\IndicatorTestController.cs" />
     <Compile Include="Controllers\PulledChainController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Controllers\DevManuf.cs" />
     <Compile Include="Controllers\TestManuf.cs" />
     <Compile Include="Controllers\ProjectXGrouperController.cs" />
     <Compile Include="Controllers\GrouperController.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="DAOs\IndicatorsTestDAO.cs" />
     <Compile Include="DAOs\PulledChainDAO.cs" />
     <Compile Include="DAOs\SystemDAO.cs" />
+    <Compile Include="DAOs\DevManufDAO.cs" />
     <Compile Include="DAOs\TestManufDAO.cs" />
     <Compile Include="DAOs\ProjectXGrouperDAO.cs" />
     <Compile Include="DAOs\GrouperDAO.cs" />
@@ -279,6 +281,8 @@
     <Content Include="SQLs\DefectQueue\All.sql" />
     <Content Include="SQLs\DefectTrafficLight\All.sql" />
     <Content Include="SQLs\DefectStatus\All.sql" />
+    <Content Include="SQLs\DevManuf\all.sql" />
+    <Content Include="SQLs\IndicatorAccomplishment\xxxx.sql" />
     <Content Include="SQLs\IndicatorAccomplishment\SlaOnTime.sql" />
     <Content Include="SQLs\IndicatorTest\AverangeRetestHoursByListTestManufSystemProject.sql" />
     <Content Include="SQLs\IndicatorTest\RateDefectUatByListTestManufSystemProject.sql" />
