@@ -1,4 +1,5 @@
-﻿declare @t table (
+﻿--systems
+declare @t table (
 	devManuf varchar(50), 
 	system varchar(50)
 )

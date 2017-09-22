@@ -7,11 +7,18 @@ select distinct
 from
 	(
 		select distinct
-			replace(encaminhado_para,'–', '-') as queue
+			replace(dt.encaminhado_para,'–', '-') as queue
 		from
-			alm_defeitos_tempos
+			alm_defeitos d
+			left join alm_defeitos_tempos dt
+			on dt.subprojeto = d.subprojeto and 
+				dt.entrega = d.entrega and 
+				dt.defeito = d.defeito
 		where
-			status not in ('IN_PROGRESS', 'PENDENT (PROGRESS)', 'REOPEN')
+			d.origem like '%Construção%'
+			and d.status_atual = 'Closed'
+			and (d.ciclo like '%TI%' or d.ciclo like '%UAT%' or d.ciclo like '%TRG%' or d.ciclo like '%DEV%')
+			and dt.status in ('IN_PROGRESS', 'PENDENT (PROGRESS)', 'REOPEN')
 	) aux1
 
 select 
@@ -23,4 +30,3 @@ where
 	devManuf not in ('', 'OI',' LÍDER TÉCNICO', 'ÁREA DE NEGÓCIOS', 'ÁREA USUÁRIA', 'AUTOMAÇÃO', 'ENGENHARIA', 'OI (API)', 'OI (APLICATIVO)')
 order by
 	1
-

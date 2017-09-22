@@ -2,6 +2,7 @@ using Classes;
 using ProjectWebApi.Models;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Web;
 
 namespace ProjectWebApi.DAOs
@@ -22,13 +23,13 @@ namespace ProjectWebApi.DAOs
 
         public IList<IdName> all()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DevManuf\All.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DevManuf\All.sql"), Encoding.Default);
             var list = _connection.Executar<IdName>(sql);
             return list;
         }
         public IList<IdName> allOfQueue()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DevManuf\AllOfQueue.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DevManuf\AllOfQueue.sql"), Encoding.Default);
             var list = _connection.Executar<IdName>(sql);
             return list;
         }

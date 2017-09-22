@@ -41,6 +41,31 @@ namespace ProjectWebApi.Controllers
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
+        [HttpPost]
+        [Route("project/subprojectDeliveryOfQueueFbyDevManufAndSystem")]
+        [ResponseType(typeof(IList<string>))]
+        public HttpResponseMessage subprojectDeliveryOfQueueFbyDevManufAndSystem(HttpRequestMessage request, testManufsAndSystems parameters)
+        {
+            var projectDAO = new ProjectDAO();
+
+            var result = projectDAO.subprojectDeliveryOfQueueFbyDevManufAndSystem(parameters);
+            projectDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+        [HttpPost]
+        [Route("project/fbySubprojectDelivery")]
+        [ResponseType(typeof(IList<Project>))]
+        public HttpResponseMessage fbySubprojectDelivery(HttpRequestMessage request, IList<string> parameters)
+        {
+            var projectDAO = new ProjectDAO();
+
+            var projects = projectDAO.fbySubprojectDelivery(parameters);
+            projectDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, projects);
+        }
+
+
         [HttpGet] // deve sair, quando converter o indicador de desenvolvimento
         [Route("projects")]
         public List<projects> getProjects()

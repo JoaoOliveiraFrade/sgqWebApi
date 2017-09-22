@@ -4,6 +4,7 @@ using ProjectWebApi.Models.Project;
 using ProjectWebApi.Models.User;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Web;
 
 namespace ProjectWebApi.DAOs
@@ -24,14 +25,14 @@ namespace ProjectWebApi.DAOs
 
         public IList<User> getUsers()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\User\Users.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\User\Users.sql"), Encoding.Default);
             var list = _connection.Executar<User>(sql);
             return list;
         }
 
         public User getUserByCpf(string login, string cpf)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\User\UserByCpf.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\User\UserByCpf.sql"), Encoding.Default);
             sql = sql.Replace("@login", login);
             sql = sql.Replace("@cpf", cpf);
 
@@ -45,7 +46,7 @@ namespace ProjectWebApi.DAOs
 
         public IList<Profile> getProfilesByUser(int UserId)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\User\ProfilesByUser.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\User\ProfilesByUser.sql"), Encoding.Default);
             sql = sql.Replace("@user", UserId.ToString());
 
             var list = _connection.Executar<Profile>(sql);
@@ -55,7 +56,7 @@ namespace ProjectWebApi.DAOs
 
         public User getUserByPassword(string login, string password)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\User\UserByPassword.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\User\UserByPassword.sql"), Encoding.Default);
             sql = sql.Replace("@login", login);
             sql = sql.Replace("@password", password);
 

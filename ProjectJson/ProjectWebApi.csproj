@@ -284,6 +284,10 @@
     <Content Include="SQLs\DefectStatus\All.sql" />
     <Content Include="SQLs\DevManuf\AllOfQueue.sql" />
     <Content Include="SQLs\DevManuf\All.sql" />
+    <Content Include="SQLs\IndicatorAccomplishment\defManufs.sql" />
+    <Content Include="SQLs\IndicatorAccomplishment\systems.sql" />
+    <Content Include="SQLs\IndicatorAccomplishment\projects.sql" />
+    <Content Include="SQLs\IndicatorAccomplishment\data.sql" />
     <Content Include="SQLs\IndicatorAccomplishment\SlaOnTime.sql" />
     <Content Include="SQLs\IndicatorTest\AverangeRetestHoursByListTestManufSystemProject.sql" />
     <Content Include="SQLs\IndicatorTest\RateDefectUatByListTestManufSystemProject.sql" />
@@ -291,6 +295,8 @@
     <Content Include="SQLs\IndicatorTest\RateEvidRejectedByListTestManufSystemProject.sql" />
     <Content Include="SQLs\IndicatorTest\RateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql" />
     <Content Include="SQLs\IndicatorTest\ProductivityByListTestManufSystemProject.sql" />
+    <Content Include="SQLs\Project\subprojectDeliveryOfQueueFbyDevManufAndSystem.sql" />
+    <Content Include="SQLs\Project\fbySubprojectDelivery.sql" />
     <Content Include="SQLs\Project\StatusGroupDayByProject.sql" />
     <Content Include="SQLs\PulledChain\ChartCfdSelect.sql" />
     <Content Include="SQLs\PulledChain\ChatCfdUpdate.sql" />

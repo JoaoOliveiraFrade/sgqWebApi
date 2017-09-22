@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Web;
 
 namespace ProjectWebApi.DAOs
@@ -25,17 +26,36 @@ namespace ProjectWebApi.DAOs
 
         public IList<Project> all()
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\All.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\All.sql"), Encoding.Default);
 			var listProjects = _connection.Executar<Project>(sql);
             return listProjects;
         }
 
 		public IList<Project> ofTestManufsAndSystems(testManufsAndSystems parameters)
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\OfTestManufsAndSystems.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\OfTestManufsAndSystems.sql"), Encoding.Default);
 			sql = sql.Replace("@testManufs", "'" + string.Join("','", parameters.testManufs) + "'");
 			sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
 			var list = _connection.Executar<Project>(sql);
+            return list;
+        }
+
+
+        public IList<string> subprojectDeliveryOfQueueFbyDevManufAndSystem(testManufsAndSystems parameters)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\OfTestManufsAndSystems.sql"), Encoding.Default);
+            sql = sql.Replace("@testManufs", "'" + string.Join("','", parameters.testManufs) + "'");
+            sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
+            var list = _connection.Executar<string>(sql);
+            return list;
+        }
+
+
+        public IList<Project> fbySubprojectDelivery(IList<string> parameter)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\fbySubprojectDelivery.sql"), Encoding.Default);
+            sql = sql.Replace("@projects", "'" + string.Join("','", parameter) + "'");
+            var list = _connection.Executar<Project>(sql);
             return list;
         }
 
@@ -439,7 +459,7 @@ namespace ProjectWebApi.DAOs
 
         public List<Status> getStatusGroupDayByProject(string subproject, string delivery)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\StatusGroupDayByProject.sql"));
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\Project\StatusGroupDayByProject.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
 

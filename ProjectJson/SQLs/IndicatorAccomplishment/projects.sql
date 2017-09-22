@@ -1,11 +1,14 @@
-﻿declare @t table (
+﻿--projects
+declare @t table (
 	devManuf varchar(50), 
-	system varchar(50)
+	system varchar(50),
+	subprojectDelivery varchar(26)
 )
 insert into @t 
 select distinct
 	rtrim(ltrim(substring(queue, len(queue) - charindex('-', reverse(queue)) + 2, 50))) as devManuf
 	,rtrim(ltrim(substring(queue, 1, len(queue) - charindex('-', reverse(queue))))) as system
+	,subprojectDelivery
 from
 	(
 		select distinct
@@ -27,6 +30,7 @@ from
 select distinct
 	devManuf
 	,system
+	,subprojectDelivery
 from
 	@t
 where

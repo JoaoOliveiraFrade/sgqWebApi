@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
+using System.Text;
 using System.Web;
 
 namespace ProjectWebApi.DAOs
@@ -25,7 +26,7 @@ namespace ProjectWebApi.DAOs
 
 		public IList<IdName> defectAqueue(Parameters parameters)
 		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DefectQueue\All.sql"));
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DefectQueue\All.sql"), Encoding.Default);
 			var list = _connection.Executar<IdName>(sql);
 			return list;
 		}
