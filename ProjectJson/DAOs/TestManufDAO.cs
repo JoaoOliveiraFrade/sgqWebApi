@@ -23,7 +23,7 @@ namespace ProjectWebApi.DAOs
 
         public IList<IdName> all()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\TestManuf\All.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\testManuf\all.sql"), Encoding.Default);
             var list = _connection.Executar<IdName>(sql);
             return list;
         }

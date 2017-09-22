@@ -1,18 +1,21 @@
 declare @t table (
 	devManuf varchar(50), 
 	system varchar(50),
-	subprojectDelivery varchar(26)
+	subproject varchar(11),
+	delivery varchar(15)
 )
 insert into @t 
 select distinct
 	rtrim(ltrim(substring(queue, len(queue) - charindex('-', reverse(queue)) + 2, 50))) as devManuf
 	,rtrim(ltrim(substring(queue, 1, len(queue) - charindex('-', reverse(queue))))) as system
-	,subprojectDelivery
+	,subproject
+	,delivery
 from
 	(
 		select distinct
 			replace(dt.encaminhado_para,'–', '-') as queue
-			,(d.subprojeto + d.entrega) as subprojectDelivery
+			,d.subprojeto as subproject
+			,d.entrega as delivery
 		from
 			alm_defeitos d
 			left join alm_defeitos_tempos dt
@@ -29,7 +32,8 @@ from
 select distinct
 	devManuf
 	,system
-	,subprojectDelivery
+	,subproject
+	,delivery
 from
 	@t
 where

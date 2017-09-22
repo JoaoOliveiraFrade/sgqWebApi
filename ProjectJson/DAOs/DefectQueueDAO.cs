@@ -26,7 +26,7 @@ namespace ProjectWebApi.DAOs
 
 		public IList<IdName> All()
 		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DefectQueue\All.sql"), Encoding.Default);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\defectQueue\all.sql"), Encoding.Default);
 			var list = _connection.Executar<IdName>(sql);
 			return list;
 		}

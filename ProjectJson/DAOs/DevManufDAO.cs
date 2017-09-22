@@ -23,15 +23,15 @@ namespace ProjectWebApi.DAOs
 
         public IList<IdName> all()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DevManuf\All.sql"), Encoding.Default);
-            var list = _connection.Executar<IdName>(sql);
-            return list;
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\devManuf\all.sql"), Encoding.Default);
+            var result = _connection.Executar<IdName>(sql);
+            return result;
         }
         public IList<IdName> allOfQueue()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\DevManuf\AllOfQueue.sql"), Encoding.Default);
-            var list = _connection.Executar<IdName>(sql);
-            return list;
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\devManuf\allOfQueue.sql"), Encoding.Default);
+            var result = _connection.Executar<IdName>(sql);
+            return result;
         }
     }
 }

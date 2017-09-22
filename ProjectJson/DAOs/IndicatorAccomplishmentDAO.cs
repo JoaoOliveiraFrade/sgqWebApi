@@ -26,7 +26,7 @@ namespace ProjectWebApi.DAOs
 
 		public IList<SlaOnTime> slaOnTimeByListDevManufSystemProject(Parameters parameters)
 		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\IndicatorTest\ProductivityByListTestManufSystemProject.sql"), Encoding.Default);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorTest\productivityByListTestManufSystemProject.sql"), Encoding.Default);
 			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
 			sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
 			sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");

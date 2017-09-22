@@ -28,24 +28,24 @@ namespace ProjectWebApi.DAOs
         public IList<PulledChain> getAll()
         {
            
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\select.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\pulledChain\select.sql"), Encoding.Default);
 			var list = _connection.Executar<PulledChain>(sql);
             return list;
         }
 
         public IList<chartCFD> chartCFD()
         {
-            string sql1 = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\ChatCfdUpdate.sql"), Encoding.Default);
+            string sql1 = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\pulledChain\chatCfdUpdate.sql"), Encoding.Default);
             _connection.Executar(sql1);
 
-            string sql2 = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\ChartCfdSelect.sql"), Encoding.Default);
+            string sql2 = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\pulledChain\chartCfdSelect.sql"), Encoding.Default);
             var list = _connection.Executar<chartCFD>(sql2);
             return list;
         }
 
         public int update(PulledChain item)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\SQLs\PulledChain\update.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\pulledChain\update.sql"), Encoding.Default);
             sql = sql.Replace("@statusStrategyTestingAndContracting", item.statusStrategyTestingAndContracting);
             sql = sql.Replace("@dtUpdateStrategyTestingAndContracting", item.dtUpdateStrategyTestingAndContracting);
             sql = sql.Replace("@dtEndStrategyTestingAndContracting", item.dtEndStrategyTestingAndContracting);
