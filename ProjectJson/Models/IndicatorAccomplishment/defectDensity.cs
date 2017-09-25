@@ -5,17 +5,15 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-    public class SlaOnTime
+    public class defectDensity
     {
         public string month { get; set; }
         public string year { get; set; }
         public string devManuf { get; set; }
         public string system { get; set; }
         public string subprojectDelivery { get; set; }
-        public string queue { get; set; }
-        public string severity { get; set; }
 
         public int qtyDefect { get; set; }
-        public int qtyDefectUat { get; set; }
+        public int qtyCt { get; set; }
 	}
 }

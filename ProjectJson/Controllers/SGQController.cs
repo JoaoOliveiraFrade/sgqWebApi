@@ -145,17 +145,6 @@ namespace ProjectWebApi.Controllers
         {
             string sql = @"
                 select 
-	                --'{' +
-	                --'date:''' + monthExecution + '/' + yearExecution + ''', ' +
-	                --'devManufacturing:''' + devManufacturing + ''', ' +
-	                --'system:''' + system + ''', ' +
-	                --'project:''' + convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,8,8) as int)) + ''', ' +
-	                --'subproject:''' + subproject + ''', ' +
-	                --'delivery:''' + delivery + ''', ' +
-	                --'qtyDefects:''' + convert(varchar,sum(qte_defeitos)) + ''', ' +
-	                --'qtyCTs:''' + convert(varchar,count(*)) + ''', ' +
-	                --'density:''' + convert(varchar,round(convert(float,sum(qte_defeitos)) / (case when count(*) = 0 then 1 else count(*) end) * 100,2)) + '''' +
-	                --'}, ' as json,
 	                monthExecution + '/' + yearExecution as date,
 	                devManufacturing,
 	                system,

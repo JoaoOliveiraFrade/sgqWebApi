@@ -24,14 +24,25 @@ namespace ProjectWebApi.DAOs
 			_connection.Dispose();
 		}
 
-		public IList<SlaOnTime> slaOnTimeByListDevManufSystemProject(Parameters parameters)
-		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorTest\productivityByListTestManufSystemProject.sql"), Encoding.Default);
-			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
-			sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-			sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-			var list = _connection.Executar<SlaOnTime>(sql);
-			return list;
-		}
+        public IList<rateDefectsWithinSLA> rateDefectsWithinSLAFbyListTestManufSystemProject(Parameters2 parameters)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorAccomplishment\rateDefectsWithinSLAFbyListTestManufSystemProject.sql"), Encoding.Default);
+            sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
+            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+            var result = _connection.Executar<rateDefectsWithinSLA>(sql);
+            return result;
+        }
+
+        public IList<defectDensity> defectDensitybyListTestManufSystemProject(Parameters2 parameters)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorAccomplishment\defectDensityFbyListTestManufSystemProject.sql"), Encoding.Default);
+            sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
+            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+            var result = _connection.Executar<defectDensity>(sql);
+            return result;
+        }
+        
     }
 }

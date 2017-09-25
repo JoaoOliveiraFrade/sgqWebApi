@@ -186,7 +186,7 @@
     <Compile Include="Controllers\DevManuf.cs" />
     <Compile Include="Controllers\eMailController.cs" />
     <Compile Include="Controllers\DefectMonitorController.cs" />
-    <Compile Include="Controllers\IndicatorAccomplishment.cs" />
+    <Compile Include="Controllers\IndicatorAccomplishmentController.cs" />
     <Compile Include="Controllers\IndicatorTestController.cs" />
     <Compile Include="Controllers\PulledChainController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
@@ -220,7 +220,9 @@
     <Compile Include="models\bptValidPlanoEvid.cs" />
     <Compile Include="models\IdName.cs" />
     <Compile Include="models\eMail\Email.cs" />
-    <Compile Include="models\indicatorAccomplishment\SlaOnTime.cs" />
+    <Compile Include="models\indicatorAccomplishment\Parameters2.cs" />
+    <Compile Include="models\indicatorAccomplishment\defectDensity.cs" />
+    <Compile Include="models\indicatorAccomplishment\rateDefectsWithinSLA.cs" />
     <Compile Include="models\indicatorTest\Parameters.cs" />
     <Compile Include="models\indicatorTest\AverangeRetestHours.cs" />
     <Compile Include="models\indicatorTest\RateDefectUat.cs" />
@@ -286,10 +288,11 @@
     <Content Include="sqls\devManuf\allOfQueue.sql" />
     <Content Include="sqls\devManuf\all.sql" />
     <Content Include="sqls\IndicatorAccomplishment\defManufs.sql" />
+    <Content Include="sqls\IndicatorAccomplishment\defectDensityFbyListTestManufSystemProject.sql" />
     <Content Include="sqls\IndicatorAccomplishment\systems.sql" />
     <Content Include="sqls\IndicatorAccomplishment\projects.sql" />
     <Content Include="sqls\IndicatorAccomplishment\data.sql" />
-    <Content Include="sqls\IndicatorAccomplishment\slaOnTime.sql" />
+    <Content Include="sqls\IndicatorAccomplishment\rateDefectsWithinSLAFbyListTestManufSystemProject.sql" />
     <Content Include="sqls\IndicatorTest\averangeRetestHoursByListTestManufSystemProject.sql" />
     <Content Include="sqls\IndicatorTest\rateDefectUatByListTestManufSystemProject.sql" />
     <Content Include="sqls\IndicatorTest\rateDefectUnfoundedByListTestManufSystemProject.sql" />
