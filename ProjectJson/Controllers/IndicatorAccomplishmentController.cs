@@ -18,7 +18,7 @@ namespace ProjectWebApi.Controllers
     public class IndicatorAccomplishmentController : ApiController
     {
 		[HttpPost]
-		[Route("indicatorAccomplishment/rateDefectsWithinSLA/fbyListDevManufSystemProject")]
+		[Route("indicatorAccomplishmentQueue/rateDefectsWithinSLA/fbyListDevManufSystemProject")]
         [ResponseType(typeof(IList<rateDefectsWithinSLA>))]
         public HttpResponseMessage rateDefectsWithinSLAFbyListTestManufSystemProject(HttpRequestMessage request, Parameters2 parameters)
 		{

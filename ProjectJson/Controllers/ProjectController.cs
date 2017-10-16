@@ -42,6 +42,18 @@ namespace ProjectWebApi.Controllers
         }
 
         [HttpPost]
+        [Route("project/ofDevManufFbyDevManufsAndSystems")]
+        [ResponseType(typeof(IList<Project>))]
+        public HttpResponseMessage ofDevManufFbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters)
+        {
+            var projectDAO = new ProjectDAO();
+
+            var projects = projectDAO.ofDevManufFbyDevManufsAndSystems(parameters);
+            projectDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, projects);
+        }
+
+        [HttpPost]
         [Route("project/ofQueueFbyDevManufsAndSystems")]
         [ResponseType(typeof(IList<Project>))]
         public HttpResponseMessage ofQueueFbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters)

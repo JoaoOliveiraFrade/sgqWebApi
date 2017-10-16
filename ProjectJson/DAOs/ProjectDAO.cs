@@ -40,6 +40,15 @@ namespace ProjectWebApi.DAOs
             return result;
         }
 
+        public IList<Project> ofDevManufFbyDevManufsAndSystems(devManufsAndSystems parameters)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\ofDevManufFbyDevManufsAndSystems.sql"), Encoding.Default);
+            sql = sql.Replace("@devManufs", "'" + string.Join("','", parameters.devManufs) + "'");
+            sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
+            var result = _connection.Executar<Project>(sql);
+            return result;
+        }
+
         public IList<Project> ofQueueFbyDevManufsAndSystems(devManufsAndSystems parameters)
         {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\ofQueueFbyDevManufsAndSystems.sql"), Encoding.Default);

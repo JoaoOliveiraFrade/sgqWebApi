@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -299,15 +300,18 @@
     <Content Include="sqls\IndicatorTest\rateEvidRejectedByListTestManufSystemProject.sql" />
     <Content Include="sqls\IndicatorTest\rateEvidRejectedByListTestManufSystemProjectGroupTimeline.sql" />
     <Content Include="sqls\IndicatorTest\productivityByListTestManufSystemProject.sql" />
+    <Content Include="sqls\project\temp.sql" />
     <Content Include="sqls\project\ofQueueFbyDevManufsAndSystems.sql" />
     <Content Include="sqls\project\ofQueueGroupDevManufsAndSystems.sql" />
     <Content Include="sqls\project\fbySubprojectDelivery.sql" />
+    <Content Include="sqls\project\ofDevManufFbyDevManufsAndSystems.sql" />
     <Content Include="sqls\project\statusGroupDayByProject.sql" />
     <Content Include="sqls\pulledChain\chartCfdSelect.sql" />
     <Content Include="sqls\pulledChain\chatCfdUpdate.sql" />
     <Content Include="sqls\pulledChain\update.sql" />
     <Content Include="sqls\pulledChain\select.sql" />
     <Content Include="sqls\system\ofQueueGroupDevManufs.sql" />
+    <Content Include="sqls\system\ofDevManufs.sql" />
     <Content Include="sqls\system\ofTestManufs.sql" />
     <Content Include="sqls\system\all.sql" />
     <Content Include="sqls\project\all.sql" />

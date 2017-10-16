@@ -15,5 +15,7 @@ namespace ProjectWebApi.Models
 
         public int qtyDefect { get; set; }
         public int qtyCt { get; set; }
-	}
+        public string density { get; set; }
+
+    }
 }

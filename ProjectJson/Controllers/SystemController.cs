@@ -24,10 +24,21 @@ namespace ProjectWebApi.Controllers
         [HttpPost]
         [Route("system/ofTestManufs")]
         [ResponseType(typeof(IList<IdName>))]
-        public HttpResponseMessage byTestManufs(HttpRequestMessage request, List<string> listTestManufs)
+        public HttpResponseMessage ofTestManufs(HttpRequestMessage request, List<string> listTestManufs)
         {
             var dao = new SystemDAO();
             var list = dao.ofTestManufs(listTestManufs);
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+        [HttpPost]
+        [Route("system/ofDevManufs")]
+        [ResponseType(typeof(IList<IdName>))]
+        public HttpResponseMessage ofDevManufs(HttpRequestMessage request, List<string> listDevManufs)
+        {
+            var dao = new SystemDAO();
+            var list = dao.ofDevManufs(listDevManufs);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }

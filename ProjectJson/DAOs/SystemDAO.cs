@@ -38,6 +38,18 @@ namespace ProjectWebApi.DAOs
 			var list = _connection.Executar<IdName>(sql);
             return list;
         }
+
+        public IList<IdName> ofDevManufs(List<string> listDevManufs)
+        {
+            if (listDevManufs == null)
+                return null;
+
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\ofDevManufs.sql"), Encoding.Default);
+            sql = sql.Replace("@listDevManufs", "'" + string.Join("','", listDevManufs) + "'");
+            var list = _connection.Executar<IdName>(sql);
+            return list;
+        }
+
         public IList<SystemGroupDevManuf> ofQueueGroupDevManufs()
         {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\ofQueueGroupDevManufs.sql"), Encoding.Default);
