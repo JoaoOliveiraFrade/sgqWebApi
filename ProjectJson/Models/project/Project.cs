@@ -23,6 +23,9 @@ namespace ProjectWebApi.Models.Project
         public string attentionPointsOfIndicators { get; set; }
         public string IterationsActive { get; set; }
         public string IterationsSelected { get; set; }
+        public Int32 total { get; set; }
+        public Int32 planned { get; set; }
+        public Int32 realized { get; set; }
         public Int32 gap { get; set; }
     }
 }
