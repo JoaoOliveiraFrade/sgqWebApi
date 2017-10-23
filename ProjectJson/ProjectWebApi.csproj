@@ -237,6 +237,7 @@
     <Compile Include="models\indicatorTest\RateEvidRejected.cs" />
     <Compile Include="models\indicatorTest\Productivity.cs" />
     <Compile Include="models\project\devManufsAndSystems.cs" />
+    <Compile Include="models\project\simpProject.cs" />
     <Compile Include="models\project\testManufsAndSystems.cs" />
     <Compile Include="models\pulledChain\chatCFD.cs" />
     <Compile Include="models\pulledChain\PulledChain.cs" />
@@ -294,7 +295,7 @@
     <Content Include="sqls\devManuf\allOfQueue.sql" />
     <Content Include="sqls\devManuf\all.sql" />
     <Content Include="sqls\IndicatorAccomplishment\defManufs.sql" />
-    <Content Include="sqls\IndicatorAccomplishment\defectDensityFbyListTestManufSystemProject.sql" />
+    <Content Include="sqls\indicatorPerf\defectDensity_fbyListDevManufSystemProject.sql" />
     <Content Include="sqls\IndicatorAccomplishment\systems.sql" />
     <Content Include="sqls\IndicatorAccomplishment\projects.sql" />
     <Content Include="sqls\IndicatorAccomplishment\data.sql" />
@@ -310,7 +311,7 @@
     <Content Include="sqls\project\ofQueueFbyDevManufsAndSystems.sql" />
     <Content Include="sqls\project\ofQueueGroupDevManufsAndSystems.sql" />
     <Content Include="sqls\project\fbySubprojectDelivery.sql" />
-    <Content Include="sqls\project\ofDevManufFbyDevManufsAndSystems.sql" />
+    <Content Include="sqls\project\fbyDevManufsAndSystems.sql" />
     <Content Include="sqls\project\statusGroupDayByProject.sql" />
     <Content Include="sqls\pulledChain\chartCfdSelect.sql" />
     <Content Include="sqls\pulledChain\chatCfdUpdate.sql" />

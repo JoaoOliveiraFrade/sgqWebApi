@@ -33,16 +33,5 @@ namespace ProjectWebApi.DAOs
             var result = _connection.Executar<rateDefectsWithinSLA>(sql);
             return result;
         }
-
-        public IList<DefectDensity> defectDensitybyListTestManufSystemProject(Parameters2 parameters)
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorAccomplishment\defectDensityFbyListTestManufSystemProject.sql"), Encoding.Default);
-            sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
-            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-            var result = _connection.Executar<DefectDensity>(sql);
-            return result;
-        }
-        
     }
 }

@@ -51,7 +51,7 @@ from
 		i.delivery collate Latin1_General_CI_AS = df.entrega and
 		i.defect = df.defeito
 where
-	df.ciclo like '%TI%' and
+	df.ciclo = 'TI' and
 	df.status_atual <> 'CANCELLED' and
 	fabrica_teste in (@selectedTestManufs) and
 	sistema_ct in (@selectedSystems) and

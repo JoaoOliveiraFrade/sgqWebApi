@@ -24,10 +24,10 @@ namespace ProjectWebApi.DAOs
             _connection.Dispose();
         }
 
-        public IList<Project> all()
+        public IList<simpProject> all()
         {
 			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\all.sql"), Encoding.Default);
-			var listProjects = _connection.Executar<Project>(sql);
+			var listProjects = _connection.Executar<simpProject>(sql);
             return listProjects;
         }
 
@@ -40,12 +40,12 @@ namespace ProjectWebApi.DAOs
             return result;
         }
 
-        public IList<Project> ofDevManufFbyDevManufsAndSystems(devManufsAndSystems parameters)
+        public IList<simpProject> fbyDevManufsAndSystems(devManufsAndSystems parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\ofDevManufFbyDevManufsAndSystems.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\fbyDevManufsAndSystems.sql"), Encoding.Default);
             sql = sql.Replace("@devManufs", "'" + string.Join("','", parameters.devManufs) + "'");
             sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
-            var result = _connection.Executar<Project>(sql);
+            var result = _connection.Executar<simpProject>(sql);
             return result;
         }
 
@@ -361,7 +361,7 @@ namespace ProjectWebApi.DAOs
                                 df.ct = cts.ct and
                                 df.status_atual = 'CLOSED' and
                                 df.Origem like '%CONSTRUÇÃO%' and
-                                (df.Ciclo like '%TI%' or df.Ciclo like '%UAT%')
+                                df.Ciclo in ('TI', 'UAT')
                         ) as qte_defeitos
                         from
                             alm_cts cts
@@ -371,7 +371,7 @@ namespace ProjectWebApi.DAOs
                             status_exec_ct not in ('CANCELLED', 'NO RUN') and
                             cts.fabrica_desenvolvimento is not null and
                             cts.massa_Teste <> 'SIM' and
-                            (cts.ciclo like '%TI%' or cts.ciclo like '%UAT%') and
+                            cts.Ciclo in ('TI', 'UAT') and
                             dt_execucao <> ''
                     ) Aux
                 ";
@@ -396,7 +396,7 @@ namespace ProjectWebApi.DAOs
                 where 
 	                subprojeto = '@subproject' and
 	                entrega = '@delivery' and
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> ''
                 ";
@@ -421,7 +421,7 @@ namespace ProjectWebApi.DAOs
 	                subprojeto = '@subproject' and
 	                entrega = '@delivery' and
                     severidade = '@severity' and
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> ''
                 ";
@@ -449,7 +449,7 @@ namespace ProjectWebApi.DAOs
 	                --entrega = 'ENTREGA00000425' and
 	                subprojeto = '@subproject' and
 	                entrega = '@delivery' and
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> ''
                 group by
@@ -480,7 +480,7 @@ namespace ProjectWebApi.DAOs
                 where 
 	                subprojeto = '@subproject' and
 	                entrega = '@delivery' and
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> ''
                 ";
@@ -1464,7 +1464,7 @@ namespace ProjectWebApi.DAOs
                                 df.ct = cts.ct and
                                 df.status_atual = 'CLOSED' and
                                 df.Origem like '%CONSTRUÇÃO%' and
-                                (df.Ciclo like '%TI%' or df.Ciclo like '%UAT%')
+                                df.Ciclo in ('TI', 'UAT')
                         ) as qte_defeitos
                         from
                             alm_cts cts
@@ -1475,7 +1475,7 @@ namespace ProjectWebApi.DAOs
                             cts.status_exec_ct not in ('CANCELLED', 'NO RUN') and
                             cts.fabrica_desenvolvimento is not null and
                             cts.massa_Teste <> 'SIM' and
-                            (cts.ciclo like '%TI%' or cts.ciclo like '%UAT%') and
+                            cts.Ciclo in ('TI', 'UAT') and
                             cts.dt_execucao <> ''
                     ) Aux
                 ";
@@ -1507,7 +1507,7 @@ namespace ProjectWebApi.DAOs
 	                cts.entrega = '@delivery' and
                     cts.iterations in (@iterations) and
                     df.severidade = '@severity' and
-	                (df.ciclo like '%TI%' or df.ciclo like '%UAT%') and
+	                df.Ciclo in ('TI', 'UAT') and
 	                df.status_atual = 'CLOSED' and
 	                df.dt_final <> ''
                 ";
@@ -1541,7 +1541,7 @@ namespace ProjectWebApi.DAOs
 	                    cts.subprojeto = '@subproject' and
 	                    cts.entrega = '@delivery' and
                         cts.iterations in (@iterations) and
-	                    (df.ciclo like '%TI%' or df.ciclo like '%UAT%') and
+	                    df.Ciclo in ('TI', 'UAT') and
 	                    df.status_atual = 'CLOSED' and
 	                    df.dt_final <> ''
                 ";
@@ -1574,7 +1574,7 @@ namespace ProjectWebApi.DAOs
 	                    cts.subprojeto = '@subproject' and
 	                    cts.entrega = '@delivery' and
                         cts.iterations in (@iterations) and
-	                    (df.ciclo like '%TI%' or df.ciclo like '%UAT%') and
+	                    df.Ciclo in ('TI', 'UAT') and
 	                    df.status_atual = 'CLOSED' and 
 	                    df.dt_final <> ''
                 ";

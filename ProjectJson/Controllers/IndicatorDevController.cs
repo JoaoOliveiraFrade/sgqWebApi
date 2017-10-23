@@ -73,7 +73,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos s
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> ''
                 group by
@@ -118,7 +118,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos s
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> '' and
 					substring(dt_final,7,2) + substring(dt_final,4,2) + substring(dt_final,1,2) >= '@dateBegin' and
@@ -209,7 +209,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos 
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and 
 	                dt_final <> ''
                 group by
@@ -269,7 +269,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos 
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and 
 	                dt_final <> '' and
 					substring(dt_final,7,2) + substring(dt_final,4,2) + substring(dt_final,1,2) >= '@dateBegin' and
@@ -350,7 +350,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos 
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and 
 	                dt_final <> ''
                 group by
@@ -397,7 +397,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos 
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and 
 	                dt_final <> '' and
 					substring(dt_final,7,2) + substring(dt_final,4,2) + substring(dt_final,1,2) >= '@dateBegin' and
@@ -516,7 +516,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos 
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> ''
                 group by
@@ -559,7 +559,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos 
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> '' and
 					substring(dt_final,7,2) + substring(dt_final,4,2) + substring(dt_final,1,2) >= '@dateBegin' and
@@ -622,7 +622,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos 
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> ''
                 group by
@@ -665,7 +665,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos 
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> '' and
 					substring(dt_final,7,2) + substring(dt_final,4,2) + substring(dt_final,1,2) >= '@dateBegin' and
@@ -707,17 +707,6 @@ namespace ProjectWebApi.Controllers
             indicatorAccomplishmentDAO.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
-
-        [HttpPost]
-        [Route("indicatorDev/defectDensity/fbyListDevManufSystemProject")]
-        [ResponseType(typeof(IList<DefectDensity>))]
-        public HttpResponseMessage defectDensitybyListTestManufSystemProject(HttpRequestMessage request, Parameters2 parameters)
-        {
-            var indicatorAccomplishmentDAO = new IndicatorAccomplishmentDAO();
-            var list = indicatorAccomplishmentDAO.defectDensitybyListTestManufSystemProject(parameters);
-            indicatorAccomplishmentDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
     }
 
 }

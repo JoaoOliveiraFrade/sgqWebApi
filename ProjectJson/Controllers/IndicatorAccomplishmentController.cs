@@ -27,17 +27,6 @@ namespace ProjectWebApi.Controllers
             indicatorAccomplishmentDAO.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
-
-        [HttpPost]
-        [Route("indicatorAccomplishment/defectDensity/fbyListDevManufSystemProject")]
-        [ResponseType(typeof(IList<DefectDensity>))]
-        public HttpResponseMessage defectDensitybyListTestManufSystemProject(HttpRequestMessage request, Parameters2 parameters)
-        {
-            var indicatorAccomplishmentDAO = new IndicatorAccomplishmentDAO();
-            var list = indicatorAccomplishmentDAO.defectDensitybyListTestManufSystemProject(parameters);
-            indicatorAccomplishmentDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
     }
 
 }

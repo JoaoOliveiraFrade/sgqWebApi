@@ -43,7 +43,7 @@ from
 		i.defeito = df.defeito
 where
 	--df.subprojeto = 'PRJ00000744' and df.entrega = 'ENTREGA00000179' and df.fabrica_teste = 'ACCENTURE' and df.sistema = '(OI R2) SAC' and
-	df.Ciclo like '%TI%' and
+	df.ciclo = 'TI' and
 	df.fabrica_teste in (@selectedTestManufs) and
 	df.sistema_ct in (@selectedSystems) and
 	df.subprojeto + df.entrega collate Latin1_General_CI_AS in (@selectedProjects)

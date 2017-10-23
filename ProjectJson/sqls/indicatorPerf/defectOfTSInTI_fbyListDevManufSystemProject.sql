@@ -20,7 +20,7 @@ from
 		from 
 			alm_defeitos WITH (NOLOCK)
 		where
-			(Ciclo like '%TI%' or Ciclo like '%UAT%')
+			ciclo in ('TI', 'UAT')
 			and status_atual = 'CLOSED'
 			and dt_final <> ''
 			and fabrica_desenvolvimento in (@selectedTestManufs)

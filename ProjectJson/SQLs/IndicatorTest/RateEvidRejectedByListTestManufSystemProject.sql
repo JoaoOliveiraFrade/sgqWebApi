@@ -52,7 +52,7 @@ where
 	cts.evidencia_validacao_cliente <> 'N/A' and
 	cts.status_exec_ct = 'PASSED' and
 	cts.dt_execucao <> '' and
-	cts.ciclo like '%TI%' and
+	cts.ciclo = 'TI' and
 	cts.fabrica_teste in (@selectedTestManufs) and
 	cts.sistema in (@selectedSystems) and
 	cts.subprojeto + delivery collate Latin1_General_CI_AS in (@selectedProjects)

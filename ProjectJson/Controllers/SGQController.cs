@@ -170,7 +170,7 @@ namespace ProjectWebApi.Controllers
 			                    df.ct = cts.ct and
 			                    df.status_atual = 'CLOSED' and
 			                    df.Origem like '%CONSTRUÇÃO%' and
-		                        (df.Ciclo like '%TI%' or df.Ciclo like '%UAT%')
+		                        df.Ciclo in ('TI', 'UAT')
 		                ) as qte_defeitos
 	                from 
 		                alm_cts cts
@@ -178,7 +178,7 @@ namespace ProjectWebApi.Controllers
                         status_exec_ct not in ('CANCELLED', 'NO RUN') and
 		                cts.fabrica_desenvolvimento is not null and
 		                cts.massa_Teste <> 'SIM' and
-		                (cts.ciclo like '%TI%' or cts.ciclo like '%UAT%') and
+		                cts.Ciclo in ('TI', 'UAT') and
                         dt_execucao <> ''
 	                ) Aux
                 group by
@@ -238,7 +238,7 @@ namespace ProjectWebApi.Controllers
 			                    df.ct = cts.ct and
 			                    df.status_atual = 'CLOSED' and
 			                    df.Origem like '%CONSTRUÇÃO%' and
-		                        (df.Ciclo like '%TI%' or df.Ciclo like '%UAT%')
+		                        df.Ciclo in ('TI', 'UAT')
 		                ) as qte_defeitos
 	                from 
 		                alm_cts cts
@@ -246,7 +246,7 @@ namespace ProjectWebApi.Controllers
                         status_exec_ct not in ('CANCELLED', 'NO RUN') and
 		                cts.fabrica_desenvolvimento is not null and
 		                cts.massa_Teste <> 'SIM' and
-		                (cts.ciclo like '%TI%' or cts.ciclo like '%UAT%') and
+		                cts.Ciclo in ('TI', 'UAT') and
 						cts.dt_execucao <> ''
 	                ) Aux
 					where 
@@ -314,7 +314,7 @@ namespace ProjectWebApi.Controllers
 			                    df.ct = cts.ct and
 			                    df.status_atual = 'CLOSED' and
 			                    df.Origem like '%CONSTRUÇÃO%' and
-		                        (df.Ciclo like '%TI%' or df.Ciclo like '%UAT%')
+		                        df.Ciclo in ('TI', 'UAT')
 		                ) as qte_defeitos
 	                from 
 		                alm_cts cts
@@ -324,7 +324,7 @@ namespace ProjectWebApi.Controllers
 		                status_exec_ct not in ('CANCELLED', 'NO RUN') and
 		                cts.fabrica_desenvolvimento is not null and
 		                cts.massa_Teste <> 'SIM' and
-		                (cts.ciclo like '%TI%' or cts.ciclo like '%UAT%') and
+		                cts.Ciclo in ('TI', 'UAT') and
                         dt_execucao <> ''
 	                ) Aux
                 group by
@@ -380,7 +380,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos 
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> ''
                 group by
@@ -426,7 +426,7 @@ namespace ProjectWebApi.Controllers
             where 
 	            subprojeto = '@subproject' and
 	            entrega = '@delivery' and
-	            (ciclo like '%TI%' or ciclo like '%UAT%') and
+	            ciclo in ('TI', 'UAT') and
 	            status_atual = 'CLOSED' and
 	            dt_final <> ''
             group by
@@ -484,7 +484,7 @@ namespace ProjectWebApi.Controllers
                 where 
 	                subprojeto = '@subproject' and
 	                entrega = '@delivery' and
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and 
 	                dt_final <> ''
                 group by
@@ -640,7 +640,7 @@ namespace ProjectWebApi.Controllers
                 where 
 	                subprojeto = '@subproject' and
 	                entrega = '@delivery' and
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> ''
                 group by
@@ -1797,7 +1797,7 @@ namespace ProjectWebApi.Controllers
                 from 
 	                alm_defeitos 
                 where 
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and
 	                dt_final <> ''
                 group by

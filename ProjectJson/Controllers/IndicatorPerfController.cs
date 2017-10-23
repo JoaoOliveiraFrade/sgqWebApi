@@ -18,6 +18,16 @@ namespace ProjectWebApi.Controllers
     public class IndicatorPerfController : ApiController
     {
         [HttpPost]
+        [Route("indicatorPerf/defectDensity/fbyListDevManufSystemProject")]
+        [ResponseType(typeof(IList<DefectDensity>))]
+        public HttpResponseMessage defectDensity_fbyListDevManufSystemProject(HttpRequestMessage request, Parameters2 parameters) {
+            var indicatorsPerfDAO = new IndicatorPerfDAO();
+            var list = indicatorsPerfDAO.defectDensity_fbyListDevManufSystemProject(parameters);
+            indicatorsPerfDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+        [HttpPost]
 		[Route("indicatorPerf/defectOfTSInTI/fbyListDevManufSystemProject")]
         [ResponseType(typeof(IList<defectOfTSInTI>))]
         public HttpResponseMessage defectOfTSInTI_fbyListDevManufSystemProject(HttpRequestMessage request, Parameters2 parameters)
@@ -27,7 +37,6 @@ namespace ProjectWebApi.Controllers
             indicatorsPerfDAO.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
-
     }
 
 }

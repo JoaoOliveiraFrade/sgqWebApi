@@ -16,7 +16,7 @@ from
 			ex.entrega = cts.entrega and
 			ex.ct = cts.ct
 where 
-	cts.ciclo like '%TI%' and 
+	cts.ciclo = 'TI' and 
 	cts.fabrica_teste in (@selectedTestManufs) and
 	cts.sistema in (@selectedSystems) and
 	ex.subprojeto + ex.entrega in (@selectedProjects) and

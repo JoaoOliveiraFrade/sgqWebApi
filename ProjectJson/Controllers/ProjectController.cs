@@ -20,11 +20,22 @@ namespace ProjectWebApi.Controllers
     {
         [HttpGet]
         [Route("project/all")]
-        [ResponseType(typeof(IList<Project>))]
+        [ResponseType(typeof(IList<simpProject>))]
         public HttpResponseMessage all(HttpRequestMessage request)
         {
             var projectDAO = new ProjectDAO();
             var projects = projectDAO.all();
+            projectDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, projects);
+        }
+
+        [HttpPost]
+        [Route("project/fbyDevManufsAndSystems")]
+        [ResponseType(typeof(IList<simpProject>))]
+        public HttpResponseMessage fbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters) {
+            var projectDAO = new ProjectDAO();
+
+            var projects = projectDAO.fbyDevManufsAndSystems(parameters);
             projectDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
@@ -37,18 +48,6 @@ namespace ProjectWebApi.Controllers
             var projectDAO = new ProjectDAO();
 
             var projects = projectDAO.ofTestManufsAndSystems(parameters);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, projects);
-        }
-
-        [HttpPost]
-        [Route("project/ofDevManufFbyDevManufsAndSystems")]
-        [ResponseType(typeof(IList<Project>))]
-        public HttpResponseMessage ofDevManufFbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters)
-        {
-            var projectDAO = new ProjectDAO();
-
-            var projects = projectDAO.ofDevManufFbyDevManufsAndSystems(parameters);
             projectDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }

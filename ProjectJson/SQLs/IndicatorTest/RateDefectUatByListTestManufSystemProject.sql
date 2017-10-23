@@ -5,11 +5,11 @@
 	sistema_ct as system,
 	convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) as subprojectDelivery,
 	count(*) as qtyDefect,
-	sum(case when ciclo like '%UAT%' then 1 else 0 end) qtyDefectUat
+	sum(case when ciclo = 'UAT' then 1 else 0 end) qtyDefectUat
 from 
 	alm_defeitos WITH (NOLOCK)
 where
-	(Ciclo like '%TI%' or Ciclo like '%UAT%') and
+	ciclo in ('TI', 'UAT') and
 	status_atual <> 'CANCELLED' and
 	fabrica_teste in (@selectedTestManufs) and
 	sistema_ct in (@selectedSystems) and

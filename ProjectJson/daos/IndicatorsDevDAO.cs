@@ -48,7 +48,7 @@ namespace ProjectWebApi.DAOs
                 where 
 	                subprojeto = '@subproject' and
 	                entrega = '@delivery' and
-	                (ciclo like '%TI%' or ciclo like '%UAT%') and
+	                ciclo in ('TI', 'UAT') and
 	                status_atual = 'CLOSED' and 
 	                dt_final <> ''
                 ";

@@ -24,7 +24,16 @@ namespace ProjectWebApi.DAOs
 			_connection.Dispose();
 		}
 
-		public IList<defectOfTSInTI> defectOfTSInTI_fbyListDevManufSystemProject(Parameters2 parameters)
+        public IList<DefectDensity> defectDensity_fbyListDevManufSystemProject(Parameters2 parameters) {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorPerf\defectDensity_fbyListDevManufSystemProject.sql"), Encoding.Default);
+            sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
+            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+            var result = _connection.Executar<DefectDensity>(sql);
+            return result;
+        }
+
+        public IList<defectOfTSInTI> defectOfTSInTI_fbyListDevManufSystemProject(Parameters2 parameters)
 		{
 			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorPerf\defectOfTSInTI_fbyListDevManufSystemProject.sql"), Encoding.Default);
 			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
