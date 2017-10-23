@@ -92,6 +92,33 @@ namespace ProjectWebApi.DAOs
 	                IterationsActive,
 	                IterationsSelected,
 
+	                (select count(*) 
+	                from ALM_CTs WITH (NOLOCK)
+	                where 
+		                subprojeto = aux.subproject and
+		                entrega = aux.delivery and
+		                Status_Exec_CT <> 'CANCELLED'
+	                ) as total,
+
+	                (select count(*) 
+	                from ALM_CTs WITH (NOLOCK)
+	                where 
+		                subprojeto = aux.subproject and
+		                entrega = aux.delivery and
+		                Status_Exec_CT <> 'CANCELLED' and
+		                substring(dt_planejamento,7,2) + substring(dt_planejamento,4,2) + substring(dt_planejamento,1,2) <= convert(varchar(6), getdate(), 12) and
+		                dt_planejamento <> ''
+	                ) as planned,
+
+	                (select count(*)
+	                from ALM_CTs WITH (NOLOCK)
+	                where 
+		                subprojeto = aux.subproject and
+		                entrega = aux.delivery and
+		                Status_Exec_CT = 'PASSED' and 
+		                dt_execucao <> ''
+	                ) as realized,
+
 	                (select 
 		                (case when sum(planned) - sum(realized) >= 0 then sum(planned) - sum(realized) else 0 end) as GAP
 	                from
@@ -138,7 +165,7 @@ namespace ProjectWebApi.DAOs
                         biti_subprojetos.Gestor_Do_Gestor_LT as N3,
                         biti_subprojetos.UN as UN,
                         sgq_projects.trafficLight as trafficLight,
-						SGQ_TrafficLights.[order] as trafficLightOrder,
+		                SGQ_TrafficLights.[order] as trafficLightOrder,
                         sgq_projects.rootCause as rootCause,
                         sgq_projects.actionPlan as actionPlan,
                         sgq_projects.informative as informative,
@@ -160,17 +187,18 @@ namespace ProjectWebApi.DAOs
                                                         where re2.subprojeto = SGQ_Releases_Entregas.subprojeto and 
                                                             re2.entrega = SGQ_Releases_Entregas.entrega 
                                                         order by re2.release_ano desc, re2.release_mes desc)
-						left join SGQ_TrafficLights WITH (NOLOCK)
-						on SGQ_TrafficLights.name = sgq_projects.trafficLight
+		                left join SGQ_TrafficLights WITH (NOLOCK)
+		                on SGQ_TrafficLights.name = sgq_projects.trafficLight
                     where 
+                        --sgq_projects.id in (264, 265)
                         sgq_projects.id in (@ids)
 	                ) aux
                 order by
-					trafficLightOrder,
-					21 desc,
+	                trafficLightOrder,
+	                21 desc,
                     subproject,
                     delivery
-                ";
+            ";
 
             sql = sql.Replace("@ids", ids);
             var listProjects = _connection.Executar<Project>(sql);
@@ -201,6 +229,33 @@ namespace ProjectWebApi.DAOs
 	                attentionPointsOfIndicators,
 	                IterationsActive,
 	                IterationsSelected,
+
+	                (select count(*) 
+	                from ALM_CTs WITH (NOLOCK)
+	                where 
+		                subprojeto = aux.subproject and
+		                entrega = aux.delivery and
+		                Status_Exec_CT <> 'CANCELLED'
+	                ) as total,
+
+	                (select count(*) 
+	                from ALM_CTs WITH (NOLOCK)
+	                where 
+		                subprojeto = aux.subproject and
+		                entrega = aux.delivery and
+		                Status_Exec_CT <> 'CANCELLED' and
+		                substring(dt_planejamento,7,2) + substring(dt_planejamento,4,2) + substring(dt_planejamento,1,2) <= convert(varchar(6), getdate(), 12) and
+		                dt_planejamento <> ''
+	                ) as planned,
+
+	                (select count(*)
+	                from ALM_CTs WITH (NOLOCK)
+	                where 
+		                subprojeto = aux.subproject and
+		                entrega = aux.delivery and
+		                Status_Exec_CT = 'PASSED' and 
+		                dt_execucao <> ''
+	                ) as realized,
 
 	                (select 
 		                (case when sum(planned) - sum(realized) >= 0 then sum(planned) - sum(realized) else 0 end) as GAP

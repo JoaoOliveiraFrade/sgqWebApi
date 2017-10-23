@@ -52,6 +52,33 @@ select
 	IterationsActive,
 	IterationsSelected,
 
+	(select count(*) 
+	from ALM_CTs WITH (NOLOCK)
+	where 
+		subprojeto = aux.subproject and
+		entrega = aux.delivery and
+		Status_Exec_CT <> 'CANCELLED'
+	) as total,
+
+	(select count(*) 
+	from ALM_CTs WITH (NOLOCK)
+	where 
+		subprojeto = aux.subproject and
+		entrega = aux.delivery and
+		Status_Exec_CT <> 'CANCELLED' and
+		substring(dt_planejamento,7,2) + substring(dt_planejamento,4,2) + substring(dt_planejamento,1,2) <= convert(varchar(6), getdate(), 12) and
+		dt_planejamento <> ''
+	) as planned,
+
+	(select count(*)
+	from ALM_CTs WITH (NOLOCK)
+	where 
+		subprojeto = aux.subproject and
+		entrega = aux.delivery and
+		Status_Exec_CT = 'PASSED' and 
+		dt_execucao <> ''
+	) as realized,
+
 	(select 
 		(case when sum(planned) - sum(realized) >= 0 then sum(planned) - sum(realized) else 0 end) as GAP
 	from
