@@ -1,6 +1,6 @@
 ﻿namespace ProjectWebApi.Models.Project
 {
-    public class DefectDensity
+    public class DefectDensity2
     {
         public int qtyDefects { get; set; }
         public int qtyCTs { get; set; }

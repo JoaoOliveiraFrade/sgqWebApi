@@ -30,7 +30,7 @@ namespace ProjectWebApi.Controllers
 
         [HttpPost]
         [Route("indicatorAccomplishment/defectDensity/fbyListDevManufSystemProject")]
-        [ResponseType(typeof(IList<defectDensity>))]
+        [ResponseType(typeof(IList<DefectDensity>))]
         public HttpResponseMessage defectDensitybyListTestManufSystemProject(HttpRequestMessage request, Parameters2 parameters)
         {
             var indicatorAccomplishmentDAO = new IndicatorAccomplishmentDAO();

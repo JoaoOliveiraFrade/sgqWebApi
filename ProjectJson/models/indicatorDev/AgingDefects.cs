@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-    public class detectableInDev
+    public class AgingDefects
     {
         public string date { get; set; }
         public string devManufacturing { get; set; }
@@ -13,9 +13,6 @@ namespace ProjectWebApi.Models
         public string project { get; set; }
         public string subproject { get; set; }
         public string delivery { get; set; }
-        public int qtyTotal { get; set; }
-        public int qty { get; set; }
-        public double percentReference { get; set; }
-        public double qtyReference { get; set; }
+        public double qty { get; set; }
     }
 }

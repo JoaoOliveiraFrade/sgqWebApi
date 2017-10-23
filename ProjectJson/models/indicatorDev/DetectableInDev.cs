@@ -1,4 +1,4 @@
-﻿namespace ProjectWebApi.Models.Project
+﻿namespace ProjectWebApi.Models
 {
     public class DetectableInDev
     {

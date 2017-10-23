@@ -293,16 +293,6 @@ namespace ProjectWebApi.Controllers
 
         }
 
-        [HttpGet]
-        [Route("project/DefectsDensity/{subproject}/{delivery}")]
-        [ResponseType(typeof(DefectDensity))]
-        public HttpResponseMessage getDefectsDensityByProject(HttpRequestMessage request, string subproject, string delivery )
-        {
-            var projectDAO = new ProjectDAO();
-            var densityDefects = projectDAO.getDefectsDensityByProject(subproject, delivery);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, densityDefects);
-        }
 
         [HttpGet]
         [Route("project/DefectsAverangeTime/{subproject}/{delivery}")]
@@ -337,27 +327,7 @@ namespace ProjectWebApi.Controllers
             return request.CreateResponse(HttpStatusCode.OK, defectAverangeTimeGroupSeverity);
         }
 
-        [HttpGet]
-        [Route("project/DefectsReopened/{subproject}/{delivery}")]
-        [ResponseType(typeof(DefectReopened))]
-        public HttpResponseMessage getDefectReopenedByProject(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var projectDAO = new ProjectDAO();
-            var densityDefects = projectDAO.getDefectReopenedByProject(subproject, delivery);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, densityDefects);
-        }
 
-        [HttpGet]
-        [Route("project/DefectsDetectableInDev/{subproject}/{delivery}")]
-        [ResponseType(typeof(DetectableInDev))]
-        public HttpResponseMessage getDetectableInDevByProject(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var projectDAO = new ProjectDAO();
-            var detectableInDev = projectDAO.getDetectableInDevByProject(subproject, delivery);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, detectableInDev);
-        }
 
         [HttpGet]
         [Route("project/StatusLastDays/{subproject}/{delivery}")]
@@ -615,17 +585,6 @@ namespace ProjectWebApi.Controllers
 
         // ----------
 
-        [HttpGet]
-        [Route("project/DefectsDensityByProjectIterations/{subproject}/{delivery}")]
-        [ResponseType(typeof(DefectDensity))]
-        public HttpResponseMessage getDefectsDensityByProjectIterations(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var projectDAO = new ProjectDAO();
-            List<string> iterations = projectDAO.getIterationsSelected(subproject, delivery);
-            var result = projectDAO.getDefectsDensityByProjectIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
 
         [HttpGet]
         [Route("project/DefectsAverangeTimeIterations/{subproject}/{delivery}/{severity}")]
@@ -639,27 +598,6 @@ namespace ProjectWebApi.Controllers
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        [HttpPut]
-        [Route("project/DefectsReopenedIterations/{subproject}/{delivery}")]
-        [ResponseType(typeof(DefectReopened))]
-        public HttpResponseMessage getDefectReopenedByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
-        {
-            var projectDAO = new ProjectDAO();
-            var item = projectDAO.getDefectReopenedByProjectIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, item);
-        }
-
-        [HttpPut]
-        [Route("project/DefectsDetectableInDevIterations/{subproject}/{delivery}")]
-        [ResponseType(typeof(DetectableInDev))]
-        public HttpResponseMessage getDetectableInDevByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
-        {
-            var projectDAO = new ProjectDAO();
-            var item = projectDAO.getDetectableInDevByProjectIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, item);
-        }
 
         [HttpPut]
         [Route("project/StatusLastDaysIterations/{subproject}/{delivery}")]
