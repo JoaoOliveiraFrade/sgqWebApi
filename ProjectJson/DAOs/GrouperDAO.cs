@@ -9,16 +9,16 @@ namespace ProjectWebApi.DAOs
 {
     public class GrouperDAO
     {
-        private Connection _connection;
+        private Connection connection;
 
         public GrouperDAO()
         {
-            _connection = new Connection(Bancos.Sgq);
+            connection = new Connection(Bancos.Sgq);
         }
 
         public void Dispose()
         {
-            _connection.Dispose();
+            connection.Dispose();
         }
 
         public IList<Grouper> getAll()
@@ -59,7 +59,7 @@ namespace ProjectWebApi.DAOs
             order by 
 	            name
             ";
-            var listGroupers = _connection.Executar<Grouper>(sql);
+            var listGroupers = connection.Executar<Grouper>(sql);
 
             return listGroupers;
         }
@@ -106,7 +106,7 @@ namespace ProjectWebApi.DAOs
             ";
             sql = sql.Replace("@id", id);
 
-            var list = _connection.Executar<Grouper>(sql);
+            var list = connection.Executar<Grouper>(sql);
 
             return list[0];
         }
@@ -153,7 +153,7 @@ namespace ProjectWebApi.DAOs
             ";
             sql = sql.Replace("@name", name);
 
-            var list = _connection.Executar<Grouper>(sql);
+            var list = connection.Executar<Grouper>(sql);
 
             return list[0];
         }

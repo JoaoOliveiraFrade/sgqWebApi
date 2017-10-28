@@ -9,28 +9,28 @@ namespace ProjectWebApi.DAOs
 {
     public class DevManufDAO
     {
-        private Connection _connection;
+        private Connection connection;
 
         public DevManufDAO()
         {
-            _connection = new Connection(Bancos.Sgq);
+            connection = new Connection(Bancos.Sgq);
         }
 
         public void Dispose()
         {
-            _connection.Dispose();
+            connection.Dispose();
         }
 
         public IList<IdName> all()
         {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\devManuf\all.sql"), Encoding.Default);
-            var result = _connection.Executar<IdName>(sql);
+            var result = connection.Executar<IdName>(sql);
             return result;
         }
         public IList<IdName> allOfQueue()
         {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\devManuf\allOfQueue.sql"), Encoding.Default);
-            var result = _connection.Executar<IdName>(sql);
+            var result = connection.Executar<IdName>(sql);
             return result;
         }
     }

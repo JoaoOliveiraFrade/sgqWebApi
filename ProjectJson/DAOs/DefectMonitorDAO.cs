@@ -12,22 +12,22 @@ namespace ProjectWebApi.DAOs
 {
 	public class DefectMonitorDAO
     {
-		private Connection _connection;
+		private Connection connection;
 
 		public DefectMonitorDAO()
 		{
-			_connection = new Connection(Bancos.Sgq);
+			connection = new Connection(Bancos.Sgq);
 		}
 
 		public void Dispose()
 		{
-			_connection.Dispose();
+			connection.Dispose();
 		}
 
 		public IList<IdName> defectAqueue(Parameters parameters)
 		{
 			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\defectQueue\all.sql"), Encoding.Default);
-			var list = _connection.Executar<IdName>(sql);
+			var list = connection.Executar<IdName>(sql);
 			return list;
 		}
     }

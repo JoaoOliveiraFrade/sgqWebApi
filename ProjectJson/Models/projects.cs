@@ -8,7 +8,7 @@ namespace ProjectWebApi.Models
     public class projects
     {
         public string id { get; set; }
-        public string devManufacturing { get; set; }
+        public string devManuf { get; set; }
         public string system { get; set; }
         public string subproject { get; set; }
         public string delivery { get; set; }

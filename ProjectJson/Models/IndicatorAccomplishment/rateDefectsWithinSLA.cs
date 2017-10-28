@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-    public class rateDefectsWithinSLA
+    public class defectInsideSla
     {
         public string month { get; set; }
         public string year { get; set; }

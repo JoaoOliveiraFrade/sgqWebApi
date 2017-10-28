@@ -12,25 +12,25 @@ namespace ProjectWebApi.DAOs
 {
 	public class IndicatorAccomplishmentDAO
     {
-		private Connection _connection;
+		private Connection connection;
 
 		public IndicatorAccomplishmentDAO()
 		{
-			_connection = new Connection(Bancos.Sgq);
+			connection = new Connection(Bancos.Sgq);
 		}
 
 		public void Dispose()
 		{
-			_connection.Dispose();
+			connection.Dispose();
 		}
 
-        public IList<rateDefectsWithinSLA> rateDefectsWithinSLAFbyListTestManufSystemProject(Parameters2 parameters)
+        public IList<defectInsideSla> defectInsideSlaFbyListTestManufSystemProject(ListDevManufSystemProject parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorAccomplishment\rateDefectsWithinSLAFbyListTestManufSystemProject.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorAccomplishment\defectInsideSlaFbyListTestManufSystemProject.sql"), Encoding.Default);
             sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
             sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
             sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-            var result = _connection.Executar<rateDefectsWithinSLA>(sql);
+            var result = connection.Executar<defectInsideSla>(sql);
             return result;
         }
     }

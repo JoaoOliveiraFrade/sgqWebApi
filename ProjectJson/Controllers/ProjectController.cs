@@ -87,14 +87,14 @@ namespace ProjectWebApi.Controllers
 	                'id:''' + convert(varchar, cast(substring(re.Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(re.Entrega,8,8) as int)) + ''', ' +
 	                'subproject:''' + re.Subprojeto + ''', ' +
 	                'delivery:''' + re.Entrega + ''', ' +
-	                'devManufacturing:''' + Fabrica_Desenvolvimento + ''', ' +
+	                'devManuf:''' + Fabrica_Desenvolvimento + ''', ' +
 	                'system:''' + Sistema + ''', ' +
 	                'name:''' + left(sp.Nome,30) + ''', ' +
 	                'classification:''' + sp.Classificacao_Nome + ''', ' +
 	                'release:''' + (select Sigla from sgq_meses m where m.id = re.release_mes) + ' ' + convert(varchar, re.release_ano) + '''' +
 	                '}, ' as json,
 	                convert(varchar, cast(substring(re.Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(re.Entrega,8,8) as int)) as id,
-	                Fabrica_Desenvolvimento as devManufacturing,
+	                Fabrica_Desenvolvimento as devManuf,
 	                Sistema as system,
 	                re.Subprojeto as subproject,
 	                re.Entrega as delivery,
@@ -207,10 +207,10 @@ namespace ProjectWebApi.Controllers
         [HttpGet]
         [Route("project/byIds/{ids}")]
         [ResponseType(typeof(IList<Project>))]
-        public HttpResponseMessage getProjectsByIds(HttpRequestMessage request, string ids)
+        public HttpResponseMessage byIds(HttpRequestMessage request, string ids)
         {
             var projectDAO = new ProjectDAO();
-            var projects = projectDAO.getProjectsByIds(ids);
+            var projects = projectDAO.byIds(ids);
             projectDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
@@ -291,41 +291,6 @@ namespace ProjectWebApi.Controllers
             }
 
         }
-
-
-        [HttpGet]
-        [Route("project/DefectsAverangeTime/{subproject}/{delivery}")]
-        [ResponseType(typeof(DefectAverangeTime))]
-        public HttpResponseMessage getDefectsAverageTimeByProject(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var projectDAO = new ProjectDAO();
-            var defectAverangeTime = projectDAO.getDefectsAverageTimeByProject(subproject, delivery);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, defectAverangeTime);
-        }
-
-        [HttpGet]
-        [Route("project/DefectsAverangeTime/{subproject}/{delivery}/{severity}")]
-        [ResponseType(typeof(DefectAverangeTime))]
-        public HttpResponseMessage getDefectsAverageTimeByProject(HttpRequestMessage request, string subproject, string delivery, string severity)
-        {
-            var projectDAO = new ProjectDAO();
-            var defectAverangeTime = projectDAO.getDefectsAverageTimeByProject(subproject, delivery, severity);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, defectAverangeTime);
-        }
-
-        [HttpGet]
-        [Route("project/DefectsAverangeTimeGroupSeverity/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<DefectAverangeTimeGroupSeverity>))]
-        public HttpResponseMessage getDefectsAverangeTimeGroupSeverityByProject(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var projectDAO = new ProjectDAO();
-            var defectAverangeTimeGroupSeverity = projectDAO.getDefectAverangeTimeGroupSeverityByProject(subproject, delivery);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, defectAverangeTimeGroupSeverity);
-        }
-
 
 
         [HttpGet]
@@ -436,41 +401,41 @@ namespace ProjectWebApi.Controllers
         // ITERATIONS
 
         [HttpGet]
-        [Route("project/Iterations/{subproject}/{delivery}")]
+        [Route("project/iterations/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<iteration>))]
-        public HttpResponseMessage getIterations(HttpRequestMessage request, string subproject, string delivery)
+        public HttpResponseMessage iterations(HttpRequestMessage request, string subproject, string delivery)
         {
             var projectDAO = new ProjectDAO();
-            var list = projectDAO.getIterations(subproject, delivery);
-            projectDAO.Dispose();
-
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
-
-
-        [HttpGet]
-        [Route("project/IterationsActive/{subproject}/{delivery}")]
-        [ResponseType(typeof(List<string>))]
-        public HttpResponseMessage getIterationsActive(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getIterationsActive(subproject, delivery);
+            var list = projectDAO.iterations(subproject, delivery);
             projectDAO.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpGet]
-        [Route("project/IterationsSelected/{subproject}/{delivery}")]
+        [Route("project/iterationsActive/{subproject}/{delivery}")]
         [ResponseType(typeof(List<string>))]
-        public HttpResponseMessage getIterationsSelected(HttpRequestMessage request, string subproject, string delivery)
+        public HttpResponseMessage iterationsActive(HttpRequestMessage request, string subproject, string delivery)
         {
             var projectDAO = new ProjectDAO();
-            var list = projectDAO.getIterationsSelected(subproject, delivery);
+            var list = projectDAO.iterationsActive(subproject, delivery);
             projectDAO.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
+
+        [HttpGet]
+        [Route("project/iterationsSelected/{subproject}/{delivery}")]
+        [ResponseType(typeof(List<string>))]
+        public HttpResponseMessage iterationsSelected(HttpRequestMessage request, string subproject, string delivery)
+        {
+            var projectDAO = new ProjectDAO();
+            var list = projectDAO.iterationsSelected(subproject, delivery);
+            projectDAO.Dispose();
+
+            return request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
 
         [HttpPut]
         [Route("project/UpdateIterationsActive/{id:int}")]
@@ -508,7 +473,6 @@ namespace ProjectWebApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-
 
         [HttpPut]
         [Route("project/UpdateIterationsSelected/{id:int}")]
@@ -584,18 +548,6 @@ namespace ProjectWebApi.Controllers
 
         // ----------
 
-
-        [HttpGet]
-        [Route("project/DefectsAverangeTimeIterations/{subproject}/{delivery}/{severity}")]
-        [ResponseType(typeof(DefectAverangeTime))]
-        public HttpResponseMessage getDefectsAverageTimeByProjectIterations(HttpRequestMessage request, string subproject, string delivery, string severity)
-        {
-            var projectDAO = new ProjectDAO();
-            List<string> iterations = projectDAO.getIterationsSelected(subproject, delivery);
-            var result = projectDAO.getDefectsAverageTimeByProjectIterations(subproject, delivery, severity, iterations);
-            projectDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
 
 
         [HttpPut]

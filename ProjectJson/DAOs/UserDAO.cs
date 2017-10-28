@@ -11,22 +11,22 @@ namespace ProjectWebApi.DAOs
 {
     public class UserDAO
     {
-        private Connection _connection;
+        private Connection connection;
 
         public UserDAO()
         {
-            _connection = new Connection(Bancos.Sgq);
+            connection = new Connection(Bancos.Sgq);
         }
 
         public void Dispose()
         {
-            _connection.Dispose();
+            connection.Dispose();
         }
 
         public IList<User> getUsers()
         {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\user\users.sql"), Encoding.Default);
-            var list = _connection.Executar<User>(sql);
+            var list = connection.Executar<User>(sql);
             return list;
         }
 
@@ -36,7 +36,7 @@ namespace ProjectWebApi.DAOs
             sql = sql.Replace("@login", login);
             sql = sql.Replace("@cpf", cpf);
 
-            var list = _connection.Executar<User>(sql);
+            var list = connection.Executar<User>(sql);
 
             if (list.Count > 0)
                 return list[0];
@@ -49,7 +49,7 @@ namespace ProjectWebApi.DAOs
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\user\profilesByUser.sql"), Encoding.Default);
             sql = sql.Replace("@user", UserId.ToString());
 
-            var list = _connection.Executar<Profile>(sql);
+            var list = connection.Executar<Profile>(sql);
 
             return list;
         }
@@ -60,7 +60,7 @@ namespace ProjectWebApi.DAOs
             sql = sql.Replace("@login", login);
             sql = sql.Replace("@password", password);
 
-            var list = _connection.Executar<User>(sql);
+            var list = connection.Executar<User>(sql);
 
             if (list.Count > 0)
                 return list[0];

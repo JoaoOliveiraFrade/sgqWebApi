@@ -8,7 +8,7 @@ namespace ProjectWebApi.Models
     public class noPredictionDefects
     {
         public string date { get; set; }
-        public string devManufacturing { get; set; }
+        public string devManuf { get; set; }
         public string system { get; set; }
         public string project { get; set; }
         public string subproject { get; set; }

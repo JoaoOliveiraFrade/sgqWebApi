@@ -13,33 +13,33 @@ namespace ProjectWebApi.DAOs
 {
     public class PulledChainDAO
     {
-        private Connection _connection;
+        private Connection connection;
 
         public PulledChainDAO()
         {
-            _connection = new Connection(Bancos.Sgq);
+            connection = new Connection(Bancos.Sgq);
         }
 
         public void Dispose()
         {
-            _connection.Dispose();
+            connection.Dispose();
         }
 
         public IList<PulledChain> getAll()
         {
            
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\pulledChain\select.sql"), Encoding.Default);
-			var list = _connection.Executar<PulledChain>(sql);
+			var list = connection.Executar<PulledChain>(sql);
             return list;
         }
 
         public IList<chartCFD> chartCFD()
         {
             string sql1 = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\pulledChain\chatCfdUpdate.sql"), Encoding.Default);
-            _connection.Executar(sql1);
+            connection.Executar(sql1);
 
             string sql2 = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\pulledChain\chartCfdSelect.sql"), Encoding.Default);
-            var list = _connection.Executar<chartCFD>(sql2);
+            var list = connection.Executar<chartCFD>(sql2);
             return list;
         }
 

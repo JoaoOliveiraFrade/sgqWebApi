@@ -282,7 +282,7 @@ namespace Classes
         //private static string GetStringConexao()
         //{
         //    //return ConfigurationManager.AppSettings.Get("ConnectionStrings");
-        //    //return "Description=BDGestaoRH;DRIVER=SQL Server;SERVER=ESCRITORIO;APP=Microsoft Office 2003;WSID=ESCRITORIO;DATABASE=BDGestaoRH;Network=DBMSLPCN;Trusted_Connection=Yes";
+        //    //return "Description=BDGestaoRH;DRIVER=SQL Server;SERVER=ESCRITORIO;APP=Microsoft Office 2003;WSID=ESCRITORIO;DATABASE=BDGestaoRH;Network=DBMSLPCN;Trustedconnection=Yes";
         //    //return "Data Source=ESCRITORIO;Initial Catalog=BDGestaoRH;Integrated Security=True; Provider=.NET Framework Data Provider for SQL Serve";
         //    //return "Provider=SQLNCLI.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=BD;Data Source=(local)";
         //    //return @"Data Source=(local)\SQLEXPRESS;Initial Catalog=BDGestaoTestes;Integrated Security=True";

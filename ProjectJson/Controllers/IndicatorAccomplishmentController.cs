@@ -18,12 +18,12 @@ namespace ProjectWebApi.Controllers
     public class IndicatorAccomplishmentController : ApiController
     {
 		[HttpPost]
-		[Route("indicatorAccomplishmentQueue/rateDefectsWithinSLA/fbyListDevManufSystemProject")]
-        [ResponseType(typeof(IList<rateDefectsWithinSLA>))]
-        public HttpResponseMessage rateDefectsWithinSLAFbyListTestManufSystemProject(HttpRequestMessage request, Parameters2 parameters)
+		[Route("indicatorAccomplishmentQueue/defectInsideSla/fbyListDevManufSystemProject")]
+        [ResponseType(typeof(IList<defectInsideSla>))]
+        public HttpResponseMessage defectInsideSlaFbyListTestManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters)
 		{
 			var indicatorAccomplishmentDAO = new IndicatorAccomplishmentDAO();
-			var list = indicatorAccomplishmentDAO.rateDefectsWithinSLAFbyListTestManufSystemProject(parameters);
+			var list = indicatorAccomplishmentDAO.defectInsideSlaFbyListTestManufSystemProject(parameters);
             indicatorAccomplishmentDAO.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}

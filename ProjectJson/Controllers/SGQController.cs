@@ -71,14 +71,14 @@ namespace ProjectWebApi.Controllers
             string sql = @"
                 select distinct
 	                --'{ ' +
-	                --	'id: ''' + id + ''', devManufacturing: ''' + devManufacturing + '''' +
+	                --	'id: ''' + id + ''', devManuf: ''' + devManuf + '''' +
 	                --' }, ' as json,
                     id,
-	                devManufacturing
+	                devManuf
                 from
                     (select distinct
 		                sistema as id,
-		                fabrica_desenvolvimento as devManufacturing
+		                fabrica_desenvolvimento as devManuf
                     from
                         alm_cts
                     where
@@ -89,7 +89,7 @@ namespace ProjectWebApi.Controllers
 
                     select distinct
 		                sistema_defeito as id,
-		                fabrica_desenvolvimento as devManufacturing
+		                fabrica_desenvolvimento as devManuf
                     from
                         alm_defeitos
                     where
@@ -146,7 +146,7 @@ namespace ProjectWebApi.Controllers
             string sql = @"
                 select 
 	                monthExecution + '/' + yearExecution as date,
-	                devManufacturing,
+	                devManuf,
 	                system,
 	                convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,8,8) as int)) as project,
 	                subproject,
@@ -156,7 +156,7 @@ namespace ProjectWebApi.Controllers
 	                round(convert(float,sum(qte_defeitos)) / (case when count(*) = 0 then 1 else count(*) end) * 100,2) as density
                 from
 	                (select 
-		                cts.fabrica_desenvolvimento as devManufacturing,
+		                cts.fabrica_desenvolvimento as devManuf,
 		                cts.subprojeto as subproject,
 		                cts.entrega as delivery,
 		                cts.sistema as system,
@@ -182,17 +182,17 @@ namespace ProjectWebApi.Controllers
                         dt_execucao <> ''
 	                ) Aux
                 group by
-	                devManufacturing,
+	                devManuf,
 	                subproject,
 	                delivery,
-	                devManufacturing, 
+	                devManuf, 
 	                system,
 	                monthExecution,
 	                yearExecution
                 order by
 	                yearExecution,
 	                monthExecution,
-	                devManufacturing, 
+	                devManuf, 
 	                system,
 	                subproject,
 	                delivery
@@ -213,7 +213,7 @@ namespace ProjectWebApi.Controllers
             string sql = @"
                 select 
 	                dayExecution + '/' + monthExecution + '/' + yearExecution as date,
-	                devManufacturing,
+	                devManuf,
 	                system,
 	                convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,8,8) as int)) as project,
 	                subproject,
@@ -223,7 +223,7 @@ namespace ProjectWebApi.Controllers
 	                round(convert(float,sum(qte_defeitos)) / (case when count(*) = 0 then 1 else count(*) end) * 100,2) as density
                 from
 	                (select 
-		                cts.fabrica_desenvolvimento as devManufacturing,
+		                cts.fabrica_desenvolvimento as devManuf,
 		                cts.subprojeto as subproject,
 		                cts.entrega as delivery,
 		                cts.sistema as system,
@@ -253,10 +253,10 @@ namespace ProjectWebApi.Controllers
 					yearExecution  + monthExecution + dayExecution >= '@dateBegin' and
 					yearExecution  + monthExecution + dayExecution <= '@dateEnd'
                 group by
-	                devManufacturing,
+	                devManuf,
 	                subproject,
 	                delivery,
-	                devManufacturing, 
+	                devManuf, 
 	                system,
 					dayExecution,
 	                monthExecution,
@@ -265,7 +265,7 @@ namespace ProjectWebApi.Controllers
 	                yearExecution,
 	                monthExecution,
 					dayExecution,
-	                devManufacturing, 
+	                devManuf, 
 	                system,
 	                subproject,
 	                delivery
@@ -290,7 +290,7 @@ namespace ProjectWebApi.Controllers
             string sql = @"
                 select 
 	                monthExecution + '/' + yearExecution as date,
-	                devManufacturing,
+	                devManuf,
 	                system,
 	                convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,8,8) as int)) as project,
 	                subproject,
@@ -300,7 +300,7 @@ namespace ProjectWebApi.Controllers
 	                round(convert(float,sum(qte_defeitos)) / (case when count(*) = 0 then 1 else count(*) end) * 100,2) as density
                 from
 	                (select 
-		                cts.fabrica_desenvolvimento as devManufacturing,
+		                cts.fabrica_desenvolvimento as devManuf,
 		                cts.subprojeto as subproject,
 		                cts.entrega as delivery,
 		                cts.sistema as system,
@@ -328,17 +328,17 @@ namespace ProjectWebApi.Controllers
                         dt_execucao <> ''
 	                ) Aux
                 group by
-	                devManufacturing,
+	                devManuf,
 	                subproject,
 	                delivery,
-	                devManufacturing, 
+	                devManuf, 
 	                system,
 	                monthExecution,
 	                yearExecution
                 order by
 	                yearExecution,
 	                monthExecution,
-	                devManufacturing, 
+	                devManuf, 
 	                system,
 	                subproject,
 	                delivery
@@ -363,7 +363,7 @@ namespace ProjectWebApi.Controllers
                	select 
 					--'{ ' +
 					--'date: ''' + substring(dt_final,4,2) + '/' + substring(dt_final,7,2) + ''', ' +
-					--'devManufacturing: ''' + fabrica_desenvolvimento + ''', ' +
+					--'devManuf: ''' + fabrica_desenvolvimento + ''', ' +
 					--'system: ''' + sistema_defeito + ''', ' +
 					--'project: ''' + convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) + ''', ' +
 					--'subproject: ''' + subprojeto + ''', ' +
@@ -371,7 +371,7 @@ namespace ProjectWebApi.Controllers
 					--'qty: ' + convert(varchar,(convert(float, sum(Aging)))) + ',' + 
 					--' }, ' as json,
 					substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
-					fabrica_desenvolvimento as devManufacturing,
+					fabrica_desenvolvimento as devManuf,
 					sistema_defeito as system,
 					convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
 					subprojeto as subproject,
@@ -413,7 +413,7 @@ namespace ProjectWebApi.Controllers
             select 
 	            substring(severidade,3,10) as severity,
 	            substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
-	            fabrica_desenvolvimento as devManufacturing,
+	            fabrica_desenvolvimento as devManuf,
 	            sistema_defeito as system,
 	            convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
 	            subprojeto as subproject,
@@ -465,7 +465,7 @@ namespace ProjectWebApi.Controllers
             string sql = @"
                 select 
 	                substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
-	                fabrica_desenvolvimento as devManufacturing,
+	                fabrica_desenvolvimento as devManuf,
 	                sistema_defeito as system,
 	                convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
 	                subprojeto as subproject,
@@ -613,7 +613,7 @@ namespace ProjectWebApi.Controllers
             string sql = @"
                 select
 	                --'{' +   'date: ''' + substring(dt_final,4,2) + '/' + substring(dt_final,7,2) + ''', ' +
-	                --'devManufacturing:''' + fabrica_desenvolvimento + ''', ' +
+	                --'devManuf:''' + fabrica_desenvolvimento + ''', ' +
 	                --'system:''' + sistema_defeito + ''', ' +
 	                --'project:''' + convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) + ''', ' +
 	                --'subproject:''' + subprojeto + ''', ' +
@@ -625,7 +625,7 @@ namespace ProjectWebApi.Controllers
 	                --'qtyReference:'  + '' + convert(varchar, round(convert(float,count(*) * 0.05),2)) + 
 	                --'}, ' as json,
 	                substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
-	                fabrica_desenvolvimento as devManufacturing,
+	                fabrica_desenvolvimento as devManuf,
 	                sistema_defeito as system,
 	                convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
 	                entrega as delivery,
@@ -1783,12 +1783,12 @@ namespace ProjectWebApi.Controllers
 					'project: ''' + convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) + ''', ' +
 	                'subproject: ''' + subprojeto + ''', ' +
 	                'delivery: ''' + entrega + ''', ' +
-	                'devManufacturing: ''' + fabrica_desenvolvimento + ''', ' +
+	                'devManuf: ''' + fabrica_desenvolvimento + ''', ' +
 	                'system: ''' + sistema_defeito + ''', ' +
 					'qtyRecurrence:'  + '' + convert(varchar, sum(qtd_reincidencia)) +  + 
 	                ' }, ' as json,
 	                substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as closed,
-	                fabrica_desenvolvimento as devManufacturing,
+	                fabrica_desenvolvimento as devManuf,
 	                sistema_defeito as system,
 	                convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
 	                subprojeto as subproject,
