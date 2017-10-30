@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-    public class RateDefectUnfounded
+    public class RejectionEvidence
     {
         public string month { get; set; }
         public string year { get; set; }
@@ -13,7 +13,11 @@ namespace ProjectWebApi.Models
         public string system { get; set; }
         public string subprojectDelivery { get; set; }
 
-        public int qtyDefect { get; set; }
-        public int qtyUnfounded { get; set; }
-	}
+        public int qtyEvidence { get; set; }
+        public int qtyEvidenceClient { get; set; }
+
+        public int qtyRejectionTechnique { get; set; }
+        public int qtyRejectionClient { get; set; }
+        public int qtyRejectionTotal { get; set; }
+    }
 }

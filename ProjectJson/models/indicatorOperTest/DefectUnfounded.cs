@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-    public class evidRejectedGroupTimeline
+    public class DefectUnfounded
     {
         public string month { get; set; }
         public string year { get; set; }
@@ -13,8 +13,7 @@ namespace ProjectWebApi.Models
         public string system { get; set; }
         public string subprojectDelivery { get; set; }
 
-        public int rejectionsTechnique { get; set; }
-        public int rejectionsClient { get; set; }
-        public int rejectionsTotal { get; set; }
-    }
+        public int qtyDefect { get; set; }
+        public int qtyUnfounded { get; set; }
+	}
 }

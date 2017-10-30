@@ -34,7 +34,6 @@ namespace ProjectWebApi.DAOs
                 return result;
             }
 
-
             //public IList<productivity> getProductivityByProject(string subproject, string delivery)
             //{
             //	string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\productivityByProject.sql"), Encoding.Default);
@@ -56,57 +55,103 @@ namespace ProjectWebApi.DAOs
 
         #endregion
 
-        public IList<evidRejected> evidRejectedByListTestManufSystemProject(Parameters parameters)
-		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\evidRejectedByListTestManufSystemProject.sql"), Encoding.Default);
-			sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
-			sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-			sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-			var list = connection.Executar<evidRejected>(sql);
-            return list;
-		}
 
-        public IList<evidRejectedGroupTimeline> evidRejectedByListTestManufSystemProjectGroupTimeline(Parameters parameters)
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\evidRejectedByListTestManufSystemProjectGroupTimeline.sql"), Encoding.Default);
-            sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
-            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-            var list = connection.Executar<evidRejectedGroupTimeline>(sql);
+        #region rejectionEvidence
 
-            return list;
-        }
+            public IList<RejectionEvidence> rejectionEvidenceFbyProject(string subproject, string delivery) {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperTest\rejectionEvidenceFbyProject.sql"), Encoding.Default);
+                sql = sql.Replace("@subproject", subproject);
+                sql = sql.Replace("@delivery", delivery);
+                var result = connection.Executar<RejectionEvidence>(sql);
+                return result;
+            }
 
-        public IList<RateDefectUnfounded> rateDefectUnfoundedByListTestManufSystemProject(Parameters parameters)
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\rateDefectUnfoundedByListTestManufSystemProject.sql"), Encoding.Default);
-            sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
-            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-            var list = connection.Executar<RateDefectUnfounded>(sql);
+            public IList<RejectionEvidence> rejectionEvidenceByListTestManufSystemProject(Parameters parameters)
+		    {
+			    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\rejectionEvidenceByListTestManufSystemProject.sql"), Encoding.Default);
+			    sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+			    sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+			    sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+			    var list = connection.Executar<RejectionEvidence>(sql);
+                return list;
+		    }
 
-            return list;
-        }
-        public IList<defectUat> defectUatByListTestManufSystemProject(Parameters parameters)
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\defectUatByListTestManufSystemProject.sql"), Encoding.Default);
-            sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
-            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-            var list = connection.Executar<defectUat>(sql);
+            //public IList<rejectionEvidenceGroupTimeline> rejectionEvidenceByListTestManufSystemProjectGroupTimeline(Parameters parameters)
+            //{
+            //    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\rejectionEvidenceByListTestManufSystemProjectGroupTimeline.sql"), Encoding.Default);
+            //    sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+            //    sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+            //    sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+            //    var list = connection.Executar<rejectionEvidenceGroupTimeline>(sql);
 
-            return list;
-        }
-        public IList<AverangeRetestHours> averangeRetestHoursByListTestManufSystemProject(Parameters parameters)
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\averangeRetestHoursByListTestManufSystemProject.sql"), Encoding.Default);
-            sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
-            sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-            sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-            var list = connection.Executar<AverangeRetestHours>(sql);
+            //    return list;
+            //}
 
-            return list;
-        }
+        #endregion
+
+
+        #region DefectUnfounded
+
+            public IList<DefectUnfounded> defectUnfoundedFbyProject(string subproject, string delivery) {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperTest\defectUnfoundedFbyProject.sql"), Encoding.Default);
+                sql = sql.Replace("@subproject", subproject);
+                sql = sql.Replace("@delivery", delivery);
+                var result = connection.Executar<DefectUnfounded>(sql);
+                return result;
+            }
+
+            public IList<DefectUnfounded> defectUnfoundedFbyListTestManufSystemProject(Parameters parameters)
+            {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\defectUnfoundedFbyListTestManufSystemProject.sql"), Encoding.Default);
+                sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+                sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+                sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+                var list = connection.Executar<DefectUnfounded>(sql);
+
+                return list;
+            }
+
+        #endregion
+
+
+        #region DefectUAT
+
+            public IList<DefectUAT> defectUATFbyProject(string subproject, string delivery) {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperTest\defectUATFbyProject.sql"), Encoding.Default);
+                sql = sql.Replace("@subproject", subproject);
+                sql = sql.Replace("@delivery", delivery);
+                var result = connection.Executar<DefectUAT>(sql);
+                return result;
+            }
+
+            public IList<DefectUAT> defectUATFbyListTestManufSystemProject(Parameters parameters)
+            {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\defectUATFbyListTestManufSystemProject.sql"), Encoding.Default);
+                sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+                sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+                sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+                var list = connection.Executar<DefectUAT>(sql);
+
+                return list;
+            }
+
+        #endregion
+
+
+        #region AverangeRetestHours
+
+            public IList<AverangeRetestHours> averangeRetestHoursByListTestManufSystemProject(Parameters parameters)
+            {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\averangeRetestHoursByListTestManufSystemProject.sql"), Encoding.Default);
+                sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
+                sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+                sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+                var list = connection.Executar<AverangeRetestHours>(sql);
+
+                return list;
+            }
+
+        #endregion
 
     }
 }

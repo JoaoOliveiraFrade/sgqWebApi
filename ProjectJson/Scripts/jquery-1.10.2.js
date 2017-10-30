@@ -3801,7 +3801,7 @@ jQuery.extend({
 
 		var noData = elem.nodeName && jQuery.noData[ elem.nodeName.toLowerCase() ];
 
-		// nodes accept data unless otherwise specified; rejection can be conditional
+		// nodes accept data unless otherwise specified; rejected can be conditional
 		return !noData || noData !== true && elem.getAttribute("classid") === noData;
 	}
 });

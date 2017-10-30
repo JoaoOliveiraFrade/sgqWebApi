@@ -12,7 +12,7 @@ select
 	subprojeto as subproject,
 	entrega as delivery,
 	tabela_id as defeito,
-	max(substring(dt_alteracao,7,2) + substring(dt_alteracao,4,2)) as yearMonth
+	min(substring(dt_alteracao,7,2) + substring(dt_alteracao,4,2)) as yearMonth
 from ALM_Historico_Alteracoes_Campos 
 where 
 	tabela = 'BUG' and
@@ -42,11 +42,10 @@ from
 		i.delivery collate Latin1_General_CI_AS = df.entrega and
 		i.defeito = df.defeito
 where
-	--df.subprojeto = 'PRJ00000744' and df.entrega = 'ENTREGA00000179' and df.fabrica_teste = 'ACCENTURE' and df.sistema = '(OI R2) SAC' and
-	df.ciclo = 'TI' and
-	df.fabrica_teste in (@selectedTestManufs) and
-	df.sistema_ct in (@selectedSystems) and
-	df.subprojeto + df.entrega collate Latin1_General_CI_AS in (@selectedProjects)
+	df.ciclo = 'TI'
+	and df.fabrica_teste in (@selectedTestManufs)
+	and df.sistema_ct in (@selectedSystems)
+	and df.subprojeto + df.entrega collate Latin1_General_CI_AS in (@selectedProjects)
 group by
 	i.yearMonth,
 	(case when IsNull(fabrica_teste,'') <> '' then fabrica_teste else 'NÃO IDENTIFICADA' end),
