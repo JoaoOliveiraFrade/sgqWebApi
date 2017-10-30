@@ -17,9 +17,9 @@ where
 	cts.ciclo = 'TI'
 	and ex.status in ('PASSED', 'FAILED')
 	and ex.dt_execucao <> ''
-	and cts.fabrica_teste in (@selectedTestManufs)
-	and cts.sistema in (@selectedSystems)
 	and ex.subprojeto + ex.entrega in (@selectedProjects)
+	and cts.sistema in (@selectedSystems)
+	and (case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'NÃO IDENTIFICADA' end) in (@selectedTestManufs)
 group by
 	substring(ex.dt_execucao,4,2)
 	,substring(ex.dt_execucao,7,2)

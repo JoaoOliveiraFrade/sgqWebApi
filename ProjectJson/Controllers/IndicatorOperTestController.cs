@@ -132,15 +132,31 @@ namespace ProjectWebApi.Controllers
 
         #endregion
 
-        [HttpPost]
-        [Route("indicatorOperTest/averangeRetestHours/byListTestManufSystemProject")]
-        [ResponseType(typeof(IList<AverangeRetestHours>))]
-        public HttpResponseMessage averangeRetestHoursByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
-        {
-            var indicatorOperTestDAO = new IndicatorOperTestDAO();
-            var list = indicatorOperTestDAO.averangeRetestHoursByListTestManufSystemProject(parameters);
-            indicatorOperTestDAO.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
+
+        #region DefectAverangeRetestTime
+
+            [HttpGet]
+            [Route("indicatorOperTest/defectAverangeRetestTime/fbyProject/{subproject}/{delivery}")]
+            [ResponseType(typeof(IList<DefectAverangeRetestTime>))]
+            public HttpResponseMessage defectAverangeRetestTimeFbyProject(HttpRequestMessage request, string subproject, string delivery) {
+                var indicatorOperTestDAO = new IndicatorOperTestDAO();
+                var list = indicatorOperTestDAO.defectAverangeRetestTimeFbyProject(subproject, delivery);
+                indicatorOperTestDAO.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, list);
+            }
+
+            [HttpPost]
+            [Route("indicatorOperTest/defectAverangeRetestTime/byListTestManufSystemProject")]
+            [ResponseType(typeof(IList<DefectAverangeRetestTime>))]
+            public HttpResponseMessage defectAverangeRetestTimeFbyListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
+            {
+                var indicatorOperTestDAO = new IndicatorOperTestDAO();
+                var list = indicatorOperTestDAO.defectAverangeRetestTimeFbyListTestManufSystemProject(parameters);
+                indicatorOperTestDAO.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, list);
+            }
+
+        #endregion
+
     }
 }

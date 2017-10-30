@@ -660,13 +660,13 @@ namespace ProjectWebApi.Controllers
         // ===============================
 
         [HttpPost]
-		[Route("indicatorOperDev/defectInsideSla/fbyListDevManufSystemProject")]
-        [ResponseType(typeof(IList<defectInsideSla>))]
-        public HttpResponseMessage defectInsideSlaFbyListTestManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters)
+		[Route("indicatorOperDev/defectInsideSLA/fbyListDevManufSystemProject")]
+        [ResponseType(typeof(IList<defectInsideSLA>))]
+        public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters)
 		{
-			var indicatorAccomplishmentDAO = new IndicatorAccomplishmentDAO();
-			var list = indicatorAccomplishmentDAO.defectInsideSlaFbyListTestManufSystemProject(parameters);
-            indicatorAccomplishmentDAO.Dispose();
+			var IndicatorPerfDevDAO = new IndicatorPerfDevDAO();
+			var list = IndicatorPerfDevDAO.defectInsideSLAFbyListTestManufSystemProject(parameters);
+            IndicatorPerfDevDAO.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
 

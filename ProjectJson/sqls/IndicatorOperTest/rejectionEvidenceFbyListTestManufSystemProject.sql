@@ -55,9 +55,9 @@ where
 	cts.status_exec_ct = 'PASSED'
 	and cts.dt_execucao <> ''
 	and cts.ciclo = 'TI'
-	and cts.fabrica_teste in (@selectedTestManufs)
-	and cts.sistema in (@selectedSystems)
 	and cts.subprojeto + cts.delivery collate Latin1_General_CI_AS in (@selectedProjects)
+	and cts.sistema in (@selectedSystems)
+	and (case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'NÃO IDENTIFICADA' end) in (@selectedTestManufs)
 group by
 	substring(cts.dt_execucao,4,2)
 	,substring(cts.dt_execucao,7,2)

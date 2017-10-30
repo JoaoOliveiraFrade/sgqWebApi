@@ -14,6 +14,6 @@ namespace ProjectWebApi.Models
         public string subprojectDelivery { get; set; }
 
         public int qtyDefect { get; set; }
-        public int qtyDefectUat { get; set; }
+        public int qtyDefectUAT { get; set; }
 	}
 }

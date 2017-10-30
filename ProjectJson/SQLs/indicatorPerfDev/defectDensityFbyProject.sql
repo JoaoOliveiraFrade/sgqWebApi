@@ -19,12 +19,12 @@ select
 from 
 	ALM_Defeitos df WITH (NOLOCK)
 where
-	df.subprojeto = '@subproject'
-	and df.entrega = '@delivery'
-	and df.Status_Atual = 'CLOSED'
+	df.Status_Atual = 'CLOSED'
 	and df.Origem like '%CONSTRUÇÃO%'
 	and df.Ciclo in ('TI', 'UAT')
 	and df.dt_final <> ''
+	and df.subprojeto = '@subproject'
+	and df.entrega = '@delivery'
 
 UNION ALL
 

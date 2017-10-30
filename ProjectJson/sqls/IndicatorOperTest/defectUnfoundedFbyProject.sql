@@ -12,7 +12,7 @@ select
 	subprojeto as subproject,
 	entrega as delivery,
 	tabela_id as defeito,
-	min(substring(dt_alteracao,7,2) + substring(dt_alteracao,4,2)) as yearMonth
+	max(substring(dt_alteracao,7,2) + substring(dt_alteracao,4,2)) as yearMonth
 from ALM_Historico_Alteracoes_Campos 
 where 
 	tabela = 'BUG' and

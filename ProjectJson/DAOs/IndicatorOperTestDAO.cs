@@ -138,15 +138,24 @@ namespace ProjectWebApi.DAOs
         #endregion
 
 
-        #region AverangeRetestHours
+        #region DefectAverangeRetestTime
 
-            public IList<AverangeRetestHours> averangeRetestHoursByListTestManufSystemProject(Parameters parameters)
+            public IList<DefectAverangeRetestTime> defectAverangeRetestTimeFbyProject(string subproject, string delivery) {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperTest\defectAverangeRetestTimeFbyProject.sql"), Encoding.Default);
+                sql = sql.Replace("@subproject", subproject);
+                sql = sql.Replace("@delivery", delivery);
+                var result = connection.Executar<DefectAverangeRetestTime>(sql);
+                return result;
+            }
+
+
+            public IList<DefectAverangeRetestTime> defectAverangeRetestTimeFbyListTestManufSystemProject(Parameters parameters)
             {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\averangeRetestHoursByListTestManufSystemProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorOperTest\defectAverangeRetestTimeFbyListTestManufSystemProject.sql"), Encoding.Default);
                 sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedTestManufs) + "'");
                 sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
                 sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-                var list = connection.Executar<AverangeRetestHours>(sql);
+                var list = connection.Executar<DefectAverangeRetestTime>(sql);
 
                 return list;
             }

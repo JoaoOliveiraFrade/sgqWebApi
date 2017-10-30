@@ -27,9 +27,9 @@ select
 from 
 	ALM_CTs ct WITH (NOLOCK)
 where
-	ct.Status_Exec_CT not in ('CANCELLED', 'NO RUN')
+	ct.Massa_Teste <> 'SIM'
+	and ct.Status_Exec_CT not in ('CANCELLED', 'NO RUN')
 	and ct.Ciclo in ('TI', 'UAT')
-	and ct.Massa_Teste <> 'SIM'
 	and ct.subprojeto = '@subproject'
 	and ct.entrega = '@delivery'
 
