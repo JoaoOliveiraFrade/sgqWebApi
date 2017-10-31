@@ -3,9 +3,9 @@ select distinct
     system as name
 from
     (
-		select distinct sistema as system, isnull(fabrica_teste,'') as testManuf from alm_cts where isnull(sistema,'') <> ''
+		select distinct (case when IsNull(sistema,'') <> '' then sistema else 'NÃO IDENTIFICADO' end) as system from alm_cts
 		union all
-		select distinct sistema_defeito as system, isnull(fabrica_teste,'') as testManuf from alm_defeitos where isnull(sistema_defeito,'') < >''
+		select distinct (case when IsNull(sistema_defeito,'') <> '' then sistema_defeito else 'NÃO IDENTIFICADO' end) as system from alm_defeitos
     ) aux
 where
     testManuf in (@listTestManufs)

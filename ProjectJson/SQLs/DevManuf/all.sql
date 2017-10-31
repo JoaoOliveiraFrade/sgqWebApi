@@ -14,11 +14,10 @@ from
 			end) as devManuf
 		from
 			(
-				 select distinct Fabrica_Desenvolvimento as devManuf from alm_cts where isnull(Fabrica_Desenvolvimento,'') <> ''
-				 union all
-				 select distinct Fabrica_Desenvolvimento as devManuf from alm_defeitos where isnull(Fabrica_Desenvolvimento,'') <> ''
+				select distinct (case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) as devManuf from alm_cts
+				union all
+				select distinct (case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) as devManuf from alm_defeitos
 			) aux1
 	) aux2
 order by
     1
-

@@ -15,6 +15,7 @@ namespace ProjectWebApi.Models
         public string severity { get; set; }
 
         public int qtyDefect { get; set; }
-        public int qtyWithinSLA { get; set; }
-	}
+        public int qtyInsideSLA { get; set; }
+        public double percInsideSLA { get; set; }
+    }
 }

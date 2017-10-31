@@ -45,8 +45,8 @@ namespace ProjectWebApi.Controllers
 
         #region defectInsideSLA
 
-        [HttpPost]
-            [Route("IndicatorPerfDevQueue/defectInsideSLA/fbyListDevManufSystemProject")]
+            [HttpPost]
+            [Route("indicatorPerfDev/defectInsideSLA/fbyListDevManufSystemProject")]
             [ResponseType(typeof(IList<DefectInsideSLA>))]
             public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
                 var IndicatorPerfDevDAO = new IndicatorPerfDevDAO();
@@ -58,20 +58,36 @@ namespace ProjectWebApi.Controllers
         #endregion
 
 
-        #region DefectDensity
+        #region DefectOfTSInTI
 
-        [HttpPost]
-		    [Route("indicatorPerfDev/defectOfTSInTI/fbyListDevManufSystemProject")]
-            [ResponseType(typeof(IList<DefectOfTSInTI>))]
-            public HttpResponseMessage defectOfTSInTI_fbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters)
-		    {
-			    var indicatorsPerfDAO = new IndicatorPerfDevDAO();
-			    var list = indicatorsPerfDAO.defectOfTSInTI_fbyListDevManufSystemProject(parameters);
+        [HttpGet]
+            [Route("indicatorPerfDev/defectOfTSInTI/fbyProject/{subproject}/{delivery}")]
+            [ResponseType(typeof(DefectOfTSInTI))]
+            public HttpResponseMessage defectOfTSInTIFbyProject(HttpRequestMessage request, string subproject, string delivery) {
+                var indicatorsPerfDAO = new IndicatorPerfDevDAO();
+                var densityDefects = indicatorsPerfDAO.defectOfTSInTIFbyProject(subproject, delivery);
                 indicatorsPerfDAO.Dispose();
-			    return request.CreateResponse(HttpStatusCode.OK, list);
-		    }
+                return request.CreateResponse(HttpStatusCode.OK, densityDefects);
+            }
+
+            [HttpPost]
+            [Route("indicatorPerfDev/defectOfTSInTI/fbyListDevManufSystemProject")]
+            [ResponseType(typeof(IList<DefectOfTSInTI>))]
+            public HttpResponseMessage defectOfTSInTIFbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
+                var indicatorsPerfDAO = new IndicatorPerfDevDAO();
+                var list = indicatorsPerfDAO.defectOfTSInTIFbyListDevManufSystemProject(parameters);
+                indicatorsPerfDAO.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, list);
+            }
+
 
         #endregion
+
+
+
+
+
+
 
     }
 

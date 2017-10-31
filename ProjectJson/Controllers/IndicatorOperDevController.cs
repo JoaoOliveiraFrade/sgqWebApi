@@ -41,6 +41,7 @@ namespace ProjectWebApi.Controllers
         
         #endregion
 
+
         #region AverangeTime
 
             [HttpGet]
@@ -84,6 +85,7 @@ namespace ProjectWebApi.Controllers
             }
 
         #endregion
+
 
         #region Reopened
 
@@ -213,183 +215,161 @@ namespace ProjectWebApi.Controllers
 
         #endregion
 
-        #region TSInTI
-
-            [HttpGet]
-            [Route("indicatorOperDev/defectOfTSInTI/fbyProject/{subproject}/{delivery}")]
-            [ResponseType(typeof(DefectOfTSInTI))]
-            public HttpResponseMessage defectOfTSInTIFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var densityDefects = indicatorOperDevDAO.defectOfTSInTIFbyProject(subproject, delivery);
-                indicatorOperDevDAO.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, densityDefects);
-            }
-
-            [HttpPost]
-            [Route("indicatorOperDev/defectOfTSInTI/fbyListDevManufSystemProject")]
-            [ResponseType(typeof(IList<defectOfTSInTI>))]
-            public HttpResponseMessage defectOfTSInTI_fbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var list = indicatorOperDevDAO.defectOfTSInTI_fbyListDevManufSystemProject(parameters);
-                indicatorOperDevDAO.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
-            }
-
-        #endregion
 
         #region DetectableInDev
 
-        [HttpGet]
-            [Route("indicatorOperDev/defectsDetectableInDev")]
-            public List<DetectableInDev2> getDetectableInDev() {
-                string sql = @"
-                    select 
-	                    --'{' +
-	                    --'date:''' + substring(dt_final,4,2) + '/' + substring(dt_final,7,2) + ''', ' +
-	                    --'devManuf:''' + fabrica_desenvolvimento + ''', ' +
-	                    --'system:''' + sistema_defeito + ''', ' +
-	                    --'project:''' + convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) + ''', ' +
-	                    --'subproject:''' + subprojeto + ''', ' +
-	                    --'delivery:''' + entrega + ''', ' +
-	                    --'qtyTotal:' + convert(varchar,count(*)) + ',' + 
-	                    --'qty:' + 
-	                    --	convert(varchar,
-	                    --		sum(
-	                    --			case when Erro_Detectavel_Em_Desenvolvimento = 'SIM'
-	                    --				then 1
-	                    --				else 0
-	                    --			end	
-	                    --		)
-	                    --	) + ',' +
-	                    --'percentReference:5,' +
-	                    --'qtyReference:' + convert(varchar,round(convert(float,count(*) * 0.05),2)) + 
-	                    --'}, ' as json,
-	                    substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
-	                    fabrica_desenvolvimento as devManuf,
-	                    sistema_defeito as system,
-	                    convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
-	                    subprojeto as subproject,
-	                    entrega as delivery,
-	                    count(*) as qtyTotal,
-	                    sum(
-		                    case when Erro_Detectavel_Em_Desenvolvimento = 'SIM'
-			                    then 1
-			                    else 0
-		                    end	
-	                    ) as qty,
-	                    5 as percentReference,
-	                    round(convert(float,count(*) * 0.05),2) as qtyReference
-                    from 
-	                    alm_defeitos 
-                    where 
-	                    ciclo in ('TI', 'UAT') and
-	                    status_atual = 'CLOSED' and 
-	                    dt_final <> ''
-                    group by
-	                    substring(dt_final,4,2),
-	                    substring(dt_final,7,2),
-	                    subprojeto,
-	                    entrega,
-	                    fabrica_desenvolvimento,
-	                    sistema_defeito
-                    order by 
-	                    substring(dt_final,7,2),
-	                    substring(dt_final,4,2),
-	                    fabrica_desenvolvimento
-                ";
+         //   [HttpGet]
+         //   [Route("indicatorOperDev/defectsDetectableInDev")]
+         //   public List<DetectableInDev2> getDetectableInDev() {
+         //       string sql = @"
+         //           select 
+	        //            --'{' +
+	        //            --'date:''' + substring(dt_final,4,2) + '/' + substring(dt_final,7,2) + ''', ' +
+	        //            --'devManuf:''' + fabrica_desenvolvimento + ''', ' +
+	        //            --'system:''' + sistema_defeito + ''', ' +
+	        //            --'project:''' + convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) + ''', ' +
+	        //            --'subproject:''' + subprojeto + ''', ' +
+	        //            --'delivery:''' + entrega + ''', ' +
+	        //            --'qtyTotal:' + convert(varchar,count(*)) + ',' + 
+	        //            --'qty:' + 
+	        //            --	convert(varchar,
+	        //            --		sum(
+	        //            --			case when Erro_Detectavel_Em_Desenvolvimento = 'SIM'
+	        //            --				then 1
+	        //            --				else 0
+	        //            --			end	
+	        //            --		)
+	        //            --	) + ',' +
+	        //            --'percentReference:5,' +
+	        //            --'qtyReference:' + convert(varchar,round(convert(float,count(*) * 0.05),2)) + 
+	        //            --'}, ' as json,
+	        //            substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
+	        //            fabrica_desenvolvimento as devManuf,
+	        //            sistema_defeito as system,
+	        //            convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
+	        //            subprojeto as subproject,
+	        //            entrega as delivery,
+	        //            count(*) as qtyTotal,
+	        //            sum(
+		       //             case when Erro_Detectavel_Em_Desenvolvimento = 'SIM'
+			      //              then 1
+			      //              else 0
+		       //             end	
+	        //            ) as qty,
+	        //            5 as percentReference,
+	        //            round(convert(float,count(*) * 0.05),2) as qtyReference
+         //           from 
+	        //            alm_defeitos 
+         //           where 
+	        //            ciclo in ('TI', 'UAT') and
+	        //            status_atual = 'CLOSED' and 
+	        //            dt_final <> ''
+         //           group by
+	        //            substring(dt_final,4,2),
+	        //            substring(dt_final,7,2),
+	        //            subprojeto,
+	        //            entrega,
+	        //            fabrica_desenvolvimento,
+	        //            sistema_defeito
+         //           order by 
+	        //            substring(dt_final,7,2),
+	        //            substring(dt_final,4,2),
+	        //            fabrica_desenvolvimento
+         //       ";
 
-                var Connection = new Connection(Bancos.Sgq);
-                List<DetectableInDev2> List = Connection.Executar<DetectableInDev2>(sql);
-                Connection.Dispose();
+         //       var Connection = new Connection(Bancos.Sgq);
+         //       List<DetectableInDev2> List = Connection.Executar<DetectableInDev2>(sql);
+         //       Connection.Dispose();
 
-                return List;
-            }
+         //       return List;
+         //   }
 
-            [HttpGet]
-            [Route("indicatorOperDev/defectsDetectableInDev/{dateBegin}/{dateEnd}")]
-            public List<DetectableInDev2> getDetectableInDevByDate(string dateBegin, string dateEnd) {
-                string sql = @"
-                    select 
-	                    substring(dt_final,1,2) + '/' + substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
-	                    fabrica_desenvolvimento as devManuf,
-	                    sistema_defeito as system,
-	                    convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
-	                    subprojeto as subproject,
-	                    entrega as delivery,
-	                    count(*) as qtyTotal,
-	                    sum(
-		                    case when Erro_Detectavel_Em_Desenvolvimento = 'SIM'
-			                    then 1
-			                    else 0
-		                    end	
-	                    ) as qty,
-	                    5 as percentReference,
-	                    round(convert(float,count(*) * 0.05),2) as qtyReference
-                    from 
-	                    alm_defeitos 
-                    where 
-	                    ciclo in ('TI', 'UAT') and
-	                    status_atual = 'CLOSED' and 
-	                    dt_final <> '' and
-					    substring(dt_final,7,2) + substring(dt_final,4,2) + substring(dt_final,1,2) >= '@dateBegin' and
-					    substring(dt_final,7,2) + substring(dt_final,4,2) + substring(dt_final,1,2) <= '@dateEnd'
-                    group by
-				        substring(dt_final,1,2),
-	                    substring(dt_final,4,2),
-	                    substring(dt_final,7,2),
-	                    subprojeto,
-	                    entrega,
-	                    fabrica_desenvolvimento,
-	                    sistema_defeito
-                    order by 
-	                    substring(dt_final,7,2),
-	                    substring(dt_final,4,2),
-					    substring(dt_final,1,2),
-	                    fabrica_desenvolvimento
-                ";
+         //   [HttpGet]
+         //   [Route("indicatorOperDev/defectsDetectableInDev/{dateBegin}/{dateEnd}")]
+         //   public List<DetectableInDev2> getDetectableInDevByDate(string dateBegin, string dateEnd) {
+         //       string sql = @"
+         //           select 
+	        //            substring(dt_final,1,2) + '/' + substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
+	        //            fabrica_desenvolvimento as devManuf,
+	        //            sistema_defeito as system,
+	        //            convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
+	        //            subprojeto as subproject,
+	        //            entrega as delivery,
+	        //            count(*) as qtyTotal,
+	        //            sum(
+		       //             case when Erro_Detectavel_Em_Desenvolvimento = 'SIM'
+			      //              then 1
+			      //              else 0
+		       //             end	
+	        //            ) as qty,
+	        //            5 as percentReference,
+	        //            round(convert(float,count(*) * 0.05),2) as qtyReference
+         //           from 
+	        //            alm_defeitos 
+         //           where 
+	        //            ciclo in ('TI', 'UAT') and
+	        //            status_atual = 'CLOSED' and 
+	        //            dt_final <> '' and
+					    //substring(dt_final,7,2) + substring(dt_final,4,2) + substring(dt_final,1,2) >= '@dateBegin' and
+					    //substring(dt_final,7,2) + substring(dt_final,4,2) + substring(dt_final,1,2) <= '@dateEnd'
+         //           group by
+				     //   substring(dt_final,1,2),
+	        //            substring(dt_final,4,2),
+	        //            substring(dt_final,7,2),
+	        //            subprojeto,
+	        //            entrega,
+	        //            fabrica_desenvolvimento,
+	        //            sistema_defeito
+         //           order by 
+	        //            substring(dt_final,7,2),
+	        //            substring(dt_final,4,2),
+					    //substring(dt_final,1,2),
+	        //            fabrica_desenvolvimento
+         //       ";
 
-                sql = sql.Replace("@dateBegin", dateBegin);
-                sql = sql.Replace("@dateEnd", dateEnd);
+         //       sql = sql.Replace("@dateBegin", dateBegin);
+         //       sql = sql.Replace("@dateEnd", dateEnd);
 
-                var Connection = new Connection(Bancos.Sgq);
-                List<DetectableInDev2> List = Connection.Executar<DetectableInDev2>(sql);
-                Connection.Dispose();
+         //       var Connection = new Connection(Bancos.Sgq);
+         //       List<DetectableInDev2> List = Connection.Executar<DetectableInDev2>(sql);
+         //       Connection.Dispose();
 
-                return List;
-            }
+         //       return List;
+         //   }
 
 
-            [HttpPut]
-            [Route("indicatorOperDev/DefectsDetectableInDevIterations/{subproject}/{delivery}")]
-            [ResponseType(typeof(DetectableInDev2))]
-            public HttpResponseMessage getDetectableInDevByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations) {
-                var projectDAO = new ProjectDAO();
-                var item = projectDAO.getDetectableInDevByProjectIterations(subproject, delivery, iterations);
-                projectDAO.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, item);
-            }
+         //   [HttpPut]
+         //   [Route("indicatorOperDev/DefectsDetectableInDevIterations/{subproject}/{delivery}")]
+         //   [ResponseType(typeof(DetectableInDev2))]
+         //   public HttpResponseMessage getDetectableInDevByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations) {
+         //       var projectDAO = new ProjectDAO();
+         //       var item = projectDAO.getDetectableInDevByProjectIterations(subproject, delivery, iterations);
+         //       projectDAO.Dispose();
+         //       return request.CreateResponse(HttpStatusCode.OK, item);
+         //   }
 
-            [HttpGet]
-            [Route("indicatorOperDev/defectsDetectableInDev/{subproject}/{delivery}")]
-            [ResponseType(typeof(DetectableInDev2))]
-            public HttpResponseMessage defectsDetectableInDev(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var detectableInDev = indicatorOperDevDAO.getDetectableInDevByProject(subproject, delivery);
-                indicatorOperDevDAO.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, detectableInDev);
-            }
+         //   [HttpGet]
+         //   [Route("indicatorOperDev/defectsDetectableInDev/{subproject}/{delivery}")]
+         //   [ResponseType(typeof(DetectableInDev2))]
+         //   public HttpResponseMessage defectsDetectableInDev(HttpRequestMessage request, string subproject, string delivery) {
+         //       var indicatorOperDevDAO = new IndicatorOperDevDAO();
+         //       var detectableInDev = indicatorOperDevDAO.getDetectableInDevByProject(subproject, delivery);
+         //       indicatorOperDevDAO.Dispose();
+         //       return request.CreateResponse(HttpStatusCode.OK, detectableInDev);
+         //   }
 
-            [HttpPost]
-            [Route("indicatorOperDev/defectsDetectableInDev/fbyListDevManufSystemProject")]
-            [ResponseType(typeof(IList<DetectableInDev2>))]
-            public HttpResponseMessage defectsDetectableInDevFbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var list = indicatorOperDevDAO.defectsDetectableInDevFbyListDevManufSystemProject(parameters);
-                indicatorOperDevDAO.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
-            }
+         //   [HttpPost]
+         //   [Route("indicatorOperDev/defectsDetectableInDev/fbyListDevManufSystemProject")]
+         //   [ResponseType(typeof(IList<DetectableInDev2>))]
+         //   public HttpResponseMessage defectsDetectableInDevFbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
+         //       var indicatorOperDevDAO = new IndicatorOperDevDAO();
+         //       var list = indicatorOperDevDAO.defectsDetectableInDevFbyListDevManufSystemProject(parameters);
+         //       indicatorOperDevDAO.Dispose();
+         //       return request.CreateResponse(HttpStatusCode.OK, list);
+         //   }
 
         #endregion
+
 
         #region WrongRating
 
@@ -548,6 +528,7 @@ namespace ProjectWebApi.Controllers
 
         #endregion
 
+
         #region NoSolutionForecast
 
             [HttpGet]
@@ -657,11 +638,12 @@ namespace ProjectWebApi.Controllers
 
         #endregion
 
+
         // ===============================
 
         [HttpPost]
 		[Route("indicatorOperDev/defectInsideSLA/fbyListDevManufSystemProject")]
-        [ResponseType(typeof(IList<defectInsideSLA>))]
+        [ResponseType(typeof(IList<DefectInsideSLA>))]
         public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters)
 		{
 			var IndicatorPerfDevDAO = new IndicatorPerfDevDAO();

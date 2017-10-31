@@ -24,6 +24,7 @@ namespace ProjectWebApi.DAOs
 			connection.Dispose();
 		}
 
+
         #region Density
 
             public IList<DefectDensity> defectDensityFbyProject(string subproject, string delivery) {
@@ -44,6 +45,7 @@ namespace ProjectWebApi.DAOs
             }
 
         #endregion
+
 
         #region AverangeTime
 
@@ -118,6 +120,7 @@ namespace ProjectWebApi.DAOs
 
         #endregion
 
+
         #region Reopened
 
             public IList<DefectReopened> defectReopenedFbyProject(string subproject, string delivery) {
@@ -162,26 +165,6 @@ namespace ProjectWebApi.DAOs
 
         #endregion
 
-        #region TSInTI
-
-            public IList<DefectOfTSInTI> defectOfTSInTIFbyProject(string subproject, string delivery) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperDev\defectOfTSInTIFbyProject.sql"), Encoding.Default);
-                sql = sql.Replace("@subproject", subproject);
-                sql = sql.Replace("@delivery", delivery);
-                var result = connection.Executar<DefectOfTSInTI>(sql);
-                return result;
-            }
-
-            public IList<defectOfTSInTI> defectOfTSInTI_fbyListDevManufSystemProject(ListDevManufSystemProject parameters) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperDev\defectOfTSInTI_fbyListDevManufSystemProject.sql"), Encoding.Default);
-                sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
-                sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-                sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-                var list = connection.Executar<defectOfTSInTI>(sql);
-                return list;
-            }
-
-        #endregion
 
         #region DetectableInDev
 

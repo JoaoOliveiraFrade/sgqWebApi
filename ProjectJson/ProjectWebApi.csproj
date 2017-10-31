@@ -227,12 +227,11 @@
     <Compile Include="models\bptValidPlanoEvid.cs" />
     <Compile Include="models\IdName.cs" />
     <Compile Include="models\eMail\Email.cs" />
-    <Compile Include="models\indicatorOperDev\DefectOfTSInTI.cs" />
     <Compile Include="models\indicatorOperDev\DefectReopened.cs" />
     <Compile Include="models\ListDevManufSystemProject.cs" />
     <Compile Include="models\ProjectAndListIteration.cs" />
     <Compile Include="models\ListDevManufSystemProjectIteration.cs" />
-    <Compile Include="models\indicatorOperDev\DefectDensity.cs" />
+    <Compile Include="models\indicator\DefectDensity.cs" />
     <Compile Include="models\indicatorPerfDev\DefectInsideSLA.cs" />
     <Compile Include="models\indicatorPerfDev\DefectOfTSInTI.cs" />
     <Compile Include="models\indicatorOperTest\Parameters.cs" />
@@ -300,6 +299,7 @@
     <Content Include="sqls\devManuf\allOfQueue.sql" />
     <Content Include="sqls\devManuf\all.sql" />
     <Content Include="sqls\indicatorPerfDev\defectInsideSLAFbyProject.sql" />
+    <Content Include="sqls\indicatorPerfDev\defectOfTSInTIFbyProject.sql" />
     <Content Include="sqls\indicatorPerfDev\defManufs.sql" />
     <Content Include="sqls\IndicatorOperDev\defectAverangeTimeFbyListDevManufSystemProjectIteration.sql" />
     <Content Include="sqls\IndicatorOperDev\defectAverangeTimeFbyProjectAndListIteration.sql" />
@@ -307,7 +307,6 @@
     <Content Include="sqls\IndicatorOperDev\defectAverangeTimeFbyListDevManufSystemProject.sql" />
     <Content Include="sqls\IndicatorOperDev\defectDensityFbyListDevManufSystemProject.sql" />
     <Content Include="sqls\IndicatorOperDev\defectDensityFbyListDevManufSystemProject_.sql" />
-    <Content Include="sqls\IndicatorOperDev\defectOfTSInTIFbyProject.sql" />
     <Content Include="sqls\IndicatorOperDev\defectReopenedFbyProject.sql" />
     <Content Include="sqls\IndicatorOperDev\defectDensityFbyProject.sql" />
     <Content Include="sqls\IndicatorOperTest\defectAverangeRetestTimeFbyProject.sql" />
@@ -321,7 +320,7 @@
     <Content Include="sqls\indicatorPerfDev\projects.sql" />
     <Content Include="sqls\indicatorPerfDev\data.sql" />
     <Content Include="sqls\indicatorPerfDev\defectInsideSLAFbyListTestManufSystemProject.sql" />
-    <Content Include="sqls\indicatorPerfDev\defectOfTSInTI_fbyListDevManufSystemProject.sql" />
+    <Content Include="sqls\indicatorPerfDev\defectOfTSInTIFbyListDevManufSystemProject.sql" />
     <Content Include="sqls\IndicatorOperTest\defectAverangeRetestTimeFbyListTestManufSystemProject.sql" />
     <Content Include="sqls\IndicatorOperTest\defectUATFbyListTestManufSystemProject.sql" />
     <Content Include="sqls\IndicatorOperTest\defectUnfoundedFbyListTestManufSystemProject.sql" />

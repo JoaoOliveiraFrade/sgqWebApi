@@ -4,22 +4,18 @@ select distinct
 from
     (
 		select distinct 
-			sistema as system, 
-			isnull(fabrica_desenvolvimento,'') as devManuf 
+			(case when IsNull(sistema,'') <> '' then sistema else 'NÃO IDENTIFICADO' end) as system, 
+			(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) as devManuf 
 		from 
 			alm_cts 
-		where 
-			isnull(sistema,'') <> ''
 		
 		union all
 		
 		select distinct 
-			sistema_defeito as system, 
-			isnull(fabrica_desenvolvimento,'') as devManuf 
+			(case when IsNull(sistema_defeito,'') <> '' then sistema_defeito else 'NÃO IDENTIFICADO' end) as system, 
+			(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) as devManuf 
 		from 
 			alm_defeitos 
-		where 
-			isnull(sistema_defeito,'') <> ''
     ) aux
 where
     devManuf in (@listDevManufs)

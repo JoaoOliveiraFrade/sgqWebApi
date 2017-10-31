@@ -24,6 +24,7 @@ namespace ProjectWebApi.DAOs
 			connection.Dispose();
 		}
 
+
         #region DefectDensity
 
             public IList<DefectDensity> defectDensityFbyProject(string subproject, string delivery) {
@@ -70,16 +71,24 @@ namespace ProjectWebApi.DAOs
 
         #region DefectOfTSInTI
 
-            public IList<defectOfTSInTI> defectOfTSInTI_fbyListDevManufSystemProject(ListDevManufSystemProject parameters)
-		    {
-			    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfDev\defectOfTSInTI_fbyListDevManufSystemProject.sql"), Encoding.Default);
-			    sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
-			    sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-			    sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-			    var list = connection.Executar<defectOfTSInTI>(sql);
-			    return list;
-		    }
+        public IList<DefectOfTSInTI> defectOfTSInTIFbyProject(string subproject, string delivery) {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfDev\defectOfTSInTIFbyProject.sql"), Encoding.Default);
+                sql = sql.Replace("@subproject", subproject);
+                sql = sql.Replace("@delivery", delivery);
+                var result = connection.Executar<DefectOfTSInTI>(sql);
+                return result;
+            }
+
+            public IList<DefectOfTSInTI> defectOfTSInTIFbyListDevManufSystemProject(ListDevManufSystemProject parameters) {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfDev\defectOfTSInTIFbyListDevManufSystemProject.sql"), Encoding.Default);
+                sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
+                sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
+                sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
+                var list = connection.Executar<DefectOfTSInTI>(sql);
+                return list;
+            }
 
         #endregion
+
     }
 }

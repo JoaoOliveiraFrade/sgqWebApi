@@ -55,10 +55,10 @@ select
 	,convert(varchar, cast(substring(subprojectDelivery,4,8) as int)) + ' ' + convert(varchar,cast(substring(subprojectDelivery,19,8) as int)) as subprojectDelivery
 	,severity
 	,count(*) as qtyDefect
-	,sum(withinSLA) as qtyWithinSLA
+	,sum(insideSLA) as qtyInsideSLA
+	,round(convert(float, sum(insideSLA)) / (case when count(*) <> 0 then count(*) else 1 end) * 100, 2) as percInsideSLA
 from
 	(
-
 		select
 			month
 			,year
@@ -71,7 +71,7 @@ from
 				when (severity = '3-HIGH' and sum(timeMin) > 240) or (severity = '2-MEDIUM' and sum(timeMin) > 480) or (severity = '1-LOW' and sum(timeMin) > 960)
 				then 0
 				else 1
-			end as withinSLA
+			end as insideSLA
 		from
 			@t
 		where
