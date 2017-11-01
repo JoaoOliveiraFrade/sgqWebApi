@@ -296,9 +296,11 @@
     <Content Include="sqls\defectQueue\all.sql" />
     <Content Include="sqls\defectTrafficLight\all.sql" />
     <Content Include="sqls\defectStatus\all.sql" />
-    <Content Include="sqls\devManuf\allOfQueue.sql" />
+    <Content Include="sqls\devManuf\allFromAgent.sql" />
     <Content Include="sqls\devManuf\all.sql" />
     <Content Include="sqls\indicatorPerfDev\defectInsideSLAFbyProject.sql" />
+    <Content Include="sqls\indicatorPerfDev\defectOfTSInTIAgentFbyListDevManufSystemProject.sql" />
+    <Content Include="sqls\indicatorPerfDev\defectOfTSInTIAgentFbyProject.sql" />
     <Content Include="sqls\indicatorPerfDev\defectOfTSInTIFbyProject.sql" />
     <Content Include="sqls\indicatorPerfDev\defManufs.sql" />
     <Content Include="sqls\IndicatorOperDev\defectAverangeTimeFbyListDevManufSystemProjectIteration.sql" />
@@ -331,8 +333,8 @@
     <Content Include="sqls\project\iterationsFbyProject.sql" />
     <Content Include="sqls\project\byIds.sql" />
     <Content Include="sqls\project\temp.sql" />
-    <Content Include="sqls\project\ofQueueFbyDevManufsAndSystems.sql" />
-    <Content Include="sqls\project\ofQueueGroupDevManufsAndSystems.sql" />
+    <Content Include="sqls\project\fromAgentFbyDevManufsAndSystems.sql" />
+    <Content Include="sqls\project\fromAgentGroupDevManufsAndSystems.sql" />
     <Content Include="sqls\project\fbySubprojectDelivery.sql" />
     <Content Include="sqls\project\fbyDevManufsAndSystems.sql" />
     <Content Include="sqls\project\statusGroupDayByProject.sql" />
@@ -340,9 +342,10 @@
     <Content Include="sqls\pulledChain\chatCfdUpdate.sql" />
     <Content Include="sqls\pulledChain\update.sql" />
     <Content Include="sqls\pulledChain\select.sql" />
-    <Content Include="sqls\system\ofQueueGroupDevManufs.sql" />
-    <Content Include="sqls\system\ofDevManufs.sql" />
-    <Content Include="sqls\system\ofTestManufs.sql" />
+    <Content Include="sqls\system\fromAgentFbyDevManufs.sql" />
+    <Content Include="sqls\system\fromAgentGbyDevManufs.sql" />
+    <Content Include="sqls\system\fbyDevManufs.sql" />
+    <Content Include="sqls\system\fbyTestManufs.sql" />
     <Content Include="sqls\system\all.sql" />
     <Content Include="sqls\project\all.sql" />
     <Content Include="sqls\project\ofTestManufsAndSystems.sql" />

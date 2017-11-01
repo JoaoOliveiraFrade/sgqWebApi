@@ -18,6 +18,6 @@ from
 			alm_defeitos 
     ) aux
 where
-    devManuf in (@listDevManufs)
+    devManuf in (@devManufs)
 order by
     1

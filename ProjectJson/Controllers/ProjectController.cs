@@ -41,25 +41,25 @@ namespace ProjectWebApi.Controllers
         }
 
         [HttpPost]
-        [Route("project/ofTestManufsAndSystems")]
+        [Route("project/fromTestManufsAndSystems")]
         [ResponseType(typeof(IList<Project>))]
-        public HttpResponseMessage ofTestManufsAndSystems(HttpRequestMessage request, testManufsAndSystems parameters)
+        public HttpResponseMessage fromTestManufsAndSystems(HttpRequestMessage request, testManufsAndSystems parameters)
         {
             var projectDAO = new ProjectDAO();
 
-            var projects = projectDAO.ofTestManufsAndSystems(parameters);
+            var projects = projectDAO.fromTestManufsAndSystems(parameters);
             projectDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
         [HttpPost]
-        [Route("project/ofQueueFbyDevManufsAndSystems")]
+        [Route("project/fromAgentFbyDevManufsAndSystems")]
         [ResponseType(typeof(IList<Project>))]
-        public HttpResponseMessage ofQueueFbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters)
+        public HttpResponseMessage fromAgentFbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters)
         {
             var projectDAO = new ProjectDAO();
 
-            var result = projectDAO.ofQueueFbyDevManufsAndSystems(parameters);
+            var result = projectDAO.fromAgentFbyDevManufsAndSystems(parameters);
             projectDAO.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }

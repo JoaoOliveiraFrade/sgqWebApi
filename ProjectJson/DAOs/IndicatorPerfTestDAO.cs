@@ -32,8 +32,8 @@ namespace ProjectWebApi.DAOs
   //          return result;
   //      }
 
-  //      public IList<DefectDensity> defectDensityFbyListDevManufSystemProject(ListDevManufSystemProject parameters) {
-  //          string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfTest\defectDensityFbyListDevManufSystemProject.sql"), Encoding.Default);
+  //      public IList<DefectDensity> defectDensityFbydevManufsystemProject(devManufsystemProject parameters) {
+  //          string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfTest\defectDensityFbydevManufsystemProject.sql"), Encoding.Default);
   //          sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
   //          sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
   //          sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -41,9 +41,9 @@ namespace ProjectWebApi.DAOs
   //          return result;
   //      }
 
-  //      public IList<defectOfTSInTI> defectOfTSInTI_fbyListDevManufSystemProject(ListDevManufSystemProject parameters)
+  //      public IList<defectOfTSInTI> defectOfTSInTI_fbydevManufsystemProject(devManufsystemProject parameters)
 		//{
-		//	string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfTest\defectOfTSInTI_fbyListDevManufSystemProject.sql"), Encoding.Default);
+		//	string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfTest\defectOfTSInTI_fbydevManufsystemProject.sql"), Encoding.Default);
 		//	sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
 		//	sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
 		//	sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");

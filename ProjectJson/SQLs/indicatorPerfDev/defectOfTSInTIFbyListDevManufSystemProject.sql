@@ -13,6 +13,7 @@ where
 	status_atual = 'CLOSED'
 	and dt_final <> ''
 	and ciclo in ('TI', 'UAT')
+	and origem like '%Construção%'
 	and subprojeto + entrega collate Latin1_General_CI_AS in (@selectedProjects)
 	and sistema_defeito in (@selectedSystems)
 	and (case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) in (@selectedTestManufs)

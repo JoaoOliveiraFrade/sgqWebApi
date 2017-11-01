@@ -31,9 +31,9 @@ namespace ProjectWebApi.DAOs
             return listProjects;
         }
 
-		public IList<Project> ofTestManufsAndSystems(testManufsAndSystems parameters)
+		public IList<Project> fromTestManufsAndSystems(testManufsAndSystems parameters)
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\ofTestManufsAndSystems.sql"), Encoding.Default);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\fromTestManufsAndSystems.sql"), Encoding.Default);
 			sql = sql.Replace("@testManufs", "'" + string.Join("','", parameters.testManufs) + "'");
 			sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
 			var result = connection.Executar<Project>(sql);
@@ -49,9 +49,9 @@ namespace ProjectWebApi.DAOs
             return result;
         }
 
-        public IList<Project> ofQueueFbyDevManufsAndSystems(devManufsAndSystems parameters)
+        public IList<Project> fromAgentFbyDevManufsAndSystems(devManufsAndSystems parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\ofQueueFbyDevManufsAndSystems.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\fromAgentFbyDevManufsAndSystems.sql"), Encoding.Default);
             sql = sql.Replace("@devManufs", "'" + string.Join("','", parameters.devManufs) + "'");
             sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
             var result = connection.Executar<Project>(sql);

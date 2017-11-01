@@ -22,12 +22,12 @@ namespace ProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("devManuf/allOfQueue")]
+        [Route("devManuf/allfromAgent")]
         [ResponseType(typeof(IList<IdName>))]
-        public HttpResponseMessage allOfQueue(HttpRequestMessage request)
+        public HttpResponseMessage allfromAgent(HttpRequestMessage request)
         {
             var dao = new DevManufDAO();
-            var list = dao.allOfQueue();
+            var list = dao.allfromAgent();
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }

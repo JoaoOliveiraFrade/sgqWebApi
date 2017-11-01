@@ -27,9 +27,9 @@ namespace ProjectWebApi.DAOs
             var result = connection.Executar<IdName>(sql);
             return result;
         }
-        public IList<IdName> allOfQueue()
+        public IList<IdName> allfromAgent()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\devManuf\allOfQueue.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\devManuf\allfromAgent.sql"), Encoding.Default);
             var result = connection.Executar<IdName>(sql);
             return result;
         }

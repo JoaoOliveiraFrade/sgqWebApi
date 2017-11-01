@@ -24,37 +24,38 @@ namespace ProjectWebApi.DAOs
         public IList<IdName> all()
         {
 			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\all.sql"), Encoding.Default);
-			var list = connection.Executar<IdName>(sql);
-            return list;
+            return connection.Executar<IdName>(sql);
         }
 
-        public IList<IdName> ofTestManufs(List<string> listTestManufs)
+        public IList<IdName> fbyTestManufs(List<string> testManufs)
         {
-            if (listTestManufs == null)
+            if (testManufs == null)
                 return null;
 
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\ofTestManufs.sql"), Encoding.Default);
-			sql = sql.Replace("@listTestManufs", "'" + string.Join("','", listTestManufs) + "'");
-			var list = connection.Executar<IdName>(sql);
-            return list;
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fbyTestManufs.sql"), Encoding.Default);
+			sql = sql.Replace("@testManufs", "'" + string.Join("','", testManufs) + "'");
+            return connection.Executar<IdName>(sql);
         }
 
-        public IList<IdName> ofDevManufs(List<string> listDevManufs)
+        public IList<IdName> fbyDevManufs(List<string> devManufs)
         {
-            if (listDevManufs == null)
+            if (devManufs == null)
                 return null;
 
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\ofDevManufs.sql"), Encoding.Default);
-            sql = sql.Replace("@listDevManufs", "'" + string.Join("','", listDevManufs) + "'");
-            var list = connection.Executar<IdName>(sql);
-            return list;
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fbyDevManufs.sql"), Encoding.Default);
+            sql = sql.Replace("@devManufs", "'" + string.Join("','", devManufs) + "'");
+            return connection.Executar<IdName>(sql);
         }
 
-        public IList<SystemGroupDevManuf> ofQueueGroupDevManufs()
+        public IList<IdName> fromAgentFbyDevManufs(List<string> devManufs) {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fromAgentFbyDevManufs.sql"), Encoding.Default);
+            return connection.Executar<IdName>(sql);
+        }
+
+        public IList<SystemGroupDevManuf> fromAgentGbyDevManufs()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\ofQueueGroupDevManufs.sql"), Encoding.Default);
-            var list = connection.Executar<SystemGroupDevManuf>(sql);
-            return list;
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fromAgentGbyDevManufs.sql"), Encoding.Default);
+            return connection.Executar<SystemGroupDevManuf>(sql);
         }
     }
 }

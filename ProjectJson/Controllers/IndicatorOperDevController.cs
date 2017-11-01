@@ -30,11 +30,11 @@ namespace ProjectWebApi.Controllers
             }
 
             [HttpPost]
-            [Route("indicatorOperDev/defectDensity/fbyListDevManufSystemProject")]
+            [Route("indicatorOperDev/defectDensity/fbydevManufsystemProject")]
             [ResponseType(typeof(IList<DefectDensity>))]
-            public HttpResponseMessage defectDensityFbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
+            public HttpResponseMessage defectDensityFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
                 var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var list = indicatorOperDevDAO.defectDensityFbyListDevManufSystemProject(parameters);
+                var list = indicatorOperDevDAO.defectDensityFbydevManufsystemProject(parameters);
                 indicatorOperDevDAO.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
@@ -65,21 +65,21 @@ namespace ProjectWebApi.Controllers
             }
 
             [HttpPost]
-            [Route("indicatorOperDev/defectAverangeTime/fbyListDevManufSystemProject")]
+            [Route("indicatorOperDev/defectAverangeTime/fbydevManufsystemProject")]
             [ResponseType(typeof(IList<DefectAverangeTime>))]
-            public HttpResponseMessage defectAverangeTimeFbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
+            public HttpResponseMessage defectAverangeTimeFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
                 var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var list = indicatorOperDevDAO.defectAverangeTimeFbyListDevManufSystemProject(parameters);
+                var list = indicatorOperDevDAO.defectAverangeTimeFbydevManufsystemProject(parameters);
                 indicatorOperDevDAO.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
             [HttpPost]
-            [Route("indicatorOperDev/defectAverangeTime/fbyListDevManufSystemProjectIteration")]
+            [Route("indicatorOperDev/defectAverangeTime/fbydevManufsystemProjectIteration")]
             [ResponseType(typeof(IList<DefectAverangeTime>))]
-            public HttpResponseMessage defectAverangeTimeFbyListDevManufSystemProjectIterations(HttpRequestMessage request, ListDevManufSystemProjectIteration parameters) {
+            public HttpResponseMessage defectAverangeTimeFbydevManufsystemProjectIterations(HttpRequestMessage request, devManufsystemProjectIteration parameters) {
                 var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var list = indicatorOperDevDAO.defectAverangeTimeFbyListDevManufSystemProjectIteration(parameters);
+                var list = indicatorOperDevDAO.defectAverangeTimeFbydevManufsystemProjectIteration(parameters);
                 indicatorOperDevDAO.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
@@ -359,11 +359,11 @@ namespace ProjectWebApi.Controllers
          //   }
 
          //   [HttpPost]
-         //   [Route("indicatorOperDev/defectsDetectableInDev/fbyListDevManufSystemProject")]
+         //   [Route("indicatorOperDev/defectsDetectableInDev/fbydevManufsystemProject")]
          //   [ResponseType(typeof(IList<DetectableInDev2>))]
-         //   public HttpResponseMessage defectsDetectableInDevFbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
+         //   public HttpResponseMessage defectsDetectableInDevFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
          //       var indicatorOperDevDAO = new IndicatorOperDevDAO();
-         //       var list = indicatorOperDevDAO.defectsDetectableInDevFbyListDevManufSystemProject(parameters);
+         //       var list = indicatorOperDevDAO.defectsDetectableInDevFbydevManufsystemProject(parameters);
          //       indicatorOperDevDAO.Dispose();
          //       return request.CreateResponse(HttpStatusCode.OK, list);
          //   }
@@ -642,9 +642,9 @@ namespace ProjectWebApi.Controllers
         // ===============================
 
         [HttpPost]
-		[Route("indicatorOperDev/defectInsideSLA/fbyListDevManufSystemProject")]
+		[Route("indicatorOperDev/defectInsideSLA/fbydevManufsystemProject")]
         [ResponseType(typeof(IList<DefectInsideSLA>))]
-        public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters)
+        public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, devManufsystemProject parameters)
 		{
 			var IndicatorPerfDevDAO = new IndicatorPerfDevDAO();
 			var list = IndicatorPerfDevDAO.defectInsideSLAFbyListTestManufSystemProject(parameters);

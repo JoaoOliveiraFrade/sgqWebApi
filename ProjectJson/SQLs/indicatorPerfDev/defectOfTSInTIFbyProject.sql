@@ -13,6 +13,7 @@ where
 	status_atual = 'CLOSED'
 	and dt_final <> ''
 	and ciclo in ('TI', 'UAT')
+	and origem like '%Construção%'
 	and subprojeto = '@subproject'
 	and entrega = '@delivery'
 group by

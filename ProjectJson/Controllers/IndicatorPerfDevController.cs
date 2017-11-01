@@ -31,11 +31,11 @@ namespace ProjectWebApi.Controllers
             }
 
             [HttpPost]
-            [Route("indicatorPerfDev/defectDensity/fbyListDevManufSystemProject")]
+            [Route("indicatorPerfDev/defectDensity/fbydevManufsystemProject")]
             [ResponseType(typeof(IList<DefectDensity>))]
-            public HttpResponseMessage defectDensityFbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
+            public HttpResponseMessage defectDensityFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
                 var indicatorsPerfDAO = new IndicatorPerfDevDAO();
-                var list = indicatorsPerfDAO.defectDensityFbyListDevManufSystemProject(parameters);
+                var list = indicatorsPerfDAO.defectDensityFbydevManufsystemProject(parameters);
                 indicatorsPerfDAO.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
@@ -46,9 +46,9 @@ namespace ProjectWebApi.Controllers
         #region defectInsideSLA
 
             [HttpPost]
-            [Route("indicatorPerfDev/defectInsideSLA/fbyListDevManufSystemProject")]
+            [Route("indicatorPerfDev/defectInsideSLA/fbydevManufsystemProject")]
             [ResponseType(typeof(IList<DefectInsideSLA>))]
-            public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
+            public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
                 var IndicatorPerfDevDAO = new IndicatorPerfDevDAO();
                 var list = IndicatorPerfDevDAO.defectInsideSLAFbyListTestManufSystemProject(parameters);
                 IndicatorPerfDevDAO.Dispose();
@@ -71,19 +71,40 @@ namespace ProjectWebApi.Controllers
             }
 
             [HttpPost]
-            [Route("indicatorPerfDev/defectOfTSInTI/fbyListDevManufSystemProject")]
+            [Route("indicatorPerfDev/defectOfTSInTI/fbydevManufsystemProject")]
             [ResponseType(typeof(IList<DefectOfTSInTI>))]
-            public HttpResponseMessage defectOfTSInTIFbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
+            public HttpResponseMessage defectOfTSInTIFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
                 var indicatorsPerfDAO = new IndicatorPerfDevDAO();
-                var list = indicatorsPerfDAO.defectOfTSInTIFbyListDevManufSystemProject(parameters);
+                var list = indicatorsPerfDAO.defectOfTSInTIFbydevManufsystemProject(parameters);
                 indicatorsPerfDAO.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
-
         #endregion
 
+        #region DefectOfTSInTIAgent
 
+        [HttpGet]
+        [Route("indicatorPerfDev/defectOfTSInTIAgent/fbyProject/{subproject}/{delivery}")]
+        [ResponseType(typeof(DefectOfTSInTI))]
+        public HttpResponseMessage defectOfTSInTIAgentFbyProject(HttpRequestMessage request, string subproject, string delivery) {
+            var indicatorsPerfDAO = new IndicatorPerfDevDAO();
+            var densityDefects = indicatorsPerfDAO.defectOfTSInTIAgentFbyProject(subproject, delivery);
+            indicatorsPerfDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, densityDefects);
+        }
+
+        [HttpPost]
+        [Route("indicatorPerfDev/defectOfTSInTIAgent/fbydevManufsystemProject")]
+        [ResponseType(typeof(IList<DefectOfTSInTI>))]
+        public HttpResponseMessage defectOfTSInTIAgentFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
+            var indicatorsPerfDAO = new IndicatorPerfDevDAO();
+            var list = indicatorsPerfDAO.defectOfTSInTIAgentFbydevManufsystemProject(parameters);
+            indicatorsPerfDAO.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, list);
+        }
+
+        #endregion
 
 
 

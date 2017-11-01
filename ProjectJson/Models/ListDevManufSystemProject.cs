@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-	public class ListDevManufSystemProject {
+	public class devManufsystemProject {
 		public List<string> selectedDevManufs { get; set; }
 		public List<string> selectedSystems { get; set; }
 		public List<string> selectedProjects { get; set; }

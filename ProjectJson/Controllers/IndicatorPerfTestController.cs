@@ -28,22 +28,22 @@ namespace ProjectWebApi.Controllers
   //      }
 
   //      [HttpPost]
-  //      [Route("indicatorPerfTest/defectDensity/fbyListDevManufSystemProject")]
+  //      [Route("indicatorPerfTest/defectDensity/fbydevManufsystemProject")]
   //      [ResponseType(typeof(IList<DefectDensity>))]
-  //      public HttpResponseMessage defectDensityFbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters) {
+  //      public HttpResponseMessage defectDensityFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
   //          var indicatorsPerfDAO = new indicatorPerfTestDAO();
-  //          var list = indicatorsPerfDAO.defectDensityFbyListDevManufSystemProject(parameters);
+  //          var list = indicatorsPerfDAO.defectDensityFbydevManufsystemProject(parameters);
   //          indicatorsPerfDAO.Dispose();
   //          return request.CreateResponse(HttpStatusCode.OK, list);
   //      }
 
   //      [HttpPost]
-		//[Route("indicatorPerfTest/defectOfTSInTI/fbyListDevManufSystemProject")]
+		//[Route("indicatorPerfTest/defectOfTSInTI/fbydevManufsystemProject")]
   //      [ResponseType(typeof(IList<defectOfTSInTI>))]
-  //      public HttpResponseMessage defectOfTSInTI_fbyListDevManufSystemProject(HttpRequestMessage request, ListDevManufSystemProject parameters)
+  //      public HttpResponseMessage defectOfTSInTI_fbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters)
 		//{
 		//	var indicatorsPerfDAO = new indicatorPerfTestDAO();
-		//	var list = indicatorsPerfDAO.defectOfTSInTI_fbyListDevManufSystemProject(parameters);
+		//	var list = indicatorsPerfDAO.defectOfTSInTI_fbydevManufsystemProject(parameters);
   //          indicatorsPerfDAO.Dispose();
 		//	return request.CreateResponse(HttpStatusCode.OK, list);
 		//}
