@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-using ProjectWebApi.DAOs;
+using ProjectWebApi.Daos;
 using System.Collections;
 using System.Web.Http.Description;
 
@@ -21,9 +21,9 @@ namespace ProjectWebApi.Controllers
   //      [Route("indicatorPerfTest/defectDensity/fbyProject/{subproject}/{delivery}")]
   //      [ResponseType(typeof(IList<DefectDensity>))]
   //      public HttpResponseMessage defectDensityFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-  //          var indicatorsPerfDAO = new indicatorPerfTestDAO();
-  //          var list = indicatorsPerfDAO.defectDensityFbyProject(subproject, delivery);
-  //          indicatorsPerfDAO.Dispose();
+  //          var indicatorsPerfDao = new indicatorPerfTestDao();
+  //          var list = indicatorsPerfDao.defectDensityFbyProject(subproject, delivery);
+  //          indicatorsPerfDao.Dispose();
   //          return request.CreateResponse(HttpStatusCode.OK, list);
   //      }
 
@@ -31,9 +31,9 @@ namespace ProjectWebApi.Controllers
   //      [Route("indicatorPerfTest/defectDensity/fbydevManufsystemProject")]
   //      [ResponseType(typeof(IList<DefectDensity>))]
   //      public HttpResponseMessage defectDensityFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-  //          var indicatorsPerfDAO = new indicatorPerfTestDAO();
-  //          var list = indicatorsPerfDAO.defectDensityFbydevManufsystemProject(parameters);
-  //          indicatorsPerfDAO.Dispose();
+  //          var indicatorsPerfDao = new indicatorPerfTestDao();
+  //          var list = indicatorsPerfDao.defectDensityFbydevManufsystemProject(parameters);
+  //          indicatorsPerfDao.Dispose();
   //          return request.CreateResponse(HttpStatusCode.OK, list);
   //      }
 
@@ -42,9 +42,9 @@ namespace ProjectWebApi.Controllers
   //      [ResponseType(typeof(IList<defectOfTSInTI>))]
   //      public HttpResponseMessage defectOfTSInTI_fbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters)
 		//{
-		//	var indicatorsPerfDAO = new indicatorPerfTestDAO();
-		//	var list = indicatorsPerfDAO.defectOfTSInTI_fbydevManufsystemProject(parameters);
-  //          indicatorsPerfDAO.Dispose();
+		//	var indicatorsPerfDao = new indicatorPerfTestDao();
+		//	var list = indicatorsPerfDao.defectOfTSInTI_fbydevManufsystemProject(parameters);
+  //          indicatorsPerfDao.Dispose();
 		//	return request.CreateResponse(HttpStatusCode.OK, list);
 		//}
 

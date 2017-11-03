@@ -1,4 +1,4 @@
-﻿using ProjectWebApi.DAOs;
+﻿using ProjectWebApi.Daos;
 using ProjectWebApi.Models;
 using System.Collections.Generic;
 using System.Net;
@@ -15,9 +15,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<IdName>))]
         public HttpResponseMessage all(HttpRequestMessage request)
         {
-            var dao = new TestManufDAO();
-            var list = dao.all();
-            dao.Dispose();
+            var Dao = new TestManufDao();
+            var list = Dao.all();
+            Dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
     }

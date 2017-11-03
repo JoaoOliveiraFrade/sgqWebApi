@@ -1,7 +1,7 @@
 ﻿select 
 	substring(df.dt_final,4,2) as month
 	,substring(df.dt_final,7,2) as year
-	,(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) as devManuf
+	,(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) as devManuf
 	,left(df.Sistema_Defeito,30) as system
 	,df.subprojeto + df.entrega as subprojectDelivery
 	,substring(df.severidade,3,10) as severity
@@ -19,7 +19,7 @@ where
 group by
 	substring(df.dt_final,4,2)
 	,substring(df.dt_final,7,2)
-	,(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end)
+	,(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end)
 	,left(df.Sistema_Defeito,30)
 	,df.subprojeto + df.entrega
 	,substring(df.severidade,3,10)

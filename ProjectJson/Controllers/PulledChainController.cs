@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-using ProjectWebApi.DAOs;
+using ProjectWebApi.Daos;
 using ProjectWebApi.Models.Project;
 using System.Collections;
 using System.Web.Http.Description;
@@ -22,9 +22,9 @@ namespace ProjectWebApi.Controllers
 		[ResponseType(typeof(IList<PulledChain>))]
 		public HttpResponseMessage all(HttpRequestMessage request)
 		{
-			var pulledChainDAO = new PulledChainDAO();
-            IList<PulledChain> projects = pulledChainDAO.getAll();
-            pulledChainDAO.Dispose();
+			var pulledChainDao = new PulledChainDao();
+            IList<PulledChain> projects = pulledChainDao.getAll();
+            pulledChainDao.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, projects);
 		}
 
@@ -33,9 +33,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<chartCFD>))]
         public HttpResponseMessage chartCFD(HttpRequestMessage request)
         {
-            var pulledChainDAO = new PulledChainDAO();
-            IList<chartCFD> projects = pulledChainDAO.chartCFD();
-            pulledChainDAO.Dispose();
+            var pulledChainDao = new PulledChainDao();
+            IList<chartCFD> projects = pulledChainDao.chartCFD();
+            pulledChainDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
@@ -43,15 +43,15 @@ namespace ProjectWebApi.Controllers
 		[Route("pulledChain/update")]
 		public HttpResponseMessage update(PulledChain item)
 		{
-            var pulledChainDAO = new PulledChainDAO();
-            int result = pulledChainDAO.update(item);
+            var pulledChainDao = new PulledChainDao();
+            int result = pulledChainDao.update(item);
 
             if (result == 0) {
-                pulledChainDAO.Dispose();
+                pulledChainDao.Dispose();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             else {
-                pulledChainDAO.Dispose();
+                pulledChainDao.Dispose();
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }

@@ -37,7 +37,7 @@ create index idx_r_ct on #hist(ct)
 select
 	substring(cts.dt_execucao,4,2) as month
 	,substring(cts.dt_execucao,7,2) as year
-	,(case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'NÃO IDENTIFICADA' end) as testManuf
+	,(case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'N/A' end) as testManuf
 	,cts.sistema as system
 	,convert(varchar, cast(substring(cts.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(cts.entrega,8,8) as int)) as subprojectDelivery
 	,sum(case when cts.evidencia_validacao_tecnica <> 'N/A' then 1 else 0 end) as qtyEvidence
@@ -57,10 +57,10 @@ where
 	and cts.ciclo = 'TI'
 	and cts.subprojeto + cts.delivery collate Latin1_General_CI_AS in (@selectedProjects)
 	and cts.sistema in (@selectedSystems)
-	and (case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'NÃO IDENTIFICADA' end) in (@selectedTestManufs)
+	and (case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'N/A' end) in (@selectedTestManufs)
 group by
 	substring(cts.dt_execucao,4,2)
 	,substring(cts.dt_execucao,7,2)
-	,(case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'NÃO IDENTIFICADA' end)
+	,(case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'N/A' end)
 	,cts.sistema
 	,convert(varchar, cast(substring(cts.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(cts.entrega,8,8) as int))

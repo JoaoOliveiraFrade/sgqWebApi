@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-using ProjectWebApi.DAOs;
+using ProjectWebApi.Daos;
 using System.Collections;
 using System.Web.Http.Description;
 
@@ -23,9 +23,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<Grouper>))]
         public HttpResponseMessage getGroupers(HttpRequestMessage request)
         {
-            var GrouperDAO = new GrouperDAO();
-            var Groupers = GrouperDAO.getAll();
-            GrouperDAO.Dispose();
+            var GrouperDao = new GrouperDao();
+            var Groupers = GrouperDao.getAll();
+            GrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, Groupers);
         }
 
@@ -34,9 +34,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(string))]
         public HttpResponseMessage getGroupers(HttpRequestMessage request, string id)
         {
-            var GroupersDAO = new GrouperDAO();
-            var Groupers = GroupersDAO.get(id);
-            GroupersDAO.Dispose();
+            var GroupersDao = new GrouperDao();
+            var Groupers = GroupersDao.get(id);
+            GroupersDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, Groupers);
         }
 
@@ -45,9 +45,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(Grouper))]
         public HttpResponseMessage UpdatetGrouper(HttpRequestMessage request, Grouper Grouper)
         {
-            var GrouperDAO = new GrouperDAO();
-            var createdItem = GrouperDAO.Create(Grouper);
-            GrouperDAO.Dispose();
+            var GrouperDao = new GrouperDao();
+            var createdItem = GrouperDao.Create(Grouper);
+            GrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, createdItem);
         }
 
@@ -55,9 +55,9 @@ namespace ProjectWebApi.Controllers
         [Route("Grouper/update/{id}")]
         public HttpResponseMessage UpdatetGrouper(HttpRequestMessage request, string id, Grouper Grouper)
         {
-            var GrouperDAO = new GrouperDAO();
-            GrouperDAO.Update(id, Grouper);
-            GrouperDAO.Dispose();
+            var GrouperDao = new GrouperDao();
+            GrouperDao.Update(id, Grouper);
+            GrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -65,9 +65,9 @@ namespace ProjectWebApi.Controllers
         [Route("Grouper/{id}")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
-            var GrouperDAO = new GrouperDAO();
-            GrouperDAO.Delete(id);
-            GrouperDAO.Dispose();
+            var GrouperDao = new GrouperDao();
+            GrouperDao.Delete(id);
+            GrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK);
         }
 

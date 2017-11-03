@@ -5,13 +5,13 @@ using System.IO;
 using System.Text;
 using System.Web;
 
-namespace ProjectWebApi.DAOs
+namespace ProjectWebApi.Daos
 {
-    public class SystemDAO
+    public class SystemDao
     {
         private Connection connection;
 
-        public SystemDAO()
+        public SystemDao()
         {
             connection = new Connection(Bancos.Sgq);
         }
@@ -21,41 +21,49 @@ namespace ProjectWebApi.DAOs
             connection.Dispose();
         }
 
-        public IList<IdName> all()
-        {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\all.sql"), Encoding.Default);
-            return connection.Executar<IdName>(sql);
-        }
 
-        public IList<IdName> fbyTestManufs(List<string> testManufs)
-        {
-            if (testManufs == null)
-                return null;
+        #region FromCTAndDefect
 
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fbyTestManufs.sql"), Encoding.Default);
-			sql = sql.Replace("@testManufs", "'" + string.Join("','", testManufs) + "'");
-            return connection.Executar<IdName>(sql);
-        }
+            public IList<Models.System> fromCTAndDefec()
+            {
+			    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fromCTAndDefec.sql"), Encoding.Default);
+                return connection.Executar<Models.System>(sql);
+            }
 
-        public IList<IdName> fbyDevManufs(List<string> devManufs)
-        {
-            if (devManufs == null)
-                return null;
+            public IList<SystemGbyDevManuf> fromCTAndDefectGbyDevManuf()
+            {
+			    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fromCTAndDefectGbyDevManuf.sql"), Encoding.Default);
+                return connection.Executar<Models.SystemGbyDevManuf>(sql);
+            }
 
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fbyDevManufs.sql"), Encoding.Default);
-            sql = sql.Replace("@devManufs", "'" + string.Join("','", devManufs) + "'");
-            return connection.Executar<IdName>(sql);
-        }
+            public IList<SystemGbyTestManuf> fromCTAndDefectGbyTestManuf()
+            {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fromCTAndDefectGbyTestManuf.sql"), Encoding.Default);
+                return connection.Executar<SystemGbyTestManuf>(sql);
+            }
 
-        public IList<IdName> fromAgentFbyDevManufs(List<string> devManufs) {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fromAgentFbyDevManufs.sql"), Encoding.Default);
-            return connection.Executar<IdName>(sql);
-        }
+        #endregion
 
-        public IList<SystemGroupDevManuf> fromAgentGbyDevManufs()
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fromAgentGbyDevManufs.sql"), Encoding.Default);
-            return connection.Executar<SystemGroupDevManuf>(sql);
-        }
+
+        #region FromAgent
+
+            public IList<Models.System> fromAgent() {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fromAgent.sql"), Encoding.Default);
+                return connection.Executar<Models.System>(sql);
+            }
+
+            public IList<SystemGbyDevManuf> fromAgentGbyDevManuf()
+            {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fromAgentGbyDevManuf.sql"), Encoding.Default);
+                return connection.Executar<SystemGbyDevManuf>(sql);
+            }
+
+            public IList<SystemGbyTestManuf> fromAgentGbyTestManuf()
+            {
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\fromAgentGbyTestManuf.sql"), Encoding.Default);
+                return connection.Executar<SystemGbyTestManuf>(sql);
+            }
+
+        #endregion
     }
 }

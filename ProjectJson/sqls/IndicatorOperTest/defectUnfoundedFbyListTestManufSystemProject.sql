@@ -30,7 +30,7 @@ create index idx_r_defeito on #i(defeito)
 select
 	IsNull(right(i.yearMonth,2),'') as month,
 	IsNull(left(i.yearMonth,2),'') as year,
-	(case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'NÃO IDENTIFICADA' end) as testManuf,
+	(case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'N/A' end) as testManuf,
 	sistema_ct as system,
 	convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int)) as subprojectDelivery,
 	count(*) as qtyDefect,
@@ -45,10 +45,10 @@ where
 	df.ciclo = 'TI'
 	and df.subprojeto + df.entrega collate Latin1_General_CI_AS in (@selectedProjects)
 	and df.sistema_ct in (@selectedSystems)
-	and (case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'NÃO IDENTIFICADA' end) in (@selectedTestManufs)
+	and (case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'N/A' end) in (@selectedTestManufs)
 group by
 	i.yearMonth,
-	(case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'NÃO IDENTIFICADA' end),
+	(case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'N/A' end),
 	sistema_ct,
 	convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int))
 order by

@@ -1,7 +1,7 @@
 ﻿select
 	substring(df.dt_final,4,2) as month
 	,substring(df.dt_final,7,2) as year
-	,(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) as devManuf
+	,(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) as devManuf
 	,left(df.Sistema_Defeito,30) as system
 	,convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) as subprojectDelivery
 	,count(*) as qtyDefect
@@ -18,7 +18,7 @@ where
 group by
 	substring(df.dt_final,4,2)
 	,substring(df.dt_final,7,2)
-	,(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end)
+	,(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end)
 	,left(df.Sistema_Defeito,30)
 	,convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int))
 order by

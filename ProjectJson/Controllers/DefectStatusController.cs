@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-using ProjectWebApi.DAOs;
+using ProjectWebApi.Daos;
 using System.Collections;
 using System.Web.Http.Description;
 
@@ -22,9 +22,9 @@ namespace ProjectWebApi.Controllers
 		[ResponseType(typeof(IList<IdName>))]
 		public HttpResponseMessage DefectStatus(HttpRequestMessage request)
 		{
-			var defectStatusDAO = new DefectStatusDAO();
-			var list = defectStatusDAO.All();
-            defectStatusDAO.Dispose();
+			var defectStatusDao = new DefectStatusDao();
+			var list = defectStatusDao.All();
+            defectStatusDao.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
    }

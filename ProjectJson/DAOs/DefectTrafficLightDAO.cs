@@ -8,13 +8,13 @@ using System.IO;
 using System.Text;
 using System.Web;
 
-namespace ProjectWebApi.DAOs
+namespace ProjectWebApi.Daos
 {
-	public class DefectTrafficLightDAO
+	public class DefectTrafficLightDao
     {
 		private Connection connection;
 
-		public DefectTrafficLightDAO()
+		public DefectTrafficLightDao()
 		{
 			connection = new Connection(Bancos.Sgq);
 		}

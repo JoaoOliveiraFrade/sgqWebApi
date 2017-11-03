@@ -5,13 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-namespace ProjectWebApi.DAOs
+namespace ProjectWebApi.Daos
 {
-    public class ProjectXGrouperDAO
+    public class ProjectXGrouperDao
     {
         private Connection connection;
 
-        public ProjectXGrouperDAO()
+        public ProjectXGrouperDao()
         {
             connection = new Connection(Bancos.Sgq);
         }

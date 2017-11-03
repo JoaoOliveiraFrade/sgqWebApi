@@ -52,7 +52,7 @@ from
 					end
 			end as date
 
-			,(case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'NÃO IDENTIFICADA' end) as testManuf
+			,(case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'N/A' end) as testManuf
 			,sistema_ct as system
 			,convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int)) as subprojectDelivery
 			,IsNull(qtyRetestHours, 0.0) as qtyRetestHours
@@ -67,7 +67,7 @@ from
 			and df.status_atual <> 'CANCELLED'
 			and subprojeto + entrega collate Latin1_General_CI_AS in (@selectedProjects)
 			and sistema_ct in (@selectedSystems)
-			and (case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'NÃO IDENTIFICADA' end) in (@selectedTestManufs)
+			and (case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'N/A' end) in (@selectedTestManufs)
 	) aux1
 group by 
 	substring(date,4,2)

@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using ProjectWebApi.DAOs;
+using ProjectWebApi.Daos;
 using ProjectWebApi.Models.Project;
 using System.Collections;
 using System.Web.Http.Description;
@@ -23,9 +23,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<simpProject>))]
         public HttpResponseMessage all(HttpRequestMessage request)
         {
-            var projectDAO = new ProjectDAO();
-            var projects = projectDAO.all();
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var projects = projectDao.all();
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
@@ -33,10 +33,10 @@ namespace ProjectWebApi.Controllers
         [Route("project/fbyDevManufsAndSystems")]
         [ResponseType(typeof(IList<simpProject>))]
         public HttpResponseMessage fbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters) {
-            var projectDAO = new ProjectDAO();
+            var projectDao = new ProjectDao();
 
-            var projects = projectDAO.fbyDevManufsAndSystems(parameters);
-            projectDAO.Dispose();
+            var projects = projectDao.fbyDevManufsAndSystems(parameters);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
@@ -45,10 +45,10 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<Project>))]
         public HttpResponseMessage fromTestManufsAndSystems(HttpRequestMessage request, testManufsAndSystems parameters)
         {
-            var projectDAO = new ProjectDAO();
+            var projectDao = new ProjectDao();
 
-            var projects = projectDAO.fromTestManufsAndSystems(parameters);
-            projectDAO.Dispose();
+            var projects = projectDao.fromTestManufsAndSystems(parameters);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
@@ -57,10 +57,10 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<Project>))]
         public HttpResponseMessage fromAgentFbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters)
         {
-            var projectDAO = new ProjectDAO();
+            var projectDao = new ProjectDao();
 
-            var result = projectDAO.fromAgentFbyDevManufsAndSystems(parameters);
-            projectDAO.Dispose();
+            var result = projectDao.fromAgentFbyDevManufsAndSystems(parameters);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
@@ -69,10 +69,10 @@ namespace ProjectWebApi.Controllers
         //[ResponseType(typeof(IList<Project>))]
         //public HttpResponseMessage fbySubprojectDelivery(HttpRequestMessage request, IList<string> parameters)
         //{
-        //    var projectDAO = new ProjectDAO();
+        //    var projectDao = new ProjectDao();
 
-        //    var projects = projectDAO.fbySubprojectDelivery(parameters);
-        //    projectDAO.Dispose();
+        //    var projects = projectDao.fbySubprojectDelivery(parameters);
+        //    projectDao.Dispose();
         //    return request.CreateResponse(HttpStatusCode.OK, projects);
         //}
 
@@ -209,9 +209,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<Project>))]
         public HttpResponseMessage byIds(HttpRequestMessage request, string ids)
         {
-            var projectDAO = new ProjectDAO();
-            var projects = projectDAO.byIds(ids);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var projects = projectDao.byIds(ids);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
@@ -220,9 +220,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(Project))]
         public HttpResponseMessage getProject(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var project = projectDAO.getProject(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var project = projectDao.getProject(subproject, delivery);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, project);
         }
 
@@ -298,9 +298,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(StatusLastDays))]
         public HttpResponseMessage getStatusLastDaysByProject(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var statusLastDays = projectDAO.getStatusLastDaysByProject(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var statusLastDays = projectDao.getStatusLastDaysByProject(subproject, delivery);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, statusLastDays);
         }
 
@@ -309,9 +309,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<Status>))]
         public HttpResponseMessage getStatusGroupMonthByProject(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getStatusLastMonthByProject(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getStatusLastMonthByProject(subproject, delivery);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -320,9 +320,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<DefectStatus>))]
         public HttpResponseMessage getDefectStatusByProject(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getDefectStatusByProject(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getDefectStatusByProject(subproject, delivery);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -331,9 +331,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<DefectStatus>))]
         public HttpResponseMessage getDefectsGroupOrigin(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getDefectsGroupOrigin(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getDefectsGroupOrigin(subproject, delivery);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -343,9 +343,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<CtsImpactedXDefects>))]
         public HttpResponseMessage getCtsImpactedXDefects(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getCtsImpactedXDefects(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getCtsImpactedXDefects(subproject, delivery);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -355,9 +355,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<DefectsOpen>))]
         public HttpResponseMessage getDefectsOpenInDevManuf(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getDefectsOpenInDevManuf(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getDefectsOpenInDevManuf(subproject, delivery);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -367,9 +367,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<DefectsOpen>))]
         public HttpResponseMessage getDefectsOpenInTestManuf(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getDefectsOpenInTestManuf(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getDefectsOpenInTestManuf(subproject, delivery);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -379,9 +379,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<ProductivityXDefects>))]
         public HttpResponseMessage getProductivityXDefects(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getProductivityXDefects(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getProductivityXDefects(subproject, delivery);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -391,9 +391,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<ProductivityXDefectsGroupWeekly>))]
         public HttpResponseMessage getProductivityXDefectsGroupWeekly(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getProductivityXDefectsGroupWeekly(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getProductivityXDefectsGroupWeekly(subproject, delivery);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -405,9 +405,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<iteration>))]
         public HttpResponseMessage iterations(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.iterations(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.iterations(subproject, delivery);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -417,9 +417,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(List<string>))]
         public HttpResponseMessage iterationsActive(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.iterationsActive(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.iterationsActive(subproject, delivery);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -429,9 +429,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(List<string>))]
         public HttpResponseMessage iterationsSelected(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.iterationsSelected(subproject, delivery);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.iterationsSelected(subproject, delivery);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -555,9 +555,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(StatusLastDays))]
         public HttpResponseMessage getStatusLastDaysByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDAO = new ProjectDAO();
-            var item = projectDAO.getStatusLastDaysByProjectIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var item = projectDao.getStatusLastDaysByProjectIterations(subproject, delivery, iterations);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, item);
         }
 
@@ -566,9 +566,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<Status>))]
         public HttpResponseMessage getStatusGroupMonthByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getStatusGroupMonthByProjectIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getStatusGroupMonthByProjectIterations(subproject, delivery, iterations);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -577,9 +577,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<DefectStatus>))]
         public HttpResponseMessage getDefectStatusByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getDefectStatusByProjectIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getDefectStatusByProjectIterations(subproject, delivery, iterations);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -588,9 +588,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<DefectStatus>))]
         public HttpResponseMessage getDefectsGroupOriginIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getDefectsGroupOriginIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getDefectsGroupOriginIterations(subproject, delivery, iterations);
+            projectDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -599,9 +599,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<CtsImpactedXDefects>))]
         public HttpResponseMessage getCtsImpactedXDefectsIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getCtsImpactedXDefectsIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getCtsImpactedXDefectsIterations(subproject, delivery, iterations);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -611,9 +611,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<DefectsOpen>))]
         public HttpResponseMessage getDefectsOpenInDevManufIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getDefectsOpenInDevManufIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getDefectsOpenInDevManufIterations(subproject, delivery, iterations);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -623,9 +623,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<DefectsOpen>))]
         public HttpResponseMessage getDefectsOpenInTestManufIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getDefectsOpenInTestManufIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getDefectsOpenInTestManufIterations(subproject, delivery, iterations);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -635,9 +635,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<ProductivityXDefects>))]
         public HttpResponseMessage getProductivityXDefectsIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getProductivityXDefectsIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getProductivityXDefectsIterations(subproject, delivery, iterations);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
@@ -647,9 +647,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<ProductivityXDefectsGroupWeekly>))]
         public HttpResponseMessage getProductivityXDefectsGroupWeeklyIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDAO = new ProjectDAO();
-            var list = projectDAO.getProductivityXDefectsGroupWeeklyIterations(subproject, delivery, iterations);
-            projectDAO.Dispose();
+            var projectDao = new ProjectDao();
+            var list = projectDao.getProductivityXDefectsGroupWeeklyIterations(subproject, delivery, iterations);
+            projectDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }

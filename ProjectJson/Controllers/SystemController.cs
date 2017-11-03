@@ -1,4 +1,4 @@
-﻿using ProjectWebApi.DAOs;
+﻿using ProjectWebApi.Daos;
 using ProjectWebApi.Models;
 using System.Collections.Generic;
 using System.Net;
@@ -10,59 +10,79 @@ namespace ProjectWebApi.Controllers
 {
     public class SystemController : ApiController
     {
-        [HttpGet]
-        [Route("system/all")]
-        [ResponseType(typeof(IList<IdName>))]
-        public HttpResponseMessage All(HttpRequestMessage request)
-        {
-            var dao = new SystemDAO();
-            var result = dao.all();
-            dao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
+        #region FromCTAndDefect
 
-        [HttpPost]
-        [Route("system/fbyTestManufs")]
-        [ResponseType(typeof(IList<IdName>))]
-        public HttpResponseMessage fbyTestManufs(HttpRequestMessage request, List<string> listTestManufs)
-        {
-            var dao = new SystemDAO();
-            var result = dao.fbyTestManufs(listTestManufs);
-            dao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
+            [HttpGet]
+            [Route("system/fromCTAndDefec")]
+            [ResponseType(typeof(IList<Models.System>))]
+            public HttpResponseMessage fromCTAndDefec(HttpRequestMessage request)
+            {
+                var Dao = new SystemDao();
+                var result = Dao.fromCTAndDefec();
+                Dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
+            }
 
-        [HttpPost]
-        [Route("system/fbyDevManufs")]
-        [ResponseType(typeof(IList<IdName>))]
-        public HttpResponseMessage fbyDevManufs(HttpRequestMessage request, List<string> devManufs)
-        {
-            var dao = new SystemDAO();
-            var result = dao.fbyDevManufs(devManufs);
-            dao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
+            [HttpGet]
+            [Route("system/fromCTAndDefectGbyDevManuf")]
+            [ResponseType(typeof(IList<SystemGbyDevManuf>))]
+            public HttpResponseMessage fromCTAndDefectGbyDevManuf(HttpRequestMessage request)
+            {
+                var Dao = new SystemDao();
+                var result = Dao.fromCTAndDefectGbyDevManuf();
+                Dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
+            }
 
-        [HttpPost]
-        [Route("system/fromAgentFbyDevManufs")]
-        [ResponseType(typeof(IList<IdName>))]
-        public HttpResponseMessage fromAgentFbyDevManufs(HttpRequestMessage request, List<string> devManufs) {
-            var dao = new SystemDAO();
-            var result = dao.fromAgentFbyDevManufs(devManufs);
-            dao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
+            [HttpGet]
+            [Route("system/fromCTAndDefectGbyTestManuf")]
+            [ResponseType(typeof(IList<SystemGbyTestManuf>))]
+            public HttpResponseMessage fromCTAndDefectGbyTestManuf(HttpRequestMessage request)
+            {
+                var Dao = new SystemDao();
+                var result = Dao.fromCTAndDefectGbyTestManuf();
+                Dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
+            }
 
-        [HttpGet]
-        [Route("system/fromAgentGbyDevManufs")]
-        [ResponseType(typeof(IList<SystemGroupDevManuf>))]
-        public HttpResponseMessage fromAgentGbyDevManufs(HttpRequestMessage request)
-        {
-            var dao = new SystemDAO();
-            var list = dao.fromAgentGbyDevManufs();
-            dao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
+        #endregion
 
+
+        #region FromAgent
+
+            [HttpGet]
+            [Route("system/fromAgent")]
+            [ResponseType(typeof(IList<Models.System>))]
+            public HttpResponseMessage fromAgent(HttpRequestMessage request)
+            {
+                var Dao = new SystemDao();
+                var result = Dao.fromAgent();
+                Dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
+            }
+
+            [HttpGet]
+            [Route("system/fromAgentGbyDevManuf")]
+            [ResponseType(typeof(IList<SystemGbyDevManuf>))]
+            public HttpResponseMessage fromAgentGbyDevManuf(HttpRequestMessage request)
+            {
+                var Dao = new SystemDao();
+                var result = Dao.fromAgentGbyDevManuf();
+                Dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
+            }
+
+            [HttpGet]
+            [Route("system/fromAgentGbyTestManuf")]
+            [ResponseType(typeof(IList<SystemGbyTestManuf>))]
+            public HttpResponseMessage fromAgentGbyTestManuf(HttpRequestMessage request)
+            {
+                var Dao = new SystemDao();
+                var result = Dao.fromAgentGbyTestManuf();
+                Dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
+            }
+
+        #endregion
     }
 }

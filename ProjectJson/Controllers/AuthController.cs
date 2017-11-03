@@ -1,4 +1,4 @@
-﻿using ProjectWebApi.DAOs;
+﻿using ProjectWebApi.Daos;
 using ProjectWebApi.Models.Profile;
 using ProjectWebApi.Models.User;
 using System.Collections.Generic;
@@ -15,9 +15,9 @@ namespace WebApplication1.Controllers
         [Route("auth/users")]
         public IList<User> getUsers()
         {
-            var userDAO = new UserDAO();
-            var user = userDAO.getUsers();
-            userDAO.Dispose();
+            var userDao = new UserDao();
+            var user = userDao.getUsers();
+            userDao.Dispose();
             return user;
         }
 
@@ -25,9 +25,9 @@ namespace WebApplication1.Controllers
         [Route("auth/userByCpf")]
         [ResponseType(typeof(IList<User>))]
         public HttpResponseMessage getUserByCpf(HttpRequestMessage request, User user) {
-            var userDAO = new UserDAO();
-            var result = userDAO.getUserByCpf(user.login, user.cpf);
-            userDAO.Dispose();
+            var userDao = new UserDao();
+            var result = userDao.getUserByCpf(user.login, user.cpf);
+            userDao.Dispose();
             return request.CreateResponse(result != null ? HttpStatusCode.OK : HttpStatusCode.NotFound, result);
         }
 
@@ -36,9 +36,9 @@ namespace WebApplication1.Controllers
         [ResponseType(typeof(IList<Profile>))]
         public HttpResponseMessage getProfilesByUser(HttpRequestMessage request, int userId)
         {
-            var userDAO = new UserDAO();
-            var result = userDAO.getProfilesByUser(userId);
-            userDAO.Dispose();
+            var userDao = new UserDao();
+            var result = userDao.getProfilesByUser(userId);
+            userDao.Dispose();
             return request.CreateResponse(result != null ? HttpStatusCode.OK : HttpStatusCode.NotFound, result);
         }
 
@@ -46,9 +46,9 @@ namespace WebApplication1.Controllers
         [Route("auth/userByPassword/{login}/{password}")]
         public User GetUserByPassword(string login, string password)
         {
-            var userDAO = new UserDAO();
-            var user = userDAO.getUserByPassword(login, password);
-            userDAO.Dispose();
+            var userDao = new UserDao();
+            var user = userDao.getUserByPassword(login, password);
+            userDao.Dispose();
             return user;
         }
     }

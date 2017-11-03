@@ -11,7 +11,7 @@ insert into @t
 select
 	substring(df.dt_final,4,2) as month,
 	substring(df.dt_final,7,2) as year,
-	(case when IsNull(df.fabrica_desenvolvimento,'') <> '' then df.fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) as devManuf,
+	(case when IsNull(df.fabrica_desenvolvimento,'') <> '' then df.fabrica_desenvolvimento else 'N/A' end) as devManuf,
 	left(df.Sistema_Defeito,30) as system,
 	subprojeto + entrega as subprojectDelivery,
 	1 as qtyDefect,
@@ -29,7 +29,7 @@ UNION ALL
 select 
 	substring(yearMonth, 3, 2) as month,
 	substring(yearMonth, 1, 2) as year,
-	(case when IsNull(devManuf,'') <> '' then devManuf else 'NÃO IDENTIFICADA' end) as devManuf,
+	(case when IsNull(devManuf,'') <> '' then devManuf else 'N/A' end) as devManuf,
 	system,
 	subprojeto + entrega as subprojectDelivery,
 	0 as qtyDefect,
@@ -64,7 +64,7 @@ from
 select
 	month,
 	year,
-	(case when IsNull(devManuf,'') <> '' then devManuf else 'NÃO IDENTIFICADA' end) as devManuf,
+	(case when IsNull(devManuf,'') <> '' then devManuf else 'N/A' end) as devManuf,
 	system,
 	convert(varchar, cast(substring(subprojectDelivery,4,8) as int)) + ' ' + convert(varchar,cast(substring(subprojectDelivery,19,8) as int)) as subprojectDelivery,
     sum(qtyDefect) as qtyDefect,
@@ -75,11 +75,11 @@ from
 where
 	subprojectDelivery collate Latin1_General_CI_AS in (@selectedProjects)
 	and system in (@selectedSystems)
-	and (case when IsNull(devManuf,'') <> '' then devManuf else 'NÃO IDENTIFICADA' end) in (@selectedDevManufs)
+	and (case when IsNull(devManuf,'') <> '' then devManuf else 'N/A' end) in (@selectedDevManufs)
 group by
 	month,
 	year,
-    (case when IsNull(devManuf,'') <> '' then devManuf else 'NÃO IDENTIFICADA' end),
+    (case when IsNull(devManuf,'') <> '' then devManuf else 'N/A' end),
 	system,
 	subprojectDelivery
 order by

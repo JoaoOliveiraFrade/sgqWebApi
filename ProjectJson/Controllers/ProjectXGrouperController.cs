@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-using ProjectWebApi.DAOs;
+using ProjectWebApi.Daos;
 using System.Collections;
 using System.Web.Http.Description;
 
@@ -23,9 +23,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<ProjectXGrouper>))]
         public HttpResponseMessage getProjectXGrouper(HttpRequestMessage request)
         {
-            var ProjectXGrouperDAO = new ProjectXGrouperDAO();
-            var list = ProjectXGrouperDAO.GetAll();
-            ProjectXGrouperDAO.Dispose();
+            var ProjectXGrouperDao = new ProjectXGrouperDao();
+            var list = ProjectXGrouperDao.GetAll();
+            ProjectXGrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -34,9 +34,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<ProjectXGrouper>))]
         public HttpResponseMessage getByProject(HttpRequestMessage request, string id)
         {
-            var ProjectXGrouperDAO = new ProjectXGrouperDAO();
-            var list = ProjectXGrouperDAO.GetByProject(id);
-            ProjectXGrouperDAO.Dispose();
+            var ProjectXGrouperDao = new ProjectXGrouperDao();
+            var list = ProjectXGrouperDao.GetByProject(id);
+            ProjectXGrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -45,9 +45,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<ProjectXGrouper>))]
         public HttpResponseMessage getProject(HttpRequestMessage request, string subproject, string delivery)
         {
-            var ProjectXGrouperDAO = new ProjectXGrouperDAO();
-            var list = ProjectXGrouperDAO.GetByProject(subproject, delivery);
-            ProjectXGrouperDAO.Dispose();
+            var ProjectXGrouperDao = new ProjectXGrouperDao();
+            var list = ProjectXGrouperDao.GetByProject(subproject, delivery);
+            ProjectXGrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -56,9 +56,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<ProjectXGrouper>))]
         public HttpResponseMessage getByGrouper(HttpRequestMessage request, string id)
         {
-            var ProjectXGrouperDAO = new ProjectXGrouperDAO();
-            var list = ProjectXGrouperDAO.GetByGroup(id);
-            ProjectXGrouperDAO.Dispose();
+            var ProjectXGrouperDao = new ProjectXGrouperDao();
+            var list = ProjectXGrouperDao.GetByGroup(id);
+            ProjectXGrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -66,9 +66,9 @@ namespace ProjectWebApi.Controllers
         [Route("ProjectXGrouper/Create/{GrouperId}/{ProjectId}/{Subproject}/{Delivery}")]
         public HttpResponseMessage CreateProjectXGrouper(HttpRequestMessage request, string GrouperId, string ProjectId, string Subproject, string Delivery)
         {
-            var ProjectXGrouperDAO = new ProjectXGrouperDAO();
-            ProjectXGrouperDAO.Create(GrouperId, ProjectId, Subproject, Delivery);
-            ProjectXGrouperDAO.Dispose();
+            var ProjectXGrouperDao = new ProjectXGrouperDao();
+            ProjectXGrouperDao.Create(GrouperId, ProjectId, Subproject, Delivery);
+            ProjectXGrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -76,9 +76,9 @@ namespace ProjectWebApi.Controllers
         [Route("ProjectXGrouper/Delete/{GrouperId}/{ProjectId}")]
         public HttpResponseMessage DeleteProjectXGrouper(HttpRequestMessage request, string GrouperId, string ProjectId)
         {
-            var ProjectXGrouperDAO = new ProjectXGrouperDAO();
-            ProjectXGrouperDAO.Delete(GrouperId, ProjectId);
-            ProjectXGrouperDAO.Dispose();
+            var ProjectXGrouperDao = new ProjectXGrouperDao();
+            ProjectXGrouperDao.Delete(GrouperId, ProjectId);
+            ProjectXGrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -87,9 +87,9 @@ namespace ProjectWebApi.Controllers
         //[ResponseType(typeof(ProjectXGrouper))]
         //public HttpResponseMessage getGroups(HttpRequestMessage request, string id)
         //{
-        //    var GroupsDAO = new GroupDAO();
-        //    var Groups = GroupsDAO.getOne(id);
-        //    GroupsDAO.Dispose();
+        //    var GroupsDao = new GroupDao();
+        //    var Groups = GroupsDao.getOne(id);
+        //    GroupsDao.Dispose();
         //    return request.CreateResponse(HttpStatusCode.OK, Groups);
         //}
 

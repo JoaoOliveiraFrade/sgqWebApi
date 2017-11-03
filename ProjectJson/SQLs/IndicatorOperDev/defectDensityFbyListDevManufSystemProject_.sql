@@ -27,7 +27,7 @@ from
 		from
 			(
 				select 
-					(case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) as devManuf
+					(case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) as devManuf
 					,left(ct.sistema,30) as system
 					,ct.subprojeto
 					,ct.entrega

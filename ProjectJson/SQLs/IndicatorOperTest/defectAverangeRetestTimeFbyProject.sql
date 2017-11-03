@@ -53,7 +53,7 @@ from
 					end
 			end as date
 
-			,(case when IsNull(fabrica_teste,'') <> '' then fabrica_teste else 'NÃO IDENTIFICADA' end) as testManuf
+			,(case when IsNull(fabrica_teste,'') <> '' then fabrica_teste else 'N/A' end) as testManuf
 			,sistema_ct as system
 			,convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int)) as subprojectDelivery
 			,IsNull(qtyRetestHours, 0.0) as qtyRetestHours

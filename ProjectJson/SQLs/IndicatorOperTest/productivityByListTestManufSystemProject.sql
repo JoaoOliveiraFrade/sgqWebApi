@@ -1,7 +1,7 @@
 select 
 	substring(ex.dt_execucao,4,2) as month
 	,substring(ex.dt_execucao,7,2) as year
-	,(case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'NÃO IDENTIFICADA' end) as testManuf
+	,(case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'N/A' end) as testManuf
 	,cts.sistema as system
 	,convert(varchar, cast(substring(cts.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(cts.entrega,8,8) as int)) as subprojectDelivery
 	,count(*) as productivity
@@ -19,11 +19,11 @@ where
 	and ex.dt_execucao <> ''
 	and ex.subprojeto + ex.entrega in (@selectedProjects)
 	and cts.sistema in (@selectedSystems)
-	and (case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'NÃO IDENTIFICADA' end) in (@selectedTestManufs)
+	and (case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'N/A' end) in (@selectedTestManufs)
 group by
 	substring(ex.dt_execucao,4,2)
 	,substring(ex.dt_execucao,7,2)
-	,(case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'NÃO IDENTIFICADA' end)
+	,(case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'N/A' end)
 	,cts.sistema
 	,convert(varchar, cast(substring(cts.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(cts.entrega,8,8) as int))
 order by

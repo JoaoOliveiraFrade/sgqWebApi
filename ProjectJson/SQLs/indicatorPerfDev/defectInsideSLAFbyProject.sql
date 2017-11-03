@@ -24,7 +24,7 @@ from
 	(
 		select
 			replace(dt.encaminhado_para,'–', '-') as queue
-			,(case when IsNull(d.fabrica_desenvolvimento,'') <> '' then d.fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) as devManuf
+			,(case when IsNull(d.fabrica_desenvolvimento,'') <> '' then d.fabrica_desenvolvimento else 'N/A' end) as devManuf
 			,d.sistema_ct as system
 			,(d.subprojeto + d.entrega) as subprojectDelivery
 			,substring(dt.dt_de,4,2) as month

@@ -7,13 +7,13 @@ using System.IO;
 using System.Text;
 using System.Web;
 
-namespace ProjectWebApi.DAOs
+namespace ProjectWebApi.Daos
 {
-    public class UserDAO
+    public class UserDao
     {
         private Connection connection;
 
-        public UserDAO()
+        public UserDao()
         {
             connection = new Connection(Bancos.Sgq);
         }

@@ -8,13 +8,13 @@ using System.IO;
 using System.Text;
 using System.Web;
 
-namespace ProjectWebApi.DAOs
+namespace ProjectWebApi.Daos
 {
-	public class DefectQueueDAO
+	public class DefectQueueDao
     {
 		private Connection connection;
 
-		public DefectQueueDAO()
+		public DefectQueueDao()
 		{
 			connection = new Connection(Bancos.Sgq);
 		}

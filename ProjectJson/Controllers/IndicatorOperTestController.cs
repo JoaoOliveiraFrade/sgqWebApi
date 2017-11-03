@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using ProjectWebApi.DAOs;
+using ProjectWebApi.Daos;
 using System.Collections;
 using System.Web.Http.Description;
 
@@ -24,9 +24,9 @@ namespace ProjectWebApi.Controllers
         [Route("indicatorOperTest/productivity/fbyProject/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectDensity>))]
         public HttpResponseMessage defectDensityFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-            var indicatorOperTestDAO = new IndicatorOperTestDAO();
-            var list = indicatorOperTestDAO.productivityFbyProject(subproject, delivery);
-            indicatorOperTestDAO.Dispose();
+            var indicatorOperTestDao = new IndicatorOperTestDao();
+            var list = indicatorOperTestDao.productivityFbyProject(subproject, delivery);
+            indicatorOperTestDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
@@ -35,9 +35,9 @@ namespace ProjectWebApi.Controllers
 		    [ResponseType(typeof(IList<Productivity>))]
 		    public HttpResponseMessage productivityByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
 		    {
-			    var indicatorOperTestDAO = new IndicatorOperTestDAO();
-			    var list = indicatorOperTestDAO.productivityByListTestManufSystemProject(parameters);
-			    indicatorOperTestDAO.Dispose();
+			    var indicatorOperTestDao = new IndicatorOperTestDao();
+			    var list = indicatorOperTestDao.productivityByListTestManufSystemProject(parameters);
+			    indicatorOperTestDao.Dispose();
 			    return request.CreateResponse(HttpStatusCode.OK, list);
 		    }
 
@@ -50,9 +50,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperTest/rejectionEvidence/fbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<RejectionEvidence>))]
             public HttpResponseMessage rejectionEvidenceFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperTestDAO = new IndicatorOperTestDAO();
-                var list = indicatorOperTestDAO.rejectionEvidenceFbyProject(subproject, delivery);
-                indicatorOperTestDAO.Dispose();
+                var indicatorOperTestDao = new IndicatorOperTestDao();
+                var list = indicatorOperTestDao.rejectionEvidenceFbyProject(subproject, delivery);
+                indicatorOperTestDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -61,9 +61,9 @@ namespace ProjectWebApi.Controllers
 		    [ResponseType(typeof(IList<RejectionEvidence>))]
 		    public HttpResponseMessage rejectionEvidenceByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
 		    {
-			    var indicatorOperTestDAO = new IndicatorOperTestDAO();
-			    var list = indicatorOperTestDAO.rejectionEvidenceByListTestManufSystemProject(parameters);
-			    indicatorOperTestDAO.Dispose();
+			    var indicatorOperTestDao = new IndicatorOperTestDao();
+			    var list = indicatorOperTestDao.rejectionEvidenceByListTestManufSystemProject(parameters);
+			    indicatorOperTestDao.Dispose();
 			    return request.CreateResponse(HttpStatusCode.OK, list);
 		    }
 
@@ -72,9 +72,9 @@ namespace ProjectWebApi.Controllers
         //[ResponseType(typeof(IList<rejectionEvidenceGroupTimeline>))]
         //public HttpResponseMessage rejectionEvidenceByListTestManufSystemProjectGroupTimeline(HttpRequestMessage request, Parameters parameters)
         //{
-        //    var indicatorOperTestDAO = new IndicatorOperTestDAO();
-        //    var list = indicatorOperTestDAO.rejectionEvidenceByListTestManufSystemProjectGroupTimeline(parameters);
-        //    indicatorOperTestDAO.Dispose();
+        //    var indicatorOperTestDao = new IndicatorOperTestDao();
+        //    var list = indicatorOperTestDao.rejectionEvidenceByListTestManufSystemProjectGroupTimeline(parameters);
+        //    indicatorOperTestDao.Dispose();
         //    return request.CreateResponse(HttpStatusCode.OK, list);
         //}
 
@@ -87,9 +87,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperTest/defectUnfounded/fbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<DefectUnfounded>))]
             public HttpResponseMessage defectUnfoundedFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperTestDAO = new IndicatorOperTestDAO();
-                var list = indicatorOperTestDAO.defectUnfoundedFbyProject(subproject, delivery);
-                indicatorOperTestDAO.Dispose();
+                var indicatorOperTestDao = new IndicatorOperTestDao();
+                var list = indicatorOperTestDao.defectUnfoundedFbyProject(subproject, delivery);
+                indicatorOperTestDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -98,9 +98,9 @@ namespace ProjectWebApi.Controllers
             [ResponseType(typeof(IList<DefectUnfounded>))]
             public HttpResponseMessage defectUnfoundedFbyListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
             {
-                var indicatorOperTestDAO = new IndicatorOperTestDAO();
-                var list = indicatorOperTestDAO.defectUnfoundedFbyListTestManufSystemProject(parameters);
-                indicatorOperTestDAO.Dispose();
+                var indicatorOperTestDao = new IndicatorOperTestDao();
+                var list = indicatorOperTestDao.defectUnfoundedFbyListTestManufSystemProject(parameters);
+                indicatorOperTestDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -113,9 +113,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperTest/defectUAT/fbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<DefectUAT>))]
             public HttpResponseMessage defectUATFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperTestDAO = new IndicatorOperTestDAO();
-                var list = indicatorOperTestDAO.defectUATFbyProject(subproject, delivery);
-                indicatorOperTestDAO.Dispose();
+                var indicatorOperTestDao = new IndicatorOperTestDao();
+                var list = indicatorOperTestDao.defectUATFbyProject(subproject, delivery);
+                indicatorOperTestDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -124,9 +124,9 @@ namespace ProjectWebApi.Controllers
             [ResponseType(typeof(IList<DefectUAT>))]
             public HttpResponseMessage defectUATFbyListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
             {
-                var indicatorOperTestDAO = new IndicatorOperTestDAO();
-                var list = indicatorOperTestDAO.defectUATFbyListTestManufSystemProject(parameters);
-                indicatorOperTestDAO.Dispose();
+                var indicatorOperTestDao = new IndicatorOperTestDao();
+                var list = indicatorOperTestDao.defectUATFbyListTestManufSystemProject(parameters);
+                indicatorOperTestDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -139,9 +139,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperTest/defectAverangeRetestTime/fbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<DefectAverangeRetestTime>))]
             public HttpResponseMessage defectAverangeRetestTimeFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperTestDAO = new IndicatorOperTestDAO();
-                var list = indicatorOperTestDAO.defectAverangeRetestTimeFbyProject(subproject, delivery);
-                indicatorOperTestDAO.Dispose();
+                var indicatorOperTestDao = new IndicatorOperTestDao();
+                var list = indicatorOperTestDao.defectAverangeRetestTimeFbyProject(subproject, delivery);
+                indicatorOperTestDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -150,9 +150,9 @@ namespace ProjectWebApi.Controllers
             [ResponseType(typeof(IList<DefectAverangeRetestTime>))]
             public HttpResponseMessage defectAverangeRetestTimeFbyListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
             {
-                var indicatorOperTestDAO = new IndicatorOperTestDAO();
-                var list = indicatorOperTestDAO.defectAverangeRetestTimeFbyListTestManufSystemProject(parameters);
-                indicatorOperTestDAO.Dispose();
+                var indicatorOperTestDao = new IndicatorOperTestDao();
+                var list = indicatorOperTestDao.defectAverangeRetestTimeFbyListTestManufSystemProject(parameters);
+                indicatorOperTestDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 

@@ -7,7 +7,7 @@
 )
 insert into @cts 
 select 
-	(case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) as devManuf
+	(case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) as devManuf
 	,left(ct.sistema,30) as system
 	,ct.subprojeto + ct.entrega as subprojectDelivery
 	,ct.ct
@@ -31,7 +31,7 @@ where
 	and ct.Status_Exec_CT not in ('CANCELLED', 'NO RUN')
 	and ct.Ciclo in ('TI', 'UAT')
 	and ct.subprojeto + ct.entrega collate Latin1_General_CI_AS in (@selectedProjects)
-	and (case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'NÃO IDENTIFICADA' end) in (@selectedDevManufs)
+	and (case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) in (@selectedDevManufs)
 	and left(ct.sistema,30) in (@selectedSystems)
 
 

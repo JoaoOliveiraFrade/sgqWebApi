@@ -9,13 +9,13 @@ using System.IO;
 using System.Web;
 using System.Text;
 
-namespace ProjectWebApi.DAOs
+namespace ProjectWebApi.Daos
 {
-    public class PulledChainDAO
+    public class PulledChainDao
     {
         private Connection connection;
 
-        public PulledChainDAO()
+        public PulledChainDao()
         {
             connection = new Connection(Bancos.Sgq);
         }

@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-using ProjectWebApi.DAOs;
+using ProjectWebApi.Daos;
 using System.Collections;
 using System.Web.Http.Description;
 
@@ -23,9 +23,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperDev/defectDensity/fbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<DefectDensity>))]
             public HttpResponseMessage defectDensityFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var list = indicatorOperDevDAO.defectDensityFbyProject(subproject, delivery);
-                indicatorOperDevDAO.Dispose();
+                var indicatorOperDevDao = new IndicatorOperDevDao();
+                var list = indicatorOperDevDao.defectDensityFbyProject(subproject, delivery);
+                indicatorOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -33,9 +33,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperDev/defectDensity/fbydevManufsystemProject")]
             [ResponseType(typeof(IList<DefectDensity>))]
             public HttpResponseMessage defectDensityFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var list = indicatorOperDevDAO.defectDensityFbydevManufsystemProject(parameters);
-                indicatorOperDevDAO.Dispose();
+                var indicatorOperDevDao = new IndicatorOperDevDao();
+                var list = indicatorOperDevDao.defectDensityFbydevManufsystemProject(parameters);
+                indicatorOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
         
@@ -48,9 +48,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperDev/defectAverangeTime/fbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(DefectAverangeTime))]
             public HttpResponseMessage defectAverangeTimeFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var defectAverangeTime = indicatorOperDevDAO.defectAverangeTimeFbyProject(subproject, delivery);
-                indicatorOperDevDAO.Dispose();
+                var indicatorOperDevDao = new IndicatorOperDevDao();
+                var defectAverangeTime = indicatorOperDevDao.defectAverangeTimeFbyProject(subproject, delivery);
+                indicatorOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, defectAverangeTime);
             }
 
@@ -58,9 +58,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperDev/defectAverangeTime/fbyProjectAndListIteration")]
             [ResponseType(typeof(DefectAverangeTime))]
             public HttpResponseMessage defectAverangeTimeFbyProjectAndListIteration(HttpRequestMessage request, ProjectAndListIteration parameters) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var defectAverangeTime = indicatorOperDevDAO.defectAverangeTimeFbyProjectAndListIteration(parameters);
-                indicatorOperDevDAO.Dispose();
+                var indicatorOperDevDao = new IndicatorOperDevDao();
+                var defectAverangeTime = indicatorOperDevDao.defectAverangeTimeFbyProjectAndListIteration(parameters);
+                indicatorOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, defectAverangeTime);
             }
 
@@ -68,9 +68,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperDev/defectAverangeTime/fbydevManufsystemProject")]
             [ResponseType(typeof(IList<DefectAverangeTime>))]
             public HttpResponseMessage defectAverangeTimeFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var list = indicatorOperDevDAO.defectAverangeTimeFbydevManufsystemProject(parameters);
-                indicatorOperDevDAO.Dispose();
+                var indicatorOperDevDao = new IndicatorOperDevDao();
+                var list = indicatorOperDevDao.defectAverangeTimeFbydevManufsystemProject(parameters);
+                indicatorOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -78,9 +78,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperDev/defectAverangeTime/fbydevManufsystemProjectIteration")]
             [ResponseType(typeof(IList<DefectAverangeTime>))]
             public HttpResponseMessage defectAverangeTimeFbydevManufsystemProjectIterations(HttpRequestMessage request, devManufsystemProjectIteration parameters) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var list = indicatorOperDevDAO.defectAverangeTimeFbydevManufsystemProjectIteration(parameters);
-                indicatorOperDevDAO.Dispose();
+                var indicatorOperDevDao = new IndicatorOperDevDao();
+                var list = indicatorOperDevDao.defectAverangeTimeFbydevManufsystemProjectIteration(parameters);
+                indicatorOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -93,9 +93,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorOperDev/defectReopened/fbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(DefectReopened))]
             public HttpResponseMessage defectReopenedFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperDevDAO = new IndicatorOperDevDAO();
-                var densityDefects = indicatorOperDevDAO.defectReopenedFbyProject(subproject, delivery);
-                indicatorOperDevDAO.Dispose();
+                var indicatorOperDevDao = new IndicatorOperDevDao();
+                var densityDefects = indicatorOperDevDao.defectReopenedFbyProject(subproject, delivery);
+                indicatorOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, densityDefects);
             }
 
@@ -103,9 +103,9 @@ namespace ProjectWebApi.Controllers
             //[Route("indicatorOperDev/DefectsReopenedIterations/{subproject}/{delivery}")]
             //[ResponseType(typeof(DefectReopened))]
             //public HttpResponseMessage getDefectReopenedByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations) {
-            //    var projectDAO = new ProjectDAO();
-            //    var item = projectDAO.getDefectReopenedByProjectIterations(subproject, delivery, iterations);
-            //    projectDAO.Dispose();
+            //    var projectDao = new ProjectDao();
+            //    var item = projectDao.getDefectReopenedByProjectIterations(subproject, delivery, iterations);
+            //    projectDao.Dispose();
             //    return request.CreateResponse(HttpStatusCode.OK, item);
             //}
 
@@ -342,9 +342,9 @@ namespace ProjectWebApi.Controllers
          //   [Route("indicatorOperDev/DefectsDetectableInDevIterations/{subproject}/{delivery}")]
          //   [ResponseType(typeof(DetectableInDev2))]
          //   public HttpResponseMessage getDetectableInDevByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations) {
-         //       var projectDAO = new ProjectDAO();
-         //       var item = projectDAO.getDetectableInDevByProjectIterations(subproject, delivery, iterations);
-         //       projectDAO.Dispose();
+         //       var projectDao = new ProjectDao();
+         //       var item = projectDao.getDetectableInDevByProjectIterations(subproject, delivery, iterations);
+         //       projectDao.Dispose();
          //       return request.CreateResponse(HttpStatusCode.OK, item);
          //   }
 
@@ -352,9 +352,9 @@ namespace ProjectWebApi.Controllers
          //   [Route("indicatorOperDev/defectsDetectableInDev/{subproject}/{delivery}")]
          //   [ResponseType(typeof(DetectableInDev2))]
          //   public HttpResponseMessage defectsDetectableInDev(HttpRequestMessage request, string subproject, string delivery) {
-         //       var indicatorOperDevDAO = new IndicatorOperDevDAO();
-         //       var detectableInDev = indicatorOperDevDAO.getDetectableInDevByProject(subproject, delivery);
-         //       indicatorOperDevDAO.Dispose();
+         //       var indicatorOperDevDao = new IndicatorOperDevDao();
+         //       var detectableInDev = indicatorOperDevDao.getDetectableInDevByProject(subproject, delivery);
+         //       indicatorOperDevDao.Dispose();
          //       return request.CreateResponse(HttpStatusCode.OK, detectableInDev);
          //   }
 
@@ -362,9 +362,9 @@ namespace ProjectWebApi.Controllers
          //   [Route("indicatorOperDev/defectsDetectableInDev/fbydevManufsystemProject")]
          //   [ResponseType(typeof(IList<DetectableInDev2>))]
          //   public HttpResponseMessage defectsDetectableInDevFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-         //       var indicatorOperDevDAO = new IndicatorOperDevDAO();
-         //       var list = indicatorOperDevDAO.defectsDetectableInDevFbydevManufsystemProject(parameters);
-         //       indicatorOperDevDAO.Dispose();
+         //       var indicatorOperDevDao = new IndicatorOperDevDao();
+         //       var list = indicatorOperDevDao.defectsDetectableInDevFbydevManufsystemProject(parameters);
+         //       indicatorOperDevDao.Dispose();
          //       return request.CreateResponse(HttpStatusCode.OK, list);
          //   }
 
@@ -646,9 +646,9 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<DefectInsideSLA>))]
         public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, devManufsystemProject parameters)
 		{
-			var IndicatorPerfDevDAO = new IndicatorPerfDevDAO();
-			var list = IndicatorPerfDevDAO.defectInsideSLAFbyListTestManufSystemProject(parameters);
-            IndicatorPerfDevDAO.Dispose();
+			var IndicatorPerfDevDao = new IndicatorPerfDevDao();
+			var list = IndicatorPerfDevDao.defectInsideSLAFbyListTestManufSystemProject(parameters);
+            IndicatorPerfDevDao.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
 

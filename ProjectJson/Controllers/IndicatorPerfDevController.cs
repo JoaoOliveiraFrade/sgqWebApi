@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-using ProjectWebApi.DAOs;
+using ProjectWebApi.Daos;
 using System.Collections;
 using System.Web.Http.Description;
 
@@ -24,9 +24,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorPerfDev/defectDensity/fbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<DefectDensity>))]
             public HttpResponseMessage defectDensityFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorsPerfDAO = new IndicatorPerfDevDAO();
-                var list = indicatorsPerfDAO.defectDensityFbyProject(subproject, delivery);
-                indicatorsPerfDAO.Dispose();
+                var indicatorsPerfDao = new IndicatorPerfDevDao();
+                var list = indicatorsPerfDao.defectDensityFbyProject(subproject, delivery);
+                indicatorsPerfDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -34,9 +34,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorPerfDev/defectDensity/fbydevManufsystemProject")]
             [ResponseType(typeof(IList<DefectDensity>))]
             public HttpResponseMessage defectDensityFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var indicatorsPerfDAO = new IndicatorPerfDevDAO();
-                var list = indicatorsPerfDAO.defectDensityFbydevManufsystemProject(parameters);
-                indicatorsPerfDAO.Dispose();
+                var indicatorsPerfDao = new IndicatorPerfDevDao();
+                var list = indicatorsPerfDao.defectDensityFbydevManufsystemProject(parameters);
+                indicatorsPerfDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -49,9 +49,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorPerfDev/defectInsideSLA/fbydevManufsystemProject")]
             [ResponseType(typeof(IList<DefectInsideSLA>))]
             public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var IndicatorPerfDevDAO = new IndicatorPerfDevDAO();
-                var list = IndicatorPerfDevDAO.defectInsideSLAFbyListTestManufSystemProject(parameters);
-                IndicatorPerfDevDAO.Dispose();
+                var IndicatorPerfDevDao = new IndicatorPerfDevDao();
+                var list = IndicatorPerfDevDao.defectInsideSLAFbyListTestManufSystemProject(parameters);
+                IndicatorPerfDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -64,9 +64,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorPerfDev/defectOfTSInTI/fbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(DefectOfTSInTI))]
             public HttpResponseMessage defectOfTSInTIFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorsPerfDAO = new IndicatorPerfDevDAO();
-                var densityDefects = indicatorsPerfDAO.defectOfTSInTIFbyProject(subproject, delivery);
-                indicatorsPerfDAO.Dispose();
+                var indicatorsPerfDao = new IndicatorPerfDevDao();
+                var densityDefects = indicatorsPerfDao.defectOfTSInTIFbyProject(subproject, delivery);
+                indicatorsPerfDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, densityDefects);
             }
 
@@ -74,9 +74,9 @@ namespace ProjectWebApi.Controllers
             [Route("indicatorPerfDev/defectOfTSInTI/fbydevManufsystemProject")]
             [ResponseType(typeof(IList<DefectOfTSInTI>))]
             public HttpResponseMessage defectOfTSInTIFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var indicatorsPerfDAO = new IndicatorPerfDevDAO();
-                var list = indicatorsPerfDAO.defectOfTSInTIFbydevManufsystemProject(parameters);
-                indicatorsPerfDAO.Dispose();
+                var indicatorsPerfDao = new IndicatorPerfDevDao();
+                var list = indicatorsPerfDao.defectOfTSInTIFbydevManufsystemProject(parameters);
+                indicatorsPerfDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -88,9 +88,9 @@ namespace ProjectWebApi.Controllers
         [Route("indicatorPerfDev/defectOfTSInTIAgent/fbyProject/{subproject}/{delivery}")]
         [ResponseType(typeof(DefectOfTSInTI))]
         public HttpResponseMessage defectOfTSInTIAgentFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-            var indicatorsPerfDAO = new IndicatorPerfDevDAO();
-            var densityDefects = indicatorsPerfDAO.defectOfTSInTIAgentFbyProject(subproject, delivery);
-            indicatorsPerfDAO.Dispose();
+            var indicatorsPerfDao = new IndicatorPerfDevDao();
+            var densityDefects = indicatorsPerfDao.defectOfTSInTIAgentFbyProject(subproject, delivery);
+            indicatorsPerfDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, densityDefects);
         }
 
@@ -98,9 +98,9 @@ namespace ProjectWebApi.Controllers
         [Route("indicatorPerfDev/defectOfTSInTIAgent/fbydevManufsystemProject")]
         [ResponseType(typeof(IList<DefectOfTSInTI>))]
         public HttpResponseMessage defectOfTSInTIAgentFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-            var indicatorsPerfDAO = new IndicatorPerfDevDAO();
-            var list = indicatorsPerfDAO.defectOfTSInTIAgentFbydevManufsystemProject(parameters);
-            indicatorsPerfDAO.Dispose();
+            var indicatorsPerfDao = new IndicatorPerfDevDao();
+            var list = indicatorsPerfDao.defectOfTSInTIAgentFbydevManufsystemProject(parameters);
+            indicatorsPerfDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 

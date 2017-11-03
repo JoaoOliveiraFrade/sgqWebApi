@@ -5,13 +5,13 @@ using System.IO;
 using System.Text;
 using System.Web;
 
-namespace ProjectWebApi.DAOs
+namespace ProjectWebApi.Daos
 {
-    public class DevManufDAO
+    public class DevManufDao
     {
         private Connection connection;
 
-        public DevManufDAO()
+        public DevManufDao()
         {
             connection = new Connection(Bancos.Sgq);
         }

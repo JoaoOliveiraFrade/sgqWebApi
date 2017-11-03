@@ -8,13 +8,13 @@ using System.IO;
 using System.Text;
 using System.Web;
 
-namespace ProjectWebApi.DAOs
+namespace ProjectWebApi.Daos
 {
-	public class IndicatorPerfTestDAO
+	public class IndicatorPerfTestDao
 	{
 		private Connection connection;
 
-		public IndicatorPerfTestDAO()
+		public IndicatorPerfTestDao()
 		{
 			connection = new Connection(Bancos.Sgq);
 		}
