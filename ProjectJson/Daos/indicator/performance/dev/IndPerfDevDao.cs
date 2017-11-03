@@ -10,11 +10,11 @@ using System.Web;
 
 namespace ProjectWebApi.Daos
 {
-	public class IndicatorPerfDevDao
+	public class IndPerfDevDao
 	{
 		private Connection connection;
 
-		public IndicatorPerfDevDao()
+		public IndPerfDevDao()
 		{
 			connection = new Connection(Bancos.Sgq);
 		}
@@ -28,7 +28,7 @@ namespace ProjectWebApi.Daos
         #region DefectDensity
 
             public IList<DefectDensity> defectDensityFbyProject(string subproject, string delivery) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfDev\defectDensityFbyProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfDev\defectDensityFbyProject.sql"), Encoding.Default);
                 sql = sql.Replace("@subproject", subproject);
                 sql = sql.Replace("@delivery", delivery);
                 var result = connection.Executar<DefectDensity>(sql);
@@ -36,7 +36,7 @@ namespace ProjectWebApi.Daos
             }
 
             public IList<DefectDensity> defectDensityFbydevManufsystemProject(devManufsystemProject parameters) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfDev\defectDensityFbydevManufsystemProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfDev\defectDensityFbydevManufsystemProject.sql"), Encoding.Default);
                 sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
                 sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
                 sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -50,7 +50,7 @@ namespace ProjectWebApi.Daos
         #region DefectInsideSLA
 
             public IList<DefectInsideSLA> defectInsideSLAFbyProject(string subproject, string delivery) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorPerfDev\defectInsideSLAFbyProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfDev\defectInsideSLAFbyProject.sql"), Encoding.Default);
                 sql = sql.Replace("@subproject", subproject);
                 sql = sql.Replace("@delivery", delivery);
                 var result = connection.Executar<DefectInsideSLA>(sql);
@@ -58,7 +58,7 @@ namespace ProjectWebApi.Daos
             }
 
             public IList<DefectInsideSLA> defectInsideSLAFbyListTestManufSystemProject(devManufsystemProject parameters) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorPerfDev\defectInsideSLAFbyListTestManufSystemProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfDev\defectInsideSLAFbyListTestManufSystemProject.sql"), Encoding.Default);
                 sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
                 sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
                 sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -72,7 +72,7 @@ namespace ProjectWebApi.Daos
         #region DefectOfTSInTI
 
         public IList<DefectOfTSInTI> defectOfTSInTIFbyProject(string subproject, string delivery) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfDev\defectOfTSInTIFbyProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfDev\defectOfTSInTIFbyProject.sql"), Encoding.Default);
                 sql = sql.Replace("@subproject", subproject);
                 sql = sql.Replace("@delivery", delivery);
                 var result = connection.Executar<DefectOfTSInTI>(sql);
@@ -80,7 +80,7 @@ namespace ProjectWebApi.Daos
             }
 
             public IList<DefectOfTSInTI> defectOfTSInTIFbydevManufsystemProject(devManufsystemProject parameters) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfDev\defectOfTSInTIFbydevManufsystemProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfDev\defectOfTSInTIFbydevManufsystemProject.sql"), Encoding.Default);
                 sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
                 sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
                 sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -94,7 +94,7 @@ namespace ProjectWebApi.Daos
         #region DefectOfTSInTIAgent
 
         public IList<DefectOfTSInTI> defectOfTSInTIAgentFbyProject(string subproject, string delivery) {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfDev\defectOfTSInTIAgentFbyProject.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfDev\defectOfTSInTIAgentFbyProject.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
             var result = connection.Executar<DefectOfTSInTI>(sql);
@@ -102,7 +102,7 @@ namespace ProjectWebApi.Daos
         }
 
         public IList<DefectOfTSInTI> defectOfTSInTIAgentFbydevManufsystemProject(devManufsystemProject parameters) {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfDev\defectOfTSInTIAgentFbydevManufsystemProject.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfDev\defectOfTSInTIAgentFbydevManufsystemProject.sql"), Encoding.Default);
             sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
             sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
             sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");

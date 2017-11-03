@@ -10,11 +10,11 @@ using System.Web;
 
 namespace ProjectWebApi.Daos
 {
-	public class IndicatorPerfTestDao
+	public class IndPerfTestDao
 	{
 		private Connection connection;
 
-		public IndicatorPerfTestDao()
+		public IndPerfTestDao()
 		{
 			connection = new Connection(Bancos.Sgq);
 		}
@@ -25,7 +25,7 @@ namespace ProjectWebApi.Daos
 		}
 
   //      public IList<DefectDensity> defectDensityFbyProject(string subproject, string delivery) {
-  //          string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfTest\defectDensityFbyProject.sql"), Encoding.Default);
+  //          string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfTest\defectDensityFbyProject.sql"), Encoding.Default);
   //          sql = sql.Replace("@subproject", subproject);
   //          sql = sql.Replace("@delivery", delivery);
   //          var result = connection.Executar<DefectDensity>(sql);
@@ -33,7 +33,7 @@ namespace ProjectWebApi.Daos
   //      }
 
   //      public IList<DefectDensity> defectDensityFbydevManufsystemProject(devManufsystemProject parameters) {
-  //          string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfTest\defectDensityFbydevManufsystemProject.sql"), Encoding.Default);
+  //          string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfTest\defectDensityFbydevManufsystemProject.sql"), Encoding.Default);
   //          sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
   //          sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
   //          sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -43,7 +43,7 @@ namespace ProjectWebApi.Daos
 
   //      public IList<defectOfTSInTI> defectOfTSInTI_fbydevManufsystemProject(devManufsystemProject parameters)
 		//{
-		//	string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\IndicatorPerfTest\defectOfTSInTI_fbydevManufsystemProject.sql"), Encoding.Default);
+		//	string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfTest\defectOfTSInTI_fbydevManufsystemProject.sql"), Encoding.Default);
 		//	sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
 		//	sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
 		//	sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");

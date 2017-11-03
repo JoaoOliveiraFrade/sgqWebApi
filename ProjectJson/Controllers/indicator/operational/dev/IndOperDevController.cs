@@ -15,27 +15,27 @@ using System.Web.Http.Description;
 
 namespace ProjectWebApi.Controllers
 {
-    public class indicatorOperDevController : ApiController
+    public class IndOperDevController : ApiController
     {
         #region Density
 
             [HttpGet]
-            [Route("indicatorOperDev/defectDensity/fbyProject/{subproject}/{delivery}")]
+            [Route("indOperDev/defectDensity/dataFbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<DefectDensity>))]
             public HttpResponseMessage defectDensityFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperDevDao = new IndicatorOperDevDao();
-                var list = indicatorOperDevDao.defectDensityFbyProject(subproject, delivery);
-                indicatorOperDevDao.Dispose();
+                var indOperDevDao = new indOperDevDao();
+                var list = indOperDevDao.defectDensityFbyProject(subproject, delivery);
+                indOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
             [HttpPost]
-            [Route("indicatorOperDev/defectDensity/fbydevManufsystemProject")]
+            [Route("indOperDev/defectDensity/data")]
             [ResponseType(typeof(IList<DefectDensity>))]
             public HttpResponseMessage defectDensityFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var indicatorOperDevDao = new IndicatorOperDevDao();
-                var list = indicatorOperDevDao.defectDensityFbydevManufsystemProject(parameters);
-                indicatorOperDevDao.Dispose();
+                var indOperDevDao = new indOperDevDao();
+                var list = indOperDevDao.defectDensityFbydevManufsystemProject(parameters);
+                indOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
         
@@ -45,42 +45,42 @@ namespace ProjectWebApi.Controllers
         #region AverangeTime
 
             [HttpGet]
-            [Route("indicatorOperDev/defectAverangeTime/fbyProject/{subproject}/{delivery}")]
+            [Route("indOperDev/defectAverangeTime/dataFbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(DefectAverangeTime))]
             public HttpResponseMessage defectAverangeTimeFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperDevDao = new IndicatorOperDevDao();
-                var defectAverangeTime = indicatorOperDevDao.defectAverangeTimeFbyProject(subproject, delivery);
-                indicatorOperDevDao.Dispose();
+                var indOperDevDao = new indOperDevDao();
+                var defectAverangeTime = indOperDevDao.defectAverangeTimeFbyProject(subproject, delivery);
+                indOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, defectAverangeTime);
             }
 
             [HttpPost]
-            [Route("indicatorOperDev/defectAverangeTime/fbyProjectAndListIteration")]
+            [Route("indOperDev/defectAverangeTime/fbyProjectAndListIteration")]
             [ResponseType(typeof(DefectAverangeTime))]
             public HttpResponseMessage defectAverangeTimeFbyProjectAndListIteration(HttpRequestMessage request, ProjectAndListIteration parameters) {
-                var indicatorOperDevDao = new IndicatorOperDevDao();
-                var defectAverangeTime = indicatorOperDevDao.defectAverangeTimeFbyProjectAndListIteration(parameters);
-                indicatorOperDevDao.Dispose();
+                var indOperDevDao = new indOperDevDao();
+                var defectAverangeTime = indOperDevDao.defectAverangeTimeFbyProjectAndListIteration(parameters);
+                indOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, defectAverangeTime);
             }
 
             [HttpPost]
-            [Route("indicatorOperDev/defectAverangeTime/fbydevManufsystemProject")]
+            [Route("indOperDev/defectAverangeTime/data")]
             [ResponseType(typeof(IList<DefectAverangeTime>))]
             public HttpResponseMessage defectAverangeTimeFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var indicatorOperDevDao = new IndicatorOperDevDao();
-                var list = indicatorOperDevDao.defectAverangeTimeFbydevManufsystemProject(parameters);
-                indicatorOperDevDao.Dispose();
+                var indOperDevDao = new indOperDevDao();
+                var list = indOperDevDao.defectAverangeTimeFbydevManufsystemProject(parameters);
+                indOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
             [HttpPost]
-            [Route("indicatorOperDev/defectAverangeTime/fbydevManufsystemProjectIteration")]
+            [Route("indOperDev/defectAverangeTime/fbydevManufsystemProjectIteration")]
             [ResponseType(typeof(IList<DefectAverangeTime>))]
             public HttpResponseMessage defectAverangeTimeFbydevManufsystemProjectIterations(HttpRequestMessage request, devManufsystemProjectIteration parameters) {
-                var indicatorOperDevDao = new IndicatorOperDevDao();
-                var list = indicatorOperDevDao.defectAverangeTimeFbydevManufsystemProjectIteration(parameters);
-                indicatorOperDevDao.Dispose();
+                var indOperDevDao = new indOperDevDao();
+                var list = indOperDevDao.defectAverangeTimeFbydevManufsystemProjectIteration(parameters);
+                indOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -90,17 +90,17 @@ namespace ProjectWebApi.Controllers
         #region Reopened
 
             [HttpGet]
-            [Route("indicatorOperDev/defectReopened/fbyProject/{subproject}/{delivery}")]
+            [Route("indOperDev/defectReopened/dataFbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(DefectReopened))]
             public HttpResponseMessage defectReopenedFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorOperDevDao = new IndicatorOperDevDao();
-                var densityDefects = indicatorOperDevDao.defectReopenedFbyProject(subproject, delivery);
-                indicatorOperDevDao.Dispose();
+                var indOperDevDao = new indOperDevDao();
+                var densityDefects = indOperDevDao.defectReopenedFbyProject(subproject, delivery);
+                indOperDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, densityDefects);
             }
 
             //[HttpPut]
-            //[Route("indicatorOperDev/DefectsReopenedIterations/{subproject}/{delivery}")]
+            //[Route("indOperDev/DefectsReopenedIterations/{subproject}/{delivery}")]
             //[ResponseType(typeof(DefectReopened))]
             //public HttpResponseMessage getDefectReopenedByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations) {
             //    var projectDao = new ProjectDao();
@@ -110,7 +110,7 @@ namespace ProjectWebApi.Controllers
             //}
 
             [HttpGet]
-            [Route("indicatorOperDev/defectsReopened")]
+            [Route("indOperDev/defectsReopened")]
             public List<DefectReopened> GetReopened() {
                 string sql = @"
                     select
@@ -164,7 +164,7 @@ namespace ProjectWebApi.Controllers
             }
 
         //   [HttpGet]
-        //   [Route("indicatorOperDev/defectsReopened/{dateBegin}/{dateEnd}")]
+        //   [Route("indOperDev/defectsReopened/{dateBegin}/{dateEnd}")]
         //   public List<DefectReopened> getReopenedByDate(string dateBegin, string dateEnd)
         //   {
         //       string sql = @"
@@ -219,7 +219,7 @@ namespace ProjectWebApi.Controllers
         #region DetectableInDev
 
          //   [HttpGet]
-         //   [Route("indicatorOperDev/defectsDetectableInDev")]
+         //   [Route("indOperDev/defectsDetectableInDev")]
          //   public List<DetectableInDev2> getDetectableInDev() {
          //       string sql = @"
          //           select 
@@ -285,7 +285,7 @@ namespace ProjectWebApi.Controllers
          //   }
 
          //   [HttpGet]
-         //   [Route("indicatorOperDev/defectsDetectableInDev/{dateBegin}/{dateEnd}")]
+         //   [Route("indOperDev/defectsDetectableInDev/{dateBegin}/{dateEnd}")]
          //   public List<DetectableInDev2> getDetectableInDevByDate(string dateBegin, string dateEnd) {
          //       string sql = @"
          //           select 
@@ -339,7 +339,7 @@ namespace ProjectWebApi.Controllers
 
 
          //   [HttpPut]
-         //   [Route("indicatorOperDev/DefectsDetectableInDevIterations/{subproject}/{delivery}")]
+         //   [Route("indOperDev/DefectsDetectableInDevIterations/{subproject}/{delivery}")]
          //   [ResponseType(typeof(DetectableInDev2))]
          //   public HttpResponseMessage getDetectableInDevByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations) {
          //       var projectDao = new ProjectDao();
@@ -349,22 +349,22 @@ namespace ProjectWebApi.Controllers
          //   }
 
          //   [HttpGet]
-         //   [Route("indicatorOperDev/defectsDetectableInDev/{subproject}/{delivery}")]
+         //   [Route("indOperDev/defectsDetectableInDev/{subproject}/{delivery}")]
          //   [ResponseType(typeof(DetectableInDev2))]
          //   public HttpResponseMessage defectsDetectableInDev(HttpRequestMessage request, string subproject, string delivery) {
-         //       var indicatorOperDevDao = new IndicatorOperDevDao();
-         //       var detectableInDev = indicatorOperDevDao.getDetectableInDevByProject(subproject, delivery);
-         //       indicatorOperDevDao.Dispose();
+         //       var indOperDevDao = new indOperDevDao();
+         //       var detectableInDev = indOperDevDao.getDetectableInDevByProject(subproject, delivery);
+         //       indOperDevDao.Dispose();
          //       return request.CreateResponse(HttpStatusCode.OK, detectableInDev);
          //   }
 
          //   [HttpPost]
-         //   [Route("indicatorOperDev/defectsDetectableInDev/fbydevManufsystemProject")]
+         //   [Route("indOperDev/defectsDetectableInDev/data")]
          //   [ResponseType(typeof(IList<DetectableInDev2>))]
          //   public HttpResponseMessage defectsDetectableInDevFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-         //       var indicatorOperDevDao = new IndicatorOperDevDao();
-         //       var list = indicatorOperDevDao.defectsDetectableInDevFbydevManufsystemProject(parameters);
-         //       indicatorOperDevDao.Dispose();
+         //       var indOperDevDao = new indOperDevDao();
+         //       var list = indOperDevDao.defectsDetectableInDevFbydevManufsystemProject(parameters);
+         //       indOperDevDao.Dispose();
          //       return request.CreateResponse(HttpStatusCode.OK, list);
          //   }
 
@@ -374,7 +374,7 @@ namespace ProjectWebApi.Controllers
         #region WrongRating
 
             [HttpGet]
-            [Route("indicatorOperDev/defectWrongRating")]
+            [Route("indOperDev/defectWrongRating")]
             public List<WrongClassif> getWrongClassificationDefectRate()
             {
                 string sql = @"
@@ -460,7 +460,7 @@ namespace ProjectWebApi.Controllers
             }
 
             [HttpGet]
-            [Route("indicatorOperDev/defectWrongRating/{dateBegin}/{dateEnd}")]
+            [Route("indOperDev/defectWrongRating/{dateBegin}/{dateEnd}")]
             public List<WrongClassif> getWrongClassificationDefectRateByDate(string dateBegin, string dateEnd)
             {
                 string sql = @"
@@ -532,7 +532,7 @@ namespace ProjectWebApi.Controllers
         #region NoSolutionForecast
 
             [HttpGet]
-            [Route("indicatorOperDev/defectsNoSolutionForecast")]
+            [Route("indOperDev/defectsNoSolutionForecast")]
             public List<noPredictionDefects> getnoPredictionDefects()
             {
                 string sql = @"
@@ -587,7 +587,7 @@ namespace ProjectWebApi.Controllers
             }
 
             [HttpGet]
-            [Route("indicatorOperDev/defectsNoSolutionForecast/{dateBegin}/{dateEnd}")]
+            [Route("indOperDev/defectsNoSolutionForecast/{dateBegin}/{dateEnd}")]
             public List<noPredictionDefects> getnoPredictionDefectsByDate(string dateBegin, string dateEnd)
             {
                 string sql = @"
@@ -642,13 +642,13 @@ namespace ProjectWebApi.Controllers
         // ===============================
 
         [HttpPost]
-		[Route("indicatorOperDev/defectInsideSLA/fbydevManufsystemProject")]
+		[Route("indOperDev/defectInsideSLA/data")]
         [ResponseType(typeof(IList<DefectInsideSLA>))]
         public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, devManufsystemProject parameters)
 		{
-			var IndicatorPerfDevDao = new IndicatorPerfDevDao();
-			var list = IndicatorPerfDevDao.defectInsideSLAFbyListTestManufSystemProject(parameters);
-            IndicatorPerfDevDao.Dispose();
+			var indPerfDevDao = new indPerfDevDao();
+			var list = indPerfDevDao.defectInsideSLAFbyListTestManufSystemProject(parameters);
+            indPerfDevDao.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}
 

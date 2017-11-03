@@ -15,26 +15,25 @@ using System.Web.Http.Description;
 
 namespace ProjectWebApi.Controllers
 {
-    public class indicatorPerfDevController : ApiController
+    public class IndPerfDevController : ApiController
     {
-
         #region DefectDensity
 
         [HttpGet]
-            [Route("indicatorPerfDev/defectDensity/fbyProject/{subproject}/{delivery}")]
+            [Route("indPerfDev/defectDensity/dataFbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<DefectDensity>))]
             public HttpResponseMessage defectDensityFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorsPerfDao = new IndicatorPerfDevDao();
+                var indicatorsPerfDao = new indPerfDevDao();
                 var list = indicatorsPerfDao.defectDensityFbyProject(subproject, delivery);
                 indicatorsPerfDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
             [HttpPost]
-            [Route("indicatorPerfDev/defectDensity/fbydevManufsystemProject")]
+            [Route("indPerfDev/defectDensity/data")]
             [ResponseType(typeof(IList<DefectDensity>))]
             public HttpResponseMessage defectDensityFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var indicatorsPerfDao = new IndicatorPerfDevDao();
+                var indicatorsPerfDao = new indPerfDevDao();
                 var list = indicatorsPerfDao.defectDensityFbydevManufsystemProject(parameters);
                 indicatorsPerfDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
@@ -46,12 +45,12 @@ namespace ProjectWebApi.Controllers
         #region defectInsideSLA
 
             [HttpPost]
-            [Route("indicatorPerfDev/defectInsideSLA/fbydevManufsystemProject")]
+            [Route("indPerfDev/defectInsideSLA/data")]
             [ResponseType(typeof(IList<DefectInsideSLA>))]
             public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var IndicatorPerfDevDao = new IndicatorPerfDevDao();
-                var list = IndicatorPerfDevDao.defectInsideSLAFbyListTestManufSystemProject(parameters);
-                IndicatorPerfDevDao.Dispose();
+                var indPerfDevDao = new indPerfDevDao();
+                var list = indPerfDevDao.defectInsideSLAFbyListTestManufSystemProject(parameters);
+                indPerfDevDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
@@ -61,54 +60,51 @@ namespace ProjectWebApi.Controllers
         #region DefectOfTSInTI
 
         [HttpGet]
-            [Route("indicatorPerfDev/defectOfTSInTI/fbyProject/{subproject}/{delivery}")]
+            [Route("indPerfDev/defectOfTSInTI/dataFbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(DefectOfTSInTI))]
             public HttpResponseMessage defectOfTSInTIFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indicatorsPerfDao = new IndicatorPerfDevDao();
+                var indicatorsPerfDao = new indPerfDevDao();
                 var densityDefects = indicatorsPerfDao.defectOfTSInTIFbyProject(subproject, delivery);
                 indicatorsPerfDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, densityDefects);
             }
 
             [HttpPost]
-            [Route("indicatorPerfDev/defectOfTSInTI/fbydevManufsystemProject")]
+            [Route("indPerfDev/defectOfTSInTI/data")]
             [ResponseType(typeof(IList<DefectOfTSInTI>))]
-            public HttpResponseMessage defectOfTSInTIFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var indicatorsPerfDao = new IndicatorPerfDevDao();
-                var list = indicatorsPerfDao.defectOfTSInTIFbydevManufsystemProject(parameters);
+            public HttpResponseMessage data(HttpRequestMessage request, devManufsystemProject parameters) {
+                var indicatorsPerfDao = new indPerfDevDao();
+                var list = indicatorsPerfDao.data(parameters);
                 indicatorsPerfDao.Dispose();
                 return request.CreateResponse(HttpStatusCode.OK, list);
             }
 
         #endregion
 
+
         #region DefectOfTSInTIAgent
 
         [HttpGet]
-        [Route("indicatorPerfDev/defectOfTSInTIAgent/fbyProject/{subproject}/{delivery}")]
+        [Route("indPerfDev/defectOfTSInTIAgent/dataFbyProject/{subproject}/{delivery}")]
         [ResponseType(typeof(DefectOfTSInTI))]
         public HttpResponseMessage defectOfTSInTIAgentFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-            var indicatorsPerfDao = new IndicatorPerfDevDao();
+            var indicatorsPerfDao = new indPerfDevDao();
             var densityDefects = indicatorsPerfDao.defectOfTSInTIAgentFbyProject(subproject, delivery);
             indicatorsPerfDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, densityDefects);
         }
 
         [HttpPost]
-        [Route("indicatorPerfDev/defectOfTSInTIAgent/fbydevManufsystemProject")]
+        [Route("indPerfDev/defectOfTSInTIAgent/data")]
         [ResponseType(typeof(IList<DefectOfTSInTI>))]
         public HttpResponseMessage defectOfTSInTIAgentFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-            var indicatorsPerfDao = new IndicatorPerfDevDao();
+            var indicatorsPerfDao = new indPerfDevDao();
             var list = indicatorsPerfDao.defectOfTSInTIAgentFbydevManufsystemProject(parameters);
             indicatorsPerfDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         #endregion
-
-
-
-
 
     }
 

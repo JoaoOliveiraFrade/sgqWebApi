@@ -10,11 +10,11 @@ using System.Web;
 
 namespace ProjectWebApi.Daos
 {
-	public class IndicatorOperDevDao
+	public class IndOperDevDao
 	{
 		private Connection connection;
 
-		public IndicatorOperDevDao()
+		public IndOperDevDao()
 		{
 			connection = new Connection(Bancos.Sgq);
 		}
@@ -28,7 +28,7 @@ namespace ProjectWebApi.Daos
         #region Density
 
             public IList<DefectDensity> defectDensityFbyProject(string subproject, string delivery) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperDev\defectDensityFbyProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indOperDev\defectDensityFbyProject.sql"), Encoding.Default);
                 sql = sql.Replace("@subproject", subproject);
                 sql = sql.Replace("@delivery", delivery);
                 var result = connection.Executar<DefectDensity>(sql);
@@ -36,7 +36,7 @@ namespace ProjectWebApi.Daos
             }
 
             public IList<DefectDensity> defectDensityFbydevManufsystemProject(devManufsystemProject parameters) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperDev\defectDensityFbydevManufsystemProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indOperDev\defectDensityFbydevManufsystemProject.sql"), Encoding.Default);
                 sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
                 sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
                 sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -50,7 +50,7 @@ namespace ProjectWebApi.Daos
         #region AverangeTime
 
             public IList<DefectAverangeTime> defectAverangeTimeFbyProject(string subproject, string delivery) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperDev\defectAverangeTimeFbyProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indOperDev\defectAverangeTimeFbyProject.sql"), Encoding.Default);
                 sql = sql.Replace("@subproject", subproject);
                 sql = sql.Replace("@delivery", delivery);
                 var result = connection.Executar<DefectAverangeTime>(sql);
@@ -58,7 +58,7 @@ namespace ProjectWebApi.Daos
             }
 
             public IList<DefectAverangeTime> defectAverangeTimeFbyProjectAndListIteration(ProjectAndListIteration parameters) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperDev\defectAverangeTimeFbyProjectAndListIteration.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indOperDev\defectAverangeTimeFbyProjectAndListIteration.sql"), Encoding.Default);
                 sql = sql.Replace("@subproject", parameters.subproject);
                 sql = sql.Replace("@delivery", parameters.delivery);
                 sql = sql.Replace("@iterations", "'" + string.Join("','", parameters.iterations.ToArray()) + "'");
@@ -67,7 +67,7 @@ namespace ProjectWebApi.Daos
             }
 
             public IList<DefectAverangeTime> defectAverangeTimeFbydevManufsystemProject(devManufsystemProject parameters) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperDev\defectAverangeTimeFbydevManufsystemProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indOperDev\defectAverangeTimeFbydevManufsystemProject.sql"), Encoding.Default);
                 sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
                 sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
                 sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -76,7 +76,7 @@ namespace ProjectWebApi.Daos
             }
 
             public IList<DefectAverangeTime> defectAverangeTimeFbydevManufsystemProjectIteration(devManufsystemProjectIteration parameters) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperDev\defectAverangeTimeFbydevManufsystemProjectIteration.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indOperDev\defectAverangeTimeFbydevManufsystemProjectIteration.sql"), Encoding.Default);
                 sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
                 sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
                 sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
@@ -124,7 +124,7 @@ namespace ProjectWebApi.Daos
         #region Reopened
 
             public IList<DefectReopened> defectReopenedFbyProject(string subproject, string delivery) {
-                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicatorOperDev\defectReopenedFbyProject.sql"), Encoding.Default);
+                string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indOperDev\defectReopenedFbyProject.sql"), Encoding.Default);
                 sql = sql.Replace("@subproject", subproject);
                 sql = sql.Replace("@delivery", delivery);
                 var result = connection.Executar<DefectReopened>(sql);

@@ -15,39 +15,38 @@ using System.Web.Http.Description;
 
 namespace ProjectWebApi.Controllers
 {
-    public class indicatorPerfTestController : ApiController
+    public class IndPerfTestController : ApiController
     {
   //      [HttpGet]
-  //      [Route("indicatorPerfTest/defectDensity/fbyProject/{subproject}/{delivery}")]
+  //      [Route("indPerfTest/defectDensity/dataFbyProject/{subproject}/{delivery}")]
   //      [ResponseType(typeof(IList<DefectDensity>))]
   //      public HttpResponseMessage defectDensityFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-  //          var indicatorsPerfDao = new indicatorPerfTestDao();
+  //          var indicatorsPerfDao = new indPerfTestDao();
   //          var list = indicatorsPerfDao.defectDensityFbyProject(subproject, delivery);
   //          indicatorsPerfDao.Dispose();
   //          return request.CreateResponse(HttpStatusCode.OK, list);
   //      }
 
   //      [HttpPost]
-  //      [Route("indicatorPerfTest/defectDensity/fbydevManufsystemProject")]
+  //      [Route("indPerfTest/defectDensity/data")]
   //      [ResponseType(typeof(IList<DefectDensity>))]
   //      public HttpResponseMessage defectDensityFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-  //          var indicatorsPerfDao = new indicatorPerfTestDao();
+  //          var indicatorsPerfDao = new indPerfTestDao();
   //          var list = indicatorsPerfDao.defectDensityFbydevManufsystemProject(parameters);
   //          indicatorsPerfDao.Dispose();
   //          return request.CreateResponse(HttpStatusCode.OK, list);
   //      }
 
   //      [HttpPost]
-		//[Route("indicatorPerfTest/defectOfTSInTI/fbydevManufsystemProject")]
+		//[Route("indPerfTest/defectOfTSInTI/data")]
   //      [ResponseType(typeof(IList<defectOfTSInTI>))]
   //      public HttpResponseMessage defectOfTSInTI_fbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters)
 		//{
-		//	var indicatorsPerfDao = new indicatorPerfTestDao();
+		//	var indicatorsPerfDao = new indPerfTestDao();
 		//	var list = indicatorsPerfDao.defectOfTSInTI_fbydevManufsystemProject(parameters);
   //          indicatorsPerfDao.Dispose();
 		//	return request.CreateResponse(HttpStatusCode.OK, list);
 		//}
-
     }
 
 }
