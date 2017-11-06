@@ -21,15 +21,15 @@ namespace ProjectWebApi.Daos
             connection.Dispose();
         }
 
-        public IList<IdName> all()
+        public IList<IdName> data()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\devManuf\all.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\devManuf\data.sql"), Encoding.Default);
             var result = connection.Executar<IdName>(sql);
             return result;
         }
-        public IList<IdName> allfromAgent()
+        public IList<IdName> dataFromAgent()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\devManuf\allfromAgent.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\devManuf\dataFromAgent.sql"), Encoding.Default);
             var result = connection.Executar<IdName>(sql);
             return result;
         }

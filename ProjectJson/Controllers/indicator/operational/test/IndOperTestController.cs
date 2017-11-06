@@ -24,10 +24,10 @@ namespace ProjectWebApi.Controllers
         [Route("indOperTest/productivity/dataFbyProject/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectDensity>))]
         public HttpResponseMessage dataFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-            var indOperTestDao = new indOperTestDao();
-            var list = indOperTestDao.productivityFbyProject(subproject, delivery);
-            indOperTestDao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, list);
+            var dao = new IndOperTestDao();
+            var result = dao.productivityFbyProject(subproject, delivery);
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPost]
@@ -35,10 +35,10 @@ namespace ProjectWebApi.Controllers
 		    [ResponseType(typeof(IList<Productivity>))]
 		    public HttpResponseMessage productivityByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
 		    {
-			    var indOperTestDao = new indOperTestDao();
-			    var list = indOperTestDao.productivityByListTestManufSystemProject(parameters);
-			    indOperTestDao.Dispose();
-			    return request.CreateResponse(HttpStatusCode.OK, list);
+			    var dao = new IndOperTestDao();
+			    var result = dao.productivityByListTestManufSystemProject(parameters);
+                dao.Dispose();
+			    return request.CreateResponse(HttpStatusCode.OK, result);
 		    }
 
         #endregion
@@ -50,10 +50,10 @@ namespace ProjectWebApi.Controllers
             [Route("indOperTest/rejectionEvidence/dataFbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<RejectionEvidence>))]
             public HttpResponseMessage rejectionEvidenceFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indOperTestDao = new indOperTestDao();
-                var list = indOperTestDao.rejectionEvidenceFbyProject(subproject, delivery);
-                indOperTestDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
+                var dao = new IndOperTestDao();
+                var result = dao.rejectionEvidenceFbyProject(subproject, delivery);
+                dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
             }
 
             [HttpPost]
@@ -61,10 +61,10 @@ namespace ProjectWebApi.Controllers
 		    [ResponseType(typeof(IList<RejectionEvidence>))]
 		    public HttpResponseMessage rejectionEvidenceByListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
 		    {
-			    var indOperTestDao = new indOperTestDao();
-			    var list = indOperTestDao.rejectionEvidenceByListTestManufSystemProject(parameters);
-			    indOperTestDao.Dispose();
-			    return request.CreateResponse(HttpStatusCode.OK, list);
+			    var dao = new IndOperTestDao();
+			    var result = dao.rejectionEvidenceByListTestManufSystemProject(parameters);
+                dao.Dispose();
+			    return request.CreateResponse(HttpStatusCode.OK, result);
 		    }
 
         //[HttpPost]
@@ -87,10 +87,10 @@ namespace ProjectWebApi.Controllers
             [Route("indOperTest/defectUnfounded/dataFbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<DefectUnfounded>))]
             public HttpResponseMessage defectUnfoundedFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indOperTestDao = new indOperTestDao();
-                var list = indOperTestDao.defectUnfoundedFbyProject(subproject, delivery);
-                indOperTestDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
+                var dao = new IndOperTestDao();
+                var result = dao.defectUnfoundedFbyProject(subproject, delivery);
+                dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
             }
 
             [HttpPost]
@@ -98,10 +98,10 @@ namespace ProjectWebApi.Controllers
             [ResponseType(typeof(IList<DefectUnfounded>))]
             public HttpResponseMessage defectUnfoundedFbyListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
             {
-                var indOperTestDao = new indOperTestDao();
-                var list = indOperTestDao.defectUnfoundedFbyListTestManufSystemProject(parameters);
-                indOperTestDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
+                var dao = new IndOperTestDao();
+                var result = dao.defectUnfoundedFbyListTestManufSystemProject(parameters);
+                dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
             }
 
         #endregion
@@ -113,10 +113,10 @@ namespace ProjectWebApi.Controllers
             [Route("indOperTest/defectUAT/dataFbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<DefectUAT>))]
             public HttpResponseMessage defectUATFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indOperTestDao = new indOperTestDao();
-                var list = indOperTestDao.defectUATFbyProject(subproject, delivery);
-                indOperTestDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
+                var dao = new IndOperTestDao();
+                var result = dao.defectUATFbyProject(subproject, delivery);
+                dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
             }
 
             [HttpPost]
@@ -124,10 +124,10 @@ namespace ProjectWebApi.Controllers
             [ResponseType(typeof(IList<DefectUAT>))]
             public HttpResponseMessage defectUATFbyListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
             {
-                var indOperTestDao = new indOperTestDao();
-                var list = indOperTestDao.defectUATFbyListTestManufSystemProject(parameters);
-                indOperTestDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
+                var dao = new IndOperTestDao();
+                var result = dao.defectUATFbyListTestManufSystemProject(parameters);
+                dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
             }
 
         #endregion
@@ -139,10 +139,10 @@ namespace ProjectWebApi.Controllers
             [Route("indOperTest/defectAverangeRetestTime/dataFbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(IList<DefectAverangeRetestTime>))]
             public HttpResponseMessage defectAverangeRetestTimeFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indOperTestDao = new indOperTestDao();
-                var list = indOperTestDao.defectAverangeRetestTimeFbyProject(subproject, delivery);
-                indOperTestDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
+                var dao = new IndOperTestDao();
+                var result = dao.defectAverangeRetestTimeFbyProject(subproject, delivery);
+                dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
             }
 
             [HttpPost]
@@ -150,10 +150,10 @@ namespace ProjectWebApi.Controllers
             [ResponseType(typeof(IList<DefectAverangeRetestTime>))]
             public HttpResponseMessage defectAverangeRetestTimeFbyListTestManufSystemProject(HttpRequestMessage request, Parameters parameters)
             {
-                var indOperTestDao = new indOperTestDao();
-                var list = indOperTestDao.defectAverangeRetestTimeFbyListTestManufSystemProject(parameters);
-                indOperTestDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
+                var dao = new IndOperTestDao();
+                var result = dao.defectAverangeRetestTimeFbyListTestManufSystemProject(parameters);
+                dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
             }
 
         #endregion

@@ -24,31 +24,33 @@ namespace ProjectWebApi.Daos
 			connection.Dispose();
 		}
 
-  //      public IList<DefectDensity> defectDensityFbyProject(string subproject, string delivery) {
-  //          string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfTest\defectDensityFbyProject.sql"), Encoding.Default);
-  //          sql = sql.Replace("@subproject", subproject);
-  //          sql = sql.Replace("@delivery", delivery);
-  //          var result = connection.Executar<DefectDensity>(sql);
-  //          return result;
-  //      }
+        //public IList<DefectDensity> defectDensityFbydevManufsystemProject(devManufsystemProject parameters)
+        //{
+        //    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicator\peformance\test\defectDensityFbydevManufsystemProject.sql"), Encoding.Default);
+        //    sql = sql.Replace("@selectedDevManuf", "'" + string.Join("','", parameters.selectedDevManuf) + "'");
+        //    sql = sql.Replace("@selectedSystem", "'" + string.Join("','", parameters.selectedSystem) + "'");
+        //    sql = sql.Replace("@selectedProject", "'" + string.Join("','", parameters.selectedProject) + "'");
+        //    var result = connection.Executar<DefectDensity>(sql);
+        //    return result;
+        //}
 
-  //      public IList<DefectDensity> defectDensityFbydevManufsystemProject(devManufsystemProject parameters) {
-  //          string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfTest\defectDensityFbydevManufsystemProject.sql"), Encoding.Default);
-  //          sql = sql.Replace("@selectedDevManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
-  //          sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-  //          sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-  //          var result = connection.Executar<DefectDensity>(sql);
-  //          return result;
-  //      }
+        //public IList<defectOfTSInTI> defectOfTSInTI_fbydevManufsystemProject(devManufsystemProject parameters)
+        //{
+        //    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicator\peformance\test\defectOfTSInTI_fbydevManufsystemProject.sql"), Encoding.Default);
+        //    sql = sql.Replace("@selectedTestManuf", "'" + string.Join("','", parameters.selectedDevManuf) + "'");
+        //    sql = sql.Replace("@selectedSystem", "'" + string.Join("','", parameters.selectedSystem) + "'");
+        //    sql = sql.Replace("@selectedProject", "'" + string.Join("','", parameters.selectedProject) + "'");
+        //    var list = connection.Executar<defectOfTSInTI>(sql);
+        //    return list;
+        //}
 
-  //      public IList<defectOfTSInTI> defectOfTSInTI_fbydevManufsystemProject(devManufsystemProject parameters)
-		//{
-		//	string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indPerfTest\defectOfTSInTI_fbydevManufsystemProject.sql"), Encoding.Default);
-		//	sql = sql.Replace("@selectedTestManufs", "'" + string.Join("','", parameters.selectedDevManufs) + "'");
-		//	sql = sql.Replace("@selectedSystems", "'" + string.Join("','", parameters.selectedSystems) + "'");
-		//	sql = sql.Replace("@selectedProjects", "'" + string.Join("','", parameters.selectedProjects) + "'");
-		//	var list = connection.Executar<defectOfTSInTI>(sql);
-		//	return list;
-		//}
+        //public IList<DefectDensity> defectDensityFbyProject(string subproject, string delivery)
+        //{
+        //    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicator\peformance\test\defectDensityFbyProject.sql"), Encoding.Default);
+        //    sql = sql.Replace("@subproject", subproject);
+        //    sql = sql.Replace("@delivery", delivery);
+        //    var result = connection.Executar<DefectDensity>(sql);
+        //    return result;
+        //}
     }
 }

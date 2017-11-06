@@ -1,102 +1,26 @@
 ﻿using Classes;
+using ProjectWebApi.Daos;
 using ProjectWebApi.Models;
-using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
-
-using ProjectWebApi.Daos;
-using System.Collections;
 using System.Web.Http.Description;
 
 namespace ProjectWebApi.Controllers
 {
     public class IndOperDevController : ApiController
     {
-        #region Density
-
-            [HttpGet]
-            [Route("indOperDev/defectDensity/dataFbyProject/{subproject}/{delivery}")]
-            [ResponseType(typeof(IList<DefectDensity>))]
-            public HttpResponseMessage defectDensityFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indOperDevDao = new indOperDevDao();
-                var list = indOperDevDao.defectDensityFbyProject(subproject, delivery);
-                indOperDevDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
-            }
-
-            [HttpPost]
-            [Route("indOperDev/defectDensity/data")]
-            [ResponseType(typeof(IList<DefectDensity>))]
-            public HttpResponseMessage defectDensityFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var indOperDevDao = new indOperDevDao();
-                var list = indOperDevDao.defectDensityFbydevManufsystemProject(parameters);
-                indOperDevDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
-            }
-        
-        #endregion
-
-
-        #region AverangeTime
-
-            [HttpGet]
-            [Route("indOperDev/defectAverangeTime/dataFbyProject/{subproject}/{delivery}")]
-            [ResponseType(typeof(DefectAverangeTime))]
-            public HttpResponseMessage defectAverangeTimeFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indOperDevDao = new indOperDevDao();
-                var defectAverangeTime = indOperDevDao.defectAverangeTimeFbyProject(subproject, delivery);
-                indOperDevDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, defectAverangeTime);
-            }
-
-            [HttpPost]
-            [Route("indOperDev/defectAverangeTime/fbyProjectAndListIteration")]
-            [ResponseType(typeof(DefectAverangeTime))]
-            public HttpResponseMessage defectAverangeTimeFbyProjectAndListIteration(HttpRequestMessage request, ProjectAndListIteration parameters) {
-                var indOperDevDao = new indOperDevDao();
-                var defectAverangeTime = indOperDevDao.defectAverangeTimeFbyProjectAndListIteration(parameters);
-                indOperDevDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, defectAverangeTime);
-            }
-
-            [HttpPost]
-            [Route("indOperDev/defectAverangeTime/data")]
-            [ResponseType(typeof(IList<DefectAverangeTime>))]
-            public HttpResponseMessage defectAverangeTimeFbydevManufsystemProject(HttpRequestMessage request, devManufsystemProject parameters) {
-                var indOperDevDao = new indOperDevDao();
-                var list = indOperDevDao.defectAverangeTimeFbydevManufsystemProject(parameters);
-                indOperDevDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
-            }
-
-            [HttpPost]
-            [Route("indOperDev/defectAverangeTime/fbydevManufsystemProjectIteration")]
-            [ResponseType(typeof(IList<DefectAverangeTime>))]
-            public HttpResponseMessage defectAverangeTimeFbydevManufsystemProjectIterations(HttpRequestMessage request, devManufsystemProjectIteration parameters) {
-                var indOperDevDao = new indOperDevDao();
-                var list = indOperDevDao.defectAverangeTimeFbydevManufsystemProjectIteration(parameters);
-                indOperDevDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, list);
-            }
-
-        #endregion
-
-
         #region Reopened
 
             [HttpGet]
             [Route("indOperDev/defectReopened/dataFbyProject/{subproject}/{delivery}")]
             [ResponseType(typeof(DefectReopened))]
             public HttpResponseMessage defectReopenedFbyProject(HttpRequestMessage request, string subproject, string delivery) {
-                var indOperDevDao = new indOperDevDao();
-                var densityDefects = indOperDevDao.defectReopenedFbyProject(subproject, delivery);
-                indOperDevDao.Dispose();
-                return request.CreateResponse(HttpStatusCode.OK, densityDefects);
+                var dao = new IndOperDevDao();
+                var result = dao.defectReopenedFbyProject(subproject, delivery);
+                dao.Dispose();
+                return request.CreateResponse(HttpStatusCode.OK, result);
             }
 
             //[HttpPut]
@@ -641,16 +565,7 @@ namespace ProjectWebApi.Controllers
 
         // ===============================
 
-        [HttpPost]
-		[Route("indOperDev/defectInsideSLA/data")]
-        [ResponseType(typeof(IList<DefectInsideSLA>))]
-        public HttpResponseMessage defectInsideSLAFbyListTestManufSystemProject(HttpRequestMessage request, devManufsystemProject parameters)
-		{
-			var indPerfDevDao = new indPerfDevDao();
-			var list = indPerfDevDao.defectInsideSLAFbyListTestManufSystemProject(parameters);
-            indPerfDevDao.Dispose();
-			return request.CreateResponse(HttpStatusCode.OK, list);
-		}
+
 
     }
 

@@ -8,12 +8,13 @@ using System.IO;
 using System.Text;
 using System.Web;
 
-namespace ProjectWebApi.Daos.Ind.Oper.Dev
+namespace ProjectWebApi.Daos.Ind.Perf.Dev
 {
-	public class IndOperDevDefectDensityDao {
+	public class DefectDensityDao
+    {
 		private Connection connection;
 
-		public IndOperDevDefectDensityDao()
+		public DefectDensityDao()
 		{
 			connection = new Connection(Bancos.Sgq);
 		}
@@ -25,7 +26,7 @@ namespace ProjectWebApi.Daos.Ind.Oper.Dev
 
         public IList<DefectDensity> data(DevManufSystemProject parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicator\operational\Dev\defectDensity\data.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicator\performance\Dev\defectDensity\data.sql"), Encoding.Default);
             sql = sql.Replace("@selectedDevManuf", "'" + string.Join("','", parameters.selectedDevManuf) + "'");
             sql = sql.Replace("@selectedSystem", "'" + string.Join("','", parameters.selectedSystem) + "'");
             sql = sql.Replace("@selectedProject", "'" + string.Join("','", parameters.selectedProject) + "'");
@@ -34,12 +35,11 @@ namespace ProjectWebApi.Daos.Ind.Oper.Dev
         }
 
         public IList<DefectDensity> dataFbyProject(string subproject, string delivery) {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicator\operational\Dev\defectDensity\dataFbyProject.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\indicator\performance\Dev\defectDensity\dataFbyProject.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
             var result = connection.Executar<DefectDensity>(sql);
             return result;
         }
-
     }
 }

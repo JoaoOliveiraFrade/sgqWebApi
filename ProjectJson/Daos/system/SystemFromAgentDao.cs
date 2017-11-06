@@ -21,20 +21,20 @@ namespace ProjectWebApi.Daos
             connection.Dispose();
         }
 
-        public IList<Models.System> all() {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\systemFromAgent\all.sql"), Encoding.Default);
+        public IList<Models.System> data() {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\systemFromAgent\data.sql"), Encoding.Default);
             return connection.Executar<Models.System>(sql);
         }
 
-        public IList<SystemGbyDevManuf> gbyDevManuf()
+        public IList<SystemGbyDevManuf> dataGbyDevManuf()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\systemFromAgent\gbyDevManuf.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\systemFromAgent\dataGbyDevManuf.sql"), Encoding.Default);
             return connection.Executar<SystemGbyDevManuf>(sql);
         }
 
-        public IList<SystemGbyTestManuf> gbyTestManuf()
+        public IList<SystemGbyTestManuf> dataGbyTestManuf()
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\systemFromAgent\gbyTestManuf.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\system\systemFromAgent\dataGbyTestManuf.sql"), Encoding.Default);
             return connection.Executar<SystemGbyTestManuf>(sql);
         }
     }
