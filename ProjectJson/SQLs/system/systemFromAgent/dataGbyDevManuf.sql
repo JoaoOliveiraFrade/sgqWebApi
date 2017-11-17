@@ -48,5 +48,5 @@ from
 where 
 	devManuf not in ('N/A', 'OI','LÍDER TÉCNICO', 'ÁREA DE NEGÓCIOS', 'ÁREA USUÁRIA', 'AUTOMAÇÃO', 'ENGENHARIA', 'OI (API)', 'OI (APLICATIVO)')
 order by 
-	1
+	1, 4, 2
 
