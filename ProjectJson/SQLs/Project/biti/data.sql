@@ -32,7 +32,7 @@ select
 	,favorableOpinionImplantation
 from
 	(
-		select top 5
+		select
 			--convert(varchar, cast(substring(sp.id,4,8) as int)) + ' ' + convert(varchar,cast(substring(en.id,8,8) as int)) as subprojectDelivery
 			substring(sp.id,7,5) + ' ' + substring(en.id,11,5) as subprojectDelivery
 
@@ -299,7 +299,8 @@ from
 			inner join biti_Entregas en
 				on en.subprojeto = sp.id
 		where
-			sp.status = 'ATIVO'
+			substring(sp.id,7,5) in ('00753','01149','01425','01434', '01442')
+			and sp.status = 'ATIVO'
 			and sp.estado not in ('SUSPENSO','CANCELADO', 'ENCERRADO')
 			and en.estado not in('ENTREGA CANCELADA', 'ENCERRADA')
 			and exists -- subprojeto e entrega com sistema da ára de qualidade
