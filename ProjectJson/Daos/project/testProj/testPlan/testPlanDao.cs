@@ -10,11 +10,11 @@ using System.Web;
 
 namespace ProjectWebApi.Daos
 {
-    public class ProjectBitiDao
+    public class testPlanDao
     {
         private Connection connection;
 
-        public ProjectBitiDao()
+        public testPlanDao()
         {
             connection = new Connection(Bancos.Sgq);
         }
@@ -24,10 +24,13 @@ namespace ProjectWebApi.Daos
             connection.Dispose();
         }
 
-        public IList<ProjectBiti> data()
+        public IList<testPlan> data(string subproject, string delivery)
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\biti\data.sql"), Encoding.Default);
-            return connection.Executar<ProjectBiti>(sql);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testPlan\data.sql"), Encoding.Default);
+            sql = sql.Replace("@subproject", subproject);
+            sql = sql.Replace("@delivery", delivery);
+
+            return connection.Executar<testPlan>(sql);
         }
-   }
+    }
 }

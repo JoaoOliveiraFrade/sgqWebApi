@@ -16,63 +16,64 @@ using System.Web.Http.Description;
 namespace ProjectWebApi.Controllers
 {
     // [EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = false)]
-    public class ProjectController : ApiController
+    public class testProjController : ApiController
     {
         [HttpGet]
-        [Route("project/all")]
+        [Route("project/testProj/all")]
         [ResponseType(typeof(IList<simpProject>))]
         public HttpResponseMessage all(HttpRequestMessage request)
         {
-            var projectDao = new ProjectDao();
-            var projects = projectDao.all();
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var projects = TestProjDao.all();
+            TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
         [HttpPost]
-        [Route("project/fbyDevManufsAndSystems")]
+        [Route("project/testProj/fbyDevManufsAndSystems")]
         [ResponseType(typeof(IList<simpProject>))]
         public HttpResponseMessage fbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters) {
-            var projectDao = new ProjectDao();
+            var TestProjDao = new TestProjDao();
 
-            var projects = projectDao.fbyDevManufsAndSystems(parameters);
-            projectDao.Dispose();
+            var projects = TestProjDao.fbyDevManufsAndSystems(parameters);
+            TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
         [HttpPost]
-        [Route("project/fromTestManufsAndSystems")]
+        [Route("project/testProj/fromTestManufsAndSystems")]
         [ResponseType(typeof(IList<Project>))]
         public HttpResponseMessage fromTestManufsAndSystems(HttpRequestMessage request, testManufsAndSystems parameters)
         {
-            var projectDao = new ProjectDao();
+            var TestProjDao = new TestProjDao();
 
-            var projects = projectDao.fromTestManufsAndSystems(parameters);
-            projectDao.Dispose();
+            var projects = TestProjDao.fromTestManufsAndSystems(parameters);
+            TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
         [HttpPost]
-        [Route("project/fromAgentFbyDevManufsAndSystems")]
+        [Route("project/testProj/fromAgentFbyDevManufsAndSystems")]
         [ResponseType(typeof(IList<Project>))]
         public HttpResponseMessage fromAgentFbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters)
         {
-            var projectDao = new ProjectDao();
+            var TestProjDao = new TestProjDao();
 
-            var result = projectDao.fromAgentFbyDevManufsAndSystems(parameters);
-            projectDao.Dispose();
+            var result = TestProjDao.fromAgentFbyDevManufsAndSystems(parameters);
+            TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+
         //[HttpPost]
-        //[Route("project/fbySubprojectDelivery")]
+        //[Route("project/testProj/fbySubprojectDelivery")]
         //[ResponseType(typeof(IList<Project>))]
         //public HttpResponseMessage fbySubprojectDelivery(HttpRequestMessage request, IList<string> parameters)
         //{
-        //    var projectDao = new ProjectDao();
+        //    var TestProjDao = new TestProjDao();
 
-        //    var projects = projectDao.fbySubprojectDelivery(parameters);
-        //    projectDao.Dispose();
+        //    var projects = TestProjDao.fbySubprojectDelivery(parameters);
+        //    TestProjDao.Dispose();
         //    return request.CreateResponse(HttpStatusCode.OK, projects);
         //}
 
@@ -205,29 +206,30 @@ namespace ProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("project/byIds/{ids}")]
+        [Route("project/testProj/byIds/{ids}")]
         [ResponseType(typeof(IList<Project>))]
         public HttpResponseMessage byIds(HttpRequestMessage request, string ids)
         {
-            var projectDao = new ProjectDao();
-            var projects = projectDao.byIds(ids);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var projects = TestProjDao.byIds(ids);
+            TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
 
+
         [HttpGet]
-        [Route("project/bySubprojectDelivery/{subproject}/{delivery}")]
+        [Route("project/testProj/bySubprojectDelivery/{subproject}/{delivery}")]
         [ResponseType(typeof(Project))]
         public HttpResponseMessage getProject(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDao = new ProjectDao();
-            var project = projectDao.getProject(subproject, delivery);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var project = TestProjDao.getProject(subproject, delivery);
+            TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, project);
         }
 
         [HttpPut]
-        [Route("project/update/{id:int}")]
+        [Route("project/testProj/update/{id:int}")]
         public HttpResponseMessage UpdateProject(int id, project item)
         {
             try
@@ -292,153 +294,107 @@ namespace ProjectWebApi.Controllers
 
         }
 
-
         [HttpGet]
-        [Route("project/StatusLastDays/{subproject}/{delivery}")]
-        [ResponseType(typeof(StatusLastDays))]
-        public HttpResponseMessage getStatusLastDaysByProject(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var projectDao = new ProjectDao();
-            var statusLastDays = projectDao.getStatusLastDaysByProject(subproject, delivery);
-            projectDao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, statusLastDays);
-        }
-
-        [HttpGet]
-        [Route("project/StatusGroupMonth/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<Status>))]
-        public HttpResponseMessage getStatusGroupMonthByProject(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getStatusLastMonthByProject(subproject, delivery);
-            projectDao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
-
-        [HttpGet]
-        [Route("project/DefectsStatus/{subproject}/{delivery}")]
+        [Route("project/testProj/DefectsStatus/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectStatus>))]
         public HttpResponseMessage getDefectStatusByProject(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getDefectStatusByProject(subproject, delivery);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.getDefectStatusByProject(subproject, delivery);
+            TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpGet]
-        [Route("project/DefectsGroupOrigin/{subproject}/{delivery}")]
+        [Route("project/testProj/DefectsGroupOrigin/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectStatus>))]
         public HttpResponseMessage getDefectsGroupOrigin(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getDefectsGroupOrigin(subproject, delivery);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.getDefectsGroupOrigin(subproject, delivery);
+            TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpGet]
-        [Route("project/CtsImpactedXDefects/{subproject}/{delivery}")]
+        [Route("project/testProj/CtsImpactedXDefects/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<CtsImpactedXDefects>))]
         public HttpResponseMessage getCtsImpactedXDefects(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getCtsImpactedXDefects(subproject, delivery);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.getCtsImpactedXDefects(subproject, delivery);
+            TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpGet]
-        [Route("project/DefectsOpenInDevManuf/{subproject}/{delivery}")]
+        [Route("project/testProj/DefectsOpenInDevManuf/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectsOpen>))]
         public HttpResponseMessage getDefectsOpenInDevManuf(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getDefectsOpenInDevManuf(subproject, delivery);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.getDefectsOpenInDevManuf(subproject, delivery);
+            TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpGet]
-        [Route("project/DefectsOpenInTestManuf/{subproject}/{delivery}")]
+        [Route("project/testProj/DefectsOpenInTestManuf/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectsOpen>))]
         public HttpResponseMessage getDefectsOpenInTestManuf(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getDefectsOpenInTestManuf(subproject, delivery);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.getDefectsOpenInTestManuf(subproject, delivery);
+            TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
-        [HttpGet]
-        [Route("project/ProductivityXDefects/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<ProductivityXDefects>))]
-        public HttpResponseMessage getProductivityXDefects(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getProductivityXDefects(subproject, delivery);
-            projectDao.Dispose();
-
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
-
-        [HttpGet]
-        [Route("project/ProductivityXDefectsGroupWeekly/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<ProductivityXDefectsGroupWeekly>))]
-        public HttpResponseMessage getProductivityXDefectsGroupWeekly(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getProductivityXDefectsGroupWeekly(subproject, delivery);
-            projectDao.Dispose();
-
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
 
         // ITERATIONS
 
         [HttpGet]
-        [Route("project/iterations/{subproject}/{delivery}")]
+        [Route("project/testProj/iterations/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<iteration>))]
         public HttpResponseMessage iterations(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.iterations(subproject, delivery);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.iterations(subproject, delivery);
+            TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpGet]
-        [Route("project/iterationsActive/{subproject}/{delivery}")]
+        [Route("project/testProj/iterationsActive/{subproject}/{delivery}")]
         [ResponseType(typeof(List<string>))]
         public HttpResponseMessage iterationsActive(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.iterationsActive(subproject, delivery);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.iterationsActive(subproject, delivery);
+            TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpGet]
-        [Route("project/iterationsSelected/{subproject}/{delivery}")]
+        [Route("project/testProj/iterationsSelected/{subproject}/{delivery}")]
         [ResponseType(typeof(List<string>))]
         public HttpResponseMessage iterationsSelected(HttpRequestMessage request, string subproject, string delivery)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.iterationsSelected(subproject, delivery);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.iterationsSelected(subproject, delivery);
+            TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
 
         [HttpPut]
-        [Route("project/UpdateIterationsActive/{id:int}")]
+        [Route("project/testProj/UpdateIterationsActive/{id:int}")]
         [ResponseType(typeof(Boolean))]
         public HttpResponseMessage UpdateIterationsActive(HttpRequestMessage request, int id, IList<string> iterations)
         {
@@ -475,7 +431,7 @@ namespace ProjectWebApi.Controllers
         }
 
         [HttpPut]
-        [Route("project/UpdateIterationsSelected/{id:int}")]
+        [Route("project/testProj/UpdateIterationsSelected/{id:int}")]
         [ResponseType(typeof(Boolean))]
         public HttpResponseMessage UpdateIterationsSelected(HttpRequestMessage request, int id, IList<string> iterations)
         {
@@ -513,7 +469,7 @@ namespace ProjectWebApi.Controllers
 
 
         [HttpGet]
-        [Route("project/ClearIterations/{id:int}")]
+        [Route("project/testProj/ClearIterations/{id:int}")]
         [ResponseType(typeof(string))]
         public HttpResponseMessage ClearIterations(HttpRequestMessage request, int id)
         {
@@ -549,107 +505,60 @@ namespace ProjectWebApi.Controllers
         // ----------
 
 
-
         [HttpPut]
-        [Route("project/StatusLastDaysIterations/{subproject}/{delivery}")]
-        [ResponseType(typeof(StatusLastDays))]
-        public HttpResponseMessage getStatusLastDaysByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
-        {
-            var projectDao = new ProjectDao();
-            var item = projectDao.getStatusLastDaysByProjectIterations(subproject, delivery, iterations);
-            projectDao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, item);
-        }
-
-        [HttpPut]
-        [Route("project/StatusGroupMonthIterations/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<Status>))]
-        public HttpResponseMessage getStatusGroupMonthByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
-        {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getStatusGroupMonthByProjectIterations(subproject, delivery, iterations);
-            projectDao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
-
-        [HttpPut]
-        [Route("project/DefectsStatusIterations/{subproject}/{delivery}")]
+        [Route("project/testProj/DefectsStatusIterations/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectStatus>))]
         public HttpResponseMessage getDefectStatusByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getDefectStatusByProjectIterations(subproject, delivery, iterations);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.getDefectStatusByProjectIterations(subproject, delivery, iterations);
+            TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpPut]
-        [Route("project/DefectsGroupOriginIterations/{subproject}/{delivery}")]
+        [Route("project/testProj/DefectsGroupOriginIterations/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectStatus>))]
         public HttpResponseMessage getDefectsGroupOriginIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getDefectsGroupOriginIterations(subproject, delivery, iterations);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.getDefectsGroupOriginIterations(subproject, delivery, iterations);
+            TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpPut]
-        [Route("project/CtsImpactedXDefectsIterations/{subproject}/{delivery}")]
+        [Route("project/testProj/CtsImpactedXDefectsIterations/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<CtsImpactedXDefects>))]
         public HttpResponseMessage getCtsImpactedXDefectsIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getCtsImpactedXDefectsIterations(subproject, delivery, iterations);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.getCtsImpactedXDefectsIterations(subproject, delivery, iterations);
+            TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpPut]
-        [Route("project/DefectsOpenInDevManufIterations/{subproject}/{delivery}")]
+        [Route("project/testProj/DefectsOpenInDevManufIterations/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectsOpen>))]
         public HttpResponseMessage getDefectsOpenInDevManufIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getDefectsOpenInDevManufIterations(subproject, delivery, iterations);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.getDefectsOpenInDevManufIterations(subproject, delivery, iterations);
+            TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
 
         [HttpPut]
-        [Route("project/DefectsOpenInTestManufIterations/{subproject}/{delivery}")]
+        [Route("project/testProj/DefectsOpenInTestManufIterations/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectsOpen>))]
         public HttpResponseMessage getDefectsOpenInTestManufIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getDefectsOpenInTestManufIterations(subproject, delivery, iterations);
-            projectDao.Dispose();
-
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
-
-        [HttpPut]
-        [Route("project/ProductivityXDefectsIterations/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<ProductivityXDefects>))]
-        public HttpResponseMessage getProductivityXDefectsIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
-        {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getProductivityXDefectsIterations(subproject, delivery, iterations);
-            projectDao.Dispose();
-
-            return request.CreateResponse(HttpStatusCode.OK, list);
-        }
-
-        [HttpPut]
-        [Route("project/ProductivityXDefectsGroupWeeklyIterations/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<ProductivityXDefectsGroupWeekly>))]
-        public HttpResponseMessage getProductivityXDefectsGroupWeeklyIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
-        {
-            var projectDao = new ProjectDao();
-            var list = projectDao.getProductivityXDefectsGroupWeeklyIterations(subproject, delivery, iterations);
-            projectDao.Dispose();
+            var TestProjDao = new TestProjDao();
+            var list = TestProjDao.getDefectsOpenInTestManufIterations(subproject, delivery, iterations);
+            TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }

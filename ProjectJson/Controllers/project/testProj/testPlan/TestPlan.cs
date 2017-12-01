@@ -16,15 +16,15 @@ using System.Web.Http.Description;
 namespace ProjectWebApi.Controllers
 {
     // [EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = false)]
-    public class ProjectBitiController : ApiController
+    public class TestPlanController : ApiController
     {
         [HttpGet]
-        [Route("project/biti/data")]
-        [ResponseType(typeof(IList<ProjectBiti>))]
-        public HttpResponseMessage data(HttpRequestMessage request)
+        [Route("project/testProj/testPlan/data/{subproject}/{delivery}")]
+        [ResponseType(typeof(IList<testPlan>))]
+        public HttpResponseMessage testPlan(HttpRequestMessage request, string subproject, string delivery)
         {
-            var dao = new ProjectBitiDao();
-            var result = dao.data();
+            var dao = new testPlanDao();
+            var result = dao.data(subproject, delivery);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }

@@ -125,7 +125,7 @@ from
 				biti_Frentes_Trabalho ft
 			where 
 				ft.subprojeto = sp.id
-				and ft.Area in ('TESTES E RELEASE', 'QUALIDADE TI', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS')
+				and ft.Area in ('TESTES', 'TESTES E RELEASE', 'QUALIDADE TI', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS')
 				and ft.Estado not in ('CANCELADA', 'CANCELADA SEM DESENHO', 'PARTICIPAÇÃO RECUSADA', 'REQUISITOS RECUSADOS')
 				and ft.Responsavel_Tecnico <> ''
 			),'') as testLeader
@@ -166,7 +166,7 @@ from
 						biti_Frentes_Trabalho ft
 					where 
 						ft.subprojeto = sp.id
-						and ft.Area in ('TESTES E RELEASE', 'QUALIDADE TI', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS')
+						and ft.Area in ('TESTES', 'TESTES E RELEASE', 'QUALIDADE TI', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS')
 						and ft.Estado not in ('CANCELADA', 'CANCELADA SEM DESENHO', 'PARTICIPAÇÃO RECUSADA', 'REQUISITOS RECUSADOS')
 					)
 				then 'SIM'
@@ -299,11 +299,11 @@ from
 			inner join biti_Entregas en
 				on en.subprojeto = sp.id
 		where
-			substring(sp.id,7,5) in ('00753','01149','01425','01434', '01442')
-			and sp.status = 'ATIVO'
+			-- substring(sp.id,7,5) in ('00753','01149','01425','01434', '01442')
+			sp.status = 'ATIVO'
 			and sp.estado not in ('SUSPENSO','CANCELADO', 'ENCERRADO')
 			and en.estado not in('ENTREGA CANCELADA', 'ENCERRADA')
-			and exists -- subprojeto e entrega com sistema da ára de qualidade
+			and exists -- subprojeto e entrega com sistema da área de qualidade
 				( 
 				select 1
 				from biti_Execucoes ex 
