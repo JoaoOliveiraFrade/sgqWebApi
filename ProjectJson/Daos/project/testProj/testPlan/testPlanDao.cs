@@ -26,7 +26,7 @@ namespace ProjectWebApi.Daos
 
         public IList<testPlan> data(string subproject, string delivery)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testPlan\data.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\testPlan\data.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
 

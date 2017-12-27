@@ -26,14 +26,14 @@ namespace ProjectWebApi.Daos
 
         public IList<simpProject> all()
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProjall.sql"), Encoding.Default);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\all.sql"), Encoding.Default);
 			var listProjects = connection.Executar<simpProject>(sql);
             return listProjects;
         }
 
 		public IList<Project> fromTestManufsAndSystems(testManufsAndSystems parameters)
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProjfromTestManufsAndSystems.sql"), Encoding.Default);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\fromTestManufsAndSystems.sql"), Encoding.Default);
 			sql = sql.Replace("@testManufs", "'" + string.Join("','", parameters.testManufs) + "'");
 			sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
 			var result = connection.Executar<Project>(sql);
@@ -42,7 +42,7 @@ namespace ProjectWebApi.Daos
 
         public IList<simpProject> fbyDevManufsAndSystems(devManufsAndSystems parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProjfbyDevManufsAndSystems.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\fbyDevManufsAndSystems.sql"), Encoding.Default);
             sql = sql.Replace("@devManufs", "'" + string.Join("','", parameters.devManufs) + "'");
             sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
             var result = connection.Executar<simpProject>(sql);
@@ -51,7 +51,7 @@ namespace ProjectWebApi.Daos
 
         public IList<Project> fromAgentFbyDevManufsAndSystems(devManufsAndSystems parameters)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProjfromAgentFbyDevManufsAndSystems.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\fromAgentFbyDevManufsAndSystems.sql"), Encoding.Default);
             sql = sql.Replace("@devManufs", "'" + string.Join("','", parameters.devManufs) + "'");
             sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
             var result = connection.Executar<Project>(sql);
@@ -61,7 +61,7 @@ namespace ProjectWebApi.Daos
 
         //public IList<Project> fbySubprojectDelivery(IList<string> parameter)
         //{
-        //    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProjfbySubprojectDelivery.sql"), Encoding.Default);
+        //    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\fbySubprojectDelivery.sql"), Encoding.Default);
         //    sql = sql.Replace("@projects", "'" + string.Join("','", parameter) + "'");
         //    var list = connection.Executar<Project>(sql);
         //    return list;
@@ -69,7 +69,7 @@ namespace ProjectWebApi.Daos
 
         public IList<Project> byIds(string ids)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProjbyIds.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\byIds.sql"), Encoding.Default);
             sql = sql.Replace("@ids", ids);
             var result = connection.Executar<Project>(sql);
             return result;
@@ -77,7 +77,7 @@ namespace ProjectWebApi.Daos
 
         public Project getProject(string subproject, string delivery)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProjdetail.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\detail.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
 
@@ -418,7 +418,7 @@ namespace ProjectWebApi.Daos
 
         public IList<iteration> iterations(string subproject, string delivery)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProjiterationsFbyProject.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\iterationsFbyProject.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
             var result = connection.Executar<iteration>(sql);
@@ -427,7 +427,7 @@ namespace ProjectWebApi.Daos
 
         public List<string> iterationsActive(string subproject, string delivery)
         {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProjiterationsActiveFbyProject.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\iterationsActiveFbyProject.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
 
@@ -439,7 +439,7 @@ namespace ProjectWebApi.Daos
         }
 
         public List<string> iterationsSelected(string subproject, string delivery) {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProjiterationsSelectedFbyProject.sql"), Encoding.Default);
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\iterationsSelectedFbyProject.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
 

@@ -344,6 +344,8 @@
     <Content Include="Sqls\indicator\performance\dev\defectDensity\dataFbyProject.sql" />
     <Content Include="Sqls\indicator\performance\dev\defectDensity\data.sql" />
     <Content Include="Sqls\project\bitiProj\data.sql" />
+    <Content Include="Sqls\project\testProj\execution\ProductivityXDefectsGroupWeekly.sql" />
+    <Content Include="Sqls\project\testProj\execution\productivityXDefects.sql" />
     <Content Include="Sqls\project\testProj\execution\groupDayByIteration.sql" />
     <Content Include="Sqls\project\testProj\execution\groupMonthByIteration.sql" />
     <Content Include="Sqls\project\testProj\execution\groupMonth.sql" />
