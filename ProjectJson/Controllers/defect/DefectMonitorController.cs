@@ -17,15 +17,16 @@ namespace ProjectWebApi.Controllers
 {
     public class defectMonitorController : ApiController
     {
-		//[HttpGet]
-		//[Route("defectMonitor/defectAqueue")]
-		//[ResponseType(typeof(IList<DefectAqueue>))]
-		//public HttpResponseMessage DefectAqueue(HttpRequestMessage request, Parameters parameters)
-		//{
-		//	var defectMonitorDao = new DefectMonitorDao();
-		//	var list = defectMonitorDao.defectAqueue(parameters);
-        //  defectMonitorDao.Dispose();
-		//	return request.CreateResponse(HttpStatusCode.OK, list);
-		//}
-   }
+        [HttpPost]
+        [Route("defectMonitor/fbyQueueStatusTrafficLightProject")]
+        [ResponseType(typeof(IList<DefectUnfounded>))]
+        public HttpResponseMessage OpenDefects(HttpRequestMessage request, Parameters parameters)
+        {
+            var dao = new IndOperTestDao();
+            var result = dao.FbyQueueStatusTrafficLightProject(parameters);
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+    }
 }

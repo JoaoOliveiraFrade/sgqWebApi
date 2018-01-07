@@ -18,12 +18,12 @@ namespace ProjectWebApi.Controllers
     public class DefectQueueController : ApiController
     {
 		[HttpGet]
-		[Route("defectQueue/all")]
+		[Route("defectQueue/data")]
 		[ResponseType(typeof(IList<IdName>))]
 		public HttpResponseMessage DefectQueue(HttpRequestMessage request)
 		{
 			var defectQueueDao = new DefectQueueDao();
-			var list = defectQueueDao.All();
+			var list = defectQueueDao.Data();
             defectQueueDao.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}

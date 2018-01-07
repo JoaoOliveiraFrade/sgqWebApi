@@ -24,9 +24,9 @@ namespace ProjectWebApi.Daos
             connection.Dispose();
         }
 
-        public IList<simpProject> all()
+        public IList<simpProject> Data()
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\all.sql"), Encoding.Default);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\data.sql"), Encoding.Default);
 			var listProjects = connection.Executar<simpProject>(sql);
             return listProjects;
         }

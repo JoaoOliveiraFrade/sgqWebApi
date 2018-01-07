@@ -24,9 +24,9 @@ namespace ProjectWebApi.Daos
 			connection.Dispose();
 		}
 
-		public IList<IdName> All()
+		public IList<IdName> Data()
 		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\defectStatus\all.sql"), Encoding.Default);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\defect\defectStatus\data.sql"), Encoding.Default);
 			var list = connection.Executar<IdName>(sql);
 			return list;
 		}

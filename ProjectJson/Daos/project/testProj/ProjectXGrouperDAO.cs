@@ -21,7 +21,7 @@ namespace ProjectWebApi.Daos
             connection.Dispose();
         }
 
-        public IList<ProjectXGrouper> GetAll()
+        public IList<ProjectXGrouper> Data()
         {
             string sql = @"select * from SGQ_ProjectsXGroupers order by project";
 

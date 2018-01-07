@@ -18,12 +18,12 @@ namespace ProjectWebApi.Controllers
     public class PulledChainController : ApiController
     {
 		[HttpGet]
-		[Route("pulledChain/all")]
+		[Route("pulledChain/data")]
 		[ResponseType(typeof(IList<PulledChain>))]
-		public HttpResponseMessage all(HttpRequestMessage request)
+		public HttpResponseMessage PulledChain(HttpRequestMessage request)
 		{
 			var pulledChainDao = new PulledChainDao();
-            IList<PulledChain> projects = pulledChainDao.getAll();
+            IList<PulledChain> projects = pulledChainDao.Data();
             pulledChainDao.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, projects);
 		}

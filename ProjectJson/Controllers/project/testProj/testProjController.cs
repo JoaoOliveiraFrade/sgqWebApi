@@ -19,12 +19,12 @@ namespace ProjectWebApi.Controllers
     public class testProjController : ApiController
     {
         [HttpGet]
-        [Route("project/testProj/all")]
+        [Route("project/testProj/data")]
         [ResponseType(typeof(IList<simpProject>))]
-        public HttpResponseMessage all(HttpRequestMessage request)
+        public HttpResponseMessage TestProj(HttpRequestMessage request)
         {
             var TestProjDao = new TestProjDao();
-            var projects = TestProjDao.all();
+            var projects = TestProjDao.Data();
             TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }

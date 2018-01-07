@@ -11,12 +11,12 @@ namespace ProjectWebApi.Controllers
     public class TestManufController : ApiController
     {
         [HttpGet]
-        [Route("testManuf/all")]
+        [Route("testManuf/data")]
         [ResponseType(typeof(IList<IdName>))]
-        public HttpResponseMessage all(HttpRequestMessage request)
+        public HttpResponseMessage TestManuf(HttpRequestMessage request)
         {
             var Dao = new TestManufDao();
-            var list = Dao.all();
+            var list = Dao.Data();
             Dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }

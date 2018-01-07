@@ -18,12 +18,12 @@ namespace ProjectWebApi.Controllers
     public class DefectTrafficLightController : ApiController
     {
 		[HttpGet]
-		[Route("DefectTrafficLight/all")]
+		[Route("DefectTrafficLight/data")]
 		[ResponseType(typeof(IList<IdName>))]
 		public HttpResponseMessage DefectTrafficLight(HttpRequestMessage request)
 		{
 			var DefectTrafficLightDao = new DefectTrafficLightDao();
-			var list = DefectTrafficLightDao.All();
+			var list = DefectTrafficLightDao.Data();
             DefectTrafficLightDao.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}

@@ -18,12 +18,12 @@ namespace ProjectWebApi.Controllers
     public class DefectStatusController : ApiController
     {
 		[HttpGet]
-		[Route("defectStatus/all")]
+		[Route("defectStatus/data")]
 		[ResponseType(typeof(IList<IdName>))]
 		public HttpResponseMessage DefectStatus(HttpRequestMessage request)
 		{
 			var defectStatusDao = new DefectStatusDao();
-			var list = defectStatusDao.All();
+			var list = defectStatusDao.Data();
             defectStatusDao.Dispose();
 			return request.CreateResponse(HttpStatusCode.OK, list);
 		}

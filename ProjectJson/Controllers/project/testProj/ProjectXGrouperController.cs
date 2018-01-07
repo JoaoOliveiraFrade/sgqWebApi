@@ -19,12 +19,12 @@ namespace ProjectWebApi.Controllers
     public class ProjectXGrouperController : ApiController
     {
         [HttpGet]
-        [Route("ProjectXGrouper/All")]
+        [Route("ProjectXGrouper/data")]
         [ResponseType(typeof(IList<ProjectXGrouper>))]
-        public HttpResponseMessage getProjectXGrouper(HttpRequestMessage request)
+        public HttpResponseMessage ProjectXGrouper(HttpRequestMessage request)
         {
             var ProjectXGrouperDao = new ProjectXGrouperDao();
-            var list = ProjectXGrouperDao.GetAll();
+            var list = ProjectXGrouperDao.Data();
             ProjectXGrouperDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, list);
         }

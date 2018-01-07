@@ -24,9 +24,9 @@ namespace ProjectWebApi.Daos
 			connection.Dispose();
 		}
 
-		public IList<IdName> defectAqueue(Parameters parameters)
+		public IList<IdName> FbyQueueStatusTrafficLightProject(Parameters parameters)
 		{
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\defectQueue\all.sql"), Encoding.Default);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\defect\defectMonitor\fbyQueueStatusTrafficLightProject.sql"), Encoding.Default);
 			var list = connection.Executar<IdName>(sql);
 			return list;
 		}
