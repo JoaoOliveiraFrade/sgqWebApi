@@ -183,6 +183,7 @@
     <Compile Include="Classes\Gerais.cs" />
     <Compile Include="Classes\HtmlToImage.cs" />
     <Compile Include="Classes\LibsAplicativo.cs" />
+    <Compile Include="Controllers\defect\DefectStepController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\indicator\operational\dev\IndOperDevDefectReopenedController.cs" />
     <Compile Include="Controllers\indicator\operational\dev\IndOperDevDefectAverangeTimeController.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Controllers\GrouperController.cs" />
     <Compile Include="Controllers\project\testProj\testProjController.cs" />
     <Compile Include="Controllers\SGQController.cs" />
+    <Compile Include="Daos\defect\DefectStepDao.cs" />
     <Compile Include="Daos\defect\DefectTrafficLightDao.cs" />
     <Compile Include="Daos\defect\DefectStatusDao.cs" />
     <Compile Include="Daos\defect\DefectQueueDao.cs" />
@@ -246,6 +248,7 @@
     <Compile Include="Models\bptProjects.cs" />
     <Compile Include="Models\bptReleases.cs" />
     <Compile Include="Models\bptValidPlanoEvid.cs" />
+    <Compile Include="Models\defect\DefectStep.cs" />
     <Compile Include="Models\IdName.cs" />
     <Compile Include="Models\eMail\Email.cs" />
     <Compile Include="Models\indicator\operational\dev\DefectReopened.cs" />
@@ -320,6 +323,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Sqls\defect\defectMonitor\fbyQueueStatusTrafficLightProject.sql" />
     <Content Include="Sqls\defect\defectQueue\data.sql" />
+    <Content Include="Sqls\defect\defectStep\fbyProject.sql" />
     <Content Include="Sqls\defect\defectTrafficLight\data.sql" />
     <Content Include="Sqls\defect\defectStatus\data.sql" />
     <Content Include="Sqls\devManuf\dataFromAgent.sql" />

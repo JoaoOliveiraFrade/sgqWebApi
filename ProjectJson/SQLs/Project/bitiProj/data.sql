@@ -5,9 +5,11 @@ select
 	,classification
 	,un
 
-	,case when releaseSGQ <> '' then right(releaseSGQ,2) + '/' + left(releaseSGQ,4) else '' end as releaseSGQ
+	,releaseSGQ
+	,case when releaseSGQ <> '' then right(releaseSGQ,2) + '/' + left(releaseSGQ,4) else '' end as releaseSGQFormat
 
-	,case when (case when releaseClarity <> '' then releaseClarity else releaseClarityEvento end) <> '' then right((case when releaseClarity <> '' then releaseClarity else releaseClarityEvento end),2) + '/' + left((case when releaseClarity <> '' then releaseClarity else releaseClarityEvento end),4) else '' end as releaseClarity
+	,case when releaseClarity <> '' then releaseClarity else releaseClarityEvento end as releaseClarity
+	,case when (case when releaseClarity <> '' then releaseClarity else releaseClarityEvento end) <> '' then right((case when releaseClarity <> '' then releaseClarity else releaseClarityEvento end),2) + '/' + left((case when releaseClarity <> '' then releaseClarity else releaseClarityEvento end),4) else '' end as releaseClarityFormat
 
 	,category
 	,projectManager

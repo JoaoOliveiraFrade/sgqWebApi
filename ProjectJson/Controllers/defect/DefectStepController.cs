@@ -15,15 +15,15 @@ using System.Web.Http.Description;
 
 namespace ProjectWebApi.Controllers
 {
-    public class defectMonitorController : ApiController
+    public class DefectStepController : ApiController
     {
         [HttpPost]
-        [Route("defectMonitor/fbyQueueStatusTrafficLightProject")]
-        [ResponseType(typeof(IList<DefectUnfounded>))]
-        public HttpResponseMessage OpenDefects(HttpRequestMessage request, Parameters parameters)
+        [Route("defectStep/fbyProject")]
+        [ResponseType(typeof(IList<DefectStep>))]
+        public HttpResponseMessage OpenDefects(HttpRequestMessage request, string subproject, string delivery)
         {
-            var dao = new DefectMonitorDao();
-            var result = dao.FbyQueueStatusTrafficLightProject(parameters);
+            var dao = new DefectStepDao();
+            var result = dao.FbyProject(subproject, delivery);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
