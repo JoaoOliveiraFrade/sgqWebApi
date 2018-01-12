@@ -18,7 +18,7 @@ namespace ProjectWebApi.Controllers
     public class DefectTrafficLightController : ApiController
     {
 		[HttpGet]
-		[Route("DefectTrafficLight/data")]
+		[Route("defect/DefectTrafficLight/data")]
 		[ResponseType(typeof(IList<IdName>))]
 		public HttpResponseMessage DefectTrafficLight(HttpRequestMessage request)
 		{

@@ -18,7 +18,7 @@ namespace ProjectWebApi.Controllers
     public class DefectStatusController : ApiController
     {
 		[HttpGet]
-		[Route("defectStatus/data")]
+		[Route("defect/defectStatus/data")]
 		[ResponseType(typeof(IList<IdName>))]
 		public HttpResponseMessage DefectStatus(HttpRequestMessage request)
 		{

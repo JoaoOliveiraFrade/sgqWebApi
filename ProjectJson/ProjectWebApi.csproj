@@ -137,7 +137,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="infra\" />
-    <Folder Include="Models\defect\" />
     <Folder Include="Models\indicator\peformance\test\" />
     <Folder Include="Sqls\indicator\performance\test\" />
     <Folder Include="Views\Auth\" />
@@ -204,7 +203,7 @@
     <Compile Include="Controllers\indicator\operational\test\IndOperTestController.cs" />
     <Compile Include="Controllers\project\bitiProj\BitiProjController.cs" />
     <Compile Include="Controllers\project\testProj\execution\executionController.cs" />
-    <Compile Include="Controllers\project\testProj\testPlan\TestPlan.cs" />
+    <Compile Include="Controllers\project\testProj\testPlan\TestPlanController.cs" />
     <Compile Include="Controllers\project\testProj\PulledChainController.cs" />
     <Compile Include="Controllers\system\SystemFromAgentController.cs" />
     <Compile Include="Controllers\system\SystemController.cs" />
@@ -247,6 +246,7 @@
     <Compile Include="Models\bptProjects.cs" />
     <Compile Include="Models\bptReleases.cs" />
     <Compile Include="Models\bptValidPlanoEvid.cs" />
+    <Compile Include="Models\defect\DefectMonitorParameters.cs" />
     <Compile Include="Models\project\testPlan\Step.cs" />
     <Compile Include="Models\IdName.cs" />
     <Compile Include="Models\eMail\Email.cs" />

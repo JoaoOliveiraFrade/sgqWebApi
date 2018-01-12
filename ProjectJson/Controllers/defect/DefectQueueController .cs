@@ -18,7 +18,7 @@ namespace ProjectWebApi.Controllers
     public class DefectQueueController : ApiController
     {
 		[HttpGet]
-		[Route("defectQueue/data")]
+		[Route("defect/defectQueue/data")]
 		[ResponseType(typeof(IList<IdName>))]
 		public HttpResponseMessage DefectQueue(HttpRequestMessage request)
 		{

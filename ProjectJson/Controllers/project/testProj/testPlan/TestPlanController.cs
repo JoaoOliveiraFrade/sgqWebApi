@@ -29,13 +29,13 @@ namespace ProjectWebApi.Controllers
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        [HttpPost]
-        [Route("project/testProj/testPlan/step")]
+        [HttpGet]
+        [Route("project/testProj/testPlan/step/{subproject}/{delivery}/{test}/{ct}")]
         [ResponseType(typeof(IList<Step>))]
-        public HttpResponseMessage step(HttpRequestMessage request, string subproject, string delivery)
+        public HttpResponseMessage step(HttpRequestMessage request, string subproject, string delivery, string test, string ct)
         {
             var dao = new testPlanDao();
-            var result = dao.step(subproject, delivery);
+            var result = dao.step(subproject, delivery, test, ct);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }

@@ -18,9 +18,9 @@ namespace ProjectWebApi.Controllers
     public class defectMonitorController : ApiController
     {
         [HttpPost]
-        [Route("defectMonitor/fbyQueueStatusTrafficLightProject")]
+        [Route("defect/defectMonitor/fbyQueueStatusTrafficLightProject")]
         [ResponseType(typeof(IList<DefectUnfounded>))]
-        public HttpResponseMessage OpenDefects(HttpRequestMessage request, Parameters parameters)
+        public HttpResponseMessage OpenDefects(HttpRequestMessage request, DefectMonitorParameters parameters)
         {
             var dao = new DefectMonitorDao();
             var result = dao.FbyQueueStatusTrafficLightProject(parameters);
