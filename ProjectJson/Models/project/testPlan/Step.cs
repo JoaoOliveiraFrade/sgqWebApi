@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ProjectWebApi.Models
 {
-    public class DefectStep
+    public class Step
     {
         public string subproject { get; set; }
         public string delivery { get; set; }

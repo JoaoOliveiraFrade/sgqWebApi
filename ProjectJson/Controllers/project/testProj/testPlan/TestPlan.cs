@@ -20,13 +20,25 @@ namespace ProjectWebApi.Controllers
     {
         [HttpGet]
         [Route("project/testProj/testPlan/data/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<testPlan>))]
-        public HttpResponseMessage testPlan(HttpRequestMessage request, string subproject, string delivery)
+        [ResponseType(typeof(IList<TestPlan>))]
+        public HttpResponseMessage data(HttpRequestMessage request, string subproject, string delivery)
         {
             var dao = new testPlanDao();
             var result = dao.data(subproject, delivery);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
+
+        [HttpPost]
+        [Route("project/testProj/testPlan/step")]
+        [ResponseType(typeof(IList<Step>))]
+        public HttpResponseMessage step(HttpRequestMessage request, string subproject, string delivery)
+        {
+            var dao = new testPlanDao();
+            var result = dao.step(subproject, delivery);
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
     }
 }

@@ -137,6 +137,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="infra\" />
+    <Folder Include="Models\defect\" />
     <Folder Include="Models\indicator\peformance\test\" />
     <Folder Include="Sqls\indicator\performance\test\" />
     <Folder Include="Views\Auth\" />
@@ -183,7 +184,6 @@
     <Compile Include="Classes\Gerais.cs" />
     <Compile Include="Classes\HtmlToImage.cs" />
     <Compile Include="Classes\LibsAplicativo.cs" />
-    <Compile Include="Controllers\defect\DefectStepController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\indicator\operational\dev\IndOperDevDefectReopenedController.cs" />
     <Compile Include="Controllers\indicator\operational\dev\IndOperDevDefectAverangeTimeController.cs" />
@@ -213,7 +213,6 @@
     <Compile Include="Controllers\GrouperController.cs" />
     <Compile Include="Controllers\project\testProj\testProjController.cs" />
     <Compile Include="Controllers\SGQController.cs" />
-    <Compile Include="Daos\defect\DefectStepDao.cs" />
     <Compile Include="Daos\defect\DefectTrafficLightDao.cs" />
     <Compile Include="Daos\defect\DefectStatusDao.cs" />
     <Compile Include="Daos\defect\DefectQueueDao.cs" />
@@ -231,7 +230,7 @@
     <Compile Include="Daos\indicator\operational\test\IndOperTestDao.cs" />
     <Compile Include="Daos\project\bitiProj\BitiProjDao.cs" />
     <Compile Include="Daos\project\testProj\execution\ExecutionDao.cs" />
-    <Compile Include="Daos\project\testProj\testPlan\testPlanDao.cs" />
+    <Compile Include="Daos\project\testProj\testPlan\TestPlanDao.cs" />
     <Compile Include="Daos\project\testProj\PulledChainDao.cs" />
     <Compile Include="Daos\system\SystemFromAgentDao.cs" />
     <Compile Include="Daos\system\SystemDao.cs" />
@@ -248,7 +247,7 @@
     <Compile Include="Models\bptProjects.cs" />
     <Compile Include="Models\bptReleases.cs" />
     <Compile Include="Models\bptValidPlanoEvid.cs" />
-    <Compile Include="Models\defect\DefectStep.cs" />
+    <Compile Include="Models\project\testPlan\Step.cs" />
     <Compile Include="Models\IdName.cs" />
     <Compile Include="Models\eMail\Email.cs" />
     <Compile Include="Models\indicator\operational\dev\DefectReopened.cs" />
@@ -266,7 +265,7 @@
     <Compile Include="Models\indicator\operational\test\Productivity.cs" />
     <Compile Include="Models\project\biti\ProjectBiti.cs" />
     <Compile Include="Models\project\project\devManufsAndSystems.cs" />
-    <Compile Include="Models\project\testPlan\testPlan.cs" />
+    <Compile Include="Models\project\testPlan\TestPlan.cs" />
     <Compile Include="Models\project\project\simpProject.cs" />
     <Compile Include="Models\project\project\testManufsAndSystems.cs" />
     <Compile Include="Models\pulledChain\chatCFD.cs" />
@@ -323,7 +322,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Sqls\defect\defectMonitor\fbyQueueStatusTrafficLightProject.sql" />
     <Content Include="Sqls\defect\defectQueue\data.sql" />
-    <Content Include="Sqls\defect\defectStep\fbyProject.sql" />
+    <Content Include="Sqls\project\testProj\testPlan\step.sql" />
     <Content Include="Sqls\defect\defectTrafficLight\data.sql" />
     <Content Include="Sqls\defect\defectStatus\data.sql" />
     <Content Include="Sqls\devManuf\dataFromAgent.sql" />

@@ -1,8 +1,12 @@
 ﻿using System;
 namespace ProjectWebApi.Models.Project
 {
-    public class testPlan
+    public class TestPlan
     {
+        public string subproject { get; set; }
+        public string delivery { get; set; }
+        public Int32 test { get; set; }
+        public Int32 ct { get; set; }
         public string cycle { get; set; }
         public Int32 scenario { get; set; }
         public Int32 testCase { get; set; }

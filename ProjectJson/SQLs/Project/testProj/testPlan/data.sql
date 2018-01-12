@@ -1,7 +1,9 @@
 ﻿select
-	--ct.subprojeto
-	--,ct.entrega
-	ct.ciclo as cycle
+	ct.subprojeto as subproject
+	,ct.entrega as delivery
+	,ct.teste as test
+	,ct.ct
+	,ct.ciclo as cycle
 	,ct.nro_cenario as scenario
 	,ct.nro_ct as testCase
 	,ct.iterations as iteration

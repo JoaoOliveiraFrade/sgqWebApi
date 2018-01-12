@@ -24,13 +24,20 @@ namespace ProjectWebApi.Daos
             connection.Dispose();
         }
 
-        public IList<testPlan> data(string subproject, string delivery)
+        public IList<TestPlan> data(string subproject, string delivery)
         {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\testPlan\data.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
 
-            return connection.Executar<testPlan>(sql);
+            return connection.Executar<TestPlan>(sql);
         }
+        public IList<Step> step(string subproject, string delivery)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testPlan\step.sql"), Encoding.Default);
+            var list = connection.Executar<Step>(sql);
+            return list;
+        }
+
     }
 }
