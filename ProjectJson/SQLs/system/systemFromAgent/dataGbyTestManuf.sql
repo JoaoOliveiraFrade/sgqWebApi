@@ -15,7 +15,7 @@ from
 			(
 				select distinct
 					replace(dt.encaminhado_para,'–', '-') as agent
-					,(d.subprojeto + d.entrega) as subprojectDelivery
+					,(d.subprojeto + d.entrega) as subDel
 				from
 					alm_defeitos d
 					left join alm_defeitos_tempos dt

@@ -3,7 +3,7 @@ select
 	,substring(ex.dt_execucao,7,2) as year
 	,(case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'N/A' end) as testManuf
 	,cts.sistema as system
-	,convert(varchar, cast(substring(cts.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(cts.entrega,8,8) as int)) as subprojectDelivery
+	,convert(varchar, cast(substring(cts.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(cts.entrega,8,8) as int)) as subDel
 	,count(*) as productivity
 	,sum(case when ex.status = 'PASSED' then 1 else 0 end) as passed
 	,sum(case when ex.status = 'FAILED' then 1 else 0 end) as failed

@@ -3,7 +3,7 @@
 	,substring(date,7,2) as year
 	,testManuf
 	,system
-	,subprojectDelivery
+	,subDel
 	,count(*) as qtyDefect
 	,sum(qtyDefectUAT) as qtyDefectUAT
 from
@@ -20,7 +20,7 @@ from
 
 			,(case when IsNull(fabrica_teste,'') <> '' then fabrica_teste else 'N/A' end) as testManuf
 			,sistema_ct as system
-			,convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) as subprojectDelivery
+			,convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) as subDel
 			,case when ciclo = 'UAT' then 1 else 0 end qtyDefectUAT
 		from 
 			alm_defeitos WITH (NOLOCK)
@@ -35,6 +35,6 @@ group by
 	,substring(date,7,2)
 	,testManuf
 	,system
-	,subprojectDelivery
+	,subDel
 order by
 	2, 1, 3, 4

@@ -3,7 +3,7 @@
 	,substring(df.dt_final,7,2) as year
 	,(case when IsNull(df.fabrica_desenvolvimento,'') <> '' then df.fabrica_desenvolvimento else 'N/A' end) as devManuf
 	,(case when IsNull(df.sistema_defeito,'') <> '' then df.sistema_defeito else 'N/A' end) as system
-	,df.subprojeto + df.entrega as subprojectDelivery
+	,df.subprojeto + df.entrega as subDel
 	,substring(df.severidade,3,10) as severity
 	,count(*) as qtyDefect
 	,round(sum(df.Aging),2) as qtyHour

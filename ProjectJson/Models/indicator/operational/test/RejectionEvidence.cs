@@ -11,7 +11,7 @@ namespace ProjectWebApi.Models
         public string year { get; set; }
         public string testManuf { get; set; }
         public string system { get; set; }
-        public string subprojectDelivery { get; set; }
+        public string subDel { get; set; }
 
         public int qtyEvidence { get; set; }
         public int qtyEvidenceClient { get; set; }

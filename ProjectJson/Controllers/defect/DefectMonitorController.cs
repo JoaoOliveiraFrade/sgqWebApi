@@ -19,14 +19,13 @@ namespace ProjectWebApi.Controllers
     {
         [HttpPost]
         [Route("defect/defectMonitor/fbyQueueStatusTrafficLightProject")]
-        [ResponseType(typeof(IList<DefectUnfounded>))]
-        public HttpResponseMessage OpenDefects(HttpRequestMessage request, DefectMonitorParameters parameters)
+        [ResponseType(typeof(IList<DefectMonitor>))]
+        public HttpResponseMessage OpenDefects(HttpRequestMessage request, DefectMonitorParameter parameter)
         {
             var dao = new DefectMonitorDao();
-            var result = dao.FbyQueueStatusTrafficLightProject(parameters);
+            var result = dao.FbyQueueStatusTrafficLightProject(parameter);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
-
     }
 }

@@ -10,7 +10,7 @@ namespace ProjectWebApi.Models
         public string year { get; set; }
         public string testManuf { get; set; }
         public string system { get; set; }
-        public string subprojectDelivery { get; set; }
+        public string subDel { get; set; }
         // public string monthYear { get; set; }
 		// public string yearMonth { get; set; }
         public int passed { get; set; }

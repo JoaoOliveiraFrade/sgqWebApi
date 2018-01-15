@@ -32,7 +32,7 @@ select
 	IsNull(left(i.yearMonth,2),'') as year,
 	(case when IsNull(fabrica_teste,'') <> '' then fabrica_teste else 'N/A' end) as testManuf,
 	sistema_ct as system,
-	convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int)) as subprojectDelivery,
+	convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int)) as subDel,
 	count(*) as qtyDefect,
 	sum(case when df.status_atual = 'CANCELLED' and origem = 'IMPROCEDENTE' then 1 else 0 end) as qtyUnfounded
 from 

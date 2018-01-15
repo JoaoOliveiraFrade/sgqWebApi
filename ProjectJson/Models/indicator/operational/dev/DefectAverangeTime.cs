@@ -11,7 +11,7 @@ namespace ProjectWebApi.Models
         public string year { get; set; }
         public string devManuf { get; set; }
         public string system { get; set; }
-        public string subprojectDelivery { get; set; }
+        public string subDel { get; set; }
         public string severity { get; set; }
         public int qtyDefect { get; set; }
         public double qtyHour { get; set; }
@@ -20,7 +20,7 @@ namespace ProjectWebApi.Models
         //public string severity { get; set; }
         //public string devManuf { get; set; }
         //public string system { get; set; }
-        //public string project { get; set; }
+        //public string subDel { get; set; }
         //public string subproject { get; set; }
         //public string delivery { get; set; }
         //public int qtyDefects { get; set; }

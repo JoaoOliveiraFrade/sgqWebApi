@@ -7,7 +7,7 @@ namespace ProjectWebApi.Models
 {
     public class ctsImpactedXDefects
     {
-        public string project { get; set; }
+        public string subDel { get; set; }
         public string subproject { get; set; }
         public string delivery { get; set; }
         public string date { get; set; }

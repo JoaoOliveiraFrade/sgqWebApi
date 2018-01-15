@@ -148,7 +148,7 @@ namespace ProjectWebApi.Controllers
 	                monthExecution + '/' + yearExecution as date,
 	                devManuf,
 	                system,
-	                convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,8,8) as int)) as project,
+	                convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,8,8) as int)) as subDel,
 	                subproject,
 	                delivery,
 	                sum(qte_defeitos) as qtyDefects,
@@ -215,7 +215,7 @@ namespace ProjectWebApi.Controllers
 	                dayExecution + '/' + monthExecution + '/' + yearExecution as date,
 	                devManuf,
 	                system,
-	                convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,8,8) as int)) as project,
+	                convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,8,8) as int)) as subDel,
 	                subproject,
 	                delivery,
 	                sum(qte_defeitos) as qtyDefects,
@@ -292,7 +292,7 @@ namespace ProjectWebApi.Controllers
 	                monthExecution + '/' + yearExecution as date,
 	                devManuf,
 	                system,
-	                convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,8,8) as int)) as project,
+	                convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,8,8) as int)) as subDel,
 	                subproject,
 	                delivery,
 	                sum(qte_defeitos) as qtyDefects,
@@ -373,7 +373,7 @@ namespace ProjectWebApi.Controllers
 					substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
 					fabrica_desenvolvimento as devManuf,
 					sistema_defeito as system,
-					convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
+					convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as subDel,
 					subprojeto as subproject,
 					entrega as delivery,
 					sum(Aging) as qty
@@ -415,7 +415,7 @@ namespace ProjectWebApi.Controllers
 	            substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
 	            fabrica_desenvolvimento as devManuf,
 	            sistema_defeito as system,
-	            convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
+	            convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as subDel,
 	            subprojeto as subproject,
 	            entrega as delivery,
 	            count(*) as qtyDefects,
@@ -467,7 +467,7 @@ namespace ProjectWebApi.Controllers
 	                substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
 	                fabrica_desenvolvimento as devManuf,
 	                sistema_defeito as system,
-	                convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
+	                convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as subDel,
 	                subprojeto as subproject,
 	                entrega as delivery,
 	                count(*) as qtyTotal,
@@ -510,100 +510,6 @@ namespace ProjectWebApi.Controllers
         }
         */
 
-        [HttpGet]
-        [Route("defectDetail/{subproject}/{delivery}/{defect}")]
-        public defectDetail getDefectDetailing(string subproject, string delivery, string defect)
-        {
-            string sql = @"
-            select 
-	            convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
-	            subprojeto as subproject,
-	            entrega as delivery,
-
-	            Defeito as id,
-	            d.Nome as name,
-	            Ciclo as cycle,
-	            CT,
-				(select nome from alm_cts cts where cts.subprojeto = d.subprojeto and cts.entrega = d.entrega and cts.ct = d.CT) as ctName,
-	            Sistema_CT as ctSystem,
-                Sistema_Defeito as defectSystem,
-	            Fabrica_Desenvolvimento as devManuf,
-	            Fabrica_Teste as testManuf,
-	            Encaminhado_Para as forwardedTo,
-	            substring(Severidade,3,10) as severity,
-	            Origem as source,
-	            natureza as nature,
-                Status_Atual as status,
-				
-				sgqD.auditStatus,
-				sgqD.week,
-				sgqD.release,
-				sgqD.offender,
-				sgqD.ruleInfringed,
-				sgqD.trafficLight,
-
-                Dt_Inicial as dtOpening,
-	            Dt_Prevista_Solucao_Defeito as dtForecastingSolution,
-
-                erro_detectavel_em_desenvolvimento as detectableInDev,
-
-                Qtd_Reopen as qtyReopened,
-                Qtd_CTs_Impactados as qtyImpactedCTs,
-
-	            d.Ping_Pong as qtyPingPong,
-
-      	       --round(
-		           -- cast(
-			          --    (select Sum(Tempo_Util) 
-			          --     from ALM_Defeitos_Tempos dt WITH (NOLOCK)
-			          --     where dt.Subprojeto = d.Subprojeto and 
-			          --           dt.Entrega = d.Entrega and 
-					        --     dt.Defeito = d.Defeito)
-		           -- as float ) / 60, 2
-	            --) as qtyBusinessHours,
-
-                d.aging,
-   	            substring('-  ',2+convert(int,sign(d.aging)),1) + right(convert(varchar, floor(abs(d.aging))), 3) + ':' + right('00' + convert(varchar,round( 60*(abs(d.aging)-floor(abs(d.aging))), 0)), 2) as agingDisplay,
-
-                (select top 1 novo_valor
-                from ALM_Historico_Alteracoes_Campos h WITH(NOLOCK)
-                    where
-                      h.subprojeto = d.subprojeto and
-                      h.entrega = d.entrega and
-                      h.tabela_id = d.Defeito and
-                      h.tabela = 'BUG' and
-                      h.campo = 'COMENTÁRIOS'
-                    order by
-                      convert(datetime, dt_alteracao, 5) desc) as Comments
-            from 
-	            ALM_Defeitos d WITH (NOLOCK)
-	            left join BITI_Subprojetos sp WITH (NOLOCK)
-		            on sp.id = d.subprojeto
-	            left join sgqDefects sgqD WITH (NOLOCK)
-		            on sgqD.subproject = d.subprojeto and
-		               sgqD.delivery = d.entrega and
-		               sgqD.id = d.Defeito
-
-            where
-                subprojeto = '@subproject' and
-                entrega = '@delivery' and
-	            Defeito = @defect
-                --subprojeto = '@subproject' and
-                --entrega = '@delivery' and
-	            --Defeito = 63
-            ";
-            sql = sql.Replace("@subproject", subproject);
-            sql = sql.Replace("@delivery", delivery);
-            sql = sql.Replace("@defect", defect);
-
-            var Connection = new Connection(Bancos.Sgq);
-            List<defectDetail> List = Connection.Executar<defectDetail>(sql);
-            Connection.Dispose();
-
-            return List[0];
-        }
-        
-
 
         /*
         [HttpGet]
@@ -627,7 +533,7 @@ namespace ProjectWebApi.Controllers
 	                substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as date,
 	                fabrica_desenvolvimento as devManuf,
 	                sistema_defeito as system,
-	                convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
+	                convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as subDel,
 	                entrega as delivery,
 	                subprojeto as subproject,
 	                count(*) as qtyTotal,
@@ -673,7 +579,7 @@ namespace ProjectWebApi.Controllers
         {
             string sql = @"
             select 
-	            convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
+	            convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as subDel,
 	            subprojeto as subproject,
 	            entrega as delivery,
 
@@ -686,7 +592,7 @@ namespace ProjectWebApi.Controllers
                     else 'Indefinido'
                 end as status,
 
-	            UPPER(LEFT(left(df.Encaminhado_Para,20),1))+LOWER(SUBSTRING(left(df.Encaminhado_Para,20),2,LEN(left(df.Encaminhado_Para,20)))) as forwardedTo,
+	            UPPER(LEFT(left(df.Encaminhado_Para,20),1))+LOWER(SUBSTRING(left(df.Encaminhado_Para,20),2,LEN(left(df.Encaminhado_Para,20)))) as queue,
 	            UPPER(LEFT(left(df.Sistema_Defeito,20),1))+LOWER(SUBSTRING(left(df.Sistema_Defeito,20),2,LEN(left(df.Sistema_Defeito,20)))) as defectSystem,
 	            UPPER(LEFT(substring(df.severidade,3,3),1))+LOWER(SUBSTRING(substring(df.severidade,3,3),2,LEN(substring(df.severidade,3,3)))) as severity,
 	            df.Aging as aging,
@@ -718,7 +624,7 @@ namespace ProjectWebApi.Controllers
         {
             string sql = @"
             select 
-	            convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
+	            convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as subDel,
 	            subprojeto as subproject,
 	            entrega as delivery,
 
@@ -733,7 +639,7 @@ namespace ProjectWebApi.Controllers
                     else 'Indefinido'
                 end as status,
 
-	            UPPER(LEFT(left(df.Encaminhado_Para,20),1))+LOWER(SUBSTRING(left(df.Encaminhado_Para,20),2,LEN(left(df.Encaminhado_Para,20)))) as forwardedTo,
+	            UPPER(LEFT(left(df.Encaminhado_Para,20),1))+LOWER(SUBSTRING(left(df.Encaminhado_Para,20),2,LEN(left(df.Encaminhado_Para,20)))) as queue,
 	            UPPER(LEFT(left(df.Sistema_Defeito,20),1))+LOWER(SUBSTRING(left(df.Sistema_Defeito,20),2,LEN(left(df.Sistema_Defeito,20)))) as defectSystem,
 	            UPPER(LEFT(substring(severidade,3,3),1))+LOWER(SUBSTRING(substring(severidade,3,3),2,LEN(substring(severidade,3,3)))) as severity,
 	            df.Aging as aging,
@@ -1056,7 +962,7 @@ namespace ProjectWebApi.Controllers
 				2
 
             select top 30
-	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as project,
+	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as subDel,
 	            '@subproject' as subproject,
 	            '@delivery' as delivery,
 	            t.date,
@@ -1299,7 +1205,7 @@ namespace ProjectWebApi.Controllers
 				2
 
             select
-	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as project,
+	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as subDel,
 	            '@subproject' as subproject,
 	            '@delivery' as delivery,
 	            t.date, 
@@ -1423,7 +1329,7 @@ namespace ProjectWebApi.Controllers
 	            dateOrder
 
             select
-	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as project,
+	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as subDel,
 	            '@subproject' as subproject,
 	            '@delivery' as delivery,
 	            t.date,
@@ -1551,7 +1457,7 @@ namespace ProjectWebApi.Controllers
 				2
 
             select
-	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as project,
+	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as subDel,
 	            '@subproject' as subproject,
 	            '@delivery' as delivery,
 	            t.date,
@@ -1732,7 +1638,7 @@ namespace ProjectWebApi.Controllers
 				a.fullWeekNumberOrder
 
             select
-	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as project,
+	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as subDel,
 	            '@subproject' as subproject,
 	            '@delivery' as delivery,
 	            t11.fullWeekNumber,
@@ -1790,7 +1696,7 @@ namespace ProjectWebApi.Controllers
 	                substring(dt_final,4,2) + '/' + substring(dt_final,7,2) as closed,
 	                fabrica_desenvolvimento as devManuf,
 	                sistema_defeito as system,
-	                convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as project,
+	                convert(varchar, cast(substring(Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(Entrega,8,8) as int)) as subDel,
 	                subprojeto as subproject,
 	                entrega as delivery,
 	                sum(qtd_reincidencia) as qtyRecurrence
@@ -1892,23 +1798,23 @@ namespace ProjectWebApi.Controllers
                         b.status
                 from
 
-                        (select 'AUTOM_LINK2_ENTREGA' as id, 'MARÇO-2017' as release, 'ESPECIAL' as classification, 'AUTOM_LINK2_ENTREGA' as project
+                        (select 'AUTOM_LINK2_ENTREGA' as id, 'MARÇO-2017' as release, 'ESPECIAL' as classification, 'AUTOM_LINK2_ENTREGA' as subDel
 		                 union
-		                 select 'AUTOM_LINK2_1' as id, 'MARÇO-2017' as release, 'ESPECIAL' as classification, 'AUTOM_LINK2_1' as project
+		                 select 'AUTOM_LINK2_1' as id, 'MARÇO-2017' as release, 'ESPECIAL' as classification, 'AUTOM_LINK2_1' as subDel
 		                 union
-		                 select 'AUTOM_LINK2_2' as id, 'MARÇO-2017' as release, 'RELEASE' as classification, 'AUTOM_LINK2_2' as project
+		                 select 'AUTOM_LINK2_2' as id, 'MARÇO-2017' as release, 'RELEASE' as classification, 'AUTOM_LINK2_2' as subDel
 		                 union
-		                 select 'AUTOM_LINK2_3' as id, 'MARÇO-2017' as release, 'RELEASE' as classification, 'AUTOM_LINK2_3' as project
+		                 select 'AUTOM_LINK2_3' as id, 'MARÇO-2017' as release, 'RELEASE' as classification, 'AUTOM_LINK2_3' as subDel
 		                 union
-		                 select 'AUTOM_LINK2_4' as id, 'JANEIRO-2017' as release, 'RELEASE' as classification, 'AUTOM_LINK2_4' as project
+		                 select 'AUTOM_LINK2_4' as id, 'JANEIRO-2017' as release, 'RELEASE' as classification, 'AUTOM_LINK2_4' as subDel
 		                 union
-		                 select 'AUTOM_LINK2_5' as id, 'JANEIRO-2017' as release, 'RELEASE' as classification, 'AUTOM_LINK2_5' as project
+		                 select 'AUTOM_LINK2_5' as id, 'JANEIRO-2017' as release, 'RELEASE' as classification, 'AUTOM_LINK2_5' as subDel
 		                 union
-		                 select 'AUTOM_LINK2_6' as id, 'JANEIRO-2017' as release, 'RELEASE' as classification, 'AUTOM_LINK2_6' as project) a
+		                 select 'AUTOM_LINK2_6' as id, 'JANEIRO-2017' as release, 'RELEASE' as classification, 'AUTOM_LINK2_6' as subDel) a
                         join
                         (select distinct
 				                Id as idBpt, 
-                                Subprojeto +'_'+ Entrega as project, 
+                                Subprojeto +'_'+ Entrega as subDel, 
                                 Nome as name, 
                                 Sistema as system, 
                                 Status_Execucao as status
@@ -1970,7 +1876,7 @@ namespace ProjectWebApi.Controllers
 	                join
 	                (select distinct
  		                a.subprojeto + '_' + a.entrega id,
- 		                a.subprojeto + '_' + a.entrega project,
+ 		                a.subprojeto + '_' + a.entrega subDel,
  		                a.test_id,
  		                e.nome as bpt,
  		                a.plano_val_tecnica,

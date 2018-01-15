@@ -24,10 +24,31 @@ namespace ProjectWebApi.Daos
 			connection.Dispose();
 		}
 
-		public IList<IdName> FbyQueueStatusTrafficLightProject(DefectMonitorParameters parameters)
+		public IList<DefectMonitor> FbyQueueStatusTrafficLightProject(DefectMonitorParameter parameter)
 		{
 			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\defect\defectMonitor\fbyQueueStatusTrafficLightProject.sql"), Encoding.Default);
-			var list = connection.Executar<IdName>(sql);
+
+            if(parameter.selectedDefectQueue.Count > 0)
+                sql = sql.Replace("@queueFilter", " and encaminhado_para in ('" + string.Join("','", parameter.selectedDefectQueue) + "')");
+            else
+                sql = sql.Replace("@queueFilter", "");
+
+            if (parameter.selectedDefectStatus.Count > 0)
+                sql = sql.Replace("@statusFilter", " and status_atual in ('" + string.Join("','", parameter.selectedDefectStatus) + "')");
+            else
+                sql = sql.Replace("@statusFilter", "");
+
+            if (parameter.selectedProject.Count > 0)
+                sql = sql.Replace("@projectFilter", " and subprojeto + entrega in ('" + string.Join("','", parameter.selectedProject) + "')");
+            else
+                sql = sql.Replace("@projectFilter", "");
+
+            if (parameter.selectedDefectTrafficLight.Count > 0)
+                sql = sql.Replace("@trafficLightFilter", " where trafficLight in ('" + string.Join("','", parameter.selectedDefectTrafficLight) + "')");
+            else
+                sql = sql.Replace("@trafficLightFilter", "");
+
+            var list = connection.Executar<DefectMonitor>(sql);
 			return list;
 		}
     }

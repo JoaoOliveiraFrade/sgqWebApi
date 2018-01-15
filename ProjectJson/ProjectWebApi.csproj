@@ -183,6 +183,7 @@
     <Compile Include="Classes\Gerais.cs" />
     <Compile Include="Classes\HtmlToImage.cs" />
     <Compile Include="Classes\LibsAplicativo.cs" />
+    <Compile Include="Controllers\defect\DefectController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\indicator\operational\dev\IndOperDevDefectReopenedController.cs" />
     <Compile Include="Controllers\indicator\operational\dev\IndOperDevDefectAverangeTimeController.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Controllers\GrouperController.cs" />
     <Compile Include="Controllers\project\testProj\testProjController.cs" />
     <Compile Include="Controllers\SGQController.cs" />
+    <Compile Include="Daos\defect\DefectDao.cs" />
     <Compile Include="Daos\defect\DefectTrafficLightDao.cs" />
     <Compile Include="Daos\defect\DefectStatusDao.cs" />
     <Compile Include="Daos\defect\DefectQueueDao.cs" />
@@ -246,7 +248,8 @@
     <Compile Include="Models\bptProjects.cs" />
     <Compile Include="Models\bptReleases.cs" />
     <Compile Include="Models\bptValidPlanoEvid.cs" />
-    <Compile Include="Models\defect\DefectMonitorParameters.cs" />
+    <Compile Include="Models\defect\DefectMonitor.cs" />
+    <Compile Include="Models\defect\DefectMonitorParameter.cs" />
     <Compile Include="Models\project\testPlan\Step.cs" />
     <Compile Include="Models\IdName.cs" />
     <Compile Include="Models\eMail\Email.cs" />
@@ -283,7 +286,7 @@
     <Compile Include="Models\indicator\operational\dev\DefectAverangeTimeGroupSeverity.cs" />
     <Compile Include="Models\indicator\operational\dev\DefectDensity2.cs" />
     <Compile Include="Models\project\project\DefectReopened.cs" />
-    <Compile Include="Models\project\project\DefectsOpen.cs" />
+    <Compile Include="Models\defect\DefectsOpen.cs" />
     <Compile Include="Models\project\project\DefectStatus.cs" />
     <Compile Include="Models\indicator\operational\dev\DetectableInDev.cs" />
     <Compile Include="Models\project\project\ProductivityXDefects.cs" />
@@ -320,8 +323,17 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Sqls\defect\defectsGroupOriginIteration.sql" />
+    <Content Include="Sqls\defect\defectsGroupOrigin.sql" />
+    <Content Include="Sqls\defect\defectStatusFbyProjectIteration.sql" />
+    <Content Include="Sqls\defect\defectStatusFbyProject.sql" />
+    <Content Include="Sqls\defect\defectsOpenInDevManufIteration.sql" />
+    <Content Include="Sqls\defect\defectsOpenInTestManufIteration.sql" />
+    <Content Include="Sqls\defect\defectsOpenInTestManuf.sql" />
+    <Content Include="Sqls\defect\defectsOpenInDevManuf.sql" />
     <Content Include="Sqls\defect\defectMonitor\fbyQueueStatusTrafficLightProject.sql" />
     <Content Include="Sqls\defect\defectQueue\data.sql" />
+    <Content Include="Sqls\defect\defectDetail.sql" />
     <Content Include="Sqls\project\testProj\testPlan\step.sql" />
     <Content Include="Sqls\defect\defectTrafficLight\data.sql" />
     <Content Include="Sqls\defect\defectStatus\data.sql" />

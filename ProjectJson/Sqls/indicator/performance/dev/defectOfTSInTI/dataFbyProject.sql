@@ -3,7 +3,7 @@
 	,substring(dt_final,7,2) as year
 	,(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) as devManuf
 	,sistema_defeito as system
-	,convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) as subprojectDelivery
+	,convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) as subDel
 	,sum(case when Erro_Detectavel_Em_Desenvolvimento = 'SIM' then 1 else 0 end) as qtyOfTSInTI
 	,count(*) as qtyDefect
 	,round(convert(float, sum(case when Erro_Detectavel_Em_Desenvolvimento = 'SIM' then 1 else 0 end)) / (case when count(*) <> 0 then count(*) else 1 end) * 100, 2) as percOfTSInTI

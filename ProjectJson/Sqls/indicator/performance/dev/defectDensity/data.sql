@@ -3,7 +3,7 @@
 	year varchar(4),
 	devManuf varchar(50), 
 	system varchar(50),
-	subprojectDelivery varchar(26),
+	subDel varchar(26),
 	qtyDefect int,
 	qtyCt int
 )
@@ -13,7 +13,7 @@ select
 	substring(df.dt_final,7,2) as year,
 	(case when IsNull(df.fabrica_desenvolvimento,'') <> '' then df.fabrica_desenvolvimento else 'N/A' end) as devManuf,
 	left(df.Sistema_Defeito,30) as system,
-	subprojeto + entrega as subprojectDelivery,
+	subprojeto + entrega as subDel,
 	1 as qtyDefect,
 	0 as qtyCt
 from 
@@ -31,7 +31,7 @@ select
 	substring(yearMonth, 1, 2) as year,
 	(case when IsNull(devManuf,'') <> '' then devManuf else 'N/A' end) as devManuf,
 	system,
-	subprojeto + entrega as subprojectDelivery,
+	subprojeto + entrega as subDel,
 	0 as qtyDefect,
 	1 as qtyCt
 from
@@ -66,14 +66,14 @@ select
 	year,
 	(case when IsNull(devManuf,'') <> '' then devManuf else 'N/A' end) as devManuf,
 	system,
-	convert(varchar, cast(substring(subprojectDelivery,4,8) as int)) + ' ' + convert(varchar,cast(substring(subprojectDelivery,19,8) as int)) as subprojectDelivery,
+	convert(varchar, cast(substring(subDel,4,8) as int)) + ' ' + convert(varchar,cast(substring(subDel,19,8) as int)) as subDel,
     sum(qtyDefect) as qtyDefect,
     sum(qtyCt) as qtyCt,
     round(convert(float, sum(qtyDefect)) / isnull(nullif(sum(qtyCt),0),1) * 100,0) as density
 from
 	@t
 where
-	subprojectDelivery collate Latin1_General_CI_AS in (@selectedProject)
+	subDel collate Latin1_General_CI_AS in (@selectedProject)
 	and system in (@selectedSystem)
 	and (case when IsNull(devManuf,'') <> '' then devManuf else 'N/A' end) in (@selectedDevManuf)
 group by
@@ -81,7 +81,7 @@ group by
 	year,
     (case when IsNull(devManuf,'') <> '' then devManuf else 'N/A' end),
 	system,
-	subprojectDelivery
+	subDel
 order by
 	year,
 	month

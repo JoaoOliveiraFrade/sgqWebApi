@@ -3,7 +3,7 @@
 	,year
     ,devManuf
 	,system
-	,convert(varchar, cast(substring(subprojectDelivery,4,8) as int)) + ' ' + convert(varchar,cast(substring(subprojectDelivery,19,8) as int)) as subprojectDelivery
+	,convert(varchar, cast(substring(subDel,4,8) as int)) + ' ' + convert(varchar,cast(substring(subDel,19,8) as int)) as subDel
     ,sum(qtyDefect) as qtyDefect
     ,count(*) as qtyCt
     ,round(convert(float, sum(qtyDefect)) / (case when count(*) = 0 then 1 else count(*) end) * 100,2) as density
@@ -14,7 +14,7 @@ from
 			,substring(yearMonth, 1, 2) as year
 			,devManuf
 			,system
-			,subprojeto + entrega as subprojectDelivery
+			,subprojeto + entrega as subDel
 			,(select count(*)
 				from alm_defeitos df
 				where df.subprojeto = aux1.subprojeto and
@@ -55,13 +55,13 @@ from
 where
 	devManuf in (@selectedDevManuf)
 	and system in (@selectedSystem)
-	and subprojectDelivery collate Latin1_General_CI_AS in (@selectedProject)
+	and subDel collate Latin1_General_CI_AS in (@selectedProject)
 group by
 	month,
 	year,
     devManuf,
 	system,
-	subprojectDelivery
+	subDel
 order by
 	year,
 	month

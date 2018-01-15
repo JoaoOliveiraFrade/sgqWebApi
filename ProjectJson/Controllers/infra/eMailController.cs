@@ -339,7 +339,7 @@ namespace ProjectWebApi.Controllers
 			</td>
 
 			<td class='detail-td'>
-				{p.subprojectDelivery}
+				{p.subDel}
 			</td>
 
 			<td class='detail-td' style='text-align: left'>

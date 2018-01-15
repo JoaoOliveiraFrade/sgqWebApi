@@ -2,7 +2,7 @@ select
     sgq_p.id
     ,sgq_p.subproject as subproject
     ,sgq_p.delivery as delivery
-    ,convert(varchar, cast(substring(sgq_p.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(sgq_p.delivery,8,8) as int)) as subprojectDelivery
+    ,convert(varchar, cast(substring(sgq_p.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(sgq_p.delivery,8,8) as int)) as subDel
     ,biti_s.nome as name
     ,biti_s.classificacao_nome as classification
     ,(select Sigla from sgq_meses m where m.id = sgq_p.currentReleaseMonth) + ' ' + convert(varchar, sgq_p.currentReleaseYear) as release
@@ -103,7 +103,7 @@ order by
 --	id,
 --	subproject,
 --	delivery,
---	subprojectDelivery,
+--	project,
 --	name,
 --	objective,
 --	classification,
@@ -184,7 +184,7 @@ order by
 --        sgq_projects.id,
 --        sgq_projects.subproject as subproject,
 --        sgq_projects.delivery as delivery,
---        convert(varchar, cast(substring(sgq_projects.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(sgq_projects.delivery,8,8) as int)) as subprojectDelivery,
+--        convert(varchar, cast(substring(sgq_projects.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(sgq_projects.delivery,8,8) as int)) as subDel,
 --        biti_subprojetos.nome as name,
 --        biti_subprojetos.objetivo as objective,
 --        biti_subprojetos.classificacao_nome as classification,

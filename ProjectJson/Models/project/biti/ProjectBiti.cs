@@ -3,7 +3,7 @@ namespace ProjectWebApi.Models.Project
 {
     public class ProjectBiti
     {
-        public string subprojectDelivery { get; set; }
+        public string subDel { get; set; }
         public string name { get; set; }
         public string state { get; set; }
         public string classification { get; set; }

@@ -9,7 +9,7 @@ namespace ProjectWebApi.Models {
         public string year { get; set; }
         public string devManuf { get; set; }
         public string system { get; set; }
-        public string subprojectDelivery { get; set; }
+        public string subDel { get; set; }
         public int qtyOfTSInTI { get; set; }
         public int qtyDefect { get; set; }
         public double percOfTSInTI { get; set; }

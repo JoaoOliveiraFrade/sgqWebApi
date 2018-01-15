@@ -6,7 +6,7 @@ namespace ProjectWebApi.Models
         public int id { get; set; }
         public string subproject { get; set; }
         public string delivery { get; set; }
-        public string subprojectDelivery { get; set; }
+        public string subDel { get; set; }
         public string name { get; set; }
 
         public string releaseClarity { get; set; }

@@ -7,12 +7,12 @@ namespace ProjectWebApi.Models
 {
     public class defectsOpen
     {
-        public string project { get; set; }
+        public string subDel { get; set; }
         public string subproject { get; set; }
         public string delivery { get; set; }
         public int defect { get; set; }
         public string status { get; set; }
-        public string forwardedTo { get; set; }
+        public string queue { get; set; }
         public string defectSystem { get; set; }
         public string severity { get; set; }
         public double aging { get; set; }

@@ -1,5 +1,5 @@
 select
-	subprojectDelivery
+	subDel
 	,name
 	,state
 	,classification
@@ -33,8 +33,8 @@ select
 from
 	(
 		select
-			--convert(varchar, cast(substring(sp.id,4,8) as int)) + ' ' + convert(varchar,cast(substring(en.id,8,8) as int)) as subprojectDelivery
-			substring(sp.id,7,5) + ' ' + substring(en.id,11,5) as subprojectDelivery
+			--convert(varchar, cast(substring(sp.id,4,8) as int)) + ' ' + convert(varchar,cast(substring(en.id,8,8) as int)) as subDel
+			substring(sp.id,7,5) + ' ' + substring(en.id,11,5) as subDel
 
 			,sp.Nome as name
 
@@ -318,4 +318,4 @@ from
 				)
 	) a1
 order by
-	subprojectDelivery
+	subDel

@@ -7,7 +7,7 @@ namespace ProjectWebApi.Models
 {
     public class productivityXDefectsGroupWeekly
     {
-        public string project { get; set; }
+        public string subDel { get; set; }
         public string subproject { get; set; }
         public string delivery { get; set; }
         public string fullWeekNumber { get; set; }

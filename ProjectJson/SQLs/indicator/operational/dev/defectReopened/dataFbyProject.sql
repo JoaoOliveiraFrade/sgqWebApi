@@ -3,7 +3,7 @@
 	,substring(df.dt_final,7,2) as year
 	,(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) as devManuf
 	,left(df.Sistema_Defeito,30) as system
-	,convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) as subprojectDelivery
+	,convert(varchar, cast(substring(subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(entrega,8,8) as int)) as subDel
 	,count(*) as qtyDefect
 	,sum(qtd_reopen) as qtyReopened
 	,round(convert(float, sum(qtd_reopen)) / (case when count(*) <> 0 then count(*) else 1 end) * 100, 2) as percReopened

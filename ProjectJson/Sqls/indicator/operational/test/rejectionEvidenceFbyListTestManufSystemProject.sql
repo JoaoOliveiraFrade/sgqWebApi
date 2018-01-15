@@ -39,7 +39,7 @@ select
 	,substring(cts.dt_execucao,7,2) as year
 	,(case when IsNull(cts.fabrica_teste,'') <> '' then cts.fabrica_teste else 'N/A' end) as testManuf
 	,cts.sistema as system
-	,convert(varchar, cast(substring(cts.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(cts.entrega,8,8) as int)) as subprojectDelivery
+	,convert(varchar, cast(substring(cts.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(cts.entrega,8,8) as int)) as subDel
 	,sum(case when cts.evidencia_validacao_tecnica <> 'N/A' then 1 else 0 end) as qtyEvidence
 	,sum(case when cts.evidencia_validacao_cliente <> 'N/A' and cts.UAT = 'SIM' then 1 else 0 end) as qtyEvidenceClient
 	,isnull(sum(hist.qtyRejectionTechnique),0) as qtyRejectionTechnique

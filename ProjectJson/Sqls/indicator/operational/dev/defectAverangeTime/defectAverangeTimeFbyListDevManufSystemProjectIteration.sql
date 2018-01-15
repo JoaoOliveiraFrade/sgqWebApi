@@ -3,7 +3,7 @@
 	,substring(df.dt_final,7,2) as year
 	,df.Fabrica_Desenvolvimento as devManuf
 	,left(df.Sistema_Defeito,30) as system
-	,df.subprojeto + df.entrega as subprojectDelivery
+	,df.subprojeto + df.entrega as subDel
 	,substring(df.severidade,3,10) as severity
 	,count(*) as qtyDefect
 	,round(sum(df.Aging),2) as qtyHour
@@ -20,7 +20,7 @@ where
 	and df.dt_final <> ''
 	and devManuf in (@selectedDevManuf)
 	and system in (@selectedSystem)
-	and subprojectDelivery collate Latin1_General_CI_AS in (@selectedProject)
+	and project collate Latin1_General_CI_AS in (@selectedProject)
 	and cts.iterations in (@iterations)
 group by
 	substring(df.dt_final,4,2)

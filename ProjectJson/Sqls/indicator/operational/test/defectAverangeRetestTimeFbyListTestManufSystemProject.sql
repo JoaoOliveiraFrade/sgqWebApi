@@ -37,7 +37,7 @@ select
 	,substring(date,7,2) as year
 	,testManuf
 	,system
-	,subprojectDelivery
+	,subDel
 	,count(*) as qtyDefect
 	,sum(qtyRetestHours) as qtyRetestHour
 from
@@ -54,7 +54,7 @@ from
 
 			,(case when IsNull(df.fabrica_teste,'') <> '' then df.fabrica_teste else 'N/A' end) as testManuf
 			,sistema_ct as system
-			,convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int)) as subprojectDelivery
+			,convert(varchar, cast(substring(df.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(df.entrega,8,8) as int)) as subDel
 			,IsNull(qtyRetestHours, 0.0) as qtyRetestHours
 		from 
 			alm_defeitos df WITH (NOLOCK)
@@ -74,7 +74,7 @@ group by
 	,substring(date,7,2)
 	,testManuf
 	,system
-	,subprojectDelivery
+	,subDel
 
 order by
 	2, 1, 3, 4

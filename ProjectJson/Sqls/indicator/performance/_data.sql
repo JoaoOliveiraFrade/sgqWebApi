@@ -2,7 +2,7 @@
 declare @t table (
 	devManuf varchar(50), 
 	system varchar(50),
-	subprojectDelivery varchar(26),
+	subDel varchar(26),
 	month varchar(2),
 	year varchar(2),
 	severity varchar(50),
@@ -14,7 +14,7 @@ insert into @t
 select 
 	rtrim(ltrim(substring(queue, len(queue) - charindex('-', reverse(queue)) + 2, 50))) as devManuf
 	,rtrim(ltrim(substring(queue, 1, len(queue) - charindex('-', reverse(queue))))) as system
-	,subprojectDelivery
+	,subDel
 	,month
 	,year
 	,severity
@@ -25,7 +25,7 @@ from
 	(
 		select 
 			replace(dt.encaminhado_para,'–', '-') as queue,
-			convert(varchar, cast(substring(d.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(d.subprojeto,8,8) as int)) as subprojectDelivery,
+			convert(varchar, cast(substring(d.subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(d.subprojeto,8,8) as int)) as subDel,
 			substring(dt.dt_de,4,2) as month,
 			substring(dt.dt_de,7,2) as year,
 			--dt.encaminhado_para,
@@ -51,7 +51,7 @@ select
 	year,
 	devManuf,
 	system,
-	subprojectDelivery,
+	subDell,
 	severity,
 	count(*) as qtyDefect,
 	sum(insideSla) as insideSla
@@ -62,7 +62,7 @@ from
 			year,
 			devManuf,
 			system,
-			subprojectDelivery,
+			subDel,
 			severity,
 			defeito,   
 			case 
@@ -82,7 +82,7 @@ from
 			year,
 			devManuf,
 			system,
-			subprojectDelivery,
+			subDel,
 			severity,
 			defeito
 	) aux1
@@ -91,7 +91,7 @@ group by
 	year,
 	devManuf,
 	system,
-	subprojectDelivery,
+	subDel,
 	severity
 order by
 	year,

@@ -7,7 +7,7 @@ namespace ProjectWebApi.Models
 {
     public class status
     {
-        public string project { get; set; }
+        public string subDel { get; set; }
 
         public string subproject { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿declare @t table (
 	devManuf varchar(50), 
 	system varchar(50),
-	subprojectDelivery varchar(26),
+	subDel varchar(26),
 	month varchar(2),
 	year varchar(4),
 	severity varchar(50),
@@ -13,7 +13,7 @@ insert into @t
 select
 	rtrim(ltrim(substring(queue, len(queue) - charindex('-', reverse(queue)) + 2, 50))) as devManuf
 	,rtrim(ltrim(substring(queue, 1, len(queue) - charindex('-', reverse(queue))))) as system
-	,subprojectDelivery
+	,subDel
 	,month
 	,year
 	,severity
@@ -26,7 +26,7 @@ from
 			replace(dt.encaminhado_para,'–', '-') as queue
 			,(case when IsNull(d.fabrica_desenvolvimento,'') <> '' then d.fabrica_desenvolvimento else 'N/A' end) as devManuf
 			,d.sistema_ct as system
-			,(d.subprojeto + d.entrega) as subprojectDelivery
+			,(d.subprojeto + d.entrega) as subDel
 			,substring(dt.dt_de,4,2) as month
 			,substring(dt.dt_de,7,2) as year
 			,d.severidade as severity
@@ -52,7 +52,7 @@ select
 	,year
 	,devManuf
 	,system
-	,convert(varchar, cast(substring(subprojectDelivery,4,8) as int)) + ' ' + convert(varchar,cast(substring(subprojectDelivery,19,8) as int)) as subprojectDelivery
+	,convert(varchar, cast(substring(subDel,4,8) as int)) + ' ' + convert(varchar,cast(substring(subDel,19,8) as int)) as subDel
 	,severity
 	,count(*) as qtyDefect
 	,sum(insideSLA) as qtyInsideSLA
@@ -64,7 +64,7 @@ from
 			,year
 			,devManuf
 			,system
-			,subprojectDelivery
+			,subDel
 			,severity
 			,defect
 			,case 
@@ -77,11 +77,11 @@ from
 		where
 			devManuf in (@selectedDevManuf)
 			and system in (@selectedSystem)
-			and subprojectDelivery collate Latin1_General_CI_AS in (@selectedProject)
+			and subDel collate Latin1_General_CI_AS in (@selectedProject)
 		group by
 			devManuf
 			,system
-			,subprojectDelivery
+			,subDel
 			,month
 			,year
 			,severity
@@ -90,7 +90,7 @@ from
 group by
 	devManuf
 	,system
-	,subprojectDelivery
+	,subDel
 	,month
 	,year
 	,severity

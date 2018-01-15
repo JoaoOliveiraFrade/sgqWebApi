@@ -1,7 +1,7 @@
 ﻿declare @cts table (
 	devManuf varchar(50), 
 	system varchar(50),
-	subprojectDelivery varchar(26),
+	subDel varchar(26),
 	ct int,
 	yearMonth varchar(4)
 )
@@ -9,7 +9,7 @@ insert into @cts
 select 
 	(case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) as devManuf
 	,(case when IsNull(ct.sistema,'') <> '' then ct.sistema else 'N/A' end) as system
-	,ct.subprojeto + ct.entrega as subprojectDelivery
+	,ct.subprojeto + ct.entrega as subDel
 	,ct.ct
 	,(
 		select
@@ -34,13 +34,13 @@ where
 
 
 declare @dfs table (
-	subprojectDelivery varchar(26),
+	subDel varchar(26),
 	ct int,
 	qtyDefect int
 )
 insert into @dfs
 select 
-	subprojeto + entrega as subprojectDelivery
+	subprojeto + entrega as subDel
 	,ct
 	,count(*) as qtyDefect
 from alm_defeitos df
@@ -61,7 +61,7 @@ select
 	,year
     ,devManuf
 	,system
-	,convert(varchar, cast(substring(subprojectDelivery,4,8) as int)) + ' ' + convert(varchar,cast(substring(subprojectDelivery,19,8) as int)) as subprojectDelivery
+	,convert(varchar, cast(substring(subDel,4,8) as int)) + ' ' + convert(varchar,cast(substring(subDel,19,8) as int)) as subDel
     ,sum(qtyDefect) as qtyDefect
     ,count(*) as qtyCt
     ,round(convert(float, sum(qtyDefect)) / (case when count(*) = 0 then 1 else count(*) end) * 100,2) as density
@@ -72,13 +72,13 @@ from
 			,substring(cts.yearMonth, 1, 2) as year
 			,cts.devManuf
 			,cts.system
-			,cts.subprojectDelivery
+			,cts.subDel
 			,isnull(dfs.qtyDefect,0) as qtyDefect
 		from
 			@cts cts
 			left join @dfs dfs
 				on
-					dfs.subprojectDelivery = cts.subprojectDelivery
+					dfs.subDel = cts.subDel
 					and dfs.ct = cts.ct
 	) aux1
 group by
@@ -86,7 +86,7 @@ group by
 	year,
     devManuf,
 	system,
-	subprojectDelivery
+	subDel
 order by
 	year,
 	month

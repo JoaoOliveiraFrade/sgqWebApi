@@ -135,7 +135,7 @@
 				a.fullWeekNumberOrder
 
             select
-	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as project,
+	            convert(varchar, cast(substring('@subproject',4,8) as int)) + ' ' + convert(varchar,cast(substring('@delivery',8,8) as int)) as subDel,
 	            '@subproject' as subproject,
 	            '@delivery' as delivery,
 	            t11.fullWeekNumber,

@@ -2,7 +2,7 @@
 	id,
 	subproject,
 	delivery,
-	subprojectDelivery,
+	subDel,
 	name,
 	releaseClarity,
 	nextRelease,
@@ -71,7 +71,7 @@ from
 			sgq_p.id,
 			sgq_p.subproject,
 			sgq_p.delivery,
-			convert(varchar, cast(substring(sgq_p.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(sgq_p.delivery,8,8) as int)) as subprojectDelivery,
+			convert(varchar, cast(substring(sgq_p.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(sgq_p.delivery,8,8) as int)) as subDel,
 			sub.nome as name,
 
 			case when sgq_p.clarityReleaseYear is not null
