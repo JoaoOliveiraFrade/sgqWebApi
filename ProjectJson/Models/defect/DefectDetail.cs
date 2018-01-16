@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjectWebApi.Models
 {
-    public class defectDetail
+    public class DefectDetail
     {
         public string subDel { get; set; }
         public string subproject { get; set; }

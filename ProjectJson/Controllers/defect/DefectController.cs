@@ -19,11 +19,22 @@ namespace ProjectWebApi.Controllers
     {
         [HttpGet]
         [Route("defect/defectDetail/{subproject}/{delivery}/{defect}")]
-        [ResponseType(typeof(defectDetail))]
+        [ResponseType(typeof(DefectDetail))]
         public HttpResponseMessage DefectDetail(HttpRequestMessage request, string subproject, string delivery, string defect)
         {
             var dao = new DefectDao();
             var result = dao.DefectDetail(subproject, delivery, defect);
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+        [HttpGet]
+        [Route("defect/defectTime/{subproject}/{delivery}/{defect}")]
+        [ResponseType(typeof(IList<DefectTime>))]
+        public HttpResponseMessage step(HttpRequestMessage request, string subproject, string delivery, string defect)
+        {
+            var dao = new DefectDao();
+            var result = dao.DefectTime(subproject, delivery, defect);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }

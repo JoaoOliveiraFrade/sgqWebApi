@@ -152,6 +152,6 @@ from
 	) a2
 	@trafficLightFilter
 order by 
-	2
+	provider
 	,subDel
 	,id

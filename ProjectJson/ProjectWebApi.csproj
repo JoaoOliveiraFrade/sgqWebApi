@@ -248,6 +248,7 @@
     <Compile Include="Models\bptProjects.cs" />
     <Compile Include="Models\bptReleases.cs" />
     <Compile Include="Models\bptValidPlanoEvid.cs" />
+    <Compile Include="Models\defect\DefectTime.cs" />
     <Compile Include="Models\defect\DefectMonitor.cs" />
     <Compile Include="Models\defect\DefectMonitorParameter.cs" />
     <Compile Include="Models\project\testPlan\Step.cs" />
@@ -278,7 +279,7 @@
     <Compile Include="Models\productivityXDefectsGroupWeekly.cs" />
     <Compile Include="Models\productivityXDefects.cs" />
     <Compile Include="Models\ctsImpactedXDefects.cs" />
-    <Compile Include="Models\defectDetail.cs" />
+    <Compile Include="Models\defect\DefectDetail.cs" />
     <Compile Include="Models\defectsOpen.cs" />
     <Compile Include="Models\defectsStatus.cs" />
     <Compile Include="Models\project\project\CtsImpactedXDefects.cs" />
@@ -323,6 +324,7 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Sqls\defect\defectTime.sql" />
     <Content Include="Sqls\defect\defectsGroupOriginIteration.sql" />
     <Content Include="Sqls\defect\defectsGroupOrigin.sql" />
     <Content Include="Sqls\defect\defectStatusFbyProjectIteration.sql" />

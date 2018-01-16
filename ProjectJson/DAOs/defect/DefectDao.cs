@@ -24,15 +24,25 @@ namespace ProjectWebApi.Daos
 			connection.Dispose();
 		}
 
-		public defectDetail DefectDetail(string subproject, string delivery, string defect)
+		public DefectDetail DefectDetail(string subproject, string delivery, string defect)
 		{
 			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\defect\defectDetail.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
             sql = sql.Replace("@defect", defect);
-            var result = connection.Executar<defectDetail>(sql);
+            var result = connection.Executar<DefectDetail>(sql);
             // List<defectDetail> result = connection.Executar<defectDetail>(sql);
             return result[0];
+        }
+
+        public IList<DefectTime> DefectTime(string subproject, string delivery, string defect)
+        {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\defect\defectTime.sql"), Encoding.Default);
+            sql = sql.Replace("@subproject", subproject);
+            sql = sql.Replace("@delivery", delivery);
+            sql = sql.Replace("@defect", defect);
+            var result = connection.Executar<DefectTime>(sql);
+            return result;
         }
 
         public IList<DefectsOpen> DefectsOpenInDevManuf(string subproject, string delivery)
