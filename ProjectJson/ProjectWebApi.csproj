@@ -206,6 +206,7 @@
     <Compile Include="Controllers\project\testProj\execution\executionController.cs" />
     <Compile Include="Controllers\project\testProj\testPlan\TestPlanController.cs" />
     <Compile Include="Controllers\project\testProj\PulledChainController.cs" />
+    <Compile Include="Controllers\release\ReleaseController.cs" />
     <Compile Include="Controllers\system\SystemFromAgentController.cs" />
     <Compile Include="Controllers\system\SystemController.cs" />
     <Compile Include="Controllers\testManuf\TestManuf.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Daos\project\testProj\execution\ExecutionDao.cs" />
     <Compile Include="Daos\project\testProj\testPlan\TestPlanDao.cs" />
     <Compile Include="Daos\project\testProj\PulledChainDao.cs" />
+    <Compile Include="Daos\release\ReleaseDao.cs" />
     <Compile Include="Daos\system\SystemFromAgentDao.cs" />
     <Compile Include="Daos\system\SystemDao.cs" />
     <Compile Include="Daos\testManuf\TestManufDao.cs" />
@@ -296,6 +298,7 @@
     <Compile Include="Models\project\project\ProjectFull.cs" />
     <Compile Include="Models\project\project\Project.cs" />
     <Compile Include="Models\project\project\Status.cs" />
+    <Compile Include="Models\release\Release.cs" />
     <Compile Include="Models\status.cs" />
     <Compile Include="Models\indicator\operational\dev\DefectAverangeTime.cs" />
     <Compile Include="Models\indicator\operational\dev\AgingMedioDefects.cs" />
@@ -369,6 +372,7 @@
     <Content Include="Sqls\project\testProj\execution\groupMonth.sql" />
     <Content Include="Sqls\project\testProj\detail.sql" />
     <Content Include="Sqls\project\testProj\testPlan\data.sql" />
+    <Content Include="Sqls\release\data.sql" />
     <Content Include="Sqls\system\system\fromCT.sql" />
     <Content Include="Sqls\system\_systems.sql" />
     <Content Include="Sqls\project\testProj\projects.sql" />
