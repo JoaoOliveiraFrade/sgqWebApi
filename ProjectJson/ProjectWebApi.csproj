@@ -373,6 +373,7 @@
     <Content Include="Sqls\project\testProj\detail.sql" />
     <Content Include="Sqls\project\testProj\testPlan\data.sql" />
     <Content Include="Sqls\release\data.sql" />
+    <Content Include="Sqls\release\xx.sql" />
     <Content Include="Sqls\system\system\fromCT.sql" />
     <Content Include="Sqls\system\_systems.sql" />
     <Content Include="Sqls\project\testProj\projects.sql" />
