@@ -1,92 +1,99 @@
-﻿declare @cts table (
-	devManuf varchar(50), 
-	system varchar(50),
-	subDel varchar(26),
-	ct int,
-	yearMonth varchar(4)
-)
-insert into @cts 
-select 
-	(case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) as devManuf
-	,(case when IsNull(ct.sistema,'') <> '' then ct.sistema else 'N/A' end) as system
-	,ct.subprojeto + ct.entrega as subDel
-	,ct.ct
-	,substring(ct.dt_execucao,7,2) + substring(ct.dt_execucao,4,2) as yearMonth
-	--,(
-	--	select
-	--		min(substring(ex.dt_execucao,7,2) + substring(ex.dt_execucao,4,2))
-	--	from 
-	--		alm_execucoes ex WITH (NOLOCK)
-	--	where
-	--		ex.subprojeto = ct.subprojeto
-	--		and ex.entrega = ct.entrega
-	--		and ex.ct = ct.ct
-	--		and ex.status not in ('CANCELLED', 'NO RUN')
-	--		and ex.dt_execucao <> ''
-	--) as yearMonth
-from 
-	ALM_CTs ct WITH (NOLOCK)
-where
-	ct.Massa_Teste <> 'SIM'
-	and ct.Status_Exec_CT not in ('CANCELLED', 'NO RUN')
-	and ct.Ciclo in ('TI', 'UAT')
-	and ct.subprojeto + ct.entrega collate Latin1_General_CI_AS in (@selectedProject)
-	and (case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then ct.fabrica_desenvolvimento else 'N/A' end) in (@selectedDevManuf)
-	and (case when IsNull(ct.sistema,'') <> '' then ct.sistema else 'N/A' end) in (@selectedSystem)
-
-
-declare @dfs table (
-	subDel varchar(26),
-	ct int,
-	qtyDefect int
-)
-insert into @dfs
-select 
-	subprojeto + entrega as subDel
-	,ct
-	,count(*) as qtyDefect
-from alm_defeitos df WITH (NOLOCK)
-where 
-	df.status_atual = 'CLOSED'
-	and df.Origem like '%CONSTRUÇÃO%'
-	and df.Ciclo in ('TI', 'UAT')
-	and df.subprojeto + df.entrega collate Latin1_General_CI_AS in (@selectedProject)
-group by
-	subprojeto
-	,entrega
-	,ct
-
-select
-	month
-	,year
+﻿select 
+	substring(yearMonth, 3, 2) as month
+	,substring(yearMonth, 1, 2) as year
+	,yearMonth
     ,devManuf
 	,system
-	,convert(varchar, cast(substring(subDel,4,8) as int)) + ' ' + convert(varchar,cast(substring(subDel,19,8) as int)) as subDel
+	,subDel
+    ,sum(qtyCt) as qtyCt
     ,sum(qtyDefect) as qtyDefect
-    ,count(*) as qtyCt
-    ,round(convert(float, sum(qtyDefect)) / (case when count(*) = 0 then 1 else count(*) end) * 100,2) as density
+    ,round(convert(float, sum(qtyDefect)) / (case when sum(qtyCt) = 0 then 1 else sum(qtyCt) end) * 100,2) as density
+	
 from
 	(
-		select 
-			substring(cts.yearMonth, 3, 2) as month
-			,substring(cts.yearMonth, 1, 2) as year
-			,cts.devManuf
-			,cts.system
-			,cts.subDel
-			,isnull(dfs.qtyDefect,0) as qtyDefect
-		from
-			@cts cts
-			left join @dfs dfs
-				on
-					dfs.subDel = cts.subDel
-					and dfs.ct = cts.ct
-	) aux1
+		select
+			devManuf
+			,system
+			,convert(varchar, cast(substring(subDel,4,8) as int)) + ' ' + convert(varchar,cast(substring(subDel,19,8) as int)) as subDel
+			,yearMonth
+			,count(*) as qtyCt
+			,0 as qtyDefect
+		from 
+			(
+				select 
+					(case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) as devManuf
+					,(case when IsNull(ct.sistema,'') <> '' then ct.sistema else 'N/A' end) as system
+					,ct.subprojeto + ct.entrega as subDel
+					,(
+						select
+							min(substring(ex.dt_execucao,7,2) + substring(ex.dt_execucao,4,2))
+						from 
+							alm_execucoes ex WITH (NOLOCK)
+						where
+							ex.subprojeto = ct.subprojeto
+							and ex.entrega = ct.entrega
+							and ex.ct = ct.ct
+							and ex.status in ('PASSED', 'NOT COMPLETED', 'FAILED', 'BLOCKED')
+							and ex.dt_execucao <> ''
+					) as yearMonth
+					,ct.ct
+				from 
+					ALM_CTs ct WITH (NOLOCK)
+				where
+					ct.Massa_Teste <> 'SIM'
+					and ct.Status_Exec_CT not in ('CANCELLED', 'NO RUN')
+					and ct.Ciclo in ('TI', 'UAT')
+					and ct.subprojeto + ct.entrega collate Latin1_General_CI_AS in (@selectedProject)
+					and (case when IsNull(ct.fabrica_desenvolvimento,'') <> '' then ct.fabrica_desenvolvimento else 'N/A' end) in (@selectedDevManuf)
+					and (case when IsNull(ct.sistema,'') <> '' then ct.sistema else 'N/A' end) in (@selectedSystem)
+
+			) a1
+		where 
+			yearMonth is not null
+		group by
+			devManuf
+			,system
+			,subDel
+			,yearMonth
+
+		union all
+
+		select
+			devManuf
+			,system
+			,convert(varchar, cast(substring(subDel,4,8) as int)) + ' ' + convert(varchar,cast(substring(subDel,19,8) as int)) as subDel
+			,yearMonth
+			,0 as qtyCt
+			,count(*) as qtyDefect
+		from 
+			(
+				select 
+					(case when IsNull(fabrica_desenvolvimento,'') <> '' then fabrica_desenvolvimento else 'N/A' end) as devManuf
+					,(case when IsNull(Sistema_Defeito,'') <> '' then Sistema_Defeito else 'N/A' end) as system
+					,subprojeto + entrega as subDel
+					,substring(dt_final,7,2) + substring(dt_final,4,2) as yearMonth
+					,defeito as defect
+					,status_atual
+					,origem
+				from alm_defeitos d
+				where 
+					status_atual = 'CLOSED'
+					and Origem like '%CONSTRUÇÃO%'
+					and Ciclo in ('TI', 'UAT')
+					and d.subprojeto + d.entrega collate Latin1_General_CI_AS in (@selectedProject)
+					and (case when IsNull(d.fabrica_desenvolvimento,'') <> '' then d.fabrica_desenvolvimento else 'N/A' end) in (@selectedDevManuf)
+					and (case when IsNull(d.Sistema_Defeito,'') <> '' then d.Sistema_Defeito else 'N/A' end) in (@selectedSystem)
+			) a1
+		group by
+			devManuf
+			,system
+			,subDel
+			,yearMonth
+	) a2
 group by
-	month,
-	year,
-    devManuf,
-	system,
-	subDel
+	yearMonth
+    ,devManuf
+	,system
+	,subDel
 order by
-	year,
-	month
+	yearMonth

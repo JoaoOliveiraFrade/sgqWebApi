@@ -29,7 +29,6 @@ namespace ProjectWebApi.Daos
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\testPlan\data.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
-
             return connection.Executar<TestPlan>(sql);
         }
         public IList<Step> step(string subproject, string delivery, string test, string ct)
@@ -39,8 +38,7 @@ namespace ProjectWebApi.Daos
             sql = sql.Replace("@delivery", delivery);
             sql = sql.Replace("@test", test);
             sql = sql.Replace("@ct", ct);
-            var list = connection.Executar<Step>(sql);
-            return list;
+            return connection.Executar<Step>(sql);
         }
 
     }

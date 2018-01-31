@@ -7,6 +7,8 @@ namespace ProjectWebApi.Models
 {
     public class DefectsOpen
     {
+        public string subproject { get; set; }
+        public string delivery { get; set; }
         public int id { get; set; }
         public string status { get; set; }
         public string queue { get; set; }

@@ -14,6 +14,7 @@ namespace ProjectWebApi.Models.Project
         public string release { get; set; }
         public string GP { get; set; }
         public string N3 { get; set; }
+        public string N4 { get; set; }
         public string UN { get; set; }
         public string trafficLight { get; set; }
         public string rootCause { get; set; }

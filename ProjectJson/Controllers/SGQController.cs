@@ -666,8 +666,8 @@ namespace ProjectWebApi.Controllers
 
         /*
         [HttpGet]
-        [Route("defectsStatus/{subproject}/{delivery}")]
-        public List<defectsStatus> getDefectsStatus(string subproject, string delivery)
+        [Route("defectStatus/{subproject}/{delivery}")]
+        public List<defectStatus> getdefectStatus(string subproject, string delivery)
         {
             string sql = @"
             select 
@@ -724,7 +724,7 @@ namespace ProjectWebApi.Controllers
             sql = sql.Replace("@delivery", delivery);
 
             var Connection = new Connection(Bancos.Sgq);
-            List<defectsStatus> List = Connection.Executar<defectsStatus>(sql);
+            List<defectStatus> List = Connection.Executar<defectStatus>(sql);
             Connection.Dispose();
 
             return List;
@@ -733,8 +733,8 @@ namespace ProjectWebApi.Controllers
 
         /*
         [HttpGet]
-        [Route("defectsGroupOrigin/{subproject}/{delivery}")]
-        public List<defectsStatus> getDefectsGroupOrigin(string subproject, string delivery)
+        [Route("defectGroupOrigin/{subproject}/{delivery}")]
+        public List<defectStatus> getdefectGroupOrigin(string subproject, string delivery)
         {
             string sql = @"
                 select 
@@ -772,7 +772,7 @@ namespace ProjectWebApi.Controllers
             sql = sql.Replace("@delivery", delivery);
 
             var Connection = new Connection(Bancos.Sgq);
-            List<defectsStatus> List = Connection.Executar<defectsStatus>(sql);
+            List<defectStatus> List = Connection.Executar<defectStatus>(sql);
             Connection.Dispose();
 
             return List;
@@ -1267,8 +1267,8 @@ namespace ProjectWebApi.Controllers
 
         /*
         [HttpGet]
-        [Route("ctsImpactedXDefects/{subproject}/{delivery}")]
-        public List<ctsImpactedXDefects> getCtsImpactedXDefects(string subproject, string delivery)
+        [Route("ctImpactedXDefects/{subproject}/{delivery}")]
+        public List<ctImpactedXDefects> getCtImpactedXDefects(string subproject, string delivery)
         {
             string sql = @"
             declare @t table (
@@ -1360,7 +1360,7 @@ namespace ProjectWebApi.Controllers
             sql = sql.Replace("@delivery", delivery);
 
             var Connection = new Connection(Bancos.Sgq);
-            List<ctsImpactedXDefects> List = Connection.Executar<ctsImpactedXDefects>(sql);
+            List<ctImpactedXDefects> List = Connection.Executar<ctImpactedXDefects>(sql);
             Connection.Dispose();
 
             return List;

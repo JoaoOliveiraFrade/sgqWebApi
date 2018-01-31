@@ -132,7 +132,7 @@ namespace ProjectWebApi.Daos
 
 
 
-        public IList<CtsImpactedXDefects> getCtsImpactedXDefects(string subproject, string delivery)
+        public IList<CtImpactedXDefects> getCtImpactedXDefects(string subproject, string delivery)
         {
             string sql = @"
             declare @t table (
@@ -223,7 +223,7 @@ namespace ProjectWebApi.Daos
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
 
-            List<CtsImpactedXDefects> list = connection.Executar<CtsImpactedXDefects>(sql);
+            List<CtImpactedXDefects> list = connection.Executar<CtImpactedXDefects>(sql);
 
             return list;
         }
@@ -343,7 +343,7 @@ namespace ProjectWebApi.Daos
         }
 
 
-        public IList<CtsImpactedXDefects> getCtsImpactedXDefectsIterations(string subproject, string delivery, List<string> iterations)
+        public IList<CtImpactedXDefects> getCtImpactedXDefectsIterations(string subproject, string delivery, List<string> iterations)
         {
             string sql = @"
             declare @t table (
@@ -440,7 +440,7 @@ namespace ProjectWebApi.Daos
             sql = sql.Replace("@delivery", delivery);
             sql = sql.Replace("@iterations", "'" + string.Join("','", iterations.ToArray()) + "'");
 
-            List<CtsImpactedXDefects> list = connection.Executar<CtsImpactedXDefects>(sql);
+            List<CtImpactedXDefects> list = connection.Executar<CtImpactedXDefects>(sql);
 
             return list;
         }

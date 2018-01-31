@@ -12,6 +12,7 @@ select
 	,biti_s.objetivo as objective
 	,biti_s.Gerente_Projeto as GP
 	,biti_s.Gestor_Do_Gestor_LT as N3
+	,biti_s.Gestor_Direto_LT as N4
 	,biti_s.UN as UN
 	,sgq_p.rootCause as rootCause
 	,sgq_p.actionPlan as actionPlan
@@ -96,8 +97,10 @@ where
     --and sgq_p.id in (264, 265)
 	and sgq_p.id in (@ids)
 order by
-    sgq_p.subproject,
-    sgq_p.delivery
+	trafficLightOrder,
+	26 desc,
+    subproject,
+    delivery
 
 --select
 --	id,

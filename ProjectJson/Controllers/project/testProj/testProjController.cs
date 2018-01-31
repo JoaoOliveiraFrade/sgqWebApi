@@ -298,12 +298,12 @@ namespace ProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("project/testProj/CtsImpactedXDefects/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<CtsImpactedXDefects>))]
-        public HttpResponseMessage getCtsImpactedXDefects(HttpRequestMessage request, string subproject, string delivery)
+        [Route("project/testProj/CtImpactedXDefects/{subproject}/{delivery}")]
+        [ResponseType(typeof(IList<CtImpactedXDefects>))]
+        public HttpResponseMessage getCtImpactedXDefects(HttpRequestMessage request, string subproject, string delivery)
         {
             var TestProjDao = new TestProjDao();
-            var list = TestProjDao.getCtsImpactedXDefects(subproject, delivery);
+            var list = TestProjDao.getCtImpactedXDefects(subproject, delivery);
             TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);
@@ -462,12 +462,12 @@ namespace ProjectWebApi.Controllers
 
 
         [HttpPut]
-        [Route("project/testProj/CtsImpactedXDefectsIterations/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<CtsImpactedXDefects>))]
-        public HttpResponseMessage getCtsImpactedXDefectsIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
+        [Route("project/testProj/CtImpactedXDefectsIterations/{subproject}/{delivery}")]
+        [ResponseType(typeof(IList<CtImpactedXDefects>))]
+        public HttpResponseMessage getCtImpactedXDefectsIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
             var TestProjDao = new TestProjDao();
-            var list = TestProjDao.getCtsImpactedXDefectsIterations(subproject, delivery, iterations);
+            var list = TestProjDao.getCtImpactedXDefectsIterations(subproject, delivery, iterations);
             TestProjDao.Dispose();
 
             return request.CreateResponse(HttpStatusCode.OK, list);

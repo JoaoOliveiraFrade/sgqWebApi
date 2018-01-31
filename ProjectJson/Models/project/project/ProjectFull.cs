@@ -17,7 +17,7 @@ namespace ProjectWebApi.Models.Project
         public StatusLastDays statusLastDays { get; set; }
         public IList<Status> statusGroupMonth { get; set; }
         public IList<DefectStatus> defectStatus { get; set; }
-        public IList<DefectStatus> defectsGroupOrigin { get; set; }
+        public IList<DefectStatus> defectGroupOrigin { get; set; }
 
     }
 }

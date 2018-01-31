@@ -17,49 +17,57 @@ namespace ProjectWebApi.Controllers
 {
     public class defectController : ApiController
     {
-        [HttpGet]
-        [Route("defect/defectDetail/{subproject}/{delivery}/{defect}")]
+        [HttpPost]
+        [Route("defect/defectsOpen")]
+        [ResponseType(typeof(IList<DefectsOpen>))]
+        public HttpResponseMessage DefectsOpenInDevManuf(HttpRequestMessage request, SubprojectDelivery subprojectDelivery) {
+            var dao = new DefectDao();
+            var result = dao.DefectsOpen(subprojectDelivery);
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+        [HttpPost]
+        [Route("defect/defectDetail")]
         [ResponseType(typeof(DefectDetail))]
-        public HttpResponseMessage DefectDetail(HttpRequestMessage request, string subproject, string delivery, string defect)
-        {
+        public HttpResponseMessage DefectDetail(HttpRequestMessage request, Defect defect) {
             var dao = new DefectDao();
-            var result = dao.DefectDetail(subproject, delivery, defect);
+            var result = dao.DefectDetail(defect);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        [HttpGet]
-        [Route("defect/defectTime/{subproject}/{delivery}/{defect}")]
+        [HttpPost]
+        [Route("defect/defectTime")]
         [ResponseType(typeof(IList<DefectTime>))]
-        public HttpResponseMessage step(HttpRequestMessage request, string subproject, string delivery, string defect)
-        {
+        public HttpResponseMessage step(HttpRequestMessage request, Defect defect) {
             var dao = new DefectDao();
-            var result = dao.DefectTime(subproject, delivery, defect);
+            var result = dao.DefectTime(defect);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        [HttpGet]
-        [Route("defect/defectsOpenInDevManuf/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<DefectsOpen>))]
-        public HttpResponseMessage DefectsOpenInDevManuf(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var dao = new DefectDao();
-            var result = dao.DefectsOpenInDevManuf(subproject, delivery);
-            dao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
+        //[HttpGet]
+        //[Route("defect/defectsOpenInDevManuf/{subproject}/{delivery}")]
+        //[ResponseType(typeof(IList<DefectsOpen>))]
+        //public HttpResponseMessage DefectsOpenInDevManuf(HttpRequestMessage request, string subproject, string delivery)
+        //{
+        //    var dao = new DefectDao();
+        //    var result = dao.DefectsOpenInDevManuf(subproject, delivery);
+        //    dao.Dispose();
+        //    return request.CreateResponse(HttpStatusCode.OK, result);
+        //}
 
-        [HttpGet]
-        [Route("defect/defectsOpenInTestManuf/{subproject}/{delivery}")]
-        [ResponseType(typeof(IList<DefectsOpen>))]
-        public HttpResponseMessage DefectsOpenInTestManuf(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var dao = new DefectDao();
-            var result = dao.DefectsOpenInTestManuf(subproject, delivery);
-            dao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
+        //[HttpGet]
+        //[Route("defect/defectsOpenInTestManuf/{subproject}/{delivery}")]
+        //[ResponseType(typeof(IList<DefectsOpen>))]
+        //public HttpResponseMessage DefectsOpenInTestManuf(HttpRequestMessage request, string subproject, string delivery)
+        //{
+        //    var dao = new DefectDao();
+        //    var result = dao.DefectsOpenInTestManuf(subproject, delivery);
+        //    dao.Dispose();
+        //    return request.CreateResponse(HttpStatusCode.OK, result);
+        //}
 
         [HttpPut]
         [Route("defect/defectsOpenInDevManufIterations/{subproject}/{delivery}")]
@@ -84,7 +92,7 @@ namespace ProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("defect/DefectsStatus/{subproject}/{delivery}")]
+        [Route("defect/defectStatus/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectStatus>))]
         public HttpResponseMessage DefectStatusByProject(HttpRequestMessage request, string subproject, string delivery)
         {
@@ -95,7 +103,7 @@ namespace ProjectWebApi.Controllers
         }
 
         [HttpPut]
-        [Route("defect/DefectsStatusIterations/{subproject}/{delivery}")]
+        [Route("defect/defectStatusIterations/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectStatus>))]
         public HttpResponseMessage DefectStatusByProjectIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
@@ -107,24 +115,24 @@ namespace ProjectWebApi.Controllers
 
 
         [HttpGet]
-        [Route("defect/DefectsGroupOrigin/{subproject}/{delivery}")]
+        [Route("defect/defectGroupOrigin/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectStatus>))]
-        public HttpResponseMessage DefectsGroupOrigin(HttpRequestMessage request, string subproject, string delivery)
+        public HttpResponseMessage defectGroupOrigin(HttpRequestMessage request, string subproject, string delivery)
         {
             var dao = new DefectDao();
-            var result = dao.DefectsGroupOrigin(subproject, delivery);
+            var result = dao.defectGroupOrigin(subproject, delivery);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
 
         [HttpPut]
-        [Route("defect/DefectsGroupOriginIterations/{subproject}/{delivery}")]
+        [Route("defect/defectGroupOriginIterations/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<DefectStatus>))]
-        public HttpResponseMessage DefectsGroupOriginIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
+        public HttpResponseMessage defectGroupOriginIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
         {
             var dao = new DefectDao();
-            var result = dao.DefectsGroupOriginIterations(subproject, delivery, iterations);
+            var result = dao.defectGroupOriginIterations(subproject, delivery, iterations);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
