@@ -30,7 +30,8 @@ from
 			,subproject
 			,delivery
 			,id
-			,rtrim(ltrim(substring(queue, 1, len(queue) - charindex('-', reverse(queue))))) as system
+			--,rtrim(ltrim(substring(queue, 1, len(queue) - charindex('-', reverse(queue))))) as system
+			,system
 			,queue
 			,origin
 			,status
@@ -56,6 +57,7 @@ from
 					,entrega as delivery
 					,defeito as id
 					,origem as origin
+					,sistema_defeito as system
 					,status_atual as status
 					,substring(severidade,3,3) as severity
 					,Qtd_CTs_Impactados as qtyImpactCT
