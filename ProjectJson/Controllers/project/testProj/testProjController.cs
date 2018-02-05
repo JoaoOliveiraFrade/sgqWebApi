@@ -12,19 +12,19 @@ using ProjectWebApi.Daos;
 using ProjectWebApi.Models.Project;
 using System.Collections;
 using System.Web.Http.Description;
+using System.IO;
+using System.Web;
+using System.Text;
 
-namespace ProjectWebApi.Controllers
-{
+namespace ProjectWebApi.Controllers {
     // [EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = false)]
-    public class testProjController : ApiController
-    {
+    public class testProjController : ApiController {
         [HttpGet]
-        [Route("project/testProj/data")]
+        [Route("project/testProj/loadData")]
         [ResponseType(typeof(IList<simpProject>))]
-        public HttpResponseMessage TestProj(HttpRequestMessage request)
-        {
+        public HttpResponseMessage LoadData(HttpRequestMessage request) {
             var TestProjDao = new TestProjDao();
-            var projects = TestProjDao.Data();
+            var projects = TestProjDao.LoadData();
             TestProjDao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }
@@ -43,8 +43,7 @@ namespace ProjectWebApi.Controllers
         [HttpPost]
         [Route("project/testProj/fromTestManufsAndSystems")]
         [ResponseType(typeof(IList<Project>))]
-        public HttpResponseMessage fromTestManufsAndSystems(HttpRequestMessage request, testManufsAndSystems parameters)
-        {
+        public HttpResponseMessage fromTestManufsAndSystems(HttpRequestMessage request, testManufsAndSystems parameters) {
             var TestProjDao = new TestProjDao();
 
             var projects = TestProjDao.fromTestManufsAndSystems(parameters);
@@ -55,8 +54,7 @@ namespace ProjectWebApi.Controllers
         [HttpPost]
         [Route("project/testProj/fromAgentFbyDevManufsAndSystems")]
         [ResponseType(typeof(IList<Project>))]
-        public HttpResponseMessage fromAgentFbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters)
-        {
+        public HttpResponseMessage fromAgentFbyDevManufsAndSystems(HttpRequestMessage request, devManufsAndSystems parameters) {
             var TestProjDao = new TestProjDao();
 
             var result = TestProjDao.fromAgentFbyDevManufsAndSystems(parameters);
@@ -78,141 +76,140 @@ namespace ProjectWebApi.Controllers
         //}
 
 
-      //  [HttpGet] // deve sair, quando converter o indicador de desenvolvimento
-      //  [Route("projects")]
-      //  public List<projects> getProjects()
-      //  {
-      //      string sql = @"
-      //          select distinct
-	     //           '{' +
-	     //           'id:''' + convert(varchar, cast(substring(re.Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(re.Entrega,8,8) as int)) + ''', ' +
-	     //           'subproject:''' + re.Subprojeto + ''', ' +
-	     //           'delivery:''' + re.Entrega + ''', ' +
-	     //           'devManuf:''' + Fabrica_Desenvolvimento + ''', ' +
-	     //           'system:''' + Sistema + ''', ' +
-	     //           'name:''' + left(sp.Nome,30) + ''', ' +
-	     //           'classification:''' + sp.Classificacao_Nome + ''', ' +
-	     //           'release:''' + (select Sigla from sgq_meses m where m.id = re.release_mes) + ' ' + convert(varchar, re.release_ano) + '''' +
-	     //           '}, ' as json,
-	     //           convert(varchar, cast(substring(re.Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(re.Entrega,8,8) as int)) as id,
-	     //           Fabrica_Desenvolvimento as devManuf,
-	     //           Sistema as system,
-	     //           re.Subprojeto as subproject,
-	     //           re.Entrega as delivery,
-	     //           sp.nome as name,
-	     //           sp.Classificacao_Nome as classification,
-	     //           (select Sigla from sgq_meses m where m.id = re.release_mes) + ' ' + convert(varchar, re.release_ano)  as release,
-	     //           re.release_ano,
-	     //           re.release_mes
-      //          from 
-	     //           SGQ_Releases_Entregas re WITH (NOLOCK)
-	     //           inner join biti_Subprojetos sp WITH (NOLOCK)
-		    //            on sp.id = re.Subprojeto
-      //              inner join biti_usuarios us WITH (NOLOCK)
-		    //            on us.id = sp.lider_tecnico_id 
-      //              inner join 
-						//(
-						//select distinct
-						//	Subprojeto, Entrega, fabrica_desenvolvimento, sistema
-						//from
-						//	(
-						//	select distinct 
-						//		cts.Subprojeto,
-						//		cts.Entrega,
-						//		cts.Fabrica_Desenvolvimento,
-						//		cts.sistema
-						//	from 
-						//		alm_cts cts WITH (NOLOCK)
-						//	union all
-						//	select distinct 
-						//		d.Subprojeto,
-						//		d.Entrega,
-						//		d.Fabrica_Desenvolvimento,
-						//		d.sistema_defeito as sistema
-						//	from 
-						//		alm_defeitos d WITH (NOLOCK)
-						//	) aux
-						//) cts 
-						//on cts.Subprojeto = re.Subprojeto and
-						//	cts.Entrega = re.Entrega
-      //          where
-	     //           re.id = (select top 1 re2.id from  SGQ_Releases_Entregas re2 where re2.subprojeto = re.subprojeto and re2.entrega = re.entrega order by re2.release_ano desc, re2.release_mes desc) and
-	     //           Fabrica_Desenvolvimento is not null
-      //          order by
-	     //           Fabrica_Desenvolvimento,
-	     //           Sistema,
-	     //           re.Subprojeto,
-	     //           re.Entrega,
-	     //           sp.Classificacao_Nome,
-	     //           re.release_ano,
-	     //           re.release_mes
-      //          ";
+        //  [HttpGet] // deve sair, quando converter o indicador de desenvolvimento
+        //  [Route("projects")]
+        //  public List<projects> getProjects()
+        //  {
+        //      string sql = @"
+        //          select distinct
+        //           '{' +
+        //           'id:''' + convert(varchar, cast(substring(re.Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(re.Entrega,8,8) as int)) + ''', ' +
+        //           'subproject:''' + re.Subprojeto + ''', ' +
+        //           'delivery:''' + re.Entrega + ''', ' +
+        //           'devManuf:''' + Fabrica_Desenvolvimento + ''', ' +
+        //           'system:''' + Sistema + ''', ' +
+        //           'name:''' + left(sp.Nome,30) + ''', ' +
+        //           'classification:''' + sp.Classificacao_Nome + ''', ' +
+        //           'release:''' + (select Sigla from sgq_meses m where m.id = re.release_mes) + ' ' + convert(varchar, re.release_ano) + '''' +
+        //           '}, ' as json,
+        //           convert(varchar, cast(substring(re.Subprojeto,4,8) as int)) + ' ' + convert(varchar,cast(substring(re.Entrega,8,8) as int)) as id,
+        //           Fabrica_Desenvolvimento as devManuf,
+        //           Sistema as system,
+        //           re.Subprojeto as subproject,
+        //           re.Entrega as delivery,
+        //           sp.nome as name,
+        //           sp.Classificacao_Nome as classification,
+        //           (select Sigla from sgq_meses m where m.id = re.release_mes) + ' ' + convert(varchar, re.release_ano)  as release,
+        //           re.release_ano,
+        //           re.release_mes
+        //          from 
+        //           SGQ_Releases_Entregas re WITH (NOLOCK)
+        //           inner join biti_Subprojetos sp WITH (NOLOCK)
+        //            on sp.id = re.Subprojeto
+        //              inner join biti_usuarios us WITH (NOLOCK)
+        //            on us.id = sp.lider_tecnico_id 
+        //              inner join 
+        //(
+        //select distinct
+        //	Subprojeto, Entrega, fabrica_desenvolvimento, sistema
+        //from
+        //	(
+        //	select distinct 
+        //		cts.Subprojeto,
+        //		cts.Entrega,
+        //		cts.Fabrica_Desenvolvimento,
+        //		cts.sistema
+        //	from 
+        //		alm_cts cts WITH (NOLOCK)
+        //	union all
+        //	select distinct 
+        //		d.Subprojeto,
+        //		d.Entrega,
+        //		d.Fabrica_Desenvolvimento,
+        //		d.sistema_defeito as sistema
+        //	from 
+        //		alm_defeitos d WITH (NOLOCK)
+        //	) aux
+        //) cts 
+        //on cts.Subprojeto = re.Subprojeto and
+        //	cts.Entrega = re.Entrega
+        //          where
+        //           re.id = (select top 1 re2.id from  SGQ_Releases_Entregas re2 where re2.subprojeto = re.subprojeto and re2.entrega = re.entrega order by re2.release_ano desc, re2.release_mes desc) and
+        //           Fabrica_Desenvolvimento is not null
+        //          order by
+        //           Fabrica_Desenvolvimento,
+        //           Sistema,
+        //           re.Subprojeto,
+        //           re.Entrega,
+        //           sp.Classificacao_Nome,
+        //           re.release_ano,
+        //           re.release_mes
+        //          ";
 
-      //      var Connection = new Connection(Bancos.Sgq);
-      //      List<projects> ListProjects = Connection.Executar<projects>(sql);
-      //      Connection.Dispose();
+        //      var Connection = new Connection(Bancos.Sgq);
+        //      List<projects> ListProjects = Connection.Executar<projects>(sql);
+        //      Connection.Dispose();
 
-      //      return ListProjects;
-      //  }
-
-
+        //      return ListProjects;
+        //  }
 
 
-     //   [HttpGet]
-     //   [Route("projects_")] // DEVERA ALTERAR O NOME QUANDO IMPLATADO EM PRODUCAO
-     //   public List<project> getProjects_()
-     //   {
-     //       string sql = @"
-     //           select 
-     //               sgq_projects.id,
-     //               sgq_projects.subproject as subproject,
-     //               sgq_projects.delivery as delivery,
-     //               convert(varchar, cast(substring(sgq_projects.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(sgq_projects.delivery,8,8) as int)) as subDel,
-     //               biti_subprojetos.nome as name,
-     //               biti_subprojetos.objetivo as objective,
-					//biti_subprojetos.classificacao_nome as classification,
-					//replace(replace(replace(replace(replace(biti_subprojetos.estado,'CONSOLIDAÇÃO E APROVAÇÃO DO PLANEJAMENTO','CONS/APROV. PLAN'),'PLANEJAMENTO','PLANEJ.'),'DESENHO DA SOLUÇÃO','DES.SOL'),'VALIDAÇÃO','VALID.'),'AGUARDANDO','AGUAR.') as state,
-					//(select Sigla from sgq_meses m where m.id = SGQ_Releases_Entregas.release_mes) + ' ' + convert(varchar, SGQ_Releases_Entregas.release_ano) as release,
-					//biti_subprojetos.Gerente_Projeto as GP,
-			  //      biti_subprojetos.Gestor_Do_Gestor_LT as N3,
-     //               sgq_projects.trafficLight as trafficLight,
-     //               sgq_projects.rootCause as rootCause,
-     //               sgq_projects.actionPlan as actionPlan,
-     //               sgq_projects.informative as informative,
-     //               sgq_projects.attentionPoints as attentionPoints,
-     //               sgq_projects.attentionPointsIndicators as attentionPointsOfIndicators
-     //           from 
-     //               sgq_projects
-     //               inner join alm_projetos WITH (NOLOCK)
-	    //              on alm_projetos.subprojeto = sgq_projects.subproject and
-	    //                alm_projetos.entrega = sgq_projects.delivery and
-	    //                alm_projetos.ativo = 'Y'
-     //               left join biti_subprojetos WITH (NOLOCK)
-	    //              on biti_subprojetos.id = sgq_projects.subproject
-					//left join SGQ_Releases_Entregas WITH (NOLOCK)
-	    //              on SGQ_Releases_Entregas.subprojeto = sgq_projects.subproject and
-					//     SGQ_Releases_Entregas.entrega = sgq_projects.delivery and
-					//	 SGQ_Releases_Entregas.id = (select top 1 re2.id from SGQ_Releases_Entregas re2 
-					//	                             where re2.subprojeto = SGQ_Releases_Entregas.subprojeto and 
-					//								       re2.entrega = SGQ_Releases_Entregas.entrega 
-					//								 order by re2.release_ano desc, re2.release_mes desc)
-     //           order by 
-     //               sgq_projects.subproject, 
-     //               sgq_projects.delivery
-     //           ";
 
-     //       var Connection = new Connection(Bancos.Sgq);
-     //       List<project> ListProjects = Connection.Executar<project>(sql);
-     //       Connection.Dispose();
 
-     //       return ListProjects;
-     //   }
+        //   [HttpGet]
+        //   [Route("projects_")] // DEVERA ALTERAR O NOME QUANDO IMPLATADO EM PRODUCAO
+        //   public List<project> getProjects_()
+        //   {
+        //       string sql = @"
+        //           select 
+        //               sgq_projects.id,
+        //               sgq_projects.subproject as subproject,
+        //               sgq_projects.delivery as delivery,
+        //               convert(varchar, cast(substring(sgq_projects.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(sgq_projects.delivery,8,8) as int)) as subDel,
+        //               biti_subprojetos.nome as name,
+        //               biti_subprojetos.objetivo as objective,
+        //biti_subprojetos.classificacao_nome as classification,
+        //replace(replace(replace(replace(replace(biti_subprojetos.estado,'CONSOLIDAÇÃO E APROVAÇÃO DO PLANEJAMENTO','CONS/APROV. PLAN'),'PLANEJAMENTO','PLANEJ.'),'DESENHO DA SOLUÇÃO','DES.SOL'),'VALIDAÇÃO','VALID.'),'AGUARDANDO','AGUAR.') as state,
+        //(select Sigla from sgq_meses m where m.id = SGQ_Releases_Entregas.release_mes) + ' ' + convert(varchar, SGQ_Releases_Entregas.release_ano) as release,
+        //biti_subprojetos.Gerente_Projeto as GP,
+        //      biti_subprojetos.Gestor_Do_Gestor_LT as N3,
+        //               sgq_projects.trafficLight as trafficLight,
+        //               sgq_projects.rootCause as rootCause,
+        //               sgq_projects.actionPlan as actionPlan,
+        //               sgq_projects.informative as informative,
+        //               sgq_projects.attentionPoints as attentionPoints,
+        //               sgq_projects.attentionPointsIndicators as attentionPointsOfIndicators
+        //           from 
+        //               sgq_projects
+        //               inner join alm_projetos WITH (NOLOCK)
+        //              on alm_projetos.subprojeto = sgq_projects.subproject and
+        //                alm_projetos.entrega = sgq_projects.delivery and
+        //                alm_projetos.ativo = 'Y'
+        //               left join biti_subprojetos WITH (NOLOCK)
+        //              on biti_subprojetos.id = sgq_projects.subproject
+        //left join SGQ_Releases_Entregas WITH (NOLOCK)
+        //              on SGQ_Releases_Entregas.subprojeto = sgq_projects.subproject and
+        //     SGQ_Releases_Entregas.entrega = sgq_projects.delivery and
+        //	 SGQ_Releases_Entregas.id = (select top 1 re2.id from SGQ_Releases_Entregas re2 
+        //	                             where re2.subprojeto = SGQ_Releases_Entregas.subprojeto and 
+        //								       re2.entrega = SGQ_Releases_Entregas.entrega 
+        //								 order by re2.release_ano desc, re2.release_mes desc)
+        //           order by 
+        //               sgq_projects.subproject, 
+        //               sgq_projects.delivery
+        //           ";
+
+        //       var Connection = new Connection(Bancos.Sgq);
+        //       List<project> ListProjects = Connection.Executar<project>(sql);
+        //       Connection.Dispose();
+
+        //       return ListProjects;
+        //   }
 
         [HttpGet]
         [Route("project/testProj/byIds/{ids}")]
         [ResponseType(typeof(IList<Project>))]
-        public HttpResponseMessage byIds(HttpRequestMessage request, string ids)
-        {
+        public HttpResponseMessage byIds(HttpRequestMessage request, string ids) {
             var TestProjDao = new TestProjDao();
             var projects = TestProjDao.byIds(ids);
             TestProjDao.Dispose();
@@ -223,8 +220,7 @@ namespace ProjectWebApi.Controllers
         [HttpGet]
         [Route("project/testProj/byproject/{subproject}/{delivery}")]
         [ResponseType(typeof(Project))]
-        public HttpResponseMessage getProject(HttpRequestMessage request, string subproject, string delivery)
-        {
+        public HttpResponseMessage getProject(HttpRequestMessage request, string subproject, string delivery) {
             var TestProjDao = new TestProjDao();
             var project = TestProjDao.getProject(subproject, delivery);
             TestProjDao.Dispose();
@@ -233,10 +229,8 @@ namespace ProjectWebApi.Controllers
 
         [HttpPut]
         [Route("project/testProj/update/{id:int}")]
-        public HttpResponseMessage UpdateProject(int id, project item)
-        {
-            try
-            {
+        public HttpResponseMessage UpdateProject(int id, project item) {
+            try {
                 var connection = new Connection(Bancos.Sgq);
 
                 if (item.trafficLight == null)
@@ -260,8 +254,7 @@ namespace ProjectWebApi.Controllers
                 bool resultado = false;
                 if (item == null) throw new ArgumentNullException("item");
                 if (id == 0) throw new ArgumentNullException("id");
-                using (SqlCommand command = new SqlCommand())
-                {
+                using (SqlCommand command = new SqlCommand()) {
                     command.Connection = connection.connection;
                     command.CommandText = @"
                         update sgq_projects
@@ -289,9 +282,7 @@ namespace ProjectWebApi.Controllers
                 }
                 connection.Dispose();
                 return Request.CreateResponse(HttpStatusCode.OK, resultado);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
@@ -300,8 +291,7 @@ namespace ProjectWebApi.Controllers
         [HttpGet]
         [Route("project/testProj/CtImpactedXDefects/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<CtImpactedXDefects>))]
-        public HttpResponseMessage getCtImpactedXDefects(HttpRequestMessage request, string subproject, string delivery)
-        {
+        public HttpResponseMessage getCtImpactedXDefects(HttpRequestMessage request, string subproject, string delivery) {
             var TestProjDao = new TestProjDao();
             var list = TestProjDao.getCtImpactedXDefects(subproject, delivery);
             TestProjDao.Dispose();
@@ -310,162 +300,136 @@ namespace ProjectWebApi.Controllers
         }
 
 
-        // ITERATIONS
+        #region iterations
 
-        [HttpGet]
-        [Route("project/testProj/iterations/{subproject}/{delivery}")]
+        [HttpPost]
+        [Route("project/testProj/loadIterations")]
         [ResponseType(typeof(IList<iteration>))]
-        public HttpResponseMessage iterations(HttpRequestMessage request, string subproject, string delivery)
-        {
+        public HttpResponseMessage LoadIterations(HttpRequestMessage request, SubprojectDelivery subprojectDelivery) {
             var TestProjDao = new TestProjDao();
-            var list = TestProjDao.iterations(subproject, delivery);
+            var result = TestProjDao.LoadIterations(subprojectDelivery);
             TestProjDao.Dispose();
-
-            return request.CreateResponse(HttpStatusCode.OK, list);
+            return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        [HttpGet]
-        [Route("project/testProj/iterationsActive/{subproject}/{delivery}")]
+        [HttpPost]
+        [Route("project/testProj/loadIterationsActive")]
         [ResponseType(typeof(List<string>))]
-        public HttpResponseMessage iterationsActive(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var TestProjDao = new TestProjDao();
-            var list = TestProjDao.iterationsActive(subproject, delivery);
-            TestProjDao.Dispose();
-
-            return request.CreateResponse(HttpStatusCode.OK, list);
+        public HttpResponseMessage LoadIterationsActive(HttpRequestMessage request, SubprojectDelivery subprojectDelivery) {
+            var dao = new TestProjDao();
+            var result = dao.LoadIterationsActive(subprojectDelivery);
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        [HttpGet]
-        [Route("project/testProj/iterationsSelected/{subproject}/{delivery}")]
+        [HttpPost]
+        [Route("project/testProj/loadIterationsSelected")]
         [ResponseType(typeof(List<string>))]
-        public HttpResponseMessage iterationsSelected(HttpRequestMessage request, string subproject, string delivery)
-        {
-            var TestProjDao = new TestProjDao();
-            var list = TestProjDao.iterationsSelected(subproject, delivery);
-            TestProjDao.Dispose();
-
-            return request.CreateResponse(HttpStatusCode.OK, list);
+        public HttpResponseMessage LoadIterationsSelected(HttpRequestMessage request, SubprojectDelivery subprojectDelivery) {
+            var dao = new TestProjDao();
+            var result = dao.LoadIterationsSelected(subprojectDelivery);
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+        //[HttpPut]
+        //[Route("project/testProj/updateIterationsActive")]
+        //[ResponseType(typeof(Boolean))]
+        //public HttpResponseMessage UpdateIterationsActive(HttpRequestMessage request, ProjectAndListIteration projectAndListIteratio) {
+        //    //var dao = new TestProjDao();
+        //    //var list = dao.UpdateIterationsActive(projectAndListIteratio);
+        //    //dao.Dispose();
+        //    //return request.CreateResponse(HttpStatusCode.OK, list);
+        //    try {
+        //        var connection = new Connection(Bancos.Sgq);
+        //        bool result = false;
+        //        if (projectAndListIteratio.subproject == null) throw new ArgumentNullException("subproject");
+        //        if (projectAndListIteratio.delivery == null) throw new ArgumentNullException("delivery");
+        //        if (projectAndListIteratio.iterations == null) throw new ArgumentNullException("iterations");
+        //        using (SqlCommand command = new SqlCommand()) {
+        //            command.Connection = connection.connection;
+        //            command.CommandText = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\updateIterationsActive.sql"), Encoding.Default);
+        //            command.Parameters.AddWithValue("subproject", projectAndListIteratio.subproject);
+        //            command.Parameters.AddWithValue("delivery", projectAndListIteratio.delivery);
+        //            command.Parameters.AddWithValue("iterations", string.Join("','", projectAndListIteratio.iterations));
+        //            result = (int)command.ExecuteNonQuery() > 0;
+        //        }
+        //        connection.Dispose();
+        //        return Request.CreateResponse(HttpStatusCode.OK, result);
+        //    } catch (Exception ex) {
+        //        return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+        //    }
+        //}
 
-        [HttpPut]
-        [Route("project/testProj/UpdateIterationsActive/{id:int}")]
-        [ResponseType(typeof(Boolean))]
-        public HttpResponseMessage UpdateIterationsActive(HttpRequestMessage request, int id, IList<string> iterations)
-        {
-            try
-            {
-                var connection = new Connection(Bancos.Sgq);
+        //[HttpPut]
+        //[Route("project/testProj/UpdateIterationsSelected")]
+        //[ResponseType(typeof(Boolean))]
+        //public HttpResponseMessage UpdateIterationsSelected(HttpRequestMessage request, ProjectAndListIteration projectAndListIteratio) {
+        //    //var dao = new TestProjDao();
+        //    //var list = dao.UpdateIterationsSelected(subprojectDelivery, iterations);
+        //    //dao.Dispose();
+        //    //return request.CreateResponse(HttpStatusCode.OK, list);
+        //    try {
+        //        var connection = new Connection(Bancos.Sgq);
+        //        bool result = false;
+        //        if (projectAndListIteratio.subproject == null) throw new ArgumentNullException("subproject");
+        //        if (projectAndListIteratio.delivery == null) throw new ArgumentNullException("delivery");
+        //        if (projectAndListIteratio.iterations == null) throw new ArgumentNullException("iterations");
+        //        using (SqlCommand command = new SqlCommand()) {
+        //            command.Connection = connection.connection;
+        //            command.CommandText = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\updateIterationsSelected.sql"), Encoding.Default);
+        //            command.Parameters.AddWithValue("subproject", projectAndListIteratio.subproject);
+        //            command.Parameters.AddWithValue("delivery", projectAndListIteratio.delivery);
+        //            command.Parameters.AddWithValue("iterations", string.Join("','", projectAndListIteratio.iterations));
+        //            result = (int)command.ExecuteNonQuery() > 0;
+        //        }
+        //        connection.Dispose();
+        //        return Request.CreateResponse(HttpStatusCode.OK, result);
+        //    } catch (Exception ex) {
+        //        return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+        //    }
+        //}
 
-                bool resultado = false;
-                if (iterations == null) throw new ArgumentNullException("iterations");
-                if (id == 0) throw new ArgumentNullException("id");
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection.connection;
-                    command.CommandText = @"
-                        update sgq_projects
-                        set
-                            IterationsActive = @iterations
-                        where
-                            id = @id
-                        ";
-                    command.Parameters.AddWithValue("id", id);
-                    command.Parameters.AddWithValue("iterations", string.Join("','", iterations));
+        //[Route("project/testProj/ClearIterations/{id:int}")]
+        //[ResponseType(typeof(string))]
+        //public HttpResponseMessage ClearIterations(HttpRequestMessage request, int id)
+        //{
+        //    try
+        //    {
+        //        var connection = new Connection(Bancos.Sgq);
 
-                    int i = command.ExecuteNonQuery();
-                    resultado = i > 0;
-                }
-                connection.Dispose();
-                return Request.CreateResponse(HttpStatusCode.OK, resultado);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
+        //        bool resultado = false;
+        //        if (id == 0) throw new ArgumentNullException("id");
+        //        using (SqlCommand command = new SqlCommand())
+        //        {
+        //            command.Connection = connection.connection;
+        //            command.CommandText = @"
+        //                update sgq_projects
+        //                set
+        //                    iterations = ''
+        //                where
+        //                    id = @id";
+        //            command.Parameters.AddWithValue("id", id);
 
-        [HttpPut]
-        [Route("project/testProj/UpdateIterationsSelected/{id:int}")]
-        [ResponseType(typeof(Boolean))]
-        public HttpResponseMessage UpdateIterationsSelected(HttpRequestMessage request, int id, IList<string> iterations)
-        {
-            try
-            {
-                var connection = new Connection(Bancos.Sgq);
+        //            int i = command.ExecuteNonQuery();
+        //            resultado = i > 0;
+        //        }
+        //        connection.Dispose();
+        //        return Request.CreateResponse(HttpStatusCode.OK, resultado);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+        //    }
+        //}
 
-                bool resultado = false;
-                if (iterations == null) throw new ArgumentNullException("iterations");
-                if (id == 0) throw new ArgumentNullException("id");
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection.connection;
-                    command.CommandText = @"
-                        update sgq_projects
-                        set
-                            IterationsSelected = @iterations
-                        where
-                            id = @id
-                        ";
-                    command.Parameters.AddWithValue("id", id);
-                    command.Parameters.AddWithValue("iterations", string.Join("','", iterations));
-
-                    int i = command.ExecuteNonQuery();
-                    resultado = i > 0;
-                }
-                connection.Dispose();
-                return Request.CreateResponse(HttpStatusCode.OK, resultado);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
-
-
-        [HttpGet]
-        [Route("project/testProj/ClearIterations/{id:int}")]
-        [ResponseType(typeof(string))]
-        public HttpResponseMessage ClearIterations(HttpRequestMessage request, int id)
-        {
-            try
-            {
-                var connection = new Connection(Bancos.Sgq);
-
-                bool resultado = false;
-                if (id == 0) throw new ArgumentNullException("id");
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection.connection;
-                    command.CommandText = @"
-                        update sgq_projects
-                        set
-                            iterations = ''
-                        where
-                            id = @id";
-                    command.Parameters.AddWithValue("id", id);
-
-                    int i = command.ExecuteNonQuery();
-                    resultado = i > 0;
-                }
-                connection.Dispose();
-                return Request.CreateResponse(HttpStatusCode.OK, resultado);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-            }
-        }
-
-        // ----------
+        #endregion
 
 
         [HttpPut]
         [Route("project/testProj/CtImpactedXDefectsIterations/{subproject}/{delivery}")]
         [ResponseType(typeof(IList<CtImpactedXDefects>))]
-        public HttpResponseMessage getCtImpactedXDefectsIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations)
-        {
+        public HttpResponseMessage getCtImpactedXDefectsIterations(HttpRequestMessage request, string subproject, string delivery, List<string> iterations) {
             var TestProjDao = new TestProjDao();
             var list = TestProjDao.getCtImpactedXDefectsIterations(subproject, delivery, iterations);
             TestProjDao.Dispose();

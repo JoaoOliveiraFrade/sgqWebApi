@@ -4,44 +4,38 @@ using ProjectWebApi.Models.Project;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Text;
 using System.Web;
 
-namespace ProjectWebApi.Daos
-{
-    public class TestProjDao
-    {
+namespace ProjectWebApi.Daos {
+    public class TestProjDao {
         private Connection connection;
 
-        public TestProjDao()
-        {
+        public TestProjDao() {
             connection = new Connection(Bancos.Sgq);
         }
 
-        public void Dispose()
-        {
+        public void Dispose() {
             connection.Dispose();
         }
 
-        public IList<simpProject> Data()
-        {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\data.sql"), Encoding.Default);
-			var listProjects = connection.Executar<simpProject>(sql);
+        public IList<simpProject> LoadData() {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadData.sql"), Encoding.Default);
+            var listProjects = connection.Executar<simpProject>(sql);
             return listProjects;
         }
 
-		public IList<Project> fromTestManufsAndSystems(testManufsAndSystems parameters)
-        {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\fromTestManufsAndSystems.sql"), Encoding.Default);
-			sql = sql.Replace("@testManufs", "'" + string.Join("','", parameters.testManufs) + "'");
-			sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
-			var result = connection.Executar<Project>(sql);
+        public IList<Project> fromTestManufsAndSystems(testManufsAndSystems parameters) {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\fromTestManufsAndSystems.sql"), Encoding.Default);
+            sql = sql.Replace("@testManufs", "'" + string.Join("','", parameters.testManufs) + "'");
+            sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
+            var result = connection.Executar<Project>(sql);
             return result;
         }
 
-        public IList<simpProject> fbyDevManufsAndSystems(devManufsAndSystems parameters)
-        {
+        public IList<simpProject> fbyDevManufsAndSystems(devManufsAndSystems parameters) {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\fbyDevManufsAndSystems.sql"), Encoding.Default);
             sql = sql.Replace("@devManufs", "'" + string.Join("','", parameters.devManufs) + "'");
             sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
@@ -49,8 +43,7 @@ namespace ProjectWebApi.Daos
             return result;
         }
 
-        public IList<Project> fromAgentFbyDevManufsAndSystems(devManufsAndSystems parameters)
-        {
+        public IList<Project> fromAgentFbyDevManufsAndSystems(devManufsAndSystems parameters) {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\fromAgentFbyDevManufsAndSystems.sql"), Encoding.Default);
             sql = sql.Replace("@devManufs", "'" + string.Join("','", parameters.devManufs) + "'");
             sql = sql.Replace("@systems", "'" + string.Join("','", parameters.systems) + "'");
@@ -67,16 +60,14 @@ namespace ProjectWebApi.Daos
         //    return list;
         //}
 
-        public IList<Project> byIds(string ids)
-        {
+        public IList<Project> byIds(string ids) {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\byIds.sql"), Encoding.Default);
             sql = sql.Replace("@ids", ids);
             var result = connection.Executar<Project>(sql);
             return result;
         }
 
-        public Project getProject(string subproject, string delivery)
-        {
+        public Project getProject(string subproject, string delivery) {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\detail.sql"), Encoding.Default);
             sql = sql.Replace("@subproject", subproject);
             sql = sql.Replace("@delivery", delivery);
@@ -131,9 +122,7 @@ namespace ProjectWebApi.Daos
         //}
 
 
-
-        public IList<CtImpactedXDefects> getCtImpactedXDefects(string subproject, string delivery)
-        {
+        public IList<CtImpactedXDefects> getCtImpactedXDefects(string subproject, string delivery) {
             string sql = @"
             declare @t table (
 	            subproject varchar(30),
@@ -228,43 +217,8 @@ namespace ProjectWebApi.Daos
             return list;
         }
 
-        public IList<iteration> iterations(string subproject, string delivery)
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\iterationsFbyProject.sql"), Encoding.Default);
-            sql = sql.Replace("@subproject", subproject);
-            sql = sql.Replace("@delivery", delivery);
-            var result = connection.Executar<iteration>(sql);
-            return result;
-        }
 
-        public List<string> iterationsActive(string subproject, string delivery)
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\iterationsActiveFbyProject.sql"), Encoding.Default);
-            sql = sql.Replace("@subproject", subproject);
-            sql = sql.Replace("@delivery", delivery);
-
-            string iterations = connection.Get_String(sql);
-            string[] stringSeparators = new string[] { "','" };
-            var list = iterations.Split(stringSeparators, StringSplitOptions.None);
-
-            return new List<string>(list);
-        }
-
-        public List<string> iterationsSelected(string subproject, string delivery) {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\iterationsSelectedFbyProject.sql"), Encoding.Default);
-            sql = sql.Replace("@subproject", subproject);
-            sql = sql.Replace("@delivery", delivery);
-
-            string iterations = connection.Get_String(sql);
-            string[] stringSeparators = new string[] { "','" };
-            var list = iterations.Split(stringSeparators, StringSplitOptions.None);
-
-            return new List<string>(list);
-        }
-
-
-        public DefectDensity getDefectsDensityByProjectIterations(string subproject, string delivery, List<string> iterations)
-        {
+        public DefectDensity getDefectsDensityByProjectIterations(string subproject, string delivery, List<string> iterations) {
             string sql = @"
                 select
                     sum(qte_defeitos) as QtyDefects,
@@ -309,8 +263,7 @@ namespace ProjectWebApi.Daos
         }
 
 
-        public DetectableInDev getDetectableInDevByProjectIterations(string subproject, string delivery, List<string> iterations)
-        {
+        public DetectableInDev getDetectableInDevByProjectIterations(string subproject, string delivery, List<string> iterations) {
             string sql = @"
                 select 
 	                    count(*) as qtyTotal,
@@ -343,8 +296,7 @@ namespace ProjectWebApi.Daos
         }
 
 
-        public IList<CtImpactedXDefects> getCtImpactedXDefectsIterations(string subproject, string delivery, List<string> iterations)
-        {
+        public IList<CtImpactedXDefects> getCtImpactedXDefectsIterations(string subproject, string delivery, List<string> iterations) {
             string sql = @"
             declare @t table (
 	            subproject varchar(30),
@@ -444,5 +396,60 @@ namespace ProjectWebApi.Daos
 
             return list;
         }
+
+        #region iterations
+
+        public IList<iteration> LoadIterations(SubprojectDelivery subprojectDelivery) {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadIterationsFbyProject.sql"), Encoding.Default);
+            sql = sql.Replace("@subproject", subprojectDelivery.subproject);
+            sql = sql.Replace("@delivery", subprojectDelivery.delivery);
+            var result = connection.Executar<iteration>(sql);
+            return result;
+        }
+
+        public List<string> LoadIterationsActive(SubprojectDelivery subprojectDelivery) {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadIterationsActiveFbyProject.sql"), Encoding.Default);
+            sql = sql.Replace("@subproject", subprojectDelivery.subproject);
+            sql = sql.Replace("@delivery", subprojectDelivery.delivery);
+
+            string iterations = connection.Get_String(sql);
+            string[] stringSeparators = new string[] { "','" };
+            var list = iterations.Split(stringSeparators, StringSplitOptions.None);
+
+            return new List<string>(list);
+        }
+
+        public List<string> LoadIterationsSelected(SubprojectDelivery subprojectDelivery) {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadIterationsSelectedFbyProject.sql"), Encoding.Default);
+            sql = sql.Replace("@subproject", subprojectDelivery.subproject);
+            sql = sql.Replace("@delivery", subprojectDelivery.delivery);
+
+            string iterations = connection.Get_String(sql);
+            string[] stringSeparators = new string[] { "','" };
+            var list = iterations.Split(stringSeparators, StringSplitOptions.None);
+
+            return new List<string>(list);
+        }
+
+        //public bool UpdateIterationsActive(ProjectAndListIteration projectAndListIteratio) {
+        //    //string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\updateIterationsActive.sql"), Encoding.Default);
+        //    //sql = sql.Replace("@subproject", projectAndListIteratio.subproject);
+        //    //sql = sql.Replace("@delivery", projectAndListIteratio.delivery);
+        //    //sql = sql.Replace("@iterations", "'" + string.Join("','", projectAndListIteratio.iterations) + "'");
+        //    //var result = connection.Executar(sql);
+        //    return true;
+        //}
+
+        //public bool UpdateIterationsSelected(ProjectAndListIteration projectAndListIteratio) {
+        //    //string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\updateIterationsSelected.sql"), Encoding.Default);
+        //    //sql = sql.Replace("@subproject", projectAndListIteratio.subproject);
+        //    //sql = sql.Replace("@delivery", projectAndListIteratio.delivery);
+        //    //sql = sql.Replace("@iterations", "'" + string.Join("','", projectAndListIteratio.iterations) + "'");
+        //    //var result = connection.Executar(sql);
+        //    return true;
+        //}
+
+        #endregion
+
     }
 }

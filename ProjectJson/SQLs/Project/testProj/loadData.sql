@@ -9,9 +9,7 @@ select distinct
 from
 	(
 		select distinct
-			cts.fabrica_desenvolvimento as devManuf
-			,cts.Sistema as system
-			,cts.Subprojeto as subproject
+			cts.Subprojeto as subproject
 			,cts.Entrega as delivery
 		from
 			ALM_CTs cts with (NOLOCK) 
@@ -26,15 +24,30 @@ from
 		biti_s.estado <> 'CANCELADO'
 
 select 
-    sgq_p.id,
-    t.subproject as subproject,
-    t.delivery as delivery,
-    convert(varchar, cast(substring(t.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(t.delivery,8,8) as int)) as subDel,
-    biti_s.nome as name,
-    biti_s.classificacao_nome as classification,
-    (select Sigla from sgq_meses m where m.id = sgq_p.currentReleaseMonth) + ' ' + convert(varchar, sgq_p.currentReleaseYear) as release,
-	replace(replace(replace(replace(replace(biti_s.estado,'CONSOLIDA플O E APROVA플O DO PLANEJAMENTO','CONS/APROV. PLAN'),'PLANEJAMENTO','PLANEJ.'),'DESENHO DA SOLU플O','DES.SOL'),'VALIDA플O','VALID.'),'AGUARDANDO','AGUAR.') as state,
-	trafficLight
+    sgq_p.id
+    ,t.subproject as subproject
+    ,t.delivery as delivery
+    ,convert(varchar, cast(substring(t.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(t.delivery,8,8) as int)) as subDel
+    ,biti_s.nome as name
+    ,biti_s.objetivo as objective
+    ,biti_s.classificacao_nome as classification
+	,replace(replace(replace(replace(replace(biti_s.estado,'CONSOLIDA플O E APROVA플O DO PLANEJAMENTO','CONS/APROV. PLAN'),'PLANEJAMENTO','PLANEJ.'),'DESENHO DA SOLU플O','DES.SOL'),'VALIDA플O','VALID.'),'AGUARDANDO','AGUAR.') as state
+    ,(select Sigla from sgq_meses m where m.id = sgq_p.currentReleaseMonth) + ' ' + convert(varchar, sgq_p.currentReleaseYear) as release
+    ,biti_s.gerente_projeto as GP
+	,(select top 1 gestor_n4 from biti_Usuarios where nome = biti_s.gerente_projeto) as GP_N4
+	,(select top 1 gestor_n3 from biti_Usuarios where nome = biti_s.gerente_projeto) as GP_N3
+	,biti_s.Lider_Tecnico as LT
+    ,biti_s.Gestor_Direto_LT as Lt_N4
+    ,biti_s.Gestor_Do_Gestor_LT as LT_N3
+    ,biti_s.UN as UN
+    ,sgq_p.trafficLight as trafficLight
+    ,sgq_p.rootCause as rootCause
+    ,sgq_p.actionPlan as actionPlan
+    ,sgq_p.informative as informative
+    ,sgq_p.attentionPoints as attentionPoints
+    ,sgq_p.attentionPointsIndicators as attentionPointsOfIndicators
+    ,sgq_p.IterationsActive
+    ,sgq_p.IterationsSelected
 from 
 	@t t
     inner join sgq_projects sgq_p
