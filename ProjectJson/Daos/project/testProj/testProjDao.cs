@@ -407,29 +407,29 @@ namespace ProjectWebApi.Daos {
             return result;
         }
 
-        public List<string> LoadIterationsActive(SubprojectDelivery subprojectDelivery) {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadIterationsActiveFbyProject.sql"), Encoding.Default);
-            sql = sql.Replace("@subproject", subprojectDelivery.subproject);
-            sql = sql.Replace("@delivery", subprojectDelivery.delivery);
+        //public List<string> LoadIterationsActive(SubprojectDelivery subprojectDelivery) {
+        //    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadIterationsActiveFbyProject.sql"), Encoding.Default);
+        //    sql = sql.Replace("@subproject", subprojectDelivery.subproject);
+        //    sql = sql.Replace("@delivery", subprojectDelivery.delivery);
 
-            string iterations = connection.Get_String(sql);
-            string[] stringSeparators = new string[] { "','" };
-            var list = iterations.Split(stringSeparators, StringSplitOptions.None);
+        //    string iterations = connection.Get_String(sql);
+        //    string[] stringSeparators = new string[] { "','" };
+        //    var list = iterations.Split(stringSeparators, StringSplitOptions.None);
 
-            return new List<string>(list);
-        }
+        //    return new List<string>(list);
+        //}
 
-        public List<string> LoadIterationsSelected(SubprojectDelivery subprojectDelivery) {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadIterationsSelectedFbyProject.sql"), Encoding.Default);
-            sql = sql.Replace("@subproject", subprojectDelivery.subproject);
-            sql = sql.Replace("@delivery", subprojectDelivery.delivery);
+        //public List<string> LoadIterationsSelected(SubprojectDelivery subprojectDelivery) {
+        //    string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadIterationsSelectedFbyProject.sql"), Encoding.Default);
+        //    sql = sql.Replace("@subproject", subprojectDelivery.subproject);
+        //    sql = sql.Replace("@delivery", subprojectDelivery.delivery);
 
-            string iterations = connection.Get_String(sql);
-            string[] stringSeparators = new string[] { "','" };
-            var list = iterations.Split(stringSeparators, StringSplitOptions.None);
+        //    string iterations = connection.Get_String(sql);
+        //    string[] stringSeparators = new string[] { "','" };
+        //    var list = iterations.Split(stringSeparators, StringSplitOptions.None);
 
-            return new List<string>(list);
-        }
+        //    return new List<string>(list);
+        //}
 
         //public bool UpdateIterationsActive(ProjectAndListIteration projectAndListIteratio) {
         //    //string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\updateIterationsActive.sql"), Encoding.Default);
@@ -450,6 +450,17 @@ namespace ProjectWebApi.Daos {
         //}
 
         #endregion
+
+        
+        public IList<IdName> LoadReleasesStates() {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadReleasesStates.sql"), Encoding.Default);
+            return connection.Executar<IdName>(sql); ;
+        }
+
+        public IList<IdName> LoadReleasesLossReason() {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadReleasesLossReason.sql"), Encoding.Default);
+            return connection.Executar<IdName>(sql); ;
+        }
 
     }
 }

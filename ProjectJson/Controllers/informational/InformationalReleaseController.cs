@@ -19,12 +19,12 @@ namespace ProjectWebApi.Controllers
     public class InformationalReleaseController : ApiController
     {
         [HttpGet]
-        [Route("informational/release/data")]
+        [Route("informational/release/loadData")]
         [ResponseType(typeof(IList<Grouper>))]
-        public HttpResponseMessage Data(HttpRequestMessage request)
+        public HttpResponseMessage LoadData(HttpRequestMessage request)
         {
             var dao = new InformationalReleaseDao();
-            var result = dao.data();
+            var result = dao.LoadData();
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }

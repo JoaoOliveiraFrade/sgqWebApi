@@ -5,15 +5,30 @@ select
     ,convert(varchar, cast(substring(sgq_p.subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(sgq_p.delivery,8,8) as int)) as subDel
     ,biti_s.nome as name
     ,biti_s.classificacao_nome as classification
-    ,(select Sigla from sgq_meses m where m.id = sgq_p.currentReleaseMonth) + ' ' + convert(varchar, sgq_p.currentReleaseYear) as release
+    ,(select Sigla from sgq_meses m where m.id = sgq_p.currentReleaseMonth) + ' ' + convert(varchar, sgq_p.currentReleaseYear) as currentRelease
+    ,(select Sigla from sgq_meses m where m.id = sgq_p.currentReleaseMonth) + ' ' + convert(varchar, sgq_p.currentReleaseYear) as clarityRelease
+	,currentReleaseMonth
+	,currentReleaseYear
+	,clarityReleaseMonth
+	,clarityReleaseYear
 	,replace(replace(replace(replace(replace(biti_s.estado,'CONSOLIDA플O E APROVA플O DO PLANEJAMENTO','CONS/APROV. PLAN'),'PLANEJAMENTO','PLANEJ.'),'DESENHO DA SOLU플O','DES.SOL'),'VALIDA플O','VALID.'),'AGUARDANDO','AGUAR.') as state
-	,trafficLight
+	,sgq_p.testStates
+	,sgq_p.lossReleaseReason
+	,sgq_p.trafficLight
 	,tf.[order] as trafficLightOrder
 	,biti_s.objetivo as objective
+
 	,biti_s.Gerente_Projeto as GP
-	,biti_s.Gestor_Do_Gestor_LT as N3
-	,biti_s.Gestor_Direto_LT as N4
+	,(select top 1 gestor_n4 from biti_Usuarios where nome = biti_s.gerente_projeto) as GP_N4
+	,(select top 1 gestor_n3 from biti_Usuarios where nome = biti_s.gerente_projeto) as GP_N3
+
+	,biti_s.Lider_Tecnico as LT
+    ,biti_s.Gestor_Direto_LT as LT_N4
+    ,biti_s.Gestor_Do_Gestor_LT as LT_N3
+
 	,biti_s.UN as UN
+    ,sgq_p.trafficLight as trafficLight
+
 	,sgq_p.rootCause as rootCause
 	,sgq_p.actionPlan as actionPlan
 	,sgq_p.informative as informative

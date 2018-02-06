@@ -167,7 +167,7 @@ from
 									select distinct ft.subprojeto
 									from BITI_Frentes_Trabalho ft
 									where ft.subprojeto = sgq_p.subproject and
-											ft.area in ('TESTES', 'TESTES E RELEASE', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS') and
+											ft.area in ('TESTES', 'TESTES E RELEASE', 'QUALIDADE TI', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS', 'GARANTIA DA QUALIDADE') and
 											ft.estado not in ('CANCELADA', 'CANCELADA SEM DESENHO', 'PARTICIPAÇÃO RECUSADA') and
 											ft.sistema_nome = 'NÃO INFORMADO'
 								)

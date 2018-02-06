@@ -349,7 +349,9 @@
     <Content Include="Sqls\agileCentral\detail.sql" />
     <Content Include="Sqls\indicator\operational\dev\defectDensity\data.sql" />
     <Content Include="Sqls\indicator\operational\dev\defectDensity\dataFbyProject.sql" />
-    <Content Include="Sqls\informational\release\data.sql" />
+    <Content Include="Sqls\informational\release\loadData.sql" />
+    <Content Include="Sqls\project\testProj\loadReleasesLossReason.sql" />
+    <Content Include="Sqls\project\testProj\loadReleasesStates.sql" />
     <Content Include="Sqls\project\testProj\_updateIterationsSelected.sql" />
     <Content Include="Sqls\project\testProj\_updateIterationsActive.sql" />
     <Content Include="Sqls\project\testProj\testProjDefect\ctImpactedXDefects.sql" />

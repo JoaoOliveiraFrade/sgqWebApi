@@ -125,7 +125,7 @@ from
 				biti_Frentes_Trabalho ft
 			where 
 				ft.subprojeto = sp.id
-				and ft.Area in ('TESTES', 'TESTES E RELEASE', 'QUALIDADE TI', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS')
+				and ft.Area in ('TESTES', 'TESTES E RELEASE', 'QUALIDADE TI', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS', 'GARANTIA DA QUALIDADE')
 				and ft.Estado not in ('CANCELADA', 'CANCELADA SEM DESENHO', 'PARTICIPAÇÃO RECUSADA', 'REQUISITOS RECUSADOS')
 				and ft.Responsavel_Tecnico <> ''
 			),'') as testLeader
@@ -166,7 +166,7 @@ from
 						biti_Frentes_Trabalho ft
 					where 
 						ft.subprojeto = sp.id
-						and ft.Area in ('TESTES', 'TESTES E RELEASE', 'QUALIDADE TI', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS')
+						and ft.Area in ('TESTES', 'TESTES E RELEASE', 'QUALIDADE TI', 'SUPORTE E PROJETOS', 'TRANSFORMACAO DE BSS', 'GARANTIA DA QUALIDADE')
 						and ft.Estado not in ('CANCELADA', 'CANCELADA SEM DESENHO', 'PARTICIPAÇÃO RECUSADA', 'REQUISITOS RECUSADOS')
 					)
 				then 'SIM'

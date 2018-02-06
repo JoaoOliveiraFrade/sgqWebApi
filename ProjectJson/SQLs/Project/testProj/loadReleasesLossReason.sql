@@ -1,0 +1,1 @@
+select convert(varchar, id) as id, name from SGQ_ReleasesLossReason order by 1

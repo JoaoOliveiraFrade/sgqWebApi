@@ -228,54 +228,77 @@ namespace ProjectWebApi.Controllers {
         }
 
         [HttpPut]
-        [Route("project/testProj/update/{id:int}")]
-        public HttpResponseMessage UpdateProject(int id, project item) {
+        [Route("project/testProj/update")]
+        public HttpResponseMessage UpdateProject(Project testProj) {
             try {
                 var connection = new Connection(Bancos.Sgq);
 
-                if (item.trafficLight == null)
-                    item.trafficLight = "";
+                if (testProj.trafficLight == null)
+                    testProj.trafficLight = "";
 
-                if (item.rootCause == null)
-                    item.rootCause = "";
+                if (testProj.rootCause == null)
+                    testProj.rootCause = "";
 
-                if (item.actionPlan == null)
-                    item.actionPlan = "";
+                if (testProj.actionPlan == null)
+                    testProj.actionPlan = "";
 
-                if (item.informative == null)
-                    item.informative = "";
+                if (testProj.informative == null)
+                    testProj.informative = "";
 
-                if (item.attentionPoints == null)
-                    item.attentionPoints = "";
+                if (testProj.attentionPoints == null)
+                    testProj.attentionPoints = "";
 
-                if (item.attentionPointsOfIndicators == null)
-                    item.attentionPointsOfIndicators = "";
+                if (testProj.attentionPointsOfIndicators == null)
+                    testProj.attentionPointsOfIndicators = "";
+
+                if (testProj.iterationsActive == null)
+                    testProj.iterationsActive = "";
+
+                if (testProj.iterationsSelected == null)
+                    testProj.iterationsSelected = "";
+
+                if (testProj.testStates == null)
+                    testProj.testStates = "";
+
+                if (testProj.lossReleaseReason == null)
+                    testProj.lossReleaseReason = "";
 
                 bool resultado = false;
-                if (item == null) throw new ArgumentNullException("item");
-                if (id == 0) throw new ArgumentNullException("id");
+                if (testProj == null) throw new ArgumentNullException("testProj");
+                // if (id == 0) throw new ArgumentNullException("id");
                 using (SqlCommand command = new SqlCommand()) {
                     command.Connection = connection.connection;
                     command.CommandText = @"
                         update sgq_projects
                         set
-                            trafficLight = @trafficLight,
-                            rootCause = @rootCause,
-                            actionPlan = @actionPlan,
-                            informative = @informative,
-                            attentionPoints = @attentionPoints,
-                            attentionPointsIndicators = @attentionPointsOfIndicators
+                            trafficLight = @trafficLight
+                            ,rootCause = @rootCause
+                            ,actionPlan = @actionPlan
+                            ,informative = @informative
+                            ,attentionPoints = @attentionPoints
+                            ,attentionPointsIndicators = @attentionPointsOfIndicators
+                            ,iterationsActive = @iterationsActive
+                            ,iterationsSelected = @iterationsSelected
+                            ,testStates = @testStates
+	                        ,canceled = @canceled
+	                        ,deployOff = @deployOff
+	                        ,lossRelease = lossRelease
+                            ,lossReleaseReason = @lossReleaseReason
                         where
                             id = @id
                         ";
 
-                    command.Parameters.AddWithValue("id", item.id);
-                    command.Parameters.AddWithValue("trafficLight", item.trafficLight);
-                    command.Parameters.AddWithValue("rootCause", item.rootCause);
-                    command.Parameters.AddWithValue("actionPlan", item.actionPlan);
-                    command.Parameters.AddWithValue("informative", item.informative);
-                    command.Parameters.AddWithValue("attentionPoints", item.attentionPoints);
-                    command.Parameters.AddWithValue("attentionPointsOfIndicators", item.attentionPointsOfIndicators);
+                    command.Parameters.AddWithValue("id", testProj.id);
+                    command.Parameters.AddWithValue("trafficLight", testProj.trafficLight);
+                    command.Parameters.AddWithValue("rootCause", testProj.rootCause);
+                    command.Parameters.AddWithValue("actionPlan", testProj.actionPlan);
+                    command.Parameters.AddWithValue("informative", testProj.informative);
+                    command.Parameters.AddWithValue("attentionPoints", testProj.attentionPoints);
+                    command.Parameters.AddWithValue("attentionPointsOfIndicators", testProj.attentionPointsOfIndicators);
+                    command.Parameters.AddWithValue("iterationsActive", testProj.iterationsActive);
+                    command.Parameters.AddWithValue("iterationsSelected", testProj.iterationsSelected);
+                    command.Parameters.AddWithValue("testStates", testProj.testStates);
+                    command.Parameters.AddWithValue("lossReleaseReason", testProj.lossReleaseReason);
 
                     int i = command.ExecuteNonQuery();
                     resultado = i > 0;
@@ -312,25 +335,25 @@ namespace ProjectWebApi.Controllers {
             return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        [HttpPost]
-        [Route("project/testProj/loadIterationsActive")]
-        [ResponseType(typeof(List<string>))]
-        public HttpResponseMessage LoadIterationsActive(HttpRequestMessage request, SubprojectDelivery subprojectDelivery) {
-            var dao = new TestProjDao();
-            var result = dao.LoadIterationsActive(subprojectDelivery);
-            dao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
+        //[HttpPost]
+        //[Route("project/testProj/loadIterationsActive")]
+        //[ResponseType(typeof(List<string>))]
+        //public HttpResponseMessage LoadIterationsActive(HttpRequestMessage request, SubprojectDelivery subprojectDelivery) {
+        //    var dao = new TestProjDao();
+        //    var result = dao.LoadIterationsActive(subprojectDelivery);
+        //    dao.Dispose();
+        //    return request.CreateResponse(HttpStatusCode.OK, result);
+        //}
 
-        [HttpPost]
-        [Route("project/testProj/loadIterationsSelected")]
-        [ResponseType(typeof(List<string>))]
-        public HttpResponseMessage LoadIterationsSelected(HttpRequestMessage request, SubprojectDelivery subprojectDelivery) {
-            var dao = new TestProjDao();
-            var result = dao.LoadIterationsSelected(subprojectDelivery);
-            dao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, result);
-        }
+        //[HttpPost]
+        //[Route("project/testProj/loadIterationsSelected")]
+        //[ResponseType(typeof(List<string>))]
+        //public HttpResponseMessage LoadIterationsSelected(HttpRequestMessage request, SubprojectDelivery subprojectDelivery) {
+        //    var dao = new TestProjDao();
+        //    var result = dao.LoadIterationsSelected(subprojectDelivery);
+        //    dao.Dispose();
+        //    return request.CreateResponse(HttpStatusCode.OK, result);
+        //}
 
         //[HttpPut]
         //[Route("project/testProj/updateIterationsActive")]
@@ -436,5 +459,26 @@ namespace ProjectWebApi.Controllers {
 
             return request.CreateResponse(HttpStatusCode.OK, list);
         }
+
+        [HttpGet]
+        [Route("project/testProj/loadReleasesStates")]
+        [ResponseType(typeof(IList<IdName>))]
+        public HttpResponseMessage LoadReleasesStates(HttpRequestMessage request) {
+            var dao = new TestProjDao();
+            var projects = dao.LoadReleasesStates();
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, projects);
+        }
+
+        [HttpGet]
+        [Route("project/testProj/loadReleasesLossReason")]
+        [ResponseType(typeof(IList<IdName>))]
+        public HttpResponseMessage LoadReleasesLossReason(HttpRequestMessage request) {
+            var dao = new TestProjDao();
+            var projects = dao.LoadReleasesLossReason();
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, projects);
+        }
+
     }
 }

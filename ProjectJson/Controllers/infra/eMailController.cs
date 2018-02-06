@@ -351,7 +351,7 @@ namespace ProjectWebApi.Controllers
 			</td>
 
 			<td class='detail-td' style='text-align: left'>
-				{p.N3}
+				{p.LT_N3}
 			</td>
 
 			<td class='detail-td' style='text-align: left'>

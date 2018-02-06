@@ -10,13 +10,29 @@ namespace ProjectWebApi.Models.Project
         public string objective { get; set; }
         public string classification { get; set; }
         public string state { get; set; }
-        public string release { get; set; }
+
+        public string testStates { get; set; }
+        public bool canceled { get; set; }
+        public bool deployOff { get; set; }
+        public bool lossRelease { get; set; }
+        public string lossReleaseReason { get; set; }
+
+        public string currentRelease { get; set; }
+        public int currentReleaseMonth { get; set; }
+        public int currentReleaseYear { get; set; }
+
+        public string clarityRelease { get; set; }
+        public int clarityReleaseMonth { get; set; }
+        public int clarityReleaseYear { get; set; }
+
         public string GP { get; set; }
         public string GP_N4 { get; set; }
         public string GP_N3 { get; set; }
+
         public string LT { get; set; }
         public string LT_N4 { get; set; }
         public string LT_N3 { get; set; }
+
         public string UN { get; set; }
         public string trafficLight { get; set; }
         public string rootCause { get; set; }

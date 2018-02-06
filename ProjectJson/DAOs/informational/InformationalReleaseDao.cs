@@ -4,6 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
+using System.Text;
+using System.Web;
 
 namespace ProjectWebApi.Daos
 {
@@ -20,13 +23,10 @@ namespace ProjectWebApi.Daos
             connection.Dispose();
         }
 
-        public IList<Grouper> data()
+        public IList<Grouper> LoadData()
         {
-            string sql = @"
-            ";
-            var listGroupers = connection.Executar<Grouper>(sql);
-
-            return listGroupers;
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\informational\release\loadData.sql"), Encoding.Default);
+            return connection.Executar<Grouper>(sql);
         }
 
         public Grouper get(string id)
