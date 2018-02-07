@@ -280,7 +280,6 @@ namespace ProjectWebApi.Controllers {
                             ,iterationsActive = @iterationsActive
                             ,iterationsSelected = @iterationsSelected
                             ,testStates = @testStates
-	                        ,canceled = @canceled
 	                        ,deployOff = @deployOff
 	                        ,lossRelease = lossRelease
                             ,lossReleaseReason = @lossReleaseReason
@@ -298,6 +297,8 @@ namespace ProjectWebApi.Controllers {
                     command.Parameters.AddWithValue("iterationsActive", testProj.iterationsActive);
                     command.Parameters.AddWithValue("iterationsSelected", testProj.iterationsSelected);
                     command.Parameters.AddWithValue("testStates", testProj.testStates);
+                    command.Parameters.AddWithValue("deployOff", testProj.deployOff);
+                    command.Parameters.AddWithValue("lossRelease", testProj.lossRelease);
                     command.Parameters.AddWithValue("lossReleaseReason", testProj.lossReleaseReason);
 
                     int i = command.ExecuteNonQuery();
@@ -461,11 +462,11 @@ namespace ProjectWebApi.Controllers {
         }
 
         [HttpGet]
-        [Route("project/testProj/loadReleasesStates")]
+        [Route("project/testProj/loadTestStatus")]
         [ResponseType(typeof(IList<IdName>))]
-        public HttpResponseMessage LoadReleasesStates(HttpRequestMessage request) {
+        public HttpResponseMessage loadTestStatus(HttpRequestMessage request) {
             var dao = new TestProjDao();
-            var projects = dao.LoadReleasesStates();
+            var projects = dao.LoadTestStatus();
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, projects);
         }

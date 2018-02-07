@@ -452,8 +452,8 @@ namespace ProjectWebApi.Daos {
         #endregion
 
         
-        public IList<IdName> LoadReleasesStates() {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadReleasesStates.sql"), Encoding.Default);
+        public IList<IdName> LoadTestStatus() {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\testProj\loadTestStatus.sql"), Encoding.Default);
             return connection.Executar<IdName>(sql); ;
         }
 
