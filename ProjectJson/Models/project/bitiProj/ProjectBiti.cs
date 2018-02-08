@@ -13,9 +13,15 @@ namespace ProjectWebApi.Models.Project
         public string releaseClarity { get; set; }
         public string releaseClarityFormat { get; set; }
         public string category { get; set; }
-        public string projectManager { get; set; }
-        public string technicalLeader { get; set; }
-        public string LTManager { get; set; }
+
+        public string GP { get; set; }
+        public string GP_N4 { get; set; }
+        public string GP_N3 { get; set; }
+
+        public string LT { get; set; }
+        public string LT_N4 { get; set; }
+        public string LT_N3 { get; set; }
+
         public string PMO { get; set; }
         public string businessAnalyst { get; set; }
         public string testLeader { get; set; }

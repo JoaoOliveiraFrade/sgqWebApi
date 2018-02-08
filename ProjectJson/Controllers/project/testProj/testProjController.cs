@@ -257,8 +257,8 @@ namespace ProjectWebApi.Controllers {
                 if (testProj.iterationsSelected == null)
                     testProj.iterationsSelected = "";
 
-                if (testProj.testStates == null)
-                    testProj.testStates = "";
+                if (testProj.testState == null)
+                    testProj.testState = "";
 
                 if (testProj.lossReleaseReason == null)
                     testProj.lossReleaseReason = "";
@@ -279,9 +279,9 @@ namespace ProjectWebApi.Controllers {
                             ,attentionPointsIndicators = @attentionPointsOfIndicators
                             ,iterationsActive = @iterationsActive
                             ,iterationsSelected = @iterationsSelected
-                            ,testStates = @testStates
+                            ,testState = @testState
 	                        ,deployOff = @deployOff
-	                        ,lossRelease = lossRelease
+	                        ,lossRelease = @lossRelease
                             ,lossReleaseReason = @lossReleaseReason
                         where
                             id = @id
@@ -296,7 +296,7 @@ namespace ProjectWebApi.Controllers {
                     command.Parameters.AddWithValue("attentionPointsOfIndicators", testProj.attentionPointsOfIndicators);
                     command.Parameters.AddWithValue("iterationsActive", testProj.iterationsActive);
                     command.Parameters.AddWithValue("iterationsSelected", testProj.iterationsSelected);
-                    command.Parameters.AddWithValue("testStates", testProj.testStates);
+                    command.Parameters.AddWithValue("testState", testProj.testState);
                     command.Parameters.AddWithValue("deployOff", testProj.deployOff);
                     command.Parameters.AddWithValue("lossRelease", testProj.lossRelease);
                     command.Parameters.AddWithValue("lossReleaseReason", testProj.lossReleaseReason);

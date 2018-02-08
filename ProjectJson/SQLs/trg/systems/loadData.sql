@@ -9,8 +9,8 @@ from
 		where 
 			subprojeto = 'TRG2017' 
 			--and subprojeto = 'TRG2018' 
-			and ciclo like ('%JAN/18')
-			and path like '%2018%'
+			and ciclo like ('%@mmm/@yy')
+			and path like '%@yyyy%'
 	) a1
 where 
 	sytem <> ''

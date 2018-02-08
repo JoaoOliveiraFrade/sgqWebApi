@@ -20,5 +20,6 @@ namespace ProjectWebApi.Models
         public double aging { get; set; }
         public string agingFormat { get; set; }
         public int pingPong { get; set; }
+        public string trgSystem { get; set; }
     }
 }

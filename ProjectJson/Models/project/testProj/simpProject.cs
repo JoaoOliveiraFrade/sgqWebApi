@@ -11,7 +11,7 @@ namespace ProjectWebApi.Models.Project
         public string classification { get; set; }
         public string state { get; set; }
 
-        public string testStates { get; set; }
+        public string testState { get; set; }
         public bool deployOff { get; set; }
         public bool lossRelease { get; set; }
         public string lossReleaseReason { get; set; }

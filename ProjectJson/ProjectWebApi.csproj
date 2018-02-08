@@ -193,7 +193,7 @@
     <Compile Include="Controllers\indicator\performance\dev\DefectOfTSInTIAgentController.cs" />
     <Compile Include="Controllers\indicator\performance\dev\DefectOfTSInTIController.cs" />
     <Compile Include="Controllers\informational\InformationalReleaseController.cs" />
-    <Compile Include="Controllers\infra\AuthController.cs" />
+    <Compile Include="Controllers\auth\AuthController.cs" />
     <Compile Include="Controllers\defect\DefectTrafficLightController.cs" />
     <Compile Include="Controllers\defect\DefectStatusController.cs" />
     <Compile Include="Controllers\defect\DefectQueueController .cs" />
@@ -214,7 +214,7 @@
     <Compile Include="Controllers\system\SystemController.cs" />
     <Compile Include="Controllers\testManuf\TestManuf.cs" />
     <Compile Include="Controllers\project\testProj\ProjectXGrouperController.cs" />
-    <Compile Include="Controllers\GrouperController.cs" />
+    <Compile Include="Controllers\grouper\GrouperController.cs" />
     <Compile Include="Controllers\project\testProj\testProjController.cs" />
     <Compile Include="Controllers\SGQController.cs" />
     <Compile Include="Controllers\trg\TrgDefectController.cs" />
@@ -249,7 +249,7 @@
     <Compile Include="Daos\testManuf\TestManufDao.cs" />
     <Compile Include="Daos\project\testProj\ProjectXGrouperDao.cs" />
     <Compile Include="Daos\GrouperDao.cs" />
-    <Compile Include="Daos\infra\UserDao.cs" />
+    <Compile Include="Daos\auth\AuthDao.cs" />
     <Compile Include="Daos\project\testProj\TestProjDao.cs" />
     <Compile Include="Daos\trg\TrgDefectDao.cs" />
     <Compile Include="Daos\trg\TrgExecutionDao.cs" />
@@ -347,6 +347,12 @@
     <Content Include="Sqls\defect\defectsOpen.sql" />
     <Content Include="Sqls\agileCentral\data.sql" />
     <Content Include="Sqls\agileCentral\detail.sql" />
+    <Content Include="Sqls\grouper\delete.sql" />
+    <Content Include="Sqls\grouper\update.sql" />
+    <Content Include="Sqls\grouper\loadByName.sql" />
+    <Content Include="Sqls\grouper\create.sql" />
+    <Content Include="Sqls\grouper\loadData.sql" />
+    <Content Include="Sqls\grouper\loadById.sql" />
     <Content Include="Sqls\indicator\operational\dev\defectDensity\data.sql" />
     <Content Include="Sqls\indicator\operational\dev\defectDensity\dataFbyProject.sql" />
     <Content Include="Sqls\informational\release\loadData.sql" />
@@ -397,7 +403,7 @@
     <Content Include="Sqls\indicator\operational\test\productivityFbyProject.sql" />
     <Content Include="Sqls\indicator\performance\dev\defectDensity\dataFbyProject.sql" />
     <Content Include="Sqls\indicator\performance\dev\defectDensity\data.sql" />
-    <Content Include="Sqls\project\bitiProj\data.sql" />
+    <Content Include="Sqls\project\bitiProj\loadData.sql" />
     <Content Include="Sqls\project\testProj\execution\ProductivityXDefectsGroupWeekly.sql" />
     <Content Include="Sqls\project\testProj\execution\productivityXDefects.sql" />
     <Content Include="Sqls\project\testProj\execution\groupDayByIteration.sql" />
@@ -450,11 +456,11 @@
     <Content Include="Sqls\trg\trgExecution\groupMonth.sql" />
     <Content Include="Sqls\trg\trgExecution\productivityXDefects.sql" />
     <Content Include="Sqls\trg\trgExecution\ProductivityXDefectsGroupWeekly.sql" />
-    <Content Include="Sqls\trg\systems\data.sql" />
-    <Content Include="Sqls\user\profilesByUser.sql" />
-    <Content Include="Sqls\user\userByPassword.sql" />
-    <Content Include="Sqls\user\userByCpf.sql" />
-    <Content Include="Sqls\user\users.sql" />
+    <Content Include="Sqls\trg\systems\loadData.sql" />
+    <Content Include="Sqls\auth\loadProfilesByUserId.sql" />
+    <Content Include="Sqls\auth\loadUserByLogin.sql" />
+    <Content Include="Sqls\auth\loadUserByCpf.sql" />
+    <Content Include="Sqls\auth\loadUsers.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

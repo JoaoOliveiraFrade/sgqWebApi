@@ -21,6 +21,7 @@
     ,aging as aging
 	,substring('-  ',2+convert(int,sign(aging)),1) + right(convert(varchar, floor(abs(aging))), 3) + ':' + right('00' + convert(varchar,round( 60*(abs(aging)-floor(abs(aging))), 0)), 2) as agingFormat
     ,ping_pong as pingPong
+	,sistema_pasta_ct as trgSystem
 from 
 	alm_defeitos d WITH (NOLOCK)
 where

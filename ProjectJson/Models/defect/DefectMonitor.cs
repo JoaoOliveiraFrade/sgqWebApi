@@ -12,6 +12,7 @@ namespace ProjectWebApi.Models
         public int id { get; set; }
         public string trafficLight { get; set; }
         public string provider { get; set; }
+        public string testManufDefect { get; set; }
         public string subDel { get; set; }
         public string system { get; set; }
         public string queue { get; set; }

@@ -7,32 +7,25 @@ using System.IO;
 using System.Text;
 using System.Web;
 
-namespace ProjectWebApi.Daos
-{
-    public class UserDao
-    {
+namespace ProjectWebApi.Daos {
+    public class AuthDao {
         private Connection connection;
 
-        public UserDao()
-        {
+        public AuthDao() {
             connection = new Connection(Bancos.Sgq);
         }
 
-        public void Dispose()
-        {
+        public void Dispose() {
             connection.Dispose();
         }
 
-        public IList<User> getUsers()
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\user\users.sql"), Encoding.Default);
-            var list = connection.Executar<User>(sql);
-            return list;
+        public IList<User> LoadUsers() {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\auth\loadUsers.sql"), Encoding.Default);
+            return connection.Executar<User>(sql);
         }
 
-        public User getUserByCpf(string login, string cpf)
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\user\userByCpf.sql"), Encoding.Default);
+        public User LoadUserByCpf(string login, string cpf) {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\auth\loadUserByCpf.sql"), Encoding.Default);
             sql = sql.Replace("@login", login);
             sql = sql.Replace("@cpf", cpf);
 
@@ -44,9 +37,8 @@ namespace ProjectWebApi.Daos
                 return null;
         }
 
-        public IList<Profile> getProfilesByUser(int UserId)
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\user\profilesByUser.sql"), Encoding.Default);
+        public IList<Profile> LoadProfilesByUserId(int UserId) {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\auth\loadProfilesByUserId.sql"), Encoding.Default);
             sql = sql.Replace("@user", UserId.ToString());
 
             var list = connection.Executar<Profile>(sql);
@@ -54,9 +46,8 @@ namespace ProjectWebApi.Daos
             return list;
         }
 
-        public User getUserByPassword(string login, string password)
-        {
-            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\user\userByPassword.sql"), Encoding.Default);
+        public User LoadUserByLogin(string login, string password) {
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\auth\loadUserByLogin.sql"), Encoding.Default);
             sql = sql.Replace("@login", login);
             sql = sql.Replace("@password", password);
 

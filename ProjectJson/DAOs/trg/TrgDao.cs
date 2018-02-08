@@ -24,9 +24,9 @@ namespace ProjectWebApi.Daos
             connection.Dispose();
         }
 
-        public IList<IdName> Systems(Release release)
+        public IList<IdName> LoadSystems(Release release)
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\trg\systems\data.sql"), Encoding.Default);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\trg\systems\loadData.sql"), Encoding.Default);
             sql = sql.Replace("@mmm", release.name.Substring(0,3));
             sql = sql.Replace("@yyyy", release.year.ToString());
             sql = sql.Replace("@yy", release.year.ToString().Substring(release.year.ToString().Length-2));

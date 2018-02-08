@@ -12,9 +12,15 @@ select
 	,case when (case when releaseClarity <> '' then releaseClarity else releaseClarityEvento end) <> '' then right((case when releaseClarity <> '' then releaseClarity else releaseClarityEvento end),2) + '/' + left((case when releaseClarity <> '' then releaseClarity else releaseClarityEvento end),4) else '' end as releaseClarityFormat
 
 	,category
-	,projectManager
-	,technicalLeader
-	,LTManager
+
+	,GP --projectManager
+	,substring(GP_N4, 1, charindex(' ', GP_N4)) + substring(GP_N4, len(GP_N4) - charindex(' ', reverse(GP_N4))+2, 50) as GP_N4
+	,substring(GP_N3, 1, charindex(' ', GP_N3)) + substring(GP_N3, len(GP_N3) - charindex(' ', reverse(GP_N3))+2, 50) as GP_N3
+
+	,LT --technicalLeader
+	,LT_N4 --LTManager
+	,substring(LT_N3, 1, charindex(' ', LT_N3)) + substring(LT_N3, len(LT_N3) - charindex(' ', reverse(LT_N3))+2, 50) as LT_N3
+
 	,PMO
 	,businessAnalyst
 	,substring(testLeader, 1, charindex(' ', testLeader)) + substring(testLeader, len(testLeader) - charindex(' ', reverse(testLeader))+2, 50) as testLeader
@@ -113,11 +119,15 @@ from
 				else sp.Categoria
 			end) as category
 
-			,substring(sp.Gerente_Projeto, 1, charindex(' ', sp.Gerente_Projeto)) + substring(sp.Gerente_Projeto, len(sp.Gerente_Projeto) - charindex(' ', reverse(sp.Gerente_Projeto))+2, 50) as projectManager
-			,substring(sp.Lider_Tecnico, 1, charindex(' ', sp.Lider_Tecnico)) + substring(sp.Lider_Tecnico, len(sp.Lider_Tecnico) - charindex(' ', reverse(sp.Lider_Tecnico))+2, 50) as technicalLeader
-			,substring(sp.Gestor_Direto_LT, 1, charindex(' ', sp.Gestor_Direto_LT)) + substring(sp.Gestor_Direto_LT, len(sp.Gestor_Direto_LT) - charindex(' ', reverse(sp.Gestor_Direto_LT))+2, 50) as LTManager
 			,substring(sp.PMO, 1, charindex(' ', sp.PMO)) + substring(sp.PMO, len(sp.PMO) - charindex(' ', reverse(sp.PMO))+2, 50) as PMO
 			,substring(sp.Analista_Negocio, 1, charindex(' ', sp.Analista_Negocio)) + substring(sp.Analista_Negocio, len(sp.Analista_Negocio) - charindex(' ', reverse(sp.Analista_Negocio))+2, 50) as businessAnalyst
+
+			,substring(sp.Gerente_Projeto, 1, charindex(' ', sp.Gerente_Projeto)) + substring(sp.Gerente_Projeto, len(sp.Gerente_Projeto) - charindex(' ', reverse(sp.Gerente_Projeto))+2, 50) as GP --projectManager
+			,(select top 1 gestor_n4 from biti_Usuarios where nome = sp.gerente_projeto) as GP_N4
+			,(select top 1 gestor_n3 from biti_Usuarios where nome = sp.gerente_projeto) as GP_N3
+			,substring(sp.Lider_Tecnico, 1, charindex(' ', sp.Lider_Tecnico)) + substring(sp.Lider_Tecnico, len(sp.Lider_Tecnico) - charindex(' ', reverse(sp.Lider_Tecnico))+2, 50) as LT --technicalLeader
+			,substring(sp.Gestor_Direto_LT, 1, charindex(' ', sp.Gestor_Direto_LT)) + substring(sp.Gestor_Direto_LT, len(sp.Gestor_Direto_LT) - charindex(' ', reverse(sp.Gestor_Direto_LT))+2, 50) as LT_N4 --LTManager
+			,sp.Gestor_Do_Gestor_LT as LT_N3
 
 			,isNull((select top 1 
 				ft.Responsavel_Tecnico 

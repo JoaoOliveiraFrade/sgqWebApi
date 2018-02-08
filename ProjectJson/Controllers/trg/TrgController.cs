@@ -18,12 +18,12 @@ namespace ProjectWebApi.Controllers
     public class TrgController : ApiController
     {
         [HttpPost]
-        [Route("trg/systems")]
+        [Route("trg/loadSystems")]
         [ResponseType(typeof(IList<IdName>))]
-        public HttpResponseMessage Systems(HttpRequestMessage request, Release release)
+        public HttpResponseMessage LoadSystems(HttpRequestMessage request, Release release)
         {
             var dao = new TrgDao();
-            var result = dao.Systems(release);
+            var result = dao.LoadSystems(release);
             dao.Dispose();
             return request.CreateResponse(HttpStatusCode.OK, result);
         }

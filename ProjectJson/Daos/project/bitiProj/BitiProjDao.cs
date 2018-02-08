@@ -26,7 +26,7 @@ namespace ProjectWebApi.Daos
 
         public IList<ProjectBiti> data()
         {
-			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\bitiProj\data.sql"), Encoding.Default);
+			string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\project\bitiProj\loadData.sql"), Encoding.Default);
             return connection.Executar<ProjectBiti>(sql);
         }
    }

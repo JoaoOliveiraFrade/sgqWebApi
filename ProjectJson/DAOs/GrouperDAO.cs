@@ -4,6 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
+using System.Text;
+using System.Web;
 
 namespace ProjectWebApi.Daos
 {
@@ -21,141 +24,24 @@ namespace ProjectWebApi.Daos
             connection.Dispose();
         }
 
-        public IList<Grouper> getAll()
+        public IList<Grouper> LoadData()
         {
-            string sql = @"
-            select 
-	            id, 
-	            name, 
-                type,
-	            executiveSummary,
-	            case 
-		            when 'VERMELHO' in (
-			            select p.trafficLight
-			            from SGQ_ProjectsXGroupers pg
-				            left join sgq_projects p
-				              on p.id = pg.project
-			            where pg.Grouper = g.id
-		            ) then 'VERMELHO'
-
-		            when 'AMARELO' in (
-			            select p.trafficLight
-			            from SGQ_ProjectsXGroupers pg
-				            left join sgq_projects p
-				              on p.id = pg.project
-			            where pg.Grouper = g.id
-		            ) then 'AMARELO'
-
-		            when 'VERDE' in (
-			            select p.trafficLight
-			            from SGQ_ProjectsXGroupers pg
-				            left join sgq_projects p
-				              on p.id = pg.project
-			            where pg.Grouper = g.id
-		            ) then 'VERDE'
-	            end as trafficLight
-            from	 
-	            SGQ_Groupers g
-            order by 
-	            name
-            ";
-            var listGroupers = connection.Executar<Grouper>(sql);
-
-            return listGroupers;
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\grouper\loadData.sql"), Encoding.Default);
+            return connection.Executar<Grouper>(sql);
         }
 
-        public Grouper get(string id)
+        public Grouper LoadById(string id)
         {
-            string sql = @"
-            select 
-	            id, 
-	            name, 
-                type,
-	            executiveSummary,
-	            case 
-		            when 'VERMELHO' in (
-			            select p.trafficLight
-			            from SGQ_ProjectsXGroupers pg
-				            left join sgq_projects p
-				              on p.id = pg.project
-			            where pg.Grouper = g.id
-		            ) then 'VERMELHO'
-
-		            when 'AMARELO' in (
-			            select p.trafficLight
-			            from SGQ_ProjectsXGroupers pg
-				            left join sgq_projects p
-				              on p.id = pg.project
-			            where pg.Grouper = g.id
-		            ) then 'AMARELO'
-
-		            when 'VERDE' in (
-			            select p.trafficLight
-			            from SGQ_ProjectsXGroupers pg
-				            left join sgq_projects p
-				              on p.id = pg.project
-			            where pg.Grouper = g.id
-		            ) then 'VERDE'
-	            end as trafficLight
-            from	 
-	            SGQ_Groupers g
-            where 
-                id = @id
-            order by 
-	            name
-            ";
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\grouper\loadById.sql"), Encoding.Default);
             sql = sql.Replace("@id", id);
-
-            var list = connection.Executar<Grouper>(sql);
-
-            return list[0];
+            return connection.Executar<Grouper>(sql)[0];
         }
 
         public Grouper getByName(string name)
         {
-            string sql = @"
-            select 
-	            id, 
-	            name, 
-                type,
-	            executiveSummary,
-	            case 
-		            when 'VERMELHO' in (
-			            select p.trafficLight
-			            from SGQ_ProjectsXGroupers pg
-				            left join sgq_projects p
-				              on p.id = pg.project
-			            where pg.Grouper = g.id
-		            ) then 'VERMELHO'
-
-		            when 'AMARELO' in (
-			            select p.trafficLight
-			            from SGQ_ProjectsXGroupers pg
-				            left join sgq_projects p
-				              on p.id = pg.project
-			            where pg.Grouper = g.id
-		            ) then 'AMARELO'
-
-		            when 'VERDE' in (
-			            select p.trafficLight
-			            from SGQ_ProjectsXGroupers pg
-				            left join sgq_projects p
-				              on p.id = pg.project
-			            where pg.Grouper = g.id
-		            ) then 'VERDE'
-	            end as trafficLight
-            from	 
-	            SGQ_Groupers g
-            where 
-                name = '@name'
-            order by 
-	            name
-            ";
+            string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\grouper\loadByName.sql"), Encoding.Default);
             sql = sql.Replace("@name", name);
-
-            var list = connection.Executar<Grouper>(sql);
-
-            return list[0];
+            return connection.Executar<Grouper>(sql)[0];
         }
 
         public Grouper Create(Grouper item)
@@ -173,15 +59,16 @@ namespace ProjectWebApi.Daos
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = connection.connection;
-                command.CommandText = @"
-                    insert into SGQ_Groupers
-                        (name, type, executiveSummary) 
-                    values 
-                        (@name, @type, @executiveSummary)
-                ";
+                command.CommandText = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\grouper\create.sql"), Encoding.Default);
                 command.Parameters.AddWithValue("name", item.name);
                 command.Parameters.AddWithValue("type", item.type);
                 command.Parameters.AddWithValue("executiveSummary", item.executiveSummary);
+                command.Parameters.AddWithValue("startTiUat", item.startTiUat);
+                command.Parameters.AddWithValue("endTiUat", item.endTiUat);
+                command.Parameters.AddWithValue("startTRG", item.startTRG);
+                command.Parameters.AddWithValue("endTRG", item.endTRG);
+                command.Parameters.AddWithValue("startStabilization", item.startStabilization);
+                command.Parameters.AddWithValue("endStabilization", item.endStabilization);
 
                 int i = command.ExecuteNonQuery();
                 resultado = i > 0;
@@ -208,18 +95,17 @@ namespace ProjectWebApi.Daos
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = connection.connection;
-                command.CommandText = @"
-                    update SGQ_Groupers
-                    set
-                        name = @name,
-                        type = @type,
-                        executiveSummary = @executiveSummary
-                    where
-                        id = @id";
+                command.CommandText = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\grouper\update.sql"), Encoding.Default);
                 command.Parameters.AddWithValue("id", item.id);
                 command.Parameters.AddWithValue("name", item.name);
                 command.Parameters.AddWithValue("type", item.type);
                 command.Parameters.AddWithValue("executiveSummary", item.executiveSummary);
+                command.Parameters.AddWithValue("startTiUat", item.startTiUat);
+                command.Parameters.AddWithValue("endTiUat", item.endTiUat);
+                command.Parameters.AddWithValue("startTRG", item.startTRG);
+                command.Parameters.AddWithValue("endTRG", item.endTRG);
+                command.Parameters.AddWithValue("startStabilization", item.startStabilization);
+                command.Parameters.AddWithValue("endStabilization", item.endStabilization);
 
                 int i = command.ExecuteNonQuery();
                 resultado = i > 0;
@@ -235,10 +121,7 @@ namespace ProjectWebApi.Daos
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = connection.connection;
-                command.CommandText = @"
-                    delete SGQ_ProjectsXGroupers where Grouper = @id;
-                    delete SGQ_Groupers where id = @id;
-                ";
+                command.CommandText = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\grouper\delete.sql"), Encoding.Default);
                 command.Parameters.AddWithValue("id", id);
 
                 int i = command.ExecuteNonQuery();

@@ -1,5 +1,5 @@
 ﻿select
-	id, trafficLight, provider, subDel, subproject, delivery, system, queue, origin, status, severity, agingHours, timeLastQueueHours, qtyImpactCT, pingPong
+	id, trafficLight, provider, testManufDefect, subDel, subproject, delivery, system, queue, origin, status, severity, agingHours, timeLastQueueHours, qtyImpactCT, pingPong
 from
 	(
 		select
@@ -26,6 +26,8 @@ from
 					end 
 			end as trafficLight
 			,rtrim(ltrim(substring(queue, len(queue) - charindex('-', reverse(queue)) + 2, 50))) as provider
+			,testManufDefect
+
 			,convert(varchar, cast(substring(subproject,4,8) as int)) + ' ' + convert(varchar,cast(substring(delivery,9,8) as int)) as subDel
 			,subproject
 			,delivery
@@ -58,6 +60,7 @@ from
 					,defeito as id
 					,origem as origin
 					,sistema_defeito as system
+					,fabrica_teste as testManufDefect
 					,status_atual as status
 					,substring(severidade,3,3) as severity
 					,Qtd_CTs_Impactados as qtyImpactCT

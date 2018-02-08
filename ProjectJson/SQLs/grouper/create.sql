@@ -1,0 +1,24 @@
+insert into SGQ_Groupers
+    (
+		name
+		,type
+		,executiveSummary
+		,startTiUat
+		,endTiUat
+		,startTRG
+		,endTRG
+		,startStabilization
+		,endStabilization
+	)
+values 
+    (
+		@name
+		,@type
+		,@executiveSummary
+		,@startTiUat
+		,@endTiUat
+		,@startTRG
+		,@endTRG
+		,@startStabilization
+		,@endStabilization
+	)

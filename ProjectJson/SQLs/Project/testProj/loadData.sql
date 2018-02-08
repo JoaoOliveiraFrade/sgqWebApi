@@ -33,7 +33,7 @@ select
     ,biti_s.classificacao_nome as classification
 	,replace(replace(replace(replace(replace(biti_s.estado,'CONSOLIDA플O E APROVA플O DO PLANEJAMENTO','CONS/APROV. PLAN'),'PLANEJAMENTO','PLANEJ.'),'DESENHO DA SOLU플O','DES.SOL'),'VALIDA플O','VALID.'),'AGUARDANDO','AGUAR.') as state
 	
-	,sgq_p.testStates
+	,sgq_p.testState
 	,sgq_p.deployOff
 	,sgq_p.lossRelease
 	,sgq_p.lossReleaseReason
