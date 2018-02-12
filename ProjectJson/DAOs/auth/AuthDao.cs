@@ -24,10 +24,10 @@ namespace ProjectWebApi.Daos {
             return connection.Executar<User>(sql);
         }
 
-        public User LoadUserByCpf(string login, string cpf) {
+        public User LoadUserByCpf(User user) {
             string sql = File.ReadAllText(HttpContext.Current.Server.MapPath(@"~\sqls\auth\loadUserByCpf.sql"), Encoding.Default);
-            sql = sql.Replace("@login", login);
-            sql = sql.Replace("@cpf", cpf);
+            sql = sql.Replace("@login", user.login);
+            sql = sql.Replace("@cpf", user.cpf);
 
             var list = connection.Executar<User>(sql);
 

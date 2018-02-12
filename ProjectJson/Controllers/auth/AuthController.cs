@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
         [ResponseType(typeof(IList<User>))]
         public HttpResponseMessage LoadUserByCpf(HttpRequestMessage request, User user) {
             var dao = new AuthDao();
-            var result = dao.LoadUserByCpf(user.login, user.cpf);
+            var result = dao.LoadUserByCpf(user);
             dao.Dispose();
             return request.CreateResponse(result != null ? HttpStatusCode.OK : HttpStatusCode.NotFound, result);
         }
