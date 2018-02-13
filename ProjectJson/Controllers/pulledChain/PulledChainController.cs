@@ -18,14 +18,14 @@ namespace ProjectWebApi.Controllers
     public class PulledChainController : ApiController
     {
 		[HttpGet]
-		[Route("pulledChain/data")]
+		[Route("pulledChain/loadData")]
 		[ResponseType(typeof(IList<PulledChain>))]
-		public HttpResponseMessage PulledChain(HttpRequestMessage request)
+		public HttpResponseMessage LoadData(HttpRequestMessage request)
 		{
-			var pulledChainDao = new PulledChainDao();
-            IList<PulledChain> projects = pulledChainDao.Data();
-            pulledChainDao.Dispose();
-			return request.CreateResponse(HttpStatusCode.OK, projects);
+			var dao = new PulledChainDao();
+            var result = dao.LoadData();
+            dao.Dispose();
+			return request.CreateResponse(HttpStatusCode.OK, result);
 		}
 
         [HttpGet]
@@ -33,25 +33,24 @@ namespace ProjectWebApi.Controllers
         [ResponseType(typeof(IList<chartCFD>))]
         public HttpResponseMessage chartCFD(HttpRequestMessage request)
         {
-            var pulledChainDao = new PulledChainDao();
-            IList<chartCFD> projects = pulledChainDao.chartCFD();
-            pulledChainDao.Dispose();
-            return request.CreateResponse(HttpStatusCode.OK, projects);
+            var dao = new PulledChainDao();
+            var result = dao.chartCFD();
+            dao.Dispose();
+            return request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPut]
 		[Route("pulledChain/update")]
 		public HttpResponseMessage update(PulledChain item)
 		{
-            var pulledChainDao = new PulledChainDao();
-            int result = pulledChainDao.update(item);
+            var dao = new PulledChainDao();
+            int result = dao.update(item);
+            dao.Dispose();
 
             if (result == 0) {
-                pulledChainDao.Dispose();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             else {
-                pulledChainDao.Dispose();
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }

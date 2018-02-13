@@ -9,7 +9,7 @@ select
 			select p.trafficLight
 			from SGQ_ProjectsXGroupers pg
 				left join sgq_projects p
-				    on p.id = pg.project
+				    on p.subproject = pg.subproject
 			where pg.Grouper = g.id
 		) then 'VERMELHO'
 
@@ -17,7 +17,7 @@ select
 			select p.trafficLight
 			from SGQ_ProjectsXGroupers pg
 				left join sgq_projects p
-				    on p.id = pg.project
+				    on p.subproject = pg.subproject
 			where pg.Grouper = g.id
 		) then 'AMARELO'
 
@@ -25,7 +25,7 @@ select
 			select p.trafficLight
 			from SGQ_ProjectsXGroupers pg
 				left join sgq_projects p
-				    on p.id = pg.project
+				    on p.subproject = pg.subproject
 			where pg.Grouper = g.id
 		) then 'VERDE'
 	end as trafficLight
@@ -38,5 +38,7 @@ select
 	,endStabilization
 from	 
 	SGQ_Groupers g
+where 
+	g.id in (select distinct grouper from SGQ_ProjectsXGroupers)
 order by 
-	name desc
+	name
